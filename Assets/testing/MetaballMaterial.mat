@@ -46,6 +46,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _AMP: 10
+    - _Frequency: 1
+    - _PasoPorVertice: 0
+    - _TotalVertices: 0
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _puntoA: {r: 0, g: 0, b: 0, a: 0}

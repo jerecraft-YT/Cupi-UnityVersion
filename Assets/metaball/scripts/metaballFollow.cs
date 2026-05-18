@@ -10,6 +10,8 @@ public class metaballFollow : MonoBehaviour
     private bool m_Follow = false;
     private List<float> amplitudPoints;
     public float velocidadSeguimiento = 5.0f;
+    private float refreshTime;
+
     void Start()
     {
         controller = GetComponent<SpriteShapeController>();
@@ -17,6 +19,8 @@ public class metaballFollow : MonoBehaviour
     }
     void Update()
     {
+        refreshTime += Time.deltaTime;
+
         if (metaball.MetaballController.spline.GetPointCount() != 0)
         {
             if (!m_Follow)
@@ -40,6 +44,12 @@ public class metaballFollow : MonoBehaviour
                 amplitudPoints[i] = amplitudPoints[i] < metaball.AmplitudPoints[i] ? metaball.AmplitudPoints[i] : amplitudPoints[i];
 
                 amplitudPoints[i] = amplitudPoints[i] > metaball.AmplitudPoints[i] ? Mathf.Lerp(amplitudPoints[i], metaball.Amplitud, velocidadSeguimiento * Time.deltaTime) : amplitudPoints[i];
+            }
+
+            if (refreshTime >= metaball.RefreshEvery)
+            {
+                refreshTime -= metaball.RefreshEvery;
+                controller.RefreshSpriteShape();
             }
         }
     }

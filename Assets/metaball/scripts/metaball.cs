@@ -34,7 +34,7 @@ public class metaball : MonoBehaviour
     [SerializeField] private int maxFollow = 4;
     [SerializeField] private Color[] followColors;
     [SerializeField] private GameObject followAsset;
-    [SerializeField] private float RefreshEvery = 0.016f;
+    [SerializeField] private float refreshEvery = 0.016f;
     private float refreshTime;
 
     [Range(0f, 10.0f)]
@@ -166,10 +166,10 @@ public class metaball : MonoBehaviour
             metaballController.spline.SetPosition(i, directionPoint[i] * amplitudPoints[i]);
         }
 
-        if (refreshTime >= RefreshEvery)
+        if (refreshTime >= refreshEvery)
         {
             metaballController.RefreshSpriteShape();
-            refreshTime -= RefreshEvery;
+            refreshTime -= refreshEvery;
         }
         
         if (time >= GetMusicEvery)
@@ -240,8 +240,6 @@ public class metaball : MonoBehaviour
 
     public float[] AmplitudPoints => amplitudPoints;
 
-    //public int NumberPoints => numberPoints;
-
     public float Amplitud => amplitud;
 
     public Vector2[] TangentPositions => tangentPositions;
@@ -250,6 +248,9 @@ public class metaball : MonoBehaviour
 
     public SpriteShapeController MetaballController => metaballController;
 
+    public float RefreshEvery => refreshEvery;
+
+    //public int NumberPoints => numberPoints;
     public int NumberPoints
     {
         get { return numberPoints; }

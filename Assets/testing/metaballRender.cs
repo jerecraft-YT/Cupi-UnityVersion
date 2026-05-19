@@ -5,7 +5,7 @@ public class metaballRender : MonoBehaviour
     public MeshFilter meshFilter;
     public MeshRenderer meshRenderer;
     public int vertexCount;
-    public static int numberPoints = 512;
+    public static int numberPoints = 32;
     void Start()
     {
         meshFilter = GetComponent<MeshFilter>();
@@ -13,13 +13,24 @@ public class metaballRender : MonoBehaviour
 
         Mesh geometria = new Mesh();
         Vector3[] vertices = new Vector3[numberPoints + 1];
+        Vector2[] uvs = new Vector2[numberPoints + 1];
         int[] triangles = new int[numberPoints * 3];
+        uvs[0] = new Vector2(0.5f, 0.5f);
 
         for (int i = 0; i < numberPoints; i++)
         {
             float angulo = ((360f / numberPoints) * i) * Mathf.Deg2Rad;
 
-            vertices[i + 1] = new Vector3(Mathf.Cos(angulo), Mathf.Sin(angulo));
+            float x = Mathf.Cos(angulo);
+            float y = Mathf.Sin(angulo);
+
+            vertices[i + 1] = new Vector3(x, y);
+
+            // Convertir de rango [-1,1] a [0,1]
+            uvs[i + 1] = new Vector2(
+                x * 0.5f + 0.5f,
+                y * 0.5f + 0.5f
+            );
         }
 
         for (int i = 0; i < numberPoints; i++)
@@ -43,8 +54,11 @@ public class metaballRender : MonoBehaviour
 
         geometria.vertices = vertices;
         geometria.triangles = triangles;
+        geometria.uv = uvs;
+
         geometria.RecalculateNormals();
         geometria.RecalculateBounds();
+
 
         meshFilter.mesh = geometria;
 
@@ -52,6 +66,6 @@ public class metaballRender : MonoBehaviour
 
         meshRenderer.material.SetFloat("_TotalVertices", vertexCount);
 
-        meshRenderer.material.SetFloat("_PasoPorVertice", (360.0f * Mathf.Deg2Rad) / vertexCount);
+        meshRenderer.material.SetFloat("_PasoPorVertice", (360.0f * Mathf.Deg2Rad) / (vertexCount -1));
     }
 }

@@ -5,7 +5,7 @@ public class metaballRender : MonoBehaviour
     public MeshFilter meshFilter;
     public MeshRenderer meshRenderer;
     public int vertexCount;
-    public static int numberPoints = 32;
+    public static int numberPoints = 130;
     void Start()
     {
         meshFilter = GetComponent<MeshFilter>();

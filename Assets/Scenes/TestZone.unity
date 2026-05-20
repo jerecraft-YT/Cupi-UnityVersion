@@ -484,6 +484,30 @@ MonoBehaviour:
     localSpeed: 1
     offsetPositionToGo: {x: 0, y: 0}
     DireccionCustom: {x: 0, y: 0}
+  - CorrespondenciaTecla: 1
+    DireccionMovimiento: 0
+    timeToArrive: 15
+    localSpeed: 1
+    offsetPositionToGo: {x: 0, y: 0}
+    DireccionCustom: {x: 0, y: 0}
+  - CorrespondenciaTecla: 0
+    DireccionMovimiento: 0
+    timeToArrive: 15
+    localSpeed: 1
+    offsetPositionToGo: {x: 0, y: 0}
+    DireccionCustom: {x: 0, y: 0}
+  - CorrespondenciaTecla: 2
+    DireccionMovimiento: 0
+    timeToArrive: 15
+    localSpeed: 1
+    offsetPositionToGo: {x: 0, y: 0}
+    DireccionCustom: {x: 0, y: 0}
+  - CorrespondenciaTecla: 1
+    DireccionMovimiento: 0
+    timeToArrive: 15
+    localSpeed: 1
+    offsetPositionToGo: {x: 0, y: 0}
+    DireccionCustom: {x: 0, y: 0}
 --- !u!4 &635187088
 Transform:
   m_ObjectHideFlags: 0

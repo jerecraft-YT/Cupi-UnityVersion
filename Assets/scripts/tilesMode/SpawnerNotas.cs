@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.IO;
 
 [Serializable]
 public struct NotaNormalInstance
@@ -31,6 +32,11 @@ public struct NotaNormalInstance
     }
 }
 
+[Serializable]
+public class NotaNormalList
+{
+    public List<NotaNormalInstance> notasNormales;
+}
 
 public class SpawnerNotas : MonoBehaviour
 {
@@ -61,6 +67,20 @@ public class SpawnerNotas : MonoBehaviour
 
             scriptNota.DireccionMovimiento = EstablecerDireccionMovimiento(notaActual.DireccionMovimiento, notaActual.DireccionCustom);
         }
+
+    }
+
+    void SaveJson()
+    {
+        NotaNormalList conversor = new NotaNormalList { notasNormales = notasNormales };
+
+        string JsonString = JsonUtility.ToJson(conversor, true);
+
+        print(JsonString);
+        string dir = Application.persistentDataPath + "/dataTest.json";
+        //print(dir);
+
+        File.WriteAllText(dir, JsonString);
     }
 
     Transform DefinirCorrespondenciaTecla(CorrespondenciaTecla CorrespondenciaTecla)

@@ -46,9 +46,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _AMP: 0.1
-    - _Frequency: 5.1
+    - _Frequency: 13.32
     - _PasoPorVertice: 0
-    - _TimeMultiplier: 1
+    - _TimeMultiplier: 7.64
     - _TotalVertices: 0
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}

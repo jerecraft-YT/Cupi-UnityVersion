@@ -141,11 +141,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3012614556007921656, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.22
+      value: -4.46
       objectReference: {fileID: 0}
     - target: {fileID: 3012614556007921656, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.87
+      value: 1.63
       objectReference: {fileID: 0}
     - target: {fileID: 3012614556007921656, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: m_LocalPosition.z
@@ -184,8 +184,28 @@ PrefabInstance:
       value: metaball
       objectReference: {fileID: 0}
     - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: maxFollow
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: GetMusicEvery
       value: 0.033
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: noiseInfluence
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: VelocidadRotacion
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: noiseReadingFrequency
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6761364923240624119, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: m_Creator

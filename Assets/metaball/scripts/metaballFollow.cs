@@ -1,14 +1,12 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
 [RequireComponent(typeof(SpriteShapeController))]
 public class metaballFollow : MonoBehaviour
 {
-    public metaball metaball;
     private SpriteShapeController controller;
     private bool m_Follow = false;
-    private List<float> amplitudPoints;
+    private float[] amplitudPoints;
     public float velocidadSeguimiento = 5.0f;
     private float refreshTime;
 
@@ -21,34 +19,34 @@ public class metaballFollow : MonoBehaviour
     {
         refreshTime += Time.deltaTime;
 
-        if (metaball.MetaballController.spline.GetPointCount() != 0)
+        if (metaball.instance.MetaballController.spline.GetPointCount() != 0)
         {
             if (!m_Follow)
             {
                 m_Follow = true;
-                for (int i = 0; i < metaball.NumberPoints; i++)
+                for (int i = 0; i < metaball.instance.NumberPoints; i++)
                 {
-                    controller.spline.InsertPointAt(i, metaball.MetaballController.spline.GetPosition(i));
+                    controller.spline.InsertPointAt(i, metaball.instance.MetaballController.spline.GetPosition(i));
                     controller.spline.SetTangentMode(i, ShapeTangentMode.Continuous);
 
-                    controller.spline.SetLeftTangent(i, metaball.TangentPositions[i]);
-                    controller.spline.SetRightTangent(i, -metaball.TangentPositions[i]);
-                    amplitudPoints = new List<float>(metaball.AmplitudPoints);
+                    controller.spline.SetLeftTangent(i, metaball.instance.TangentPositions[i]);
+                    controller.spline.SetRightTangent(i, -metaball.instance.TangentPositions[i]);
                 }
+                amplitudPoints = (float[])metaball.instance.AmplitudPoints.Clone();
             }
 
-            for (int i = 0; i < metaball.NumberPoints; i++)
-            {
-                controller.spline.SetPosition(i, metaball.DirectionPoint[i] * amplitudPoints[i]);
+            for (int i = 0; i < metaball.instance.NumberPoints; i++)
+            {   
+                amplitudPoints[i] = amplitudPoints[i] < metaball.instance.AmplitudPoints[i] ? metaball.instance.AmplitudPoints[i] : amplitudPoints[i];
+
+                amplitudPoints[i] = amplitudPoints[i] > metaball.instance.AmplitudPoints[i] ? Mathf.Lerp(amplitudPoints[i], metaball.instance.Amplitud, velocidadSeguimiento * Time.deltaTime) : amplitudPoints[i];
                 
-                amplitudPoints[i] = amplitudPoints[i] < metaball.AmplitudPoints[i] ? metaball.AmplitudPoints[i] : amplitudPoints[i];
-
-                amplitudPoints[i] = amplitudPoints[i] > metaball.AmplitudPoints[i] ? Mathf.Lerp(amplitudPoints[i], metaball.Amplitud, velocidadSeguimiento * Time.deltaTime) : amplitudPoints[i];
+                controller.spline.SetPosition(i, metaball.instance.DirectionPoint[i] * amplitudPoints[i] +(metaball.instance.DirectionPoint[i] * metaball.instance.AmplitudNoise[i]));
             }
 
-            if (refreshTime >= metaball.RefreshEvery)
+            if (refreshTime >= metaball.instance.RefreshEvery)
             {
-                refreshTime -= metaball.RefreshEvery;
+                refreshTime -= metaball.instance.RefreshEvery;
                 controller.RefreshSpriteShape();
             }
         }

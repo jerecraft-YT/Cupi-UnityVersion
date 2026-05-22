@@ -1,5 +1,4 @@
 using System;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -8,9 +7,11 @@ public class metaball : MonoBehaviour
 {
     #region variables
     #region variablesExternas
+    public static metaball instance;
     private SpriteShapeController metaballController;
     private Vector2[] directionPoint;
     private float[] amplitudPoints;
+    private float[] amplitudNoise;
     private Vector2[] tangentPositions;
     #endregion
 
@@ -18,7 +19,7 @@ public class metaball : MonoBehaviour
 
     private float[] objetivoPoints;
     private float[] spectrumData = new float[256];
-    private float time;
+    private float musicTime;
     private float baseAngle;
     [Header("Config")]
 
@@ -35,6 +36,8 @@ public class metaball : MonoBehaviour
     [SerializeField] private Color[] followColors;
     [SerializeField] private GameObject followAsset;
     [SerializeField] private float refreshEvery = 0.016f;
+    [SerializeField] private float noiseInfluence = 0.2f;
+    [SerializeField] private float noiseReadingFrequency = 0.18f;
     private float refreshTime;
 
     [Range(0f, 10.0f)]
@@ -52,37 +55,43 @@ public class metaball : MonoBehaviour
     #endregion
 
     #region core
-    private void Start()
+    private void Awake()
     {
+        instance = this;
         metaballController = GetComponent<SpriteShapeController>();
         musica = GetComponent<AudioSource>();
-        validateComponents();
+        if (!validateComponents())
+        {
+            enabled = false;
+            return;
+        }
         CreateCirclePoints();
-        createMetaballFollowInstances();
+        CreateMetaballFollowInstances();
     }
 
-    private void validateComponents()
+    private bool validateComponents()
     {
         if (musica == null)
         {
             Debug.LogError("recurso de musica no establecido");
-            enabled = false;
+            return false;
         }
 
-        if (followAsset == null)
+        if (followAsset == null && maxFollow != 0)
         {
             Debug.LogError("follow asset no establecido");
-            enabled = false;
+            return false;
         }
 
         if (metaballController == null)
         {
             Debug.LogError("metaballController no establecido");
-            enabled = false;
+            return false;
         }
+        return true;
     }
 
-    private void createMetaballFollowInstances()
+    private void CreateMetaballFollowInstances()
     {
         for (int i = 0; i < maxFollow; i++)
         {
@@ -91,7 +100,6 @@ public class metaball : MonoBehaviour
             metaballFollow followScript = metaballFollowInstance.GetComponent<metaballFollow>();
             SpriteShapeRenderer followRenderer = metaballFollowInstance.GetComponent<SpriteShapeRenderer>();
 
-            followScript.metaball = this;
             followScript.velocidadSeguimiento = maxFollow - i;
             followRenderer.sortingOrder = -(i + 1);
             if (followColors.Length != 0)
@@ -116,7 +124,7 @@ public class metaball : MonoBehaviour
 
     private void AddLocalTime()
     {
-        time += Time.deltaTime;
+        musicTime += Time.deltaTime;
         refreshTime += Time.deltaTime;
     }
 
@@ -131,14 +139,14 @@ public class metaball : MonoBehaviour
 
         int rangoSpectro = Mathf.Max(1,(int)((spectrumData.Length * SpectrumSize)) / numberPoints);
 
-        if (time >= GetMusicEvery)
+        if (musicTime >= GetMusicEvery)
         {
             musica.GetSpectrumData(spectrumData, 0 , fftwindow);
         }
 
         for (int i = 0; i < numberPoints; i++)
         {
-            if (time >= GetMusicEvery)
+            if (musicTime >= GetMusicEvery)
             {
                 float avg;
                 float sum = 0;
@@ -153,17 +161,24 @@ public class metaball : MonoBehaviour
                 }
 
                 avg = sum / rangoSpectro;
-
-                objetivoPoints[i] = Mathf.Min(amplitud + avg * FuerzaMusica * FuerzaPorPunto[Mathf.Min(i,FuerzaPorPunto.Length - 1)], FuerzaMaxima);
+                float fuerzaPunto = FuerzaPorPunto.Length > 0 ? FuerzaPorPunto[Mathf.Min(i, FuerzaPorPunto.Length - 1)] : 1f;
+                objetivoPoints[i] = Mathf.Min(amplitud + avg * FuerzaMusica * fuerzaPunto, FuerzaMaxima);
             }
             else
             {
                 objetivoPoints[i] = Mathf.Lerp(objetivoPoints[i], amplitud, VelocidadAmplitudObjetivo * Time.deltaTime);
             }
 
+            amplitudNoise[i] = Mathf.PerlinNoise(i * noiseReadingFrequency, Time.time) * noiseInfluence;
+
             amplitudPoints[i] = Mathf.Max(Mathf.Lerp(amplitudPoints[i], objetivoPoints[i], VelocidadAmplitud * Time.deltaTime), amplitud);
 
-            metaballController.spline.SetPosition(i, directionPoint[i] * amplitudPoints[i]);
+
+            metaballController.spline.SetPosition(i, directionPoint[i] * amplitudPoints[i] + (directionPoint[i] * amplitudNoise[i]));
+
+            float tangentScale = amplitudPoints[i] / amplitud;
+            metaballController.spline.SetLeftTangent(i, tangentPositions[i] * tangentScale);
+            metaballController.spline.SetRightTangent(i, -tangentPositions[i] * tangentScale);
         }
 
         if (refreshTime >= refreshEvery)
@@ -172,9 +187,9 @@ public class metaball : MonoBehaviour
             refreshTime -= refreshEvery;
         }
         
-        if (time >= GetMusicEvery)
+        if (musicTime >= GetMusicEvery)
         {
-            time -= GetMusicEvery;
+            musicTime -= GetMusicEvery;
         }
     }
 
@@ -183,7 +198,8 @@ public class metaball : MonoBehaviour
     {
         baseAngle += VelocidadRotacion * Time.deltaTime;
 
-        transform.rotation = quaternion.RotateZ(baseAngle);
+        transform.localRotation = Quaternion.Euler(0.0f, 0.0f, baseAngle);
+        
     }
 
     /// <summary>
@@ -211,6 +227,7 @@ public class metaball : MonoBehaviour
         directionPoint = new Vector2[numberPoints];     
         amplitudPoints = new float[numberPoints];
         objetivoPoints = new float[numberPoints];
+        amplitudNoise = new float[numberPoints];
 
         for (int i = 0; i < numberPoints; i++)
         {
@@ -240,6 +257,8 @@ public class metaball : MonoBehaviour
 
     public float[] AmplitudPoints => amplitudPoints;
 
+    public float[] AmplitudNoise => amplitudNoise;
+
     public float Amplitud => amplitud;
 
     public Vector2[] TangentPositions => tangentPositions;
@@ -250,7 +269,6 @@ public class metaball : MonoBehaviour
 
     public float RefreshEvery => refreshEvery;
 
-    //public int NumberPoints => numberPoints;
     public int NumberPoints
     {
         get { return numberPoints; }

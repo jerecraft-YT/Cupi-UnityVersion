@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::metaball
   numberPoints: 16
-  VelocidadRotacion: 0.1
+  VelocidadRotacion: 5
   VelocidadAmplitud: 20
   VelocidadAmplitudObjetivo: 1
   amplitud: 6
@@ -197,7 +197,9 @@ MonoBehaviour:
   - {r: 0.1764706, g: 0, b: 0.99215686, a: 1}
   - {r: 0.6784314, g: 0.60784316, b: 1, a: 1}
   followAsset: {fileID: 7700269102758796974, guid: b2e273ce093e54a4aac5c1b72ca3d96e, type: 3}
-  RefreshEvery: 0.016
+  refreshEvery: 0.016
+  noiseInfluence: 1
+  noiseReadingFrequency: 0.6
   FuerzaPorPunto:
   - 0.15
   - 0.65

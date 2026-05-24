@@ -17,9 +17,6 @@ public class TimeController : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-    }
-    void Start()
-    {
         RestartTime();
     }
 

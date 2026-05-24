@@ -49,6 +49,9 @@ public class SpawnerNotas : MonoBehaviour
     public float notaNormalSpeed = 4;
 
     public List<NotaNormalInstance> notasNormales;
+    public List<float> timeArriveLeftNotes;
+    public List<float> timeArriveRigthNotes;
+    public List<float> timeArriveMidleNotes;
 
     private void Awake()
     {
@@ -57,6 +60,8 @@ public class SpawnerNotas : MonoBehaviour
 
     private void Start()
     {
+        SeparateNotesForInput();
+
         foreach (NotaNormalInstance notaActual in notasNormales)
         {
             GameObject nota = Instantiate(notaNormal,DefinirCorrespondenciaTecla(notaActual.CorrespondenciaTecla));
@@ -68,6 +73,26 @@ public class SpawnerNotas : MonoBehaviour
             scriptNota.DireccionMovimiento = EstablecerDireccionMovimiento(notaActual.DireccionMovimiento, notaActual.DireccionCustom);
         }
 
+    }
+
+    private void SeparateNotesForInput()
+    {
+
+        foreach(NotaNormalInstance notaActual in notasNormales)
+        {
+            switch (notaActual.CorrespondenciaTecla)
+            {
+                case CorrespondenciaTecla.Left:
+                    timeArriveLeftNotes.Add(notaActual.timeToArrive);
+                    break;
+                case CorrespondenciaTecla.Right:
+                    timeArriveRigthNotes.Add(notaActual.timeToArrive);
+                    break;
+                case CorrespondenciaTecla.Midle:
+                    timeArriveMidleNotes.Add(notaActual.timeToArrive);
+                    break;
+            }
+        }
     }
 
     void SaveJson()

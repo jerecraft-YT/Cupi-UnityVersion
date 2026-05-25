@@ -5,7 +5,9 @@ public enum DireccionesMovimientoNotas
 
 public enum CorrespondenciaTecla
 {
-    Midle,Left,Right
+    Midle,
+    Left,
+    Right
 }
 
 

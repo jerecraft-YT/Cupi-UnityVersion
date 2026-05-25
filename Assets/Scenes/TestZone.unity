@@ -536,7 +536,7 @@ MonoBehaviour:
   finalPositionLeftNote: {fileID: 1737966155}
   finalPositionMidleNote: {fileID: 1162097784}
   finalPositionRigthNote: {fileID: 2121417498}
-  notaNormalSpeed: 5
+  notaNormalSpeed: 10
   notasNormales:
   - CorrespondenciaTecla: 1
     DireccionMovimiento: 0
@@ -589,6 +589,12 @@ MonoBehaviour:
   - CorrespondenciaTecla: 1
     DireccionMovimiento: 0
     timeToArrive: 9
+    localSpeed: 1
+    offsetPositionToGo: {x: 0, y: 0}
+    DireccionCustom: {x: 0, y: 0}
+  - CorrespondenciaTecla: 1
+    DireccionMovimiento: 0
+    timeToArrive: 10
     localSpeed: 1
     offsetPositionToGo: {x: 0, y: 0}
     DireccionCustom: {x: 0, y: 0}

@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+using System;
 
 public class TillesModeController : MonoBehaviour
 {
@@ -11,7 +13,14 @@ public class TillesModeController : MonoBehaviour
     public ParticleSystem rightParticle;
     public ParticleSystem midleParticle;
 
-    public void Update()
+    public Action<CorrespondenciaTecla> PadClick;
+
+
+    private void OnEnable()
+    {
+        PadClick += ButtonClicked;
+    }
+    private void Update()
     {
         DetectMissLeft();
         DetectMissRigth();
@@ -20,79 +29,70 @@ public class TillesModeController : MonoBehaviour
 
     private void DetectMissLeft()
     {
-        if (actualViewLeftPadNotes >= SpawnerNotas.instance.timeArriveLeftNotes.Count) return;
-        if (SpawnerNotas.instance.timeArriveLeftNotes[actualViewLeftPadNotes] + toleraciaError < TimeController.instance.ActualTime)
-        {
-            actualViewLeftPadNotes++;
-        }
+        DetectMissNote(ref actualViewLeftPadNotes, SpawnerNotas.instance.timeArriveLeftNotes);
     }
 
     private void DetectMissRigth()
     {
-        if (actualViewRigthPadNotes >= SpawnerNotas.instance.timeArriveRigthNotes.Count) return;
-        if (SpawnerNotas.instance.timeArriveRigthNotes[actualViewRigthPadNotes] + toleraciaError < TimeController.instance.ActualTime)
-        {
-            actualViewRigthPadNotes++;
-        }
+        DetectMissNote(ref actualViewRigthPadNotes, SpawnerNotas.instance.timeArriveRigthNotes);
     }
 
     private void DetectMissMidle()
     {
-        if (actualViewMidlePadNotes >= SpawnerNotas.instance.timeArriveMidleNotes.Count) return;
-        if (SpawnerNotas.instance.timeArriveMidleNotes[actualViewMidlePadNotes] + toleraciaError < TimeController.instance.ActualTime)
+        DetectMissNote(ref actualViewMidlePadNotes, SpawnerNotas.instance.timeArriveMidleNotes);
+    }
+
+    private void DetectMissNote(ref int index, List<float> notesGroup)
+    {
+        if (index >= notesGroup.Count) return;
+        if (notesGroup[index] + toleraciaError < TimeController.instance.ActualTime)
         {
-            actualViewMidlePadNotes++;
+            index++;
+        }
+    }
+    private void DetectHitNote(ref int index, List<float> notesGroup, ParticleSystem particle)
+    {
+        if (index >= notesGroup.Count) return;
+
+        bool MinRange = notesGroup[index] >= TimeController.instance.ActualTime - toleraciaError;
+        bool MaxRange = notesGroup[index] <= TimeController.instance.ActualTime + toleraciaError;
+        if (MinRange && MaxRange)
+        {
+            index++;
+            particle.Play();
         }
     }
 
     public void OnLeftPad(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            if (actualViewLeftPadNotes >= SpawnerNotas.instance.timeArriveLeftNotes.Count) return;
-
-            bool MinRange = SpawnerNotas.instance.timeArriveLeftNotes[actualViewLeftPadNotes] >= TimeController.instance.ActualTime - toleraciaError;
-            bool MaxRange = SpawnerNotas.instance.timeArriveLeftNotes[actualViewLeftPadNotes] <= TimeController.instance.ActualTime + toleraciaError;
-            if (MinRange && MaxRange)
-            {
-                //print(SpawnerNotas.instance.timeArriveLeftNotes[actualViewLeftPadNotes] - TimeController.instance.ActualTime);
-                actualViewLeftPadNotes++;
-                leftParticle.Play();
-            }
-        }
+        if (context.performed) PadClick?.Invoke(CorrespondenciaTecla.Left);
     }
 
     public void OnRigthpad(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            if (actualViewRigthPadNotes >= SpawnerNotas.instance.timeArriveRigthNotes.Count) return;
-
-            bool MinRange = SpawnerNotas.instance.timeArriveRigthNotes[actualViewRigthPadNotes] >= TimeController.instance.ActualTime - toleraciaError;
-            bool MaxRange = SpawnerNotas.instance.timeArriveRigthNotes[actualViewRigthPadNotes] <= TimeController.instance.ActualTime + toleraciaError;
-            if (MinRange && MaxRange)
-            {
-                //print(SpawnerNotas.instance.timeArriveRigthNotes[actualViewRigthPadNotes] - TimeController.instance.ActualTime);
-                actualViewRigthPadNotes++;
-                rightParticle.Play();
-            }
-        }
+        if (context.performed) PadClick?.Invoke(CorrespondenciaTecla.Right);
     }
 
     public void OnMidlePad(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            if (actualViewMidlePadNotes >= SpawnerNotas.instance.timeArriveMidleNotes.Count) return;
+        if (context.performed) PadClick?.Invoke(CorrespondenciaTecla.Midle);
+    }
 
-            bool MinRange = SpawnerNotas.instance.timeArriveMidleNotes[actualViewMidlePadNotes] >= TimeController.instance.ActualTime - toleraciaError;
-            bool MaxRange = SpawnerNotas.instance.timeArriveMidleNotes[actualViewMidlePadNotes] <= TimeController.instance.ActualTime + toleraciaError;
-            if (MinRange && MaxRange)
-            {
-                //print(SpawnerNotas.instance.timeArriveMidleNotes[actualViewMidlePadNotes] - TimeController.instance.ActualTime);
-                actualViewMidlePadNotes++;
-                midleParticle.Play();
-            }
+    public void ButtonClicked(CorrespondenciaTecla tecla)
+    {
+        switch (tecla)
+        {
+            case CorrespondenciaTecla.Left:
+                DetectHitNote(ref actualViewLeftPadNotes, SpawnerNotas.instance.timeArriveLeftNotes, leftParticle);
+                break;
+
+            case CorrespondenciaTecla.Right:
+                DetectHitNote(ref actualViewRigthPadNotes, SpawnerNotas.instance.timeArriveRigthNotes, rightParticle);
+                break;
+
+            case CorrespondenciaTecla.Midle:
+                DetectHitNote(ref actualViewMidlePadNotes, SpawnerNotas.instance.timeArriveMidleNotes, midleParticle);
+                break;
         }
     }
 }

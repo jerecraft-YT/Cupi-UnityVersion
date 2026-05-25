@@ -3,6 +3,8 @@ using UnityEngine;
 public class BpmController : MonoBehaviour
 {
     [SerializeField] private bool animateBPM = true;
+    [SerializeField] private float fuerzaMaxBeat = 1.4f;
+    [SerializeField] private float fuerzaMinBeat = 1.2f;
     [SerializeField] private float bpm = 120.0f;
     [SerializeField] private int tiempos = 4;
     [SerializeField] private float offset = 0.0f;
@@ -69,12 +71,12 @@ public class BpmController : MonoBehaviour
         if (numBeat % tiempo == 0)
         {
             musicPlayer.PlayOneShot(beatFuerte);
-            if (animateBPM) ScaleBPM(1.5f, 1.5f);
+            if (animateBPM) ScaleBPM(fuerzaMaxBeat, fuerzaMaxBeat);
         }
         else
         {
             musicPlayer.PlayOneShot(beatSuave);
-            if (animateBPM) ScaleBPM(1.3f,1.3f);
+            if (animateBPM) ScaleBPM(fuerzaMinBeat, fuerzaMinBeat);
         }
     }
 

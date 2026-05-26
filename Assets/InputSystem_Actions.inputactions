@@ -16,7 +16,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "midlePad",
+                    "name": "middlePad",
                     "type": "Button",
                     "id": "4063bacf-07cb-459d-88b5-74c248f57ffa",
                     "expectedControlType": "",
@@ -108,7 +108,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "midlePad",
+                    "action": "middlePad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd46a785-14fd-40f9-9309-6519adba7d98",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "middlePad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -119,7 +130,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "midlePad",
+                    "action": "middlePad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63b8eec2-a2a6-4298-bdeb-bc7eaf06c6d0",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "middlePad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -130,7 +152,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "midlePad",
+                    "action": "middlePad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -141,7 +163,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "midlePad",
+                    "action": "middlePad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -152,7 +174,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "midlePad",
+                    "action": "middlePad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -163,7 +185,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Joystick",
-                    "action": "midlePad",
+                    "action": "middlePad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

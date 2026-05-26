@@ -42,7 +42,7 @@ public class SpawnerNotas : MonoBehaviour
 {
     public GameObject notaNormal;
     public Transform finalPositionLeftNote;
-    public Transform finalPositionMidleNote;
+    public Transform finalPositionMiddleNote;
     public Transform finalPositionRigthNote;
 
     public static SpawnerNotas instance;
@@ -51,11 +51,17 @@ public class SpawnerNotas : MonoBehaviour
     public List<NotaNormalInstance> notasNormales;
     public List<float> timeArriveLeftNotes;
     public List<float> timeArriveRigthNotes;
-    public List<float> timeArriveMidleNotes;
+    public List<float> timeArriveMiddleNotes;
 
     private void Awake()
     {
         instance = this;
+
+        timeArriveLeftNotes = new();
+        timeArriveMiddleNotes = new();
+        timeArriveRigthNotes = new();
+
+        LoadJson();
     }
 
     private void Start()
@@ -88,24 +94,35 @@ public class SpawnerNotas : MonoBehaviour
                 case CorrespondenciaTecla.Right:
                     timeArriveRigthNotes.Add(notaActual.timeToArrive);
                     break;
-                case CorrespondenciaTecla.Midle:
-                    timeArriveMidleNotes.Add(notaActual.timeToArrive);
+                case CorrespondenciaTecla.Middle:
+                    timeArriveMiddleNotes.Add(notaActual.timeToArrive);
                     break;
             }
         }
     }
 
-    void SaveJson()
+    public void SaveJson()
     {
         NotaNormalList conversor = new NotaNormalList { notasNormales = notasNormales };
 
         string JsonString = JsonUtility.ToJson(conversor, true);
 
-        print(JsonString);
+        //print(JsonString);
         string dir = Application.persistentDataPath + "/dataTest.json";
         //print(dir);
 
         File.WriteAllText(dir, JsonString);
+    }
+
+    public void LoadJson()
+    {
+        string dir = Application.persistentDataPath + "/dataTest.json";
+
+        string JsonString = File.ReadAllText(dir);
+
+        NotaNormalList notas = JsonUtility.FromJson<NotaNormalList>(JsonString);
+
+        notasNormales = notas.notasNormales;
     }
 
     Transform DefinirCorrespondenciaTecla(CorrespondenciaTecla CorrespondenciaTecla)
@@ -113,13 +130,12 @@ public class SpawnerNotas : MonoBehaviour
         switch (CorrespondenciaTecla)
         {
             case CorrespondenciaTecla.Left:
-                return finalPositionLeftNote;
-            case CorrespondenciaTecla.Midle:
-                return finalPositionMidleNote;
+                return finalPositionLeftNote != null ? finalPositionLeftNote : transform;
+            case CorrespondenciaTecla.Middle:
+                return finalPositionMiddleNote != null ? finalPositionMiddleNote : transform;
             case CorrespondenciaTecla.Right:
-                return finalPositionRigthNote;
+                return finalPositionRigthNote != null ? finalPositionRigthNote : transform;
         }
-
         return transform;
     }
 

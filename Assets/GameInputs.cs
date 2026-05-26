@@ -72,7 +72,7 @@ using UnityEngine.InputSystem.Utilities;
 /// }
 /// </code>
 /// </example>
-public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
+public partial class @GameInputs: IInputActionCollection2, IDisposable
 {
     /// <summary>
     /// Provides access to the underlying asset instance.
@@ -82,7 +82,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// <summary>
     /// Constructs a new instance.
     /// </summary>
-    public @InputSystem_Actions()
+    public @GameInputs()
     {
         asset = InputActionAsset.FromJson(@"{
     ""version"": 1,
@@ -102,7 +102,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""midlePad"",
+                    ""name"": ""middlePad"",
                     ""type"": ""Button"",
                     ""id"": ""4063bacf-07cb-459d-88b5-74c248f57ffa"",
                     ""expectedControlType"": """",
@@ -194,7 +194,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""midlePad"",
+                    ""action"": ""middlePad"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd46a785-14fd-40f9-9309-6519adba7d98"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""middlePad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -205,7 +216,18 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""midlePad"",
+                    ""action"": ""middlePad"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63b8eec2-a2a6-4298-bdeb-bc7eaf06c6d0"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""middlePad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -216,7 +238,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""midlePad"",
+                    ""action"": ""middlePad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -227,7 +249,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""midlePad"",
+                    ""action"": ""middlePad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -238,7 +260,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""midlePad"",
+                    ""action"": ""middlePad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -249,7 +271,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Joystick"",
-                    ""action"": ""midlePad"",
+                    ""action"": ""middlePad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -904,7 +926,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_leftPad = m_Player.FindAction("leftPad", throwIfNotFound: true);
-        m_Player_midlePad = m_Player.FindAction("midlePad", throwIfNotFound: true);
+        m_Player_middlePad = m_Player.FindAction("middlePad", throwIfNotFound: true);
         m_Player_rigthPad = m_Player.FindAction("rigthPad", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -920,10 +942,10 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
     }
 
-    ~@InputSystem_Actions()
+    ~@GameInputs()
     {
-        UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem_Actions.UI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, GameInputs.Player.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, GameInputs.UI.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1000,27 +1022,27 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_leftPad;
-    private readonly InputAction m_Player_midlePad;
+    private readonly InputAction m_Player_middlePad;
     private readonly InputAction m_Player_rigthPad;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
     public struct PlayerActions
     {
-        private @InputSystem_Actions m_Wrapper;
+        private @GameInputs m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public PlayerActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        public PlayerActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
         /// <summary>
         /// Provides access to the underlying input action "Player/leftPad".
         /// </summary>
         public InputAction @leftPad => m_Wrapper.m_Player_leftPad;
         /// <summary>
-        /// Provides access to the underlying input action "Player/midlePad".
+        /// Provides access to the underlying input action "Player/middlePad".
         /// </summary>
-        public InputAction @midlePad => m_Wrapper.m_Player_midlePad;
+        public InputAction @middlePad => m_Wrapper.m_Player_middlePad;
         /// <summary>
         /// Provides access to the underlying input action "Player/rigthPad".
         /// </summary>
@@ -1054,9 +1076,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @leftPad.started += instance.OnLeftPad;
             @leftPad.performed += instance.OnLeftPad;
             @leftPad.canceled += instance.OnLeftPad;
-            @midlePad.started += instance.OnMidlePad;
-            @midlePad.performed += instance.OnMidlePad;
-            @midlePad.canceled += instance.OnMidlePad;
+            @middlePad.started += instance.OnMiddlePad;
+            @middlePad.performed += instance.OnMiddlePad;
+            @middlePad.canceled += instance.OnMiddlePad;
             @rigthPad.started += instance.OnRigthPad;
             @rigthPad.performed += instance.OnRigthPad;
             @rigthPad.canceled += instance.OnRigthPad;
@@ -1074,9 +1096,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @leftPad.started -= instance.OnLeftPad;
             @leftPad.performed -= instance.OnLeftPad;
             @leftPad.canceled -= instance.OnLeftPad;
-            @midlePad.started -= instance.OnMidlePad;
-            @midlePad.performed -= instance.OnMidlePad;
-            @midlePad.canceled -= instance.OnMidlePad;
+            @middlePad.started -= instance.OnMiddlePad;
+            @middlePad.performed -= instance.OnMiddlePad;
+            @middlePad.canceled -= instance.OnMiddlePad;
             @rigthPad.started -= instance.OnRigthPad;
             @rigthPad.performed -= instance.OnRigthPad;
             @rigthPad.canceled -= instance.OnRigthPad;
@@ -1132,12 +1154,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// </summary>
     public struct UIActions
     {
-        private @InputSystem_Actions m_Wrapper;
+        private @GameInputs m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public UIActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        public UIActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
         /// <summary>
         /// Provides access to the underlying input action "UI/Navigate".
         /// </summary>
@@ -1388,12 +1410,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLeftPad(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "midlePad" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "middlePad" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMidlePad(InputAction.CallbackContext context);
+        void OnMiddlePad(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "rigthPad" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

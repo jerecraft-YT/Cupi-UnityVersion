@@ -143,6 +143,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 179359623}
+  - component: {fileID: 179359625}
+  - component: {fileID: 179359624}
+  - component: {fileID: 179359626}
   m_Layer: 0
   m_Name: TilesMode
   m_TagString: Untagged
@@ -164,9 +167,49 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 635187088}
-  - {fileID: 650126567}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &179359624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179359622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9464ff53b198dc94baf8fe38359cacb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TilesModeInputController
+--- !u!114 &179359625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179359622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc39990cc4fa4748b9df65f80788bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TillesModeController
+  toleraciaError: 0.2
+--- !u!114 &179359626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179359622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 591e5298a104b2b4ba914e972cab3aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TilesModeParticles
+  leftParticle: {fileID: 28132179}
+  rightParticle: {fileID: 718398952}
+  middleParticle: {fileID: 448205010}
+  controller: {fileID: 179359625}
 --- !u!1001 &420988367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -534,7 +577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerNotas
   notaNormal: {fileID: 2373320976798151475, guid: fb4a274d67f7444449ffb87c4ef74ebd, type: 3}
   finalPositionLeftNote: {fileID: 1737966155}
-  finalPositionMidleNote: {fileID: 1162097784}
+  finalPositionMiddleNote: {fileID: 1162097784}
   finalPositionRigthNote: {fileID: 2121417498}
   notaNormalSpeed: 10
   notasNormales:
@@ -606,7 +649,7 @@ MonoBehaviour:
     DireccionCustom: {x: 0, y: 0}
   timeArriveLeftNotes: []
   timeArriveRigthNotes: []
-  timeArriveMidleNotes: []
+  timeArriveMiddleNotes: []
 --- !u!4 &635187088
 Transform:
   m_ObjectHideFlags: 0
@@ -621,184 +664,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1737966155}
-  - {fileID: 1162097784}
   - {fileID: 2121417498}
+  - {fileID: 1162097784}
   m_Father: {fileID: 179359623}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &650126566
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 650126567}
-  - component: {fileID: 650126569}
-  - component: {fileID: 650126568}
-  m_Layer: 0
-  m_Name: TillesModeController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &650126567
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650126566}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 179359623}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &650126568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650126566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
-    m_ActionName: 'Player/Move[/SwitchProControllerHID/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 650126569}
-        m_TargetAssemblyTypeName: TillesModeController, Assembly-CSharp
-        m_MethodName: OnLeftPad
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: da8e5635-4015-4a25-83cf-a6182fd5cc07
-    m_ActionName: 'Player/leftPad[/Keyboard/a,/Keyboard/leftArrow,/SwitchProControllerHID/leftStick/left,/SwitchProControllerHID/dpad/left,/SwitchProControllerHID/leftTrigger]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 650126569}
-        m_TargetAssemblyTypeName: TillesModeController, Assembly-CSharp
-        m_MethodName: OnMidlePad
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 4063bacf-07cb-459d-88b5-74c248f57ffa
-    m_ActionName: 'Player/midlePad[/Keyboard/upArrow,/Keyboard/w,/SwitchProControllerHID/dpad/up,/SwitchProControllerHID/leftStick/up,/SwitchProControllerHID/leftShoulder]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 650126569}
-        m_TargetAssemblyTypeName: TillesModeController, Assembly-CSharp
-        m_MethodName: OnRigthpad
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: c4d6a305-6faa-4a56-a488-aae9f9067812
-    m_ActionName: 'Player/rigthPad[/Keyboard/d,/Keyboard/rightArrow,/SwitchProControllerHID/dpad/right,/SwitchProControllerHID/leftStick/right,/SwitchProControllerHID/rightTrigger]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c95b2375-e6d9-4b88-9c4c-c5e76515df4b
-    m_ActionName: 'UI/Navigate[/SwitchProControllerHID/leftStick/up,/SwitchProControllerHID/rightStick/up,/SwitchProControllerHID/leftStick/down,/SwitchProControllerHID/rightStick/down,/SwitchProControllerHID/leftStick/left,/SwitchProControllerHID/rightStick/left,/SwitchProControllerHID/leftStick/right,/SwitchProControllerHID/rightStick/right,/SwitchProControllerHID/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7607c7b6-cd76-4816-beef-bd0341cfe950
-    m_ActionName: 'UI/Submit[/Keyboard/enter,/SwitchProControllerHID/buttonEast]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 15cef263-9014-4fd5-94d9-4e4a6234a6ef
-    m_ActionName: 'UI/Cancel[/Keyboard/escape,/SwitchProControllerHID/buttonSouth]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 32b35790-4ed0-4e9a-aa41-69ac6d629449
-    m_ActionName: 'UI/Point[/Mouse/position,/Pen/position]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 3c7022bf-7922-4f7c-a998-c437916075ad
-    m_ActionName: 'UI/Click[/Mouse/leftButton,/Pen/tip]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 44b200b1-1557-4083-816c-b22cbdf77ddf
-    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: dad70c86-b58c-4b17-88ad-f5e53adf419e
-    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0489e84a-4833-4c40-bfae-cea84b696689
-    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 24908448-c609-4bc3-a128-ea258674378a
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
-    m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &650126569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650126566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fc39990cc4fa4748b9df65f80788bda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TillesModeController
-  toleraciaError: 0.2
-  actualViewLeftPadNotes: 0
-  actualViewRigthPadNotes: 0
-  actualViewMidlePadNotes: 0
-  leftParticle: {fileID: 28132179}
-  rightParticle: {fileID: 718398952}
-  midleParticle: {fileID: 448205010}
 --- !u!4 &718398950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4171012665082474014, guid: 1ded71855b9f9ce4595578a262e9c0f4, type: 3}

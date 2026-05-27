@@ -61,7 +61,7 @@ public class SpawnerNotas : MonoBehaviour
         timeArriveMiddleNotes = new();
         timeArriveRigthNotes = new();
 
-        LoadJson();
+        //LoadJson();
     }
 
     private void Start()

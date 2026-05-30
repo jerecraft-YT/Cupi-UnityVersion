@@ -6,7 +6,6 @@ public enum DireccionesMovimientoNotas
     Right,
     Custom
 }
-
 public enum CorrespondenciaTecla
 {
     Middle,

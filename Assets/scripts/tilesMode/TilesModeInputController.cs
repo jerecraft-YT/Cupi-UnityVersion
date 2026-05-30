@@ -37,7 +37,6 @@ public class TilesModeInputController : MonoBehaviour
     {
         Input.Player.Disable();
     }
-
     public void SuscribePad(Action<InputAction.CallbackContext> function)
     {
 
@@ -45,7 +44,6 @@ public class TilesModeInputController : MonoBehaviour
         rightPad.performed += function;
         middlePad.performed += function;
     }
-
     public void UnsuscribePad(Action<InputAction.CallbackContext> function)
     {
         leftPad.performed -= function;

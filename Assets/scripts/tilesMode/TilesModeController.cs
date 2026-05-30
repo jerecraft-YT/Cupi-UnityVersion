@@ -27,9 +27,6 @@ public class TilesModeController : MonoBehaviour
 
         TilesInput.UnsuscribePad(OnPad);
     }
-
-
-
     private void Update()
     {
         DetectMissNote(ref actualViewLeftPadNotes, SpawnerNotas.instance.timeArriveLeftNotes);
@@ -53,7 +50,6 @@ public class TilesModeController : MonoBehaviour
             ButtonClicked(CorrespondenciaTecla.Middle);
         }
     }
-
     private void DetectMissNote(ref int index, List<float> notesGroup)
     {
         if (index >= notesGroup.Count) return;
@@ -62,7 +58,6 @@ public class TilesModeController : MonoBehaviour
             index++;
         }
     }
-
     private void DetectHitNote(ref int index, List<float> notesGroup, CorrespondenciaTecla tecla)
     {
         if (index >= notesGroup.Count) return;
@@ -75,7 +70,6 @@ public class TilesModeController : MonoBehaviour
             NoteHit?.Invoke(tecla);
         }
     }
-
     private void ButtonClicked(CorrespondenciaTecla tecla)
     {
         switch (tecla)

@@ -23,6 +23,7 @@ public class TimeController : MonoBehaviour
     public void RestartTime()
     {
         dspOffset = AudioSettings.dspTime;
+        print(Time.realtimeSinceStartup + "||" + System.Diagnostics.Stopwatch.GetTimestamp());
     }
 
     public double ActualTime => AudioSettings.dspTime - dspOffset;

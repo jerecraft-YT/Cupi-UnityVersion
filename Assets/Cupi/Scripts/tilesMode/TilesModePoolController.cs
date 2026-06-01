@@ -20,7 +20,7 @@ public class PrefabNote
 public class TilesModePoolController : MonoBehaviour
 {
     public static TilesModePoolController instance;
-    public List<PrefabNote> Prefabs;
+    [SerializeField] private List<PrefabNote> Prefabs;
     private List<List<GameObject>> Instances = new List<List<GameObject>>();
     private List<GameObject> groupPool = new List<GameObject>();
 
@@ -33,31 +33,6 @@ public class TilesModePoolController : MonoBehaviour
         }
         instance = this;
         InstancePrefabs();
-    }
-
-
-    public GameObject RequestInstance(TipoNota notaGet)
-    {
-        int index = GetPrefabIndex(notaGet);
-
-        if (index == -1)
-        {
-            Debug.LogError($"instancia  {notaGet} no existe en la pool actual");
-            return null;
-        }
-        return SearchActiveInstance(index,notaGet);
-    }
-
-    public GameObject RequestGroupPool(TipoNota notaGet)
-    {
-        int index = GetPrefabIndex(notaGet);
-
-        if (index == -1)
-        {
-            Debug.LogError($"instancia  {notaGet} no existe en la pool actual");
-            return null;
-        }
-        return groupPool[index];
     }
 
     private int GetPrefabIndex(TipoNota notaGet)
@@ -96,13 +71,15 @@ public class TilesModePoolController : MonoBehaviour
     {
         if (Prefabs[indexPrefab].prefab == null) return;
 
-        var instance = Instantiate(Prefabs[indexPrefab].prefab, groupPool[indexPrefab].transform);
+        GameObject instance = Instantiate(Prefabs[indexPrefab].prefab, groupPool[indexPrefab].transform);
         instance.SetActive(false);
         Instances[indexPrefab].Add(instance);
     }
 
     private void AddGroupPool(int indexPrefab)
     {
+        if (Prefabs[indexPrefab].prefab == null) return;
+
         GameObject groupInstance = new GameObject();
         groupInstance.transform.SetParent(transform);
         groupInstance.name = Prefabs[indexPrefab].tipoNota.ToString();
@@ -111,6 +88,11 @@ public class TilesModePoolController : MonoBehaviour
 
     private void InstancePrefabs()
     {
+        if (Prefabs.Count == 0)
+        {
+            Debug.LogError("no hay prefabs establecidos");
+            return;
+        }
 
         for (int i = 0; i < Prefabs.Count; i++)
         {
@@ -125,5 +107,28 @@ public class TilesModePoolController : MonoBehaviour
                 AddInstance(i);
             }
         }
+    }
+    public GameObject RequestInstance(TipoNota notaGet)
+    {
+        int index = GetPrefabIndex(notaGet);
+
+        if (index == -1)
+        {
+            Debug.LogError($"instancia  {notaGet} no existe en la pool actual");
+            return null;
+        }
+        return SearchActiveInstance(index, notaGet);
+    }
+
+    public GameObject RequestGroupPool(TipoNota notaGet)
+    {
+        int index = GetPrefabIndex(notaGet);
+
+        if (index == -1)
+        {
+            Debug.LogError($"instancia  {notaGet} no existe en la pool actual");
+            return null;
+        }
+        return groupPool[index];
     }
 }

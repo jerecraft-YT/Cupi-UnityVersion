@@ -11,7 +11,7 @@ public class TimeController : MonoBehaviour
 
     public double progressTime;
 
-    public double additiveTime;
+    private double additiveTime;
 
     private float timeScale = 1.0f;
 

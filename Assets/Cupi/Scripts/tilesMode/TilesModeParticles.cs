@@ -23,7 +23,7 @@ public class TilesModeParticles : MonoBehaviour
         TilesModeController.NoteNoHit -= ParticleNoHitNote;
     }
 
-    void ParticleHitNote(CorrespondenciaTecla tecla)
+    private void ParticleHitNote(CorrespondenciaTecla tecla)
     {
         switch (tecla)
         {
@@ -39,7 +39,7 @@ public class TilesModeParticles : MonoBehaviour
         }
     }
 
-    void ParticleNoHitNote(CorrespondenciaTecla tecla)
+    private void ParticleNoHitNote(CorrespondenciaTecla tecla)
     {
         switch (tecla)
         {
@@ -54,8 +54,7 @@ public class TilesModeParticles : MonoBehaviour
                 break;
         }
     }
-
-    void PlayParticle(ParticleSystem particle)
+    private void PlayParticle(ParticleSystem particle)
     {
         if (particle != null)
         {

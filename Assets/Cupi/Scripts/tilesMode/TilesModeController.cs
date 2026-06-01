@@ -55,7 +55,7 @@ public class TilesModeController : MonoBehaviour
     private void DetectMissNote(ref int index, List<float> notesGroup,CorrespondenciaTecla tecla)
     {
         if (index >= notesGroup.Count) return;
-        if (notesGroup[index] + toleraciaError < TimeController.instance.ActualTime)
+        if (notesGroup[index] + toleraciaError < TimeController.instance.AdditiveTime)
         {
             notesController.NotifyToNote(false, index, tecla);
             index++;
@@ -66,7 +66,7 @@ public class TilesModeController : MonoBehaviour
     {
         if (index >= notesGroup.Count) return;
 
-        float timeDiff = Mathf.Abs(notesGroup[index] - (float)TimeController.instance.ActualTime);
+        float timeDiff = Mathf.Abs(notesGroup[index] - (float)TimeController.instance.AdditiveTime);
 
         if (timeDiff < toleraciaError)
         {

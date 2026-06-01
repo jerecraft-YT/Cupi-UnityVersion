@@ -40,7 +40,7 @@ public class MusicController : MonoBehaviour
 
     public void SincronizarMusica()
     {
-        float additiveTime = (float)TimeController.instance.additiveTime;
+        float additiveTime = (float)TimeController.instance.AdditiveTime;
 
         if (Mathf.Abs(additiveTime - MainMusic.time) >= toleranciaSincronizacion)
         {

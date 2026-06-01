@@ -126,7 +126,7 @@ public class SpawnerNotas : MonoBehaviour
         }
     }
 
-    Transform DefinirCorrespondenciaTecla(CorrespondenciaTecla CorrespondenciaTecla)
+    private Transform DefinirCorrespondenciaTecla(CorrespondenciaTecla CorrespondenciaTecla)
     {
         switch (CorrespondenciaTecla)
         {
@@ -140,7 +140,7 @@ public class SpawnerNotas : MonoBehaviour
         return transform;
     }
 
-    Vector2 EstablecerDireccionMovimiento(DireccionesMovimientoNotas DireccionMovimiento, Vector2 DireccionCustom)
+    private Vector2 EstablecerDireccionMovimiento(DireccionesMovimientoNotas DireccionMovimiento, Vector2 DireccionCustom)
     {
         switch (DireccionMovimiento)
         {

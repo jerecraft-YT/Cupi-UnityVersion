@@ -14,7 +14,7 @@ public class NotaNormal : MonoBehaviour
 
     public void UpdateNotePosition()
     {
-        float progress = 1 - InverseLerpUnclamped(0.0f,data.timeToArrive,(float)TimeController.instance.ActualTime);
+        float progress = 1 - InverseLerpUnclamped(0.0f,data.timeToArrive,(float)TimeController.instance.AdditiveTime);
 
         float distancia = (progress * data.timeToArrive * data.localSpeed * SpawnerNotas.instance.notaNormalSpeed);
 

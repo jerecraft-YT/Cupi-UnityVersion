@@ -1940,7 +1940,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TimeController
   dspOffset: 0
   progressTime: 0
-  additiveTime: 0
 --- !u!4 &1488068923
 Transform:
   m_ObjectHideFlags: 0
@@ -2003,7 +2002,7 @@ MonoBehaviour:
   Prefabs:
   - prefab: {fileID: 2373320976798151475, guid: fb4a274d67f7444449ffb87c4ef74ebd, type: 3}
     tipoNota: 0
-    IntialInstances: 10
+    IntialInstances: 15
 --- !u!1 &1611273193
 GameObject:
   m_ObjectHideFlags: 0

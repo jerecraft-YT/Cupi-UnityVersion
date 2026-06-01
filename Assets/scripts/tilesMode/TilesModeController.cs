@@ -5,12 +5,13 @@ using System;
 
 public class TilesModeController : MonoBehaviour
 {
-
+    public TilesModeNotesController notesController;
     public float toleraciaError = 0.1f;
     private int actualViewLeftPadNotes = 0;
     private int actualViewRigthPadNotes = 0;
     private int actualViewMiddlePadNotes = 0;
-    public Action<CorrespondenciaTecla> NoteHit;
+    public static event Action<CorrespondenciaTecla> NoteHit;
+    public static event Action<CorrespondenciaTecla> NoteNoHit;
 
     private TilesModeInputController TilesInput;
 
@@ -29,9 +30,9 @@ public class TilesModeController : MonoBehaviour
     }
     private void Update()
     {
-        DetectMissNote(ref actualViewLeftPadNotes, SpawnerNotas.instance.timeArriveLeftNotes);
-        DetectMissNote(ref actualViewRigthPadNotes, SpawnerNotas.instance.timeArriveRigthNotes);
-        DetectMissNote(ref actualViewMiddlePadNotes, SpawnerNotas.instance.timeArriveMiddleNotes);
+        DetectMissNote(ref actualViewLeftPadNotes, SpawnerNotas.instance.TimeArriveLeftNotes, CorrespondenciaTecla.Left);
+        DetectMissNote(ref actualViewRigthPadNotes, SpawnerNotas.instance.TimeArriveRightNotes, CorrespondenciaTecla.Right);
+        DetectMissNote(ref actualViewMiddlePadNotes, SpawnerNotas.instance.TimeArriveMiddleNotes, CorrespondenciaTecla.Middle);
     }
 
     //se llama una vez se vincule con el inputController
@@ -50,12 +51,15 @@ public class TilesModeController : MonoBehaviour
             ButtonClicked(CorrespondenciaTecla.Middle);
         }
     }
-    private void DetectMissNote(ref int index, List<float> notesGroup)
+
+    private void DetectMissNote(ref int index, List<float> notesGroup,CorrespondenciaTecla tecla)
     {
         if (index >= notesGroup.Count) return;
         if (notesGroup[index] + toleraciaError < TimeController.instance.ActualTime)
         {
+            notesController.NotifyToNote(false, index, tecla);
             index++;
+            NoteNoHit.Invoke(tecla);
         }
     }
     private void DetectHitNote(ref int index, List<float> notesGroup, CorrespondenciaTecla tecla)
@@ -66,6 +70,7 @@ public class TilesModeController : MonoBehaviour
 
         if (timeDiff < toleraciaError)
         {
+            notesController.NotifyToNote(true, index, tecla);
             index++;
             NoteHit?.Invoke(tecla);
         }
@@ -75,15 +80,15 @@ public class TilesModeController : MonoBehaviour
         switch (tecla)
         {
             case CorrespondenciaTecla.Left:
-                DetectHitNote(ref actualViewLeftPadNotes, SpawnerNotas.instance.timeArriveLeftNotes, tecla);
+                DetectHitNote(ref actualViewLeftPadNotes, SpawnerNotas.instance.TimeArriveLeftNotes, tecla);
                 break;
 
             case CorrespondenciaTecla.Right:
-                DetectHitNote(ref actualViewRigthPadNotes, SpawnerNotas.instance.timeArriveRigthNotes, tecla);
+                DetectHitNote(ref actualViewRigthPadNotes, SpawnerNotas.instance.TimeArriveRightNotes, tecla);
                 break;
 
             case CorrespondenciaTecla.Middle:
-                DetectHitNote(ref actualViewMiddlePadNotes, SpawnerNotas.instance.timeArriveMiddleNotes, tecla);
+                DetectHitNote(ref actualViewMiddlePadNotes, SpawnerNotas.instance.TimeArriveMiddleNotes, tecla);
                 break;
         }
     }

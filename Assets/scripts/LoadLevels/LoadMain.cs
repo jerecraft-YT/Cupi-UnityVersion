@@ -1,10 +1,42 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class LoadMain : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Slider slider;
+    public AsyncOperation carga;
+
     void Start()
     {
-        SceneManager.LoadSceneAsync("TestZone");
+        StartCoroutine(EsperaCarga());
+    }
+
+    private IEnumerator EsperaCarga()
+    {
+        yield return new WaitUntil(() => Time.time > 3.0f);
+
+        print(Time.time);
+        StartCoroutine(CargarEscena("TestZone"));
+    }
+
+    private IEnumerator CargarEscena(string escena)
+    {
+        carga = SceneManager.LoadSceneAsync(escena);
+
+        carga.allowSceneActivation = false;
+
+        while (!carga.isDone)
+        {
+            yield return null;
+        }
+    }
+
+    private void Update()
+    {
+        if (carga != null && carga.progress >= 0.9f)
+        {
+            carga.allowSceneActivation = true;
+        }
     }
 }

@@ -2,14 +2,25 @@ using UnityEngine;
 
 public class TilesModeParticles : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem leftParticle;
-    [SerializeField] private ParticleSystem rightParticle;
-    [SerializeField] private ParticleSystem middleParticle;
-    [SerializeField] private TilesModeController controller;
+    [Header("Particles Hit")]
+    [SerializeField] private ParticleSystem leftParticleHit;
+    [SerializeField] private ParticleSystem rightParticleHit;
+    [SerializeField] private ParticleSystem middleParticleHit;
+    [Header("Particles No Hit")]
+    [SerializeField] private ParticleSystem leftParticleNoHit;
+    [SerializeField] private ParticleSystem rightParticleNoHit;
+    [SerializeField] private ParticleSystem middleParticleNoHit;
 
     private void OnEnable()
     {
-        controller.NoteHit += ParticleHitNote;
+        TilesModeController.NoteHit += ParticleHitNote;
+        TilesModeController.NoteNoHit += ParticleNoHitNote;
+    }
+
+    private void OnDisable()
+    {
+        TilesModeController.NoteHit -= ParticleHitNote;
+        TilesModeController.NoteNoHit -= ParticleNoHitNote;
     }
 
     void ParticleHitNote(CorrespondenciaTecla tecla)
@@ -17,13 +28,29 @@ public class TilesModeParticles : MonoBehaviour
         switch (tecla)
         {
             case CorrespondenciaTecla.Left:
-                PlayParticle(leftParticle);
+                PlayParticle(leftParticleHit);
                 break;
             case CorrespondenciaTecla.Right:
-                PlayParticle(rightParticle);
+                PlayParticle(rightParticleHit);
                 break;
             case CorrespondenciaTecla.Middle:
-                PlayParticle(middleParticle);
+                PlayParticle(middleParticleHit);
+                break;
+        }
+    }
+
+    void ParticleNoHitNote(CorrespondenciaTecla tecla)
+    {
+        switch (tecla)
+        {
+            case CorrespondenciaTecla.Left:
+                PlayParticle(leftParticleNoHit);
+                break;
+            case CorrespondenciaTecla.Right:
+                PlayParticle(rightParticleNoHit);
+                break;
+            case CorrespondenciaTecla.Middle:
+                PlayParticle(middleParticleNoHit);
                 break;
         }
     }

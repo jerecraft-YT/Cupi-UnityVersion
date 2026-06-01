@@ -12,5 +12,10 @@ public enum CorrespondenciaTecla
     Left,
     Right
 }
+public enum TipoNota
+{
+    NormalTile,
+    SostenidaTile
+}
 
 

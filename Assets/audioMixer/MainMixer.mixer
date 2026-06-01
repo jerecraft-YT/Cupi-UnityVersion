@@ -14,6 +14,28 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-371416877482514185
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: afec6e5b6916f6e4599e1aa36c82950f
+  m_EffectName: Pitch Shifter
+  m_MixLevel: f12f5689dd1edcc4184eeb3ea6fc7652
+  m_Parameters:
+  - m_ParameterName: Pitch
+    m_GUID: f4f12f4b512b6e04395532146207810e
+  - m_ParameterName: FFT size
+    m_GUID: e7582794e9afcc94cb8b976ce9bb8031
+  - m_ParameterName: Overlap
+    m_GUID: 003985e1ce87d1646b9556c0363cacba
+  - m_ParameterName: Max channels
+    m_GUID: 90e0931bb39bd64448378fb22f503eb0
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -29,7 +51,9 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: f4f12f4b512b6e04395532146207810e
+    name: pitchShifter
   m_AudioMixerGroupViews:
   - guids:
     - a0aa9f8f1873d844c9dc882c50548e4f
@@ -82,7 +106,15 @@ AudioMixerSnapshotController:
   m_Name: Snapshot
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 064d8fe1db80100449f90694ee3a015b
-  m_FloatValues: {}
+  m_FloatValues:
+    003985e1ce87d1646b9556c0363cacba: 4
+    e7582794e9afcc94cb8b976ce9bb8031: 2048
+    9f7ebd5575dbeb140866953d3ac5f070: 1
+    ec9ff8874a89e704ba35e27925e09f25: 1
+    44587c2b06c40bf4fb0d14adf5128f8a: 0.07
+    acac733b353147d4081e5a9a9176f0ed: 1
+    f4f12f4b512b6e04395532146207810e: 1
+    24a06badc6d06f344a614ef00f8d2372: 0
   m_TransitionOverrides: {}
 --- !u!244 &1136387972147729154
 AudioMixerEffectController:
@@ -132,6 +164,7 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -4419410579581279254}
+  - {fileID: -371416877482514185}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0

@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
-using System.IO;
 
 [Serializable]
 public struct NotaNormalInstance
@@ -40,7 +39,7 @@ public class NotaNormalList
 
 public class SpawnerNotas : MonoBehaviour
 {
-    public GameObject notaNormal;
+    public TilesModeNotesController notesController;
     public Transform finalPositionLeftNote;
     public Transform finalPositionMiddleNote;
     public Transform finalPositionRigthNote;
@@ -49,17 +48,23 @@ public class SpawnerNotas : MonoBehaviour
     public float notaNormalSpeed = 4;
 
     public List<NotaNormalInstance> notasNormales;
-    public List<float> timeArriveLeftNotes;
-    public List<float> timeArriveRigthNotes;
-    public List<float> timeArriveMiddleNotes;
+    private List<float> timeArriveLeftNotes;
+    private List<float> timeArriveRightNotes;
+    private List<float> timeArriveMiddleNotes;
 
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         instance = this;
 
         timeArriveLeftNotes = new();
         timeArriveMiddleNotes = new();
-        timeArriveRigthNotes = new();
+        timeArriveRightNotes = new();
 
         //LoadJson();
     }
@@ -70,20 +75,40 @@ public class SpawnerNotas : MonoBehaviour
 
         foreach (NotaNormalInstance notaActual in notasNormales)
         {
-            GameObject nota = Instantiate(notaNormal,DefinirCorrespondenciaTecla(notaActual.CorrespondenciaTecla));
-
+            GameObject nota = TilesModePoolController.instance.RequestInstance(TipoNota.NormalTile);
+            nota.transform.parent = DefinirCorrespondenciaTecla(notaActual.CorrespondenciaTecla);
+            
             NotaNormal scriptNota = nota.GetComponent<NotaNormal>();
 
+            AddNotesReferences(notaActual.CorrespondenciaTecla, scriptNota);
+
             scriptNota.Initialize(notaActual);
+            scriptNota.origin = TilesModePoolController.instance.RequestGroupPool(TipoNota.NormalTile).transform;
 
             scriptNota.DireccionMovimiento = EstablecerDireccionMovimiento(notaActual.DireccionMovimiento, notaActual.DireccionCustom);
         }
+    }
 
+    private void AddNotesReferences(CorrespondenciaTecla tecla , NotaNormal script)
+    {
+        notesController.activeNotes.Add(script);
+
+        switch (tecla)
+        {
+            case CorrespondenciaTecla.Left:
+                notesController.NotaNormalLeft.Add(script);
+                break;
+            case CorrespondenciaTecla.Right:
+                notesController.NotaNormalRight.Add(script);
+                break;
+            case CorrespondenciaTecla.Middle:
+                notesController.NotaNormalMiddle.Add(script);
+                break;
+        }
     }
 
     private void SeparateNotesForInput()
     {
-
         foreach(NotaNormalInstance notaActual in notasNormales)
         {
             switch (notaActual.CorrespondenciaTecla)
@@ -92,37 +117,13 @@ public class SpawnerNotas : MonoBehaviour
                     timeArriveLeftNotes.Add(notaActual.timeToArrive);
                     break;
                 case CorrespondenciaTecla.Right:
-                    timeArriveRigthNotes.Add(notaActual.timeToArrive);
+                    timeArriveRightNotes.Add(notaActual.timeToArrive);
                     break;
                 case CorrespondenciaTecla.Middle:
                     timeArriveMiddleNotes.Add(notaActual.timeToArrive);
                     break;
             }
         }
-    }
-
-    public void SaveJson()
-    {
-        NotaNormalList conversor = new NotaNormalList { notasNormales = notasNormales };
-
-        string JsonString = JsonUtility.ToJson(conversor, true);
-
-        //print(JsonString);
-        string dir = Application.persistentDataPath + "/dataTest.json";
-        //print(dir);
-
-        File.WriteAllText(dir, JsonString);
-    }
-
-    public void LoadJson()
-    {
-        string dir = Application.persistentDataPath + "/dataTest.json";
-
-        string JsonString = File.ReadAllText(dir);
-
-        NotaNormalList notas = JsonUtility.FromJson<NotaNormalList>(JsonString);
-
-        notasNormales = notas.notasNormales;
     }
 
     Transform DefinirCorrespondenciaTecla(CorrespondenciaTecla CorrespondenciaTecla)
@@ -156,4 +157,8 @@ public class SpawnerNotas : MonoBehaviour
         }
         return Vector2.zero;
     }
+
+    public List<float> TimeArriveLeftNotes => timeArriveLeftNotes;
+    public List<float> TimeArriveRightNotes => timeArriveRightNotes;
+    public List<float> TimeArriveMiddleNotes => timeArriveMiddleNotes;
 }

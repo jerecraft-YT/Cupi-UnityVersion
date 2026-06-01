@@ -15,7 +15,7 @@ public class metaball : MonoBehaviour
     private Vector2[] tangentPositions;
     #endregion
 
-    private AudioSource musica;
+    public AudioSource musica;
 
     private float[] objetivoPoints;
     private float[] spectrumData = new float[256];
@@ -57,9 +57,14 @@ public class metaball : MonoBehaviour
     #region core
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         instance = this;
         metaballController = GetComponent<SpriteShapeController>();
-        musica = GetComponent<AudioSource>();
         if (!validateComponents())
         {
             enabled = false;

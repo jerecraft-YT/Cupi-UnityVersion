@@ -5,10 +5,10 @@ public class TilesModeNotesController : MonoBehaviour
 {
     public static TilesModeNotesController instance;
 
-    public List<NotaNormal> NotaNormalLeft = new();
-    public List<NotaNormal> NotaNormalRight = new();
-    public List<NotaNormal> NotaNormalMiddle = new();
-    public List<NotaNormal> activeNotes = new();
+    public List<NotaNormal> NotasNormalLeft = new();
+    public List<NotaNormal> NotasNormalRight = new();
+    public List<NotaNormal> NotasNormalMiddle = new();
+    public List<NotaNormal> NotasActivas = new();
 
     private void Awake()
     {
@@ -23,7 +23,7 @@ public class TilesModeNotesController : MonoBehaviour
 
     private void Update()
     {
-        foreach (NotaNormal nota in activeNotes)
+        foreach (NotaNormal nota in NotasActivas)
         {
             nota.UpdateNotePosition();
         }
@@ -34,13 +34,13 @@ public class TilesModeNotesController : MonoBehaviour
         switch (tecla)
         {
             case CorrespondenciaTecla.Left:
-                NotaNormalLeft[noteIndex].DestroyNote();
+                NotasNormalLeft[noteIndex].DestroyNote();
                 break;
             case CorrespondenciaTecla.Right:
-                NotaNormalRight[noteIndex].DestroyNote();
+                NotasNormalRight[noteIndex].DestroyNote();
                 break;
             case CorrespondenciaTecla.Middle:
-                NotaNormalMiddle[noteIndex].DestroyNote();
+                NotasNormalMiddle[noteIndex].DestroyNote();
                 break;
         }
 

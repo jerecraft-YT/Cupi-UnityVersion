@@ -1,50 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
-
-[Serializable]
-public struct NotaNormalInstance
-{
-    public CorrespondenciaTecla CorrespondenciaTecla;
-    public DireccionesMovimientoNotas DireccionMovimiento;
-
-    public float timeToArrive;
-    public float localSpeed;
-
-    public Vector2 offsetPositionToGo;
-    public Vector2 DireccionCustom;
-
-    public NotaNormalInstance(
-        CorrespondenciaTecla CorrespondenciaTecla,
-        DireccionesMovimientoNotas DireccionMovimiento,
-        float timeToArrive,
-        Vector2 offsetPositionToGo,
-        Vector2 DireccionCustom,
-        float localSpeed = 1.0f)
-    {
-        this.CorrespondenciaTecla = CorrespondenciaTecla;
-        this.timeToArrive = timeToArrive;
-        this.localSpeed = localSpeed;
-        this.offsetPositionToGo = offsetPositionToGo;
-        this.DireccionMovimiento = DireccionMovimiento;
-        this.DireccionCustom = DireccionCustom;
-    }
-}
-
-[Serializable]
-public class NotaNormalList
-{
-    public List<NotaNormalInstance> notasNormales;
-}
 
 public class SpawnerNotas : MonoBehaviour
 {
+    public static SpawnerNotas instance;
+
     public TilesModeNotesController notesController;
     public Transform finalPositionLeftNote;
     public Transform finalPositionMiddleNote;
     public Transform finalPositionRigthNote;
 
-    public static SpawnerNotas instance;
     public float notaNormalSpeed = 4;
 
     public List<NotaNormalInstance> notasNormales;
@@ -71,8 +36,6 @@ public class SpawnerNotas : MonoBehaviour
 
     private void Start()
     {
-        SeparateNotesForInput();
-
         foreach (NotaNormalInstance notaActual in notasNormales)
         {
             GameObject nota = TilesModePoolController.instance.RequestInstance(TipoNota.NormalTile);
@@ -80,7 +43,7 @@ public class SpawnerNotas : MonoBehaviour
             
             NotaNormal scriptNota = nota.GetComponent<NotaNormal>();
 
-            AddNotesReferences(notaActual.CorrespondenciaTecla, scriptNota);
+            AddNotesReferences(notaActual, scriptNota);
 
             scriptNota.Initialize(notaActual);
             scriptNota.origin = TilesModePoolController.instance.RequestGroupPool(TipoNota.NormalTile).transform;
@@ -89,40 +52,24 @@ public class SpawnerNotas : MonoBehaviour
         }
     }
 
-    private void AddNotesReferences(CorrespondenciaTecla tecla , NotaNormal script)
+    private void AddNotesReferences(NotaNormalInstance nota, NotaNormal script)
     {
-        notesController.activeNotes.Add(script);
+        notesController.NotasActivas.Add(script);
 
-        switch (tecla)
+        switch (nota.CorrespondenciaTecla)
         {
             case CorrespondenciaTecla.Left:
-                notesController.NotaNormalLeft.Add(script);
+                notesController.NotasNormalLeft.Add(script);
+                timeArriveLeftNotes.Add(nota.timeToArrive);
                 break;
             case CorrespondenciaTecla.Right:
-                notesController.NotaNormalRight.Add(script);
+                notesController.NotasNormalRight.Add(script);
+                timeArriveRightNotes.Add(nota.timeToArrive);
                 break;
             case CorrespondenciaTecla.Middle:
-                notesController.NotaNormalMiddle.Add(script);
+                notesController.NotasNormalMiddle.Add(script);
+                timeArriveMiddleNotes.Add(nota.timeToArrive);
                 break;
-        }
-    }
-
-    private void SeparateNotesForInput()
-    {
-        foreach(NotaNormalInstance notaActual in notasNormales)
-        {
-            switch (notaActual.CorrespondenciaTecla)
-            {
-                case CorrespondenciaTecla.Left:
-                    timeArriveLeftNotes.Add(notaActual.timeToArrive);
-                    break;
-                case CorrespondenciaTecla.Right:
-                    timeArriveRightNotes.Add(notaActual.timeToArrive);
-                    break;
-                case CorrespondenciaTecla.Middle:
-                    timeArriveMiddleNotes.Add(notaActual.timeToArrive);
-                    break;
-            }
         }
     }
 

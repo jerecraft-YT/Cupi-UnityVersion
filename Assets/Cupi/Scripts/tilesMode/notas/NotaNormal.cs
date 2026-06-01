@@ -32,7 +32,7 @@ public class NotaNormal : MonoBehaviour
 
     public void DestroyNote()
     {
-        TilesModeNotesController.instance.activeNotes.Remove(this);
+        TilesModeNotesController.instance.NotasActivas.Remove(this);
         transform.parent = origin;
         gameObject.SetActive(false);
     }

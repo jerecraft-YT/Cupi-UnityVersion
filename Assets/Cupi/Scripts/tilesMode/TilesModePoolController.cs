@@ -1,21 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
-
-[Serializable]
-public class PrefabNote
-{
-    public GameObject prefab;
-    public TipoNota tipoNota;
-    public int IntialInstances;
-
-    public PrefabNote(GameObject prefab,TipoNota tipoNota, int IntialInstances)
-    {
-        this.prefab = prefab;
-        this.tipoNota = tipoNota;
-        this.IntialInstances = IntialInstances;
-    }
-}
 
 public class TilesModePoolController : MonoBehaviour
 {

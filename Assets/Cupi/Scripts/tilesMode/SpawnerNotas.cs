@@ -10,9 +10,9 @@ public class SpawnerNotas : MonoBehaviour
     public Transform finalPositionMiddleNote;
     public Transform finalPositionRigthNote;
 
-    public float notaNormalSpeed = 4;
+    public float notaTileSpeed = 4;
 
-    public List<NotaNormalInstance> notasNormales;
+    public List<NotaTileInstance> notasTiles;
     private List<float> timeArriveLeftNotes;
     private List<float> timeArriveRightNotes;
     private List<float> timeArriveMiddleNotes;
@@ -36,38 +36,41 @@ public class SpawnerNotas : MonoBehaviour
 
     private void Start()
     {
-        foreach (NotaNormalInstance notaActual in notasNormales)
+        foreach (NotaTileInstance notaActual in notasTiles)
         {
-            GameObject nota = TilesModePoolController.instance.RequestInstance(TipoNota.NormalTile);
+            GameObject nota = TilesModePoolController.instance.RequestInstance(notaActual.tipoNota);
+
+            if (nota == null) continue;
+
             nota.transform.parent = DefinirCorrespondenciaTecla(notaActual.CorrespondenciaTecla);
             
-            NotaNormal scriptNota = nota.GetComponent<NotaNormal>();
+            NotaTileNormal scriptNota = nota.GetComponent<NotaTileNormal>();
 
             AddNotesReferences(notaActual, scriptNota);
 
             scriptNota.Initialize(notaActual);
-            scriptNota.origin = TilesModePoolController.instance.RequestGroupPool(TipoNota.NormalTile).transform;
+            scriptNota.origin = TilesModePoolController.instance.RequestGroupPool(notaActual.tipoNota).transform;
 
             scriptNota.DireccionMovimiento = EstablecerDireccionMovimiento(notaActual.DireccionMovimiento, notaActual.DireccionCustom);
         }
     }
 
-    private void AddNotesReferences(NotaNormalInstance nota, NotaNormal script)
+    private void AddNotesReferences(NotaTileInstance nota, NotaTileNormal script)
     {
         notesController.NotasActivas.Add(script);
 
         switch (nota.CorrespondenciaTecla)
         {
             case CorrespondenciaTecla.Left:
-                notesController.NotasNormalLeft.Add(script);
+                notesController.NotasTileLeft.Add(script);
                 timeArriveLeftNotes.Add(nota.timeToArrive);
                 break;
             case CorrespondenciaTecla.Right:
-                notesController.NotasNormalRight.Add(script);
+                notesController.NotasTileRight.Add(script);
                 timeArriveRightNotes.Add(nota.timeToArrive);
                 break;
             case CorrespondenciaTecla.Middle:
-                notesController.NotasNormalMiddle.Add(script);
+                notesController.NotasTileMiddle.Add(script);
                 timeArriveMiddleNotes.Add(nota.timeToArrive);
                 break;
         }

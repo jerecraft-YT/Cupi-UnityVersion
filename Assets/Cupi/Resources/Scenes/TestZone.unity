@@ -526,66 +526,33 @@ MonoBehaviour:
   finalPositionLeftNote: {fileID: 1737966155}
   finalPositionMiddleNote: {fileID: 1162097784}
   finalPositionRigthNote: {fileID: 2121417498}
-  notaNormalSpeed: 10
-  notasNormales:
-  - CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
-    timeToArrive: 2
-    localSpeed: 1
-    offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
-  - CorrespondenciaTecla: 0
+  notaTileSpeed: 6
+  notasTiles:
+  - noteIndex: 0
+    tipoNota: 1
+    CorrespondenciaTecla: 0
     DireccionMovimiento: 0
     timeToArrive: 3
     localSpeed: 1
+    duracion: 2
     offsetPositionToGo: {x: 0, y: 0}
     DireccionCustom: {x: 0, y: 0}
-  - CorrespondenciaTecla: 2
+  - noteIndex: 0
+    tipoNota: 0
+    CorrespondenciaTecla: 0
     DireccionMovimiento: 0
-    timeToArrive: 3
+    timeToArrive: 3.5
     localSpeed: 1
+    duracion: 0
     offsetPositionToGo: {x: 0, y: 0}
     DireccionCustom: {x: 0, y: 0}
-  - CorrespondenciaTecla: 1
+  - noteIndex: 0
+    tipoNota: 1
+    CorrespondenciaTecla: 1
     DireccionMovimiento: 0
     timeToArrive: 4
     localSpeed: 1
-    offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
-  - CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
-    timeToArrive: 5
-    localSpeed: 1
-    offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
-  - CorrespondenciaTecla: 0
-    DireccionMovimiento: 0
-    timeToArrive: 6
-    localSpeed: 1
-    offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
-  - CorrespondenciaTecla: 2
-    DireccionMovimiento: 0
-    timeToArrive: 7
-    localSpeed: 1
-    offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
-  - CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
-    timeToArrive: 8
-    localSpeed: 1
-    offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
-  - CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
-    timeToArrive: 9
-    localSpeed: 1
-    offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
-  - CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
-    timeToArrive: 10
-    localSpeed: 1
+    duracion: 0
     offsetPositionToGo: {x: 0, y: 0}
     DireccionCustom: {x: 0, y: 0}
 --- !u!114 &179359628
@@ -600,10 +567,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9dd07c723170f4f8290a3db0fbe695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TilesModeNotesController
-  NotaNormalLeft: []
-  NotaNormalRight: []
-  NotaNormalMiddle: []
-  activeNotes: []
+  NotasTileLeft: []
+  NotasTileRight: []
+  NotasTileMiddle: []
+  NotasActivas: []
 --- !u!1 &419790459
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,7 +941,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 00000000152a2fbcb7022de59bc29942b5f637117339c233
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -2002,6 +1969,9 @@ MonoBehaviour:
   Prefabs:
   - prefab: {fileID: 2373320976798151475, guid: fb4a274d67f7444449ffb87c4ef74ebd, type: 3}
     tipoNota: 0
+    IntialInstances: 15
+  - prefab: {fileID: 2373320976798151475, guid: e66e32241b5403547b13b5330561c96a, type: 3}
+    tipoNota: 1
     IntialInstances: 15
 --- !u!1 &1611273193
 GameObject:

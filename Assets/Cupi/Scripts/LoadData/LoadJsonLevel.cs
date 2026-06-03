@@ -5,7 +5,7 @@ public class LoadJsonLevel : MonoBehaviour
 {
     public void SaveJson()
     {
-        NotaNormalList conversor = new NotaNormalList { notasNormales = SpawnerNotas.instance.notasNormales };
+        NotaTileList conversor = new NotaTileList { notasTiles = SpawnerNotas.instance.notasTiles };
 
         string JsonString = JsonUtility.ToJson(conversor, true);
 
@@ -27,8 +27,8 @@ public class LoadJsonLevel : MonoBehaviour
 
         string JsonString = File.ReadAllText(dir);
 
-        NotaNormalList notas = JsonUtility.FromJson<NotaNormalList>(JsonString);
+        NotaTileList notas = JsonUtility.FromJson<NotaTileList>(JsonString);
 
-        SpawnerNotas.instance.notasNormales = notas.notasNormales;
+        SpawnerNotas.instance.notasTiles = notas.notasTiles;
     }
 }

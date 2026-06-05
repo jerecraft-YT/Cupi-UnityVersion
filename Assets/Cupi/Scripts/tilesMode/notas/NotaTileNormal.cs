@@ -1,46 +1,50 @@
-using System;
 using UnityEngine;
 
-public class NotaTileNormal : MonoBehaviour
+public class NotaTileNormal : NotaTileBaseLogic
 {
-    public NotaTileInstance data;
-    public Transform origin;
-    public event Action<Vector2> UpdateNote;
+    //public NotaTileBaseLogic notaTileMaster;
+    public bool canMiss = true;
 
-    public void Initialize(NotaTileInstance config)
+    protected override void OnEnable()
     {
-        data = config;
+        base.OnEnable();
+
+        TilesModeController.NoteClick += DetectClick;
+    }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+
+        TilesModeController.NoteClick -= DetectClick;
     }
 
-    public Vector2 DireccionMovimiento;
-
-    public void UpdateNotePosition()
+    protected override void LogicUpdate()
     {
-
-        float progress = 1 - InverseLerpUnclamped(0.0f, data.timeToArrive, (float)TimeController.instance.AdditiveTime);
-
-        float distancia = (progress * data.timeToArrive * data.localSpeed * SpawnerNotas.instance.notaTileSpeed);
-
-        Vector2 finalPos = data.offsetPositionToGo + (DireccionMovimiento * distancia);
-
-        transform.localPosition = finalPos;
-
-        UpdateNote?.Invoke(finalPos);
-
-        //if (progress <= 0) sprite.color = new Color(1.0f,1.0f,1.0f,0.0f);
+        DetectMiss();
     }
 
-    private float InverseLerpUnclamped(float a, float b, float valor)
+    private void DetectClick(CorrespondenciaTecla tecla)
     {
-        if (b != a) return (valor - a) / (b - a);
+        if (tecla != data.CorrespondenciaTecla) return;
 
-        return 0.0f;
+        float timeDiff = Mathf.Abs(data.timeToArrive - (float)TimeController.instance.AdditiveTime);
+
+        if (timeDiff < TilesModeController.toleraciaError)
+        {
+            TilesModeController.ClickNote(data.CorrespondenciaTecla);
+            DestroyNote();
+        }
     }
 
-    public void DestroyNote()
+    private void DetectMiss()
     {
-        TilesModeNotesController.instance.NotasActivas.Remove(this);
-        transform.parent = origin;
-        gameObject.SetActive(false);
+        if (!canMiss) return;
+
+        if (data.timeToArrive + TilesModeController.toleraciaError < TimeController.instance.AdditiveTime)
+        {
+            TilesModeController.MissNote(data.CorrespondenciaTecla);
+            DestroyNote();
+            canMiss = false;
+        }
     }
 }

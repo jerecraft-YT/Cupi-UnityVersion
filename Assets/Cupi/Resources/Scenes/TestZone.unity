@@ -491,7 +491,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TillesModeController
   notesController: {fileID: 179359628}
-  toleraciaError: 0.1
 --- !u!114 &179359626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,7 +528,7 @@ MonoBehaviour:
   notaTileSpeed: 6
   notasTiles:
   - noteIndex: 0
-    tipoNota: 1
+    tipoNota: 0
     CorrespondenciaTecla: 0
     DireccionMovimiento: 0
     timeToArrive: 3
@@ -552,6 +551,15 @@ MonoBehaviour:
     DireccionMovimiento: 0
     timeToArrive: 4
     localSpeed: 1
+    duracion: 1
+    offsetPositionToGo: {x: 0, y: 0}
+    DireccionCustom: {x: 0, y: 0}
+  - noteIndex: 0
+    tipoNota: 0
+    CorrespondenciaTecla: 0
+    DireccionMovimiento: 0
+    timeToArrive: 5
+    localSpeed: 1
     duracion: 0
     offsetPositionToGo: {x: 0, y: 0}
     DireccionCustom: {x: 0, y: 0}
@@ -570,7 +578,6 @@ MonoBehaviour:
   NotasTileLeft: []
   NotasTileRight: []
   NotasTileMiddle: []
-  NotasActivas: []
 --- !u!1 &419790459
 GameObject:
   m_ObjectHideFlags: 0

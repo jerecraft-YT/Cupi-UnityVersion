@@ -13,9 +13,6 @@ public class SpawnerNotas : MonoBehaviour
     public float notaTileSpeed = 4;
 
     public List<NotaTileInstance> notasTiles;
-    private List<float> timeArriveLeftNotes;
-    private List<float> timeArriveRightNotes;
-    private List<float> timeArriveMiddleNotes;
 
     private void Awake()
     {
@@ -26,10 +23,6 @@ public class SpawnerNotas : MonoBehaviour
         }
 
         instance = this;
-
-        timeArriveLeftNotes = new();
-        timeArriveMiddleNotes = new();
-        timeArriveRightNotes = new();
 
         //LoadJson();
     }
@@ -43,36 +36,15 @@ public class SpawnerNotas : MonoBehaviour
             if (nota == null) continue;
 
             nota.transform.parent = DefinirCorrespondenciaTecla(notaActual.CorrespondenciaTecla);
-            
-            NotaTileNormal scriptNota = nota.GetComponent<NotaTileNormal>();
+            nota.transform.localPosition = Vector2.zero;
 
-            AddNotesReferences(notaActual, scriptNota);
+
+            NotaTileBaseLogic scriptNota = nota.GetComponent<NotaTileBaseLogic>();
 
             scriptNota.Initialize(notaActual);
             scriptNota.origin = TilesModePoolController.instance.RequestGroupPool(notaActual.tipoNota).transform;
 
             scriptNota.DireccionMovimiento = EstablecerDireccionMovimiento(notaActual.DireccionMovimiento, notaActual.DireccionCustom);
-        }
-    }
-
-    private void AddNotesReferences(NotaTileInstance nota, NotaTileNormal script)
-    {
-        notesController.NotasActivas.Add(script);
-
-        switch (nota.CorrespondenciaTecla)
-        {
-            case CorrespondenciaTecla.Left:
-                notesController.NotasTileLeft.Add(script);
-                timeArriveLeftNotes.Add(nota.timeToArrive);
-                break;
-            case CorrespondenciaTecla.Right:
-                notesController.NotasTileRight.Add(script);
-                timeArriveRightNotes.Add(nota.timeToArrive);
-                break;
-            case CorrespondenciaTecla.Middle:
-                notesController.NotasTileMiddle.Add(script);
-                timeArriveMiddleNotes.Add(nota.timeToArrive);
-                break;
         }
     }
 
@@ -107,8 +79,4 @@ public class SpawnerNotas : MonoBehaviour
         }
         return Vector2.zero;
     }
-
-    public List<float> TimeArriveLeftNotes => timeArriveLeftNotes;
-    public List<float> TimeArriveRightNotes => timeArriveRightNotes;
-    public List<float> TimeArriveMiddleNotes => timeArriveMiddleNotes;
 }

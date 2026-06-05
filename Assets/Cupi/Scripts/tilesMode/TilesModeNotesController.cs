@@ -1,14 +1,12 @@
 using UnityEngine;
-using System.Collections.Generic;
+using System;
 
 public class TilesModeNotesController : MonoBehaviour
 {
     public static TilesModeNotesController instance;
 
-    public List<NotaTileNormal> NotasTileLeft = new();
-    public List<NotaTileNormal> NotasTileRight = new();
-    public List<NotaTileNormal> NotasTileMiddle = new();
-    public List<NotaTileNormal> NotasActivas = new();
+    //public List<NotaTileNormal> NotasActivas = new();
+    public static event Action NotasActivas;
 
     private void Awake()
     {
@@ -23,35 +21,8 @@ public class TilesModeNotesController : MonoBehaviour
 
     private void Update()
     {
-        foreach (NotaTileNormal nota in NotasActivas)
-        {
-            nota.UpdateNotePosition();
-        }
-    }
+        NotasActivas?.Invoke();
 
-    public void NotifyToNote(bool acertaste,int noteIndex,CorrespondenciaTecla tecla)
-    {
-        switch (tecla)
-        {
-            case CorrespondenciaTecla.Left:
-                NotasTileLeft[noteIndex].DestroyNote();
-                break;
-            case CorrespondenciaTecla.Right:
-                NotasTileRight[noteIndex].DestroyNote();
-                break;
-            case CorrespondenciaTecla.Middle:
-                NotasTileMiddle[noteIndex].DestroyNote();
-                break;
-        }
-
-        // de momento asi hasta que agregue mas cosas
-        if (acertaste)
-        {
-            //NotaNormal[timeNote].DestroyNote();
-        }
-        else
-        {
-            //NotaNormal[timeNote].DestroyNote();
-        }
+        //foreach (NotaTileNormal nota in NotasActivas) nota.UpdateNotePosition();
     }
 }

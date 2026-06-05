@@ -1,17 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
 using System;
 
 public class TilesModeController : MonoBehaviour
 {
     public TilesModeNotesController notesController;
-    public float toleraciaError = 0.1f;
-    private int actualViewLeftPadNotes = 0;
-    private int actualViewRigthPadNotes = 0;
-    private int actualViewMiddlePadNotes = 0;
+    public static float toleraciaError = 0.1f;
     public static event Action<CorrespondenciaTecla> NoteHit;
     public static event Action<CorrespondenciaTecla> NoteNoHit;
+    public static event Action<CorrespondenciaTecla> NoteClick;
+    public static event Action<CorrespondenciaTecla> NoteUnClick;
 
     private TilesModeInputController TilesInput;
 
@@ -28,68 +26,46 @@ public class TilesModeController : MonoBehaviour
 
         TilesInput.UnsuscribePad(OnPad);
     }
-    private void Update()
-    {
-        DetectMissNote(ref actualViewLeftPadNotes, SpawnerNotas.instance.TimeArriveLeftNotes, CorrespondenciaTecla.Left);
-        DetectMissNote(ref actualViewRigthPadNotes, SpawnerNotas.instance.TimeArriveRightNotes, CorrespondenciaTecla.Right);
-        DetectMissNote(ref actualViewMiddlePadNotes, SpawnerNotas.instance.TimeArriveMiddleNotes, CorrespondenciaTecla.Middle);
-    }
 
     //se llama una vez se vincule con el inputController
     private void OnPad(InputAction.CallbackContext ctx)
     {
         if (ctx.action == TilesInput.LeftPad)
         {
-            ButtonClicked(CorrespondenciaTecla.Left);
+            DetectClickCase(ctx,CorrespondenciaTecla.Left);
+            //ButtonClicked(CorrespondenciaTecla.Left);
         }
         else if (ctx.action == TilesInput.RightPad)
         {
-            ButtonClicked(CorrespondenciaTecla.Right);
+            DetectClickCase(ctx, CorrespondenciaTecla.Right);
+            //ButtonClicked(CorrespondenciaTecla.Right);
         }
         else if (ctx.action == TilesInput.MiddlePad)
         {
-            ButtonClicked(CorrespondenciaTecla.Middle);
+            DetectClickCase(ctx, CorrespondenciaTecla.Middle);
+            //ButtonClicked(CorrespondenciaTecla.Middle);
         }
     }
 
-    private void DetectMissNote(ref int index, List<float> notesGroup,CorrespondenciaTecla tecla)
+    private void DetectClickCase(InputAction.CallbackContext ctx,CorrespondenciaTecla tecla)
     {
-        if (index >= notesGroup.Count) return;
-        if (notesGroup[index] + toleraciaError < TimeController.instance.AdditiveTime)
+        if (ctx.performed)
         {
-            notesController.NotifyToNote(false, index, tecla);
-            index++;
-            NoteNoHit.Invoke(tecla);
+            NoteClick?.Invoke(tecla);
+        }
+        if (ctx.canceled)
+        {
+            NoteUnClick?.Invoke(tecla);
         }
     }
-    private void DetectHitNote(ref int index, List<float> notesGroup, CorrespondenciaTecla tecla)
+
+    public static void MissNote(CorrespondenciaTecla tecla)
     {
-        if (index >= notesGroup.Count) return;
-
-        float timeDiff = Mathf.Abs(notesGroup[index] - (float)TimeController.instance.AdditiveTime);
-
-        if (timeDiff < toleraciaError)
-        {
-            notesController.NotifyToNote(true, index, tecla);
-            index++;
-            NoteHit?.Invoke(tecla);
-        }
+        NoteNoHit?.Invoke(tecla);
     }
-    private void ButtonClicked(CorrespondenciaTecla tecla)
+
+    public static void ClickNote(CorrespondenciaTecla tecla)
     {
-        switch (tecla)
-        {
-            case CorrespondenciaTecla.Left:
-                DetectHitNote(ref actualViewLeftPadNotes, SpawnerNotas.instance.TimeArriveLeftNotes, tecla);
-                break;
-
-            case CorrespondenciaTecla.Right:
-                DetectHitNote(ref actualViewRigthPadNotes, SpawnerNotas.instance.TimeArriveRightNotes, tecla);
-                break;
-
-            case CorrespondenciaTecla.Middle:
-                DetectHitNote(ref actualViewMiddlePadNotes, SpawnerNotas.instance.TimeArriveMiddleNotes, tecla);
-                break;
-        }
+        NoteHit?.Invoke(tecla);
     }
 }

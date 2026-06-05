@@ -39,16 +39,22 @@ public class TilesModeInputController : MonoBehaviour
     }
     public void SuscribePad(Action<InputAction.CallbackContext> function)
     {
-
         leftPad.performed += function;
+        leftPad.canceled += function;
         rightPad.performed += function;
+        rightPad.canceled += function;
         middlePad.performed += function;
+        middlePad.canceled += function;
+
     }
     public void UnsuscribePad(Action<InputAction.CallbackContext> function)
     {
         leftPad.performed -= function;
+        leftPad.canceled -= function;
         rightPad.performed -= function;
+        rightPad.canceled -= function;
         middlePad.performed -= function;
+        middlePad.canceled -= function;
     }
 
     public InputAction LeftPad => leftPad;

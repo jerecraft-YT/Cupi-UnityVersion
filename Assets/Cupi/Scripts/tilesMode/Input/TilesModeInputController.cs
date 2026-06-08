@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,8 +7,16 @@ public class TilesModeInputController : MonoBehaviour
 {
     public static TilesModeInputController instance;
 
+    [Header("Teclas")]
+    [Tooltip("Teclas para el modo Tile")]
+    public List<InputActionReference> padTile;
+
+    public static event Action<CorrespondenciaTecla> NoteClick;
+    public static event Action<CorrespondenciaTecla> NoteUnClick;
+
     private void Awake()
     {
+
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -19,29 +28,49 @@ public class TilesModeInputController : MonoBehaviour
 
     private void OnEnable()
     {
-        TilesModeMaster.instance.padTile[0].action.actionMap.Enable();
+        padTile[0].action.actionMap.Enable();
+
+        SuscribePad();
     }
 
     private void OnDisable()
     {
-        TilesModeMaster.instance.padTile[0].action.actionMap.Disable();
+        padTile[0].action.actionMap.Disable();
+
+        UnsuscribePad();
     }
 
-    public void SuscribePad(Action<InputAction.CallbackContext> function)
+    //se llama una vez se vincule con el inputController
+    private void OnPad(InputAction.CallbackContext ctx)
     {
-        foreach (InputActionReference InputAction in TilesModeMaster.instance.padTile)
+        CorrespondenciaTecla tecla = Enum.Parse<CorrespondenciaTecla>(ctx.action.name);
+
+        if (ctx.performed)
         {
-            InputAction.action.performed += function;
-            InputAction.action.canceled += function;
+            NoteClick?.Invoke(tecla);
+        }
+        if (ctx.canceled)
+        {
+            NoteUnClick?.Invoke(tecla);
+
         }
     }
 
-    public void UnsuscribePad(Action<InputAction.CallbackContext> function)
+    private void SuscribePad()
     {
-        foreach (InputActionReference InputAction in TilesModeMaster.instance.padTile)
+        foreach (InputActionReference InputAction in padTile)
         {
-            InputAction.action.performed -= function;
-            InputAction.action.canceled -= function;
+            InputAction.action.performed += OnPad;
+            InputAction.action.canceled += OnPad;
+        }
+    }
+
+    private void UnsuscribePad()
+    {
+        foreach (InputActionReference InputAction in padTile)
+        {
+            InputAction.action.performed -= OnPad;
+            InputAction.action.canceled -= OnPad;
         }
     }
 }

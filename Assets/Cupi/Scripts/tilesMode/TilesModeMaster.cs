@@ -6,6 +6,14 @@ public class TilesModeMaster : MonoBehaviour
 {
     public static TilesModeMaster instance;
 
+    [Header("Config")]
+
+    [Tooltip("Margen de error para las notas (en segundos)")]
+    public float toleranciaError;
+
+    [Tooltip("Velocidad general de notas")]
+    public float notaTileSpeed = 4;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -15,18 +23,5 @@ public class TilesModeMaster : MonoBehaviour
         }
         instance = this;
     }
-
-    [Header("Config")]
-
-    [Tooltip("Margen de error para las notas (en segundos)")]
-    public float toleranciaError;
-
-    [Tooltip("Velocidad general de notas")]
-    public float notaTileSpeed = 4;
-
-    [Header("Teclas")]
-    [Tooltip("Teclas para el modo Tile")]
-    public List<InputActionReference> padTile;
-
 
 }

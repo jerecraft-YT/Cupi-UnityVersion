@@ -11,7 +11,8 @@ public enum CorrespondenciaTecla
 {
     Middle,
     Left,
-    Right
+    Right,
+    Up
 }
 public enum TipoNota
 {
@@ -19,4 +20,16 @@ public enum TipoNota
     SostenidaTile
 }
 
+public enum TileModePlayStyle
+{
+    TwoKeys,
+    ThreeKeys,
+    FourKeys,
+    FiveKeys,
+    SixKeys,
+    SevenKeys,
+    EightKeys,
+    NineKeys,
+    TenKeys
+}
 

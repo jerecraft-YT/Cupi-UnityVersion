@@ -429,7 +429,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 179359623}
-  - component: {fileID: 179359625}
   - component: {fileID: 179359624}
   - component: {fileID: 179359628}
   - component: {fileID: 179359627}
@@ -473,18 +472,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9464ff53b198dc94baf8fe38359cacb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TilesModeInputController
---- !u!114 &179359625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179359622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fc39990cc4fa4748b9df65f80788bda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TillesModeController
+  padTile:
+  - {fileID: 6313823144912909794, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  - {fileID: 724949318750166607, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  - {fileID: 511222886655884415, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!114 &179359626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,10 +592,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TilesModeMasterConfig
   toleranciaError: 0.1
   notaTileSpeed: 6
-  padTile:
-  - {fileID: 6313823144912909794, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  - {fileID: 724949318750166607, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  - {fileID: 511222886655884415, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &419790459
 GameObject:
   m_ObjectHideFlags: 0

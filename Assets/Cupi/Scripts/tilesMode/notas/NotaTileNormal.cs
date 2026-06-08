@@ -7,13 +7,13 @@ public class NotaTileNormal : NotaTileBaseLogic
     {
         base.OnEnable();
 
-        TilesModeController.NoteClick += DetectClick;
+        TilesModeInputController.NoteClick += DetectClick;
     }
     protected override void OnDisable()
     {
         base.OnDisable();
 
-        TilesModeController.NoteClick -= DetectClick;
+        TilesModeInputController.NoteClick -= DetectClick;
     }
     protected override void LogicUpdate()
     {
@@ -28,7 +28,7 @@ public class NotaTileNormal : NotaTileBaseLogic
 
         if (timeDiff < TilesModeMaster.instance.toleranciaError)
         {
-            TilesModeController.ClickNote(data.CorrespondenciaTecla);
+            TilesModeNotesController.HitNote(data.CorrespondenciaTecla);
             DestroyNote();
         }
     }
@@ -39,7 +39,7 @@ public class NotaTileNormal : NotaTileBaseLogic
 
         if (data.timeToArrive + TilesModeMaster.instance.toleranciaError < TimeController.instance.AdditiveTime)
         {
-            TilesModeController.MissNote(data.CorrespondenciaTecla);
+            TilesModeNotesController.MissNote(data.CorrespondenciaTecla);
             DestroyNote();
             canMiss = false;
         }

@@ -12,8 +12,8 @@ public class NotaTileSostenida : NotaTileBaseLogic
     {
         base.OnEnable();
 
-        TilesModeController.NoteClick += ClampNote;
-        TilesModeController.NoteUnClick += UnClampNote;
+        TilesModeInputController.NoteClick += ClampNote;
+        TilesModeInputController.NoteUnClick += UnClampNote;
 
         SetLinePoints();
     }
@@ -22,8 +22,8 @@ public class NotaTileSostenida : NotaTileBaseLogic
     {
         base.OnDisable();
 
-        TilesModeController.NoteClick -= ClampNote;
-        TilesModeController.NoteUnClick -= UnClampNote;
+        TilesModeInputController.NoteClick -= ClampNote;
+        TilesModeInputController.NoteUnClick -= UnClampNote;
     }
 
     protected override void LogicUpdate()
@@ -57,7 +57,8 @@ public class NotaTileSostenida : NotaTileBaseLogic
         if (timeDiff < TilesModeMaster.instance.toleranciaError)
         {
             lockProgress = true;
-            TilesModeController.ClickNote(data.CorrespondenciaTecla);
+            TilesModeNotesController.HitNote(data.CorrespondenciaTecla);
+
             //DestroyNote();
         }
 

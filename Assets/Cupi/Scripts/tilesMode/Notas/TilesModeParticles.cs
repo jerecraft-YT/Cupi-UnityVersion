@@ -15,14 +15,14 @@ public class TilesModeParticles : MonoBehaviour
 
     private void OnEnable()
     {
-        TilesModeController.NoteHit += ParticleHitNote;
-        TilesModeController.NoteNoHit += ParticleNoHitNote;
+        TilesModeNotesController.NoteHit += ParticleHitNote;
+        TilesModeNotesController.NoteNoHit += ParticleNoHitNote;
     }
 
     private void OnDisable()
     {
-        TilesModeController.NoteHit -= ParticleHitNote;
-        TilesModeController.NoteNoHit -= ParticleNoHitNote;
+        TilesModeNotesController.NoteHit -= ParticleHitNote;
+        TilesModeNotesController.NoteNoHit -= ParticleNoHitNote;
     }
 
     private void Start()

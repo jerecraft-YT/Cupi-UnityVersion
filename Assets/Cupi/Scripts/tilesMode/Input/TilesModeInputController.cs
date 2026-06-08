@@ -7,8 +7,6 @@ public class TilesModeInputController : MonoBehaviour
 {
     public static TilesModeInputController instance;
 
-    [Header("Teclas")]
-    [Tooltip("Teclas para el modo Tile")]
     public List<InputActionReference> padTile;
 
     public static event Action<CorrespondenciaTecla> NoteClick;
@@ -47,6 +45,7 @@ public class TilesModeInputController : MonoBehaviour
 
         if (ctx.performed)
         {
+            print(tecla);
             NoteClick?.Invoke(tecla);
         }
         if (ctx.canceled)

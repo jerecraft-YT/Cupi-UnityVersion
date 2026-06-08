@@ -506,9 +506,9 @@ MonoBehaviour:
   notesController: {fileID: 179359628}
   PosicionFinalNota:
   - tecla: 0
-    posicion: {fileID: 1162097784}
-  - tecla: 1
     posicion: {fileID: 1737966155}
+  - tecla: 1
+    posicion: {fileID: 1162097784}
   - tecla: 2
     posicion: {fileID: 2121417498}
   notasTiles:
@@ -1274,7 +1274,7 @@ GameObject:
   - component: {fileID: 1162097784}
   - component: {fileID: 1162097785}
   m_Layer: 0
-  m_Name: MidleObjective
+  m_Name: TwoObjective
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1947,7 +1947,7 @@ GameObject:
   - component: {fileID: 1737966155}
   - component: {fileID: 1737966156}
   m_Layer: 0
-  m_Name: LeftObjective
+  m_Name: OneObjective
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2059,6 +2059,52 @@ Transform:
   - {fileID: 1733687926}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2035325054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2035325056}
+  - component: {fileID: 2035325055}
+  m_Layer: 0
+  m_Name: LoadAndSaveData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2035325055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035325054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b23aa490c07649abde8a17ea66c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoadAndSaveData
+  instance: {fileID: 0}
+  defaultConfigKeys: {fileID: 0}
+--- !u!4 &2035325056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035325054}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.72285, y: 1.21629, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2121417497
 GameObject:
   m_ObjectHideFlags: 0
@@ -2070,7 +2116,7 @@ GameObject:
   - component: {fileID: 2121417498}
   - component: {fileID: 2121417499}
   m_Layer: 0
-  m_Name: RigthObjective
+  m_Name: ThreeObjective
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2165,3 +2211,4 @@ SceneRoots:
   - {fileID: 1798169997}
   - {fileID: 1215995098}
   - {fileID: 1710346485}
+  - {fileID: 2035325056}

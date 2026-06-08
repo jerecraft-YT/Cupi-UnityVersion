@@ -34,7 +34,6 @@ public class NotaTileSostenida : NotaTileBaseLogic
     private void Start()
     {
         timeToArriveForLine = data.duracion + data.timeToArrive;
-        //notaTileMaster.lockProgress = true;
     }
 
     private void SetLinePoints()

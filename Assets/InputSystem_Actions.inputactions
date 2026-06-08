@@ -3,11 +3,11 @@
     "name": "InputSystem_Actions",
     "maps": [
         {
-            "name": "TileModePlayer",
+            "name": "TileModeThreeKeys",
             "id": "df70fa95-8a34-4494-b137-73ab6b9c7d37",
             "actions": [
                 {
-                    "name": "Left",
+                    "name": "One",
                     "type": "Button",
                     "id": "da8e5635-4015-4a25-83cf-a6182fd5cc07",
                     "expectedControlType": "",
@@ -16,7 +16,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Middle",
+                    "name": "Two",
                     "type": "Button",
                     "id": "4063bacf-07cb-459d-88b5-74c248f57ffa",
                     "expectedControlType": "",
@@ -25,7 +25,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Right",
+                    "name": "Three",
                     "type": "Button",
                     "id": "c4d6a305-6faa-4a56-a488-aae9f9067812",
                     "expectedControlType": "",
@@ -42,7 +42,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Left",
+                    "action": "One",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -53,7 +53,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Left",
+                    "action": "One",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -64,7 +64,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Left",
+                    "action": "One",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -75,7 +75,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Left",
+                    "action": "One",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -86,7 +86,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Left",
+                    "action": "One",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -97,18 +97,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Joystick",
-                    "action": "Left",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a1af7070-ee64-4804-a105-ee1090374132",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Middle",
+                    "action": "One",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -119,18 +108,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Middle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "84d2d4da-ae35-43ea-a992-2666061231dc",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Middle",
+                    "action": "Two",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -141,7 +119,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Middle",
+                    "action": "Two",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -152,7 +130,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Middle",
+                    "action": "Two",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -163,7 +141,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Middle",
+                    "action": "Two",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -174,7 +152,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Middle",
+                    "action": "Two",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -185,7 +163,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Joystick",
-                    "action": "Middle",
+                    "action": "Two",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -196,7 +174,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Right",
+                    "action": "Three",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -207,7 +185,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Right",
+                    "action": "Three",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -218,7 +196,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Right",
+                    "action": "Three",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -229,7 +207,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Right",
+                    "action": "Three",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -240,7 +218,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Right",
+                    "action": "Three",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -251,7 +229,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Joystick",
-                    "action": "Right",
+                    "action": "Three",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -9,10 +9,16 @@ public enum DireccionesMovimientoNotas
 
 public enum CorrespondenciaTecla
 {
-    Middle,
-    Left,
-    Right,
-    Up
+    One,
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Ten
 }
 public enum TipoNota
 {

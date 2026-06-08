@@ -6,11 +6,10 @@ public class SpawnerNotas : MonoBehaviour
     public static SpawnerNotas instance;
 
     public TilesModeNotesController notesController;
-    public Transform finalPositionLeftNote;
-    public Transform finalPositionMiddleNote;
-    public Transform finalPositionRigthNote;
-
-    public float notaTileSpeed = 4;
+    //si se agrega la misma correspondencia de nota en la lista entonces
+    //en el diccionario solo se tomara la ultima aparicion de esa
+    [SerializeField] private List<PosicionNota> PosicionFinalNota;
+    public static Dictionary<CorrespondenciaTecla, Transform> PosicionFinalNotaDic;
 
     public List<NotaTileInstance> notasTiles;
 
@@ -23,6 +22,13 @@ public class SpawnerNotas : MonoBehaviour
         }
 
         instance = this;
+
+        PosicionFinalNotaDic = new();
+
+        foreach (var posicionFinal in PosicionFinalNota)
+        {
+            PosicionFinalNotaDic[posicionFinal.tecla] = posicionFinal.posicion;
+        }
 
         //LoadJson();
     }
@@ -48,18 +54,11 @@ public class SpawnerNotas : MonoBehaviour
         }
     }
 
-    private Transform DefinirCorrespondenciaTecla(CorrespondenciaTecla CorrespondenciaTecla)
+    private Transform DefinirCorrespondenciaTecla(CorrespondenciaTecla Tecla)
     {
-        switch (CorrespondenciaTecla)
-        {
-            case CorrespondenciaTecla.Left:
-                return finalPositionLeftNote != null ? finalPositionLeftNote : transform;
-            case CorrespondenciaTecla.Middle:
-                return finalPositionMiddleNote != null ? finalPositionMiddleNote : transform;
-            case CorrespondenciaTecla.Right:
-                return finalPositionRigthNote != null ? finalPositionRigthNote : transform;
-        }
-        return transform;
+        if (!PosicionFinalNotaDic.ContainsKey(Tecla)) return transform;
+
+        return PosicionFinalNotaDic[Tecla];
     }
 
     private Vector2 EstablecerDireccionMovimiento(DireccionesMovimientoNotas DireccionMovimiento, Vector2 DireccionCustom)

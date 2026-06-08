@@ -6,8 +6,8 @@ public class NotaTileBaseLogic : MonoBehaviour
     public Vector2 DireccionMovimiento;
     public Vector2 finalPos;
     public Transform origin;
-    public Transform note;
-    public float progress;
+    [SerializeField] private Transform note;
+    private float progress;
     public bool lockProgress;
     public float offsetRendering;
 
@@ -35,12 +35,13 @@ public class NotaTileBaseLogic : MonoBehaviour
 
         if (lockProgress) progress = Mathf.Max(0, progress);
 
-        float distancia = (progress * (data.timeToArrive + offsetRendering) * data.localSpeed * SpawnerNotas.instance.notaTileSpeed);
+        float distancia = (progress * (data.timeToArrive + offsetRendering) * data.localSpeed * TilesModeMaster.instance.notaTileSpeed);
 
         finalPos = data.offsetPositionToGo + (DireccionMovimiento * distancia);
 
         note.localPosition = finalPos;
     }
+
     public void DestroyNote()
     {
         GoToPool();

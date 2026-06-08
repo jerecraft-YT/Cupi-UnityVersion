@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class NotaTileNormal : NotaTileBaseLogic
 {
-    //public NotaTileBaseLogic notaTileMaster;
-    public bool canMiss = true;
-
+    private bool canMiss = true;
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -17,7 +15,6 @@ public class NotaTileNormal : NotaTileBaseLogic
 
         TilesModeController.NoteClick -= DetectClick;
     }
-
     protected override void LogicUpdate()
     {
         DetectMiss();
@@ -29,7 +26,7 @@ public class NotaTileNormal : NotaTileBaseLogic
 
         float timeDiff = Mathf.Abs(data.timeToArrive - (float)TimeController.instance.AdditiveTime);
 
-        if (timeDiff < TilesModeController.toleraciaError)
+        if (timeDiff < TilesModeMaster.instance.toleranciaError)
         {
             TilesModeController.ClickNote(data.CorrespondenciaTecla);
             DestroyNote();
@@ -40,7 +37,7 @@ public class NotaTileNormal : NotaTileBaseLogic
     {
         if (!canMiss) return;
 
-        if (data.timeToArrive + TilesModeController.toleraciaError < TimeController.instance.AdditiveTime)
+        if (data.timeToArrive + TilesModeMaster.instance.toleranciaError < TimeController.instance.AdditiveTime)
         {
             TilesModeController.MissNote(data.CorrespondenciaTecla);
             DestroyNote();

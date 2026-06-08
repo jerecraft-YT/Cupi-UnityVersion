@@ -89,11 +89,11 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
     ""name"": ""InputSystem_Actions"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""TileModePlayer"",
             ""id"": ""df70fa95-8a34-4494-b137-73ab6b9c7d37"",
             ""actions"": [
                 {
-                    ""name"": ""leftPad"",
+                    ""name"": ""Left"",
                     ""type"": ""Button"",
                     ""id"": ""da8e5635-4015-4a25-83cf-a6182fd5cc07"",
                     ""expectedControlType"": """",
@@ -102,7 +102,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""middlePad"",
+                    ""name"": ""Middle"",
                     ""type"": ""Button"",
                     ""id"": ""4063bacf-07cb-459d-88b5-74c248f57ffa"",
                     ""expectedControlType"": """",
@@ -111,7 +111,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""rigthPad"",
+                    ""name"": ""Right"",
                     ""type"": ""Button"",
                     ""id"": ""c4d6a305-6faa-4a56-a488-aae9f9067812"",
                     ""expectedControlType"": """",
@@ -128,7 +128,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""leftPad"",
+                    ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -139,7 +139,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""leftPad"",
+                    ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -150,7 +150,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""leftPad"",
+                    ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -161,7 +161,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""leftPad"",
+                    ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -172,7 +172,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""leftPad"",
+                    ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -183,7 +183,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Joystick"",
-                    ""action"": ""leftPad"",
+                    ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -194,7 +194,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""middlePad"",
+                    ""action"": ""Middle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -205,7 +205,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""middlePad"",
+                    ""action"": ""Middle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -216,7 +216,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""middlePad"",
+                    ""action"": ""Middle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -227,7 +227,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""middlePad"",
+                    ""action"": ""Middle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -238,7 +238,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""middlePad"",
+                    ""action"": ""Middle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -249,7 +249,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""middlePad"",
+                    ""action"": ""Middle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -260,7 +260,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""middlePad"",
+                    ""action"": ""Middle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -271,7 +271,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Joystick"",
-                    ""action"": ""middlePad"",
+                    ""action"": ""Middle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -282,7 +282,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""rigthPad"",
+                    ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -293,7 +293,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""rigthPad"",
+                    ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -304,7 +304,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""rigthPad"",
+                    ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -315,7 +315,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""rigthPad"",
+                    ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -326,7 +326,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""rigthPad"",
+                    ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -337,7 +337,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Joystick"",
-                    ""action"": ""rigthPad"",
+                    ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -360,7 +360,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""name"": ""Submit"",
                     ""type"": ""Button"",
                     ""id"": ""7607c7b6-cd76-4816-beef-bd0341cfe950"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -369,7 +369,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""name"": ""Cancel"",
                     ""type"": ""Button"",
                     ""id"": ""15cef263-9014-4fd5-94d9-4e4a6234a6ef"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -951,11 +951,11 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_leftPad = m_Player.FindAction("leftPad", throwIfNotFound: true);
-        m_Player_middlePad = m_Player.FindAction("middlePad", throwIfNotFound: true);
-        m_Player_rigthPad = m_Player.FindAction("rigthPad", throwIfNotFound: true);
+        // TileModePlayer
+        m_TileModePlayer = asset.FindActionMap("TileModePlayer", throwIfNotFound: true);
+        m_TileModePlayer_Left = m_TileModePlayer.FindAction("Left", throwIfNotFound: true);
+        m_TileModePlayer_Middle = m_TileModePlayer.FindAction("Middle", throwIfNotFound: true);
+        m_TileModePlayer_Right = m_TileModePlayer.FindAction("Right", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -975,7 +975,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
 
     ~@GameInputs()
     {
-        UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, GameInputs.Player.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TileModePlayer.enabled, "This will cause a leak and performance issues, GameInputs.TileModePlayer.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, GameInputs.UI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Editor.enabled, "This will cause a leak and performance issues, GameInputs.Editor.Disable() has not been called.");
     }
@@ -1050,39 +1050,39 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Player
-    private readonly InputActionMap m_Player;
-    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_leftPad;
-    private readonly InputAction m_Player_middlePad;
-    private readonly InputAction m_Player_rigthPad;
+    // TileModePlayer
+    private readonly InputActionMap m_TileModePlayer;
+    private List<ITileModePlayerActions> m_TileModePlayerActionsCallbackInterfaces = new List<ITileModePlayerActions>();
+    private readonly InputAction m_TileModePlayer_Left;
+    private readonly InputAction m_TileModePlayer_Middle;
+    private readonly InputAction m_TileModePlayer_Right;
     /// <summary>
-    /// Provides access to input actions defined in input action map "Player".
+    /// Provides access to input actions defined in input action map "TileModePlayer".
     /// </summary>
-    public struct PlayerActions
+    public struct TileModePlayerActions
     {
         private @GameInputs m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public PlayerActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        public TileModePlayerActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Player/leftPad".
+        /// Provides access to the underlying input action "TileModePlayer/Left".
         /// </summary>
-        public InputAction @leftPad => m_Wrapper.m_Player_leftPad;
+        public InputAction @Left => m_Wrapper.m_TileModePlayer_Left;
         /// <summary>
-        /// Provides access to the underlying input action "Player/middlePad".
+        /// Provides access to the underlying input action "TileModePlayer/Middle".
         /// </summary>
-        public InputAction @middlePad => m_Wrapper.m_Player_middlePad;
+        public InputAction @Middle => m_Wrapper.m_TileModePlayer_Middle;
         /// <summary>
-        /// Provides access to the underlying input action "Player/rigthPad".
+        /// Provides access to the underlying input action "TileModePlayer/Right".
         /// </summary>
-        public InputAction @rigthPad => m_Wrapper.m_Player_rigthPad;
+        public InputAction @Right => m_Wrapper.m_TileModePlayer_Right;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public InputActionMap Get() { return m_Wrapper.m_TileModePlayer; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -1090,9 +1090,9 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="PlayerActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="TileModePlayerActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(TileModePlayerActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -1100,20 +1100,20 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="PlayerActions" />
-        public void AddCallbacks(IPlayerActions instance)
+        /// <seealso cref="TileModePlayerActions" />
+        public void AddCallbacks(ITileModePlayerActions instance)
         {
-            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
-            @leftPad.started += instance.OnLeftPad;
-            @leftPad.performed += instance.OnLeftPad;
-            @leftPad.canceled += instance.OnLeftPad;
-            @middlePad.started += instance.OnMiddlePad;
-            @middlePad.performed += instance.OnMiddlePad;
-            @middlePad.canceled += instance.OnMiddlePad;
-            @rigthPad.started += instance.OnRigthPad;
-            @rigthPad.performed += instance.OnRigthPad;
-            @rigthPad.canceled += instance.OnRigthPad;
+            if (instance == null || m_Wrapper.m_TileModePlayerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TileModePlayerActionsCallbackInterfaces.Add(instance);
+            @Left.started += instance.OnLeft;
+            @Left.performed += instance.OnLeft;
+            @Left.canceled += instance.OnLeft;
+            @Middle.started += instance.OnMiddle;
+            @Middle.performed += instance.OnMiddle;
+            @Middle.canceled += instance.OnMiddle;
+            @Right.started += instance.OnRight;
+            @Right.performed += instance.OnRight;
+            @Right.canceled += instance.OnRight;
         }
 
         /// <summary>
@@ -1122,27 +1122,27 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="PlayerActions" />
-        private void UnregisterCallbacks(IPlayerActions instance)
+        /// <seealso cref="TileModePlayerActions" />
+        private void UnregisterCallbacks(ITileModePlayerActions instance)
         {
-            @leftPad.started -= instance.OnLeftPad;
-            @leftPad.performed -= instance.OnLeftPad;
-            @leftPad.canceled -= instance.OnLeftPad;
-            @middlePad.started -= instance.OnMiddlePad;
-            @middlePad.performed -= instance.OnMiddlePad;
-            @middlePad.canceled -= instance.OnMiddlePad;
-            @rigthPad.started -= instance.OnRigthPad;
-            @rigthPad.performed -= instance.OnRigthPad;
-            @rigthPad.canceled -= instance.OnRigthPad;
+            @Left.started -= instance.OnLeft;
+            @Left.performed -= instance.OnLeft;
+            @Left.canceled -= instance.OnLeft;
+            @Middle.started -= instance.OnMiddle;
+            @Middle.performed -= instance.OnMiddle;
+            @Middle.canceled -= instance.OnMiddle;
+            @Right.started -= instance.OnRight;
+            @Right.performed -= instance.OnRight;
+            @Right.canceled -= instance.OnRight;
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TileModePlayerActions.UnregisterCallbacks(ITileModePlayerActions)" />.
         /// </summary>
-        /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
-        public void RemoveCallbacks(IPlayerActions instance)
+        /// <seealso cref="TileModePlayerActions.UnregisterCallbacks(ITileModePlayerActions)" />
+        public void RemoveCallbacks(ITileModePlayerActions instance)
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_TileModePlayerActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -1152,21 +1152,21 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
-        /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
-        /// <seealso cref="PlayerActions.UnregisterCallbacks(IPlayerActions)" />
-        public void SetCallbacks(IPlayerActions instance)
+        /// <seealso cref="TileModePlayerActions.AddCallbacks(ITileModePlayerActions)" />
+        /// <seealso cref="TileModePlayerActions.RemoveCallbacks(ITileModePlayerActions)" />
+        /// <seealso cref="TileModePlayerActions.UnregisterCallbacks(ITileModePlayerActions)" />
+        public void SetCallbacks(ITileModePlayerActions instance)
         {
-            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_TileModePlayerActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_TileModePlayerActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
+    /// Provides a new <see cref="TileModePlayerActions" /> instance referencing this action map.
     /// </summary>
-    public PlayerActions @Player => new PlayerActions(this);
+    public TileModePlayerActions @TileModePlayer => new TileModePlayerActions(this);
 
     // UI
     private readonly InputActionMap m_UI;
@@ -1524,33 +1524,33 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         }
     }
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TileModePlayer" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="PlayerActions.AddCallbacks(IPlayerActions)" />
-    /// <seealso cref="PlayerActions.RemoveCallbacks(IPlayerActions)" />
-    public interface IPlayerActions
+    /// <seealso cref="TileModePlayerActions.AddCallbacks(ITileModePlayerActions)" />
+    /// <seealso cref="TileModePlayerActions.RemoveCallbacks(ITileModePlayerActions)" />
+    public interface ITileModePlayerActions
     {
         /// <summary>
-        /// Method invoked when associated input action "leftPad" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Left" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnLeftPad(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "middlePad" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Middle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMiddlePad(InputAction.CallbackContext context);
+        void OnMiddle(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "rigthPad" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Right" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnRigthPad(InputAction.CallbackContext context);
+        void OnRight(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

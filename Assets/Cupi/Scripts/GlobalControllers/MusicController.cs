@@ -8,6 +8,7 @@ public class MusicController : MonoBehaviour
     [SerializeField] private bool pitchRegulator;
     [SerializeField] private AudioMixerGroup musicGroup;
     [SerializeField] private float toleranciaSincronizacion = 0.01f;
+    [SerializeField] private bool musicPaused = false;
 
     private void Awake()
     {
@@ -40,11 +41,18 @@ public class MusicController : MonoBehaviour
 
     public void SincronizarMusica()
     {
+        if (musicPaused || MainMusic.clip == null) return;
+
         float additiveTime = (float)TimeController.instance.AdditiveTime;
+
+        if (additiveTime < 0 || additiveTime > MainMusic.clip.length) return;
 
         if (Mathf.Abs(additiveTime - MainMusic.time) >= toleranciaSincronizacion)
         {
+            if (!MainMusic.isPlaying) MainMusic.Play();
+
             Debug.Log("resincronizando musica");
+
             MainMusic.time = additiveTime;
         }
     }

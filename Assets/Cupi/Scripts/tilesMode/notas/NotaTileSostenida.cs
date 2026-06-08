@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class NotaTileSostenida : NotaTileBaseLogic
 {
-    //public NotaTileBaseLogic notaTileMaster;
-    public LineRenderer lineNote;
-    public float timeToArriveForLine;
-    public float consumoNota;
-    public bool usarConsumo;
+    [SerializeField] private LineRenderer lineNote;
+    private float timeToArriveForLine;
+    private float consumoNota;
+    private int numberPoints = 2;
+    private int framesToUpdate;
 
     protected override void OnEnable()
     {
@@ -14,7 +14,8 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
         TilesModeController.NoteClick += ClampNote;
         TilesModeController.NoteUnClick += UnClampNote;
-        lineNote.positionCount = 2;
+
+        SetLinePoints();
     }
 
     protected override void OnDisable()
@@ -36,6 +37,11 @@ public class NotaTileSostenida : NotaTileBaseLogic
         //notaTileMaster.lockProgress = true;
     }
 
+    private void SetLinePoints()
+    {
+        lineNote.positionCount = numberPoints;
+    }
+
     public void TileNoteController()
     {
         LogicLine();
@@ -48,7 +54,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
         float timeDiff = Mathf.Abs(data.timeToArrive - (float)TimeController.instance.AdditiveTime);
 
-        if (timeDiff < TilesModeController.toleraciaError)
+        if (timeDiff < TilesModeMaster.instance.toleranciaError)
         {
             lockProgress = true;
             TilesModeController.ClickNote(data.CorrespondenciaTecla);
@@ -80,6 +86,14 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
     public void DrawLine()
     {
+        //retardamos el update de la linea un frame
+        //para que no haya erorres de renderizado
+        if (framesToUpdate < 1)
+        {
+            framesToUpdate += 1;
+            return;
+        }
+
         for (int i = 0; i < lineNote.positionCount; i++)
         {
             if (i == 0)
@@ -92,7 +106,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
                 if (lockProgress) progress = Mathf.Max(0, progress);
 
-                float distancia = (progress * timeToArriveForLine * data.localSpeed * SpawnerNotas.instance.notaTileSpeed);
+                float distancia = (progress * timeToArriveForLine * data.localSpeed * TilesModeMaster.instance.notaTileSpeed);
 
                 Vector2 finalPos = data.offsetPositionToGo + (DireccionMovimiento * distancia);
 

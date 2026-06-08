@@ -57,6 +57,8 @@ public class BpmController : MonoBehaviour
 
         numberBeats += 1;
 
+        MusicController.instance.SincronizarMusica();
+
         //print("beat: " + numberBeats);
     }
 

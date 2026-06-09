@@ -28,6 +28,7 @@ public enum TipoNota
 
 public enum TileModePlayStyle
 {
+    OneKey,
     TwoKeys,
     ThreeKeys,
     FourKeys,

@@ -1,10 +1,8 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class LoadAndSaveData : MonoBehaviour
 {
-    public LoadAndSaveData instance;
-    public DefaultConfigKeysSO defaultConfigKeys;
+    public static LoadAndSaveData instance;
 
     private void Awake()
     {
@@ -16,13 +14,6 @@ public class LoadAndSaveData : MonoBehaviour
 
         instance = this;
 
-        defaultConfigKeys = Resources.Load<DefaultConfigKeysSO>("ScriptableObject/DefaultConfigKeysSO");
-
         DontDestroyOnLoad(gameObject);
-    }
-
-    public static InputActionReference loadActualInput()
-    {
-        return null;
     }
 }

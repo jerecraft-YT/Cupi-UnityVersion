@@ -550,8 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374b23aa490c07649abde8a17ea66c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadAndSaveData
-  instance: {fileID: 0}
-  defaultConfigKeys: {fileID: 0}
+  defaultConfigKeys: {fileID: 11400000, guid: a1f5d247d6c65d74586b90f3ea4d2905, type: 2}
 --- !u!4 &767887022
 Transform:
   m_ObjectHideFlags: 0

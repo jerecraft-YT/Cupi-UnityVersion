@@ -5,13 +5,16 @@ public class SpawnerNotas : MonoBehaviour
 {
     public static SpawnerNotas instance;
 
-    public TilesModeNotesController notesController;
     //si se agrega la misma correspondencia de nota en la lista entonces
     //en el diccionario solo se tomara la ultima aparicion de esa
     [SerializeField] private List<PosicionNota> PosicionFinalNota;
     public static Dictionary<CorrespondenciaTecla, Transform> PosicionFinalNotaDic;
 
     public List<NotaTileInstance> notasTiles;
+
+    public Sprite spriteReference;
+
+    private TilesModeMaster tileModeMaster;
 
     private void Awake()
     {
@@ -23,6 +26,8 @@ public class SpawnerNotas : MonoBehaviour
 
         instance = this;
 
+        tileModeMaster = GetComponent<TilesModeMaster>();
+
         PosicionFinalNotaDic = new();
 
         foreach (var posicionFinal in PosicionFinalNota)
@@ -30,7 +35,24 @@ public class SpawnerNotas : MonoBehaviour
             PosicionFinalNotaDic[posicionFinal.tecla] = posicionFinal.posicion;
         }
 
+        SpawnReferences();
+
         //LoadJson();
+    }
+
+    private void SpawnReferences()
+    {
+        int playStyle = (int)tileModeMaster.PlayStyle;
+
+        float posXCentrada = (playStyle * tileModeMaster.separacionObjetivosNotas) / 2.0f;
+
+        for (int i = 0; i < playStyle + 1; i++)
+        {
+            GameObject reference = Instantiate(new GameObject("reference"),transform);
+            reference.transform.localPosition = new Vector3((tileModeMaster.separacionObjetivosNotas * i) - posXCentrada, 0.0f, 0.0f);
+            reference.AddComponent<SpriteRenderer>().sprite = spriteReference;
+            print(i);
+        }
     }
 
     private void Start()

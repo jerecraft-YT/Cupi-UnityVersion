@@ -89,233 +89,28 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
     ""name"": ""InputSystem_Actions"",
     ""maps"": [
         {
-            ""name"": ""TileModeThreeKeys"",
-            ""id"": ""df70fa95-8a34-4494-b137-73ab6b9c7d37"",
+            ""name"": ""Editor"",
+            ""id"": ""aa474eca-32de-4172-b65e-58cc0de2d358"",
             ""actions"": [
                 {
-                    ""name"": ""One"",
-                    ""type"": ""Button"",
-                    ""id"": ""da8e5635-4015-4a25-83cf-a6182fd5cc07"",
-                    ""expectedControlType"": """",
+                    ""name"": ""Mouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""9994a3cf-6164-47e5-9a1d-6f35f08f15dd"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Two"",
-                    ""type"": ""Button"",
-                    ""id"": ""4063bacf-07cb-459d-88b5-74c248f57ffa"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Three"",
-                    ""type"": ""Button"",
-                    ""id"": ""c4d6a305-6faa-4a56-a488-aae9f9067812"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""64e44788-d838-4a1c-99e3-5bda8bf51f48"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""id"": ""f9af47b2-2af9-4e34-a1b8-64cdb2510888"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""One"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6ac02829-9260-4346-9066-1a6d936b38d9"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""One"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e59021f8-2d83-4b06-9aca-b815a6e68847"",
-                    ""path"": ""<Gamepad>/leftStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""One"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3f4fd4f9-ab0f-4742-bb05-944a8e36ab76"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""One"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f41b3910-13e5-4ad0-ab1e-7ea46f10c423"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""One"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""642ea7a9-5bb2-4af4-a2fa-db0cb9ad1df0"",
-                    ""path"": ""<Joystick>/stick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Joystick"",
-                    ""action"": ""One"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bd46a785-14fd-40f9-9309-6519adba7d98"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Two"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""63b8eec2-a2a6-4298-bdeb-bc7eaf06c6d0"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Two"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8aee1011-bab6-4200-bfaf-e93abd911632"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Two"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f6f2eda2-9c42-49fa-8c08-7372b96d9fd3"",
-                    ""path"": ""<Gamepad>/leftStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Two"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""89c2312c-005b-46f9-a9a3-52e48f85e12b"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Two"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""de16305d-a6d6-4427-b82b-6adf0cd1c286"",
-                    ""path"": ""<Joystick>/stick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Joystick"",
-                    ""action"": ""Two"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2003238d-8b2b-428e-9ed8-105af720f47e"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Three"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ee49f198-a746-4648-928d-d797ccee5056"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Three"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""dc7bcb74-ab0a-4f21-853f-ba532fe8eec8"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Three"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a38a5e85-14d5-4612-a2ea-b3c8e2da1b95"",
-                    ""path"": ""<Gamepad>/leftStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Three"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5782a088-8abf-4b5e-bb8a-cb82252ef2a8"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Three"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""02fad154-256e-456c-8de3-222366c08c22"",
-                    ""path"": ""<Joystick>/stick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Joystick"",
-                    ""action"": ""Three"",
+                    ""action"": ""Mouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -838,28 +633,1466 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Editor"",
-            ""id"": ""aa474eca-32de-4172-b65e-58cc0de2d358"",
+            ""name"": ""TileModeOneKey"",
+            ""id"": ""13e00eec-3712-43fa-b87b-90a941a48962"",
             ""actions"": [
                 {
-                    ""name"": ""Mouse"",
-                    ""type"": ""Value"",
-                    ""id"": ""9994a3cf-6164-47e5-9a1d-6f35f08f15dd"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""One"",
+                    ""type"": ""Button"",
+                    ""id"": ""ec480904-458b-4930-999d-ab2d5f2b1c08"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""f9af47b2-2af9-4e34-a1b8-64cdb2510888"",
-                    ""path"": ""<Mouse>/position"",
+                    ""id"": ""a12f2a6b-b087-4c3d-94ae-f2b744164d9c"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""TileModeTwoKeys"",
+            ""id"": ""7c747dc6-6be1-4a1d-9cbe-8fe1316cae0a"",
+            ""actions"": [
+                {
+                    ""name"": ""One"",
+                    ""type"": ""Button"",
+                    ""id"": ""1324afca-59ab-490b-b0bd-b3a454c7a67a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Two"",
+                    ""type"": ""Button"",
+                    ""id"": ""a37bab3d-67c8-4869-b3c7-2620680f0e76"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""398d5c27-a062-4978-97d8-dd5249bbfb2c"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6e6fd2a-482b-440a-9c81-ff0c8247fc03"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d32f4b16-ae3b-44cb-88e5-679c3dc56882"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""392fe05d-1b56-4fc6-b57d-e9ab89760dcf"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""TileModeThreeKeys"",
+            ""id"": ""df70fa95-8a34-4494-b137-73ab6b9c7d37"",
+            ""actions"": [
+                {
+                    ""name"": ""One"",
+                    ""type"": ""Button"",
+                    ""id"": ""da8e5635-4015-4a25-83cf-a6182fd5cc07"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Two"",
+                    ""type"": ""Button"",
+                    ""id"": ""4063bacf-07cb-459d-88b5-74c248f57ffa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Three"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4d6a305-6faa-4a56-a488-aae9f9067812"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""64e44788-d838-4a1c-99e3-5bda8bf51f48"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Mouse"",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ac02829-9260-4346-9066-1a6d936b38d9"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e59021f8-2d83-4b06-9aca-b815a6e68847"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f4fd4f9-ab0f-4742-bb05-944a8e36ab76"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f41b3910-13e5-4ad0-ab1e-7ea46f10c423"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""642ea7a9-5bb2-4af4-a2fa-db0cb9ad1df0"",
+                    ""path"": ""<Joystick>/stick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Joystick"",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd46a785-14fd-40f9-9309-6519adba7d98"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63b8eec2-a2a6-4298-bdeb-bc7eaf06c6d0"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8aee1011-bab6-4200-bfaf-e93abd911632"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6f2eda2-9c42-49fa-8c08-7372b96d9fd3"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89c2312c-005b-46f9-a9a3-52e48f85e12b"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de16305d-a6d6-4427-b82b-6adf0cd1c286"",
+                    ""path"": ""<Joystick>/stick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Joystick"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2003238d-8b2b-428e-9ed8-105af720f47e"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee49f198-a746-4648-928d-d797ccee5056"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc7bcb74-ab0a-4f21-853f-ba532fe8eec8"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a38a5e85-14d5-4612-a2ea-b3c8e2da1b95"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5782a088-8abf-4b5e-bb8a-cb82252ef2a8"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""02fad154-256e-456c-8de3-222366c08c22"",
+                    ""path"": ""<Joystick>/stick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Joystick"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""TileModeFourKeys"",
+            ""id"": ""f9cb171c-6f5b-4f6f-8c18-df17b7da5fb7"",
+            ""actions"": [
+                {
+                    ""name"": ""One"",
+                    ""type"": ""Button"",
+                    ""id"": ""5acd00a2-9712-4c80-bc89-aff93e8a3872"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Two"",
+                    ""type"": ""Button"",
+                    ""id"": ""21bb4a14-f05b-490c-8b8b-14db950609a4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Three"",
+                    ""type"": ""Button"",
+                    ""id"": ""c724677a-42d5-45fa-b9a8-2a0cb5402624"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Four"",
+                    ""type"": ""Button"",
+                    ""id"": ""3a1a0f9f-a097-429f-8213-c188357d0360"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b8e80016-60bb-49e4-bc66-e3ce1f0144dd"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7dac576b-b034-4d69-9b89-7acec3e4aa7c"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ffa5330f-009d-421a-b1ce-3988db8364d0"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""acd09c6f-8c94-4cd4-95f0-3274e2e12488"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42661747-6855-46a7-98b5-8ee6ee720584"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Four"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e698843-a688-415a-9bd3-71c20e468aae"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Four"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ecb22cab-e422-4a27-b74c-365a8398239f"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4945c731-07f6-4398-a4b8-b6d163cb316a"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""TileModeFiveKeys"",
+            ""id"": ""1478eba5-60f2-4955-a3ff-546977284238"",
+            ""actions"": [
+                {
+                    ""name"": ""One"",
+                    ""type"": ""Button"",
+                    ""id"": ""348f1281-92b7-4edc-a677-206eab475221"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Two"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e518a02-a438-4536-b6fd-f71a1c6c73ef"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Three"",
+                    ""type"": ""Button"",
+                    ""id"": ""faa42f68-be68-4cce-92b3-1389dfa533f1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Four"",
+                    ""type"": ""Button"",
+                    ""id"": ""55c31c17-1d08-47d6-8df8-9c3e3cbf0881"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Five"",
+                    ""type"": ""Button"",
+                    ""id"": ""2defe1cf-6e8f-47ae-b603-6ec36d9ef61b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""77193aed-2fe6-472c-a193-91b06f5ea478"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9180f22d-3441-4ee4-83d0-62ce29014af6"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff10ff6c-3857-4a94-be9d-aae6d9c7639f"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d237ba3-b832-4e74-bc1f-d33e0ddd93ca"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1497dc9b-fb1b-4955-aa26-ebcde5737006"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd1d7387-f39a-41bc-8756-5e4d384d3531"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b7dfc99-0f88-4574-9217-922eb82fb356"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Four"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""adccbd49-eb0c-4d21-8871-ffe7782d5020"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Four"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4803229f-ec50-4766-a59d-7018a3daf2fd"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Five"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f0b245c-d787-4959-b771-16aeefd218d3"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Five"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""TileModeSixKeys"",
+            ""id"": ""3f18b540-0c84-4725-aaea-04bdad430a3d"",
+            ""actions"": [
+                {
+                    ""name"": ""One"",
+                    ""type"": ""Button"",
+                    ""id"": ""7f83a0c9-2dec-4990-b270-ff6de9298eaf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Two"",
+                    ""type"": ""Button"",
+                    ""id"": ""16907b88-527f-4334-aaf0-4e3907ffcec6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Three"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc907cd2-e38b-4a54-9be5-9b5445478045"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Four"",
+                    ""type"": ""Button"",
+                    ""id"": ""f9bf6198-a860-4bdc-9769-e08e8ecd0efb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Five"",
+                    ""type"": ""Button"",
+                    ""id"": ""676eeddb-9b5b-4763-9823-7655419b13ad"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Six"",
+                    ""type"": ""Button"",
+                    ""id"": ""a5ea70ab-dd9a-431c-ba37-124726ec89bf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""18c3194c-5adf-4b22-9a4a-27104c68d45b"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a7d7d30-d02f-4063-a2c2-7652fe531ccf"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""01b6b8c6-54ab-4c7c-9eef-88e9de576f2f"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d02a56b1-4874-48e8-b819-ca07b20563fe"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Four"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c94ae344-2a6b-4890-9306-215e08927e7b"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Five"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b0518b7-0ff2-4919-aea7-dd888ee707f5"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Six"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""TileModeSevenKeys"",
+            ""id"": ""267c94e3-7eee-476e-9424-434a9f703d8f"",
+            ""actions"": [
+                {
+                    ""name"": ""One"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c81b937-26d4-4cd7-9c31-fe360af7511c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Two"",
+                    ""type"": ""Button"",
+                    ""id"": ""3903bc8d-5e29-4b23-85ae-16961302bbfb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Three"",
+                    ""type"": ""Button"",
+                    ""id"": ""92c47b7a-beff-41dc-a932-a3986a35239a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Four"",
+                    ""type"": ""Button"",
+                    ""id"": ""ef8dc122-0820-46b3-82c5-6b18b5142087"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Five"",
+                    ""type"": ""Button"",
+                    ""id"": ""b9488fb2-9cec-4b8f-98be-24ee10f547f6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Six"",
+                    ""type"": ""Button"",
+                    ""id"": ""ac13c929-d1a2-4561-b5c0-c5c8e582d080"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Seven"",
+                    ""type"": ""Button"",
+                    ""id"": ""0815aacb-6460-4258-a934-04d3f208bdee"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""cb184744-8ae8-4c42-b594-8e352ac31823"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26dc1b49-579d-48b2-a21d-e18d056961da"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9213ffac-c57a-4e9f-939c-77eb7dab2cb4"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4598b28b-8af7-4afe-89f4-213cbc3bed62"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Four"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65dad7df-237f-4fbb-95df-e1bd510e1fe2"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Five"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42a835f8-045e-42d8-aa1a-150ad61f8067"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Six"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b3b0cbc-f746-48b6-bc83-f21b97b0c927"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Seven"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""TileModeEightKeys"",
+            ""id"": ""374ff918-9d5f-4f86-8461-b67799cd6833"",
+            ""actions"": [
+                {
+                    ""name"": ""One"",
+                    ""type"": ""Button"",
+                    ""id"": ""80c54cbd-64b2-4d2a-8a36-5c6f06b8f1be"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Two"",
+                    ""type"": ""Button"",
+                    ""id"": ""3affb72b-3500-4f8b-8a75-9c67bd5e4394"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Three"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6d40fe7-0865-44a3-9340-1e757d5d63ef"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Four"",
+                    ""type"": ""Button"",
+                    ""id"": ""dc65537b-c1e1-460f-94c7-df2506485832"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Five"",
+                    ""type"": ""Button"",
+                    ""id"": ""45b66e05-b697-4136-90d5-1ad09e139efa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Six"",
+                    ""type"": ""Button"",
+                    ""id"": ""da0320bb-c6eb-45bb-add4-449f8450ba5c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Seven"",
+                    ""type"": ""Button"",
+                    ""id"": ""6389368e-0a54-4a62-9eb2-0a3c047fddf9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Eight"",
+                    ""type"": ""Button"",
+                    ""id"": ""be66a4ca-9f3c-4e9a-9a96-4dde14aeebd6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f1390fa2-b2c0-4748-bbc5-d2ad39bb8c26"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c1ca3a1-4bf6-4f54-9a12-95aed31e1936"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e197cb6-945c-43a1-87e4-e482f709e55e"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf8affa1-d768-4ba3-8490-0e830e1b0d2e"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Four"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99286e98-c93a-4a77-b645-c6a8f26d7acb"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Five"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31b44b19-499d-4ef4-b799-5174b225beb4"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Six"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f25254f2-9845-4516-815e-0f2b3a4828d5"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Seven"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe04e957-b44f-4072-9c59-13a1ae4e66c8"",
+                    ""path"": ""<Keyboard>/semicolon"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Eight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""TileModeNineKeys"",
+            ""id"": ""6dfbafaf-af45-4111-9c89-4913975e13c6"",
+            ""actions"": [
+                {
+                    ""name"": ""One"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5124d15-a5f4-407c-9c3b-cff90d6c50ad"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Two"",
+                    ""type"": ""Button"",
+                    ""id"": ""15bd5ad4-347a-4682-ac86-fa41573f9fd0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Three"",
+                    ""type"": ""Button"",
+                    ""id"": ""f8a4772e-6196-4dbd-9efa-8e9c422da613"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Four"",
+                    ""type"": ""Button"",
+                    ""id"": ""676180a6-71c1-487b-9bf0-52b5b3121b27"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Five"",
+                    ""type"": ""Button"",
+                    ""id"": ""20cfb099-8120-4d59-bff8-acad053f13db"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Six"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce4e5e9c-29a1-4b25-bc2b-83633c59b20d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Seven"",
+                    ""type"": ""Button"",
+                    ""id"": ""96d0bc66-2083-4d52-b83a-05b84ecca236"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Eight"",
+                    ""type"": ""Button"",
+                    ""id"": ""d67a93a9-97b3-4605-9117-a3d32bdea1e1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Nine"",
+                    ""type"": ""Button"",
+                    ""id"": ""6107ebf2-6727-4fb9-923d-692e6dfa966b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""04bba2a2-9e8d-43e5-ab54-2d85ceed3fa8"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a69fccb-7678-4a5e-bfde-074087cd1a25"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5056a05f-9036-474d-9def-3af6e9ef0d73"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""97a7f951-a05b-4dfa-8978-d187d59e5fa4"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Four"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3fe69727-6a8b-4f0c-8e5c-6cc4b1be39d4"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Five"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30d2ab96-ca26-493f-a383-9a0fde7865cb"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Six"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fcf5558c-ef8b-4a5f-a806-0adf6bfa1349"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Seven"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e9a5206-3ada-4f5b-aa4a-4aac84502734"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Eight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a00da41a-3e51-4130-b9ee-fbcd5bd820d0"",
+                    ""path"": ""<Keyboard>/semicolon"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Nine"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""TileModeTenKeys"",
+            ""id"": ""07bb213e-361e-4a30-9f60-5611afe3df8e"",
+            ""actions"": [
+                {
+                    ""name"": ""One"",
+                    ""type"": ""Button"",
+                    ""id"": ""8315070c-4bde-4f84-9e9d-caf8d0393794"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Two"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e5b8156-d758-4770-926b-34cb68ce1baf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Three"",
+                    ""type"": ""Button"",
+                    ""id"": ""157f9ce1-e437-4852-a18d-67f36dad4035"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Four"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce7dee59-b31a-4cef-8b7f-32365933490d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Five"",
+                    ""type"": ""Button"",
+                    ""id"": ""890b71d1-5813-43cf-94d4-06c08d7ddad8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Six"",
+                    ""type"": ""Button"",
+                    ""id"": ""c9982585-86d3-4cda-b8e2-74011887677a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Seven"",
+                    ""type"": ""Button"",
+                    ""id"": ""2ae9f987-956e-4324-a993-2e66db6bf5fa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Eight"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e49be24-0487-4cca-a0c7-0069a3986405"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Nine"",
+                    ""type"": ""Button"",
+                    ""id"": ""46e293ca-93e0-4ccb-9480-d7f312855f9a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ten"",
+                    ""type"": ""Button"",
+                    ""id"": ""256f6ec3-8852-4e34-9e25-553e99939f0b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""5af45c69-c53c-4dd4-a7f4-9f8f9aa13280"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""One"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7a09033-af9b-4d2f-924f-db7947bf18a6"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Two"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a04f774c-1321-48c6-bfac-2c7c1457d686"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Three"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be4ece6d-041f-4d89-8532-70432b8c4fe5"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Four"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce9501af-153b-4c2c-bf64-8e847dfd3acd"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Five"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""afbbd178-7144-4f85-83c3-ad96c31fe481"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Six"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73f2cd04-a6de-4e10-81db-9450b862e7f3"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Seven"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92a4c9a3-6373-400d-94a7-33b8b62b8fb0"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Eight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6befac8-2219-49d4-8489-710e7bf40e3a"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Nine"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ce99fa8-c836-408d-93c1-552c4dc53937"",
+                    ""path"": ""<Keyboard>/semicolon"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Ten"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -929,11 +2162,9 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // TileModeThreeKeys
-        m_TileModeThreeKeys = asset.FindActionMap("TileModeThreeKeys", throwIfNotFound: true);
-        m_TileModeThreeKeys_One = m_TileModeThreeKeys.FindAction("One", throwIfNotFound: true);
-        m_TileModeThreeKeys_Two = m_TileModeThreeKeys.FindAction("Two", throwIfNotFound: true);
-        m_TileModeThreeKeys_Three = m_TileModeThreeKeys.FindAction("Three", throwIfNotFound: true);
+        // Editor
+        m_Editor = asset.FindActionMap("Editor", throwIfNotFound: true);
+        m_Editor_Mouse = m_Editor.FindAction("Mouse", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -946,16 +2177,97 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
-        // Editor
-        m_Editor = asset.FindActionMap("Editor", throwIfNotFound: true);
-        m_Editor_Mouse = m_Editor.FindAction("Mouse", throwIfNotFound: true);
+        // TileModeOneKey
+        m_TileModeOneKey = asset.FindActionMap("TileModeOneKey", throwIfNotFound: true);
+        m_TileModeOneKey_One = m_TileModeOneKey.FindAction("One", throwIfNotFound: true);
+        // TileModeTwoKeys
+        m_TileModeTwoKeys = asset.FindActionMap("TileModeTwoKeys", throwIfNotFound: true);
+        m_TileModeTwoKeys_One = m_TileModeTwoKeys.FindAction("One", throwIfNotFound: true);
+        m_TileModeTwoKeys_Two = m_TileModeTwoKeys.FindAction("Two", throwIfNotFound: true);
+        // TileModeThreeKeys
+        m_TileModeThreeKeys = asset.FindActionMap("TileModeThreeKeys", throwIfNotFound: true);
+        m_TileModeThreeKeys_One = m_TileModeThreeKeys.FindAction("One", throwIfNotFound: true);
+        m_TileModeThreeKeys_Two = m_TileModeThreeKeys.FindAction("Two", throwIfNotFound: true);
+        m_TileModeThreeKeys_Three = m_TileModeThreeKeys.FindAction("Three", throwIfNotFound: true);
+        // TileModeFourKeys
+        m_TileModeFourKeys = asset.FindActionMap("TileModeFourKeys", throwIfNotFound: true);
+        m_TileModeFourKeys_One = m_TileModeFourKeys.FindAction("One", throwIfNotFound: true);
+        m_TileModeFourKeys_Two = m_TileModeFourKeys.FindAction("Two", throwIfNotFound: true);
+        m_TileModeFourKeys_Three = m_TileModeFourKeys.FindAction("Three", throwIfNotFound: true);
+        m_TileModeFourKeys_Four = m_TileModeFourKeys.FindAction("Four", throwIfNotFound: true);
+        // TileModeFiveKeys
+        m_TileModeFiveKeys = asset.FindActionMap("TileModeFiveKeys", throwIfNotFound: true);
+        m_TileModeFiveKeys_One = m_TileModeFiveKeys.FindAction("One", throwIfNotFound: true);
+        m_TileModeFiveKeys_Two = m_TileModeFiveKeys.FindAction("Two", throwIfNotFound: true);
+        m_TileModeFiveKeys_Three = m_TileModeFiveKeys.FindAction("Three", throwIfNotFound: true);
+        m_TileModeFiveKeys_Four = m_TileModeFiveKeys.FindAction("Four", throwIfNotFound: true);
+        m_TileModeFiveKeys_Five = m_TileModeFiveKeys.FindAction("Five", throwIfNotFound: true);
+        // TileModeSixKeys
+        m_TileModeSixKeys = asset.FindActionMap("TileModeSixKeys", throwIfNotFound: true);
+        m_TileModeSixKeys_One = m_TileModeSixKeys.FindAction("One", throwIfNotFound: true);
+        m_TileModeSixKeys_Two = m_TileModeSixKeys.FindAction("Two", throwIfNotFound: true);
+        m_TileModeSixKeys_Three = m_TileModeSixKeys.FindAction("Three", throwIfNotFound: true);
+        m_TileModeSixKeys_Four = m_TileModeSixKeys.FindAction("Four", throwIfNotFound: true);
+        m_TileModeSixKeys_Five = m_TileModeSixKeys.FindAction("Five", throwIfNotFound: true);
+        m_TileModeSixKeys_Six = m_TileModeSixKeys.FindAction("Six", throwIfNotFound: true);
+        // TileModeSevenKeys
+        m_TileModeSevenKeys = asset.FindActionMap("TileModeSevenKeys", throwIfNotFound: true);
+        m_TileModeSevenKeys_One = m_TileModeSevenKeys.FindAction("One", throwIfNotFound: true);
+        m_TileModeSevenKeys_Two = m_TileModeSevenKeys.FindAction("Two", throwIfNotFound: true);
+        m_TileModeSevenKeys_Three = m_TileModeSevenKeys.FindAction("Three", throwIfNotFound: true);
+        m_TileModeSevenKeys_Four = m_TileModeSevenKeys.FindAction("Four", throwIfNotFound: true);
+        m_TileModeSevenKeys_Five = m_TileModeSevenKeys.FindAction("Five", throwIfNotFound: true);
+        m_TileModeSevenKeys_Six = m_TileModeSevenKeys.FindAction("Six", throwIfNotFound: true);
+        m_TileModeSevenKeys_Seven = m_TileModeSevenKeys.FindAction("Seven", throwIfNotFound: true);
+        // TileModeEightKeys
+        m_TileModeEightKeys = asset.FindActionMap("TileModeEightKeys", throwIfNotFound: true);
+        m_TileModeEightKeys_One = m_TileModeEightKeys.FindAction("One", throwIfNotFound: true);
+        m_TileModeEightKeys_Two = m_TileModeEightKeys.FindAction("Two", throwIfNotFound: true);
+        m_TileModeEightKeys_Three = m_TileModeEightKeys.FindAction("Three", throwIfNotFound: true);
+        m_TileModeEightKeys_Four = m_TileModeEightKeys.FindAction("Four", throwIfNotFound: true);
+        m_TileModeEightKeys_Five = m_TileModeEightKeys.FindAction("Five", throwIfNotFound: true);
+        m_TileModeEightKeys_Six = m_TileModeEightKeys.FindAction("Six", throwIfNotFound: true);
+        m_TileModeEightKeys_Seven = m_TileModeEightKeys.FindAction("Seven", throwIfNotFound: true);
+        m_TileModeEightKeys_Eight = m_TileModeEightKeys.FindAction("Eight", throwIfNotFound: true);
+        // TileModeNineKeys
+        m_TileModeNineKeys = asset.FindActionMap("TileModeNineKeys", throwIfNotFound: true);
+        m_TileModeNineKeys_One = m_TileModeNineKeys.FindAction("One", throwIfNotFound: true);
+        m_TileModeNineKeys_Two = m_TileModeNineKeys.FindAction("Two", throwIfNotFound: true);
+        m_TileModeNineKeys_Three = m_TileModeNineKeys.FindAction("Three", throwIfNotFound: true);
+        m_TileModeNineKeys_Four = m_TileModeNineKeys.FindAction("Four", throwIfNotFound: true);
+        m_TileModeNineKeys_Five = m_TileModeNineKeys.FindAction("Five", throwIfNotFound: true);
+        m_TileModeNineKeys_Six = m_TileModeNineKeys.FindAction("Six", throwIfNotFound: true);
+        m_TileModeNineKeys_Seven = m_TileModeNineKeys.FindAction("Seven", throwIfNotFound: true);
+        m_TileModeNineKeys_Eight = m_TileModeNineKeys.FindAction("Eight", throwIfNotFound: true);
+        m_TileModeNineKeys_Nine = m_TileModeNineKeys.FindAction("Nine", throwIfNotFound: true);
+        // TileModeTenKeys
+        m_TileModeTenKeys = asset.FindActionMap("TileModeTenKeys", throwIfNotFound: true);
+        m_TileModeTenKeys_One = m_TileModeTenKeys.FindAction("One", throwIfNotFound: true);
+        m_TileModeTenKeys_Two = m_TileModeTenKeys.FindAction("Two", throwIfNotFound: true);
+        m_TileModeTenKeys_Three = m_TileModeTenKeys.FindAction("Three", throwIfNotFound: true);
+        m_TileModeTenKeys_Four = m_TileModeTenKeys.FindAction("Four", throwIfNotFound: true);
+        m_TileModeTenKeys_Five = m_TileModeTenKeys.FindAction("Five", throwIfNotFound: true);
+        m_TileModeTenKeys_Six = m_TileModeTenKeys.FindAction("Six", throwIfNotFound: true);
+        m_TileModeTenKeys_Seven = m_TileModeTenKeys.FindAction("Seven", throwIfNotFound: true);
+        m_TileModeTenKeys_Eight = m_TileModeTenKeys.FindAction("Eight", throwIfNotFound: true);
+        m_TileModeTenKeys_Nine = m_TileModeTenKeys.FindAction("Nine", throwIfNotFound: true);
+        m_TileModeTenKeys_Ten = m_TileModeTenKeys.FindAction("Ten", throwIfNotFound: true);
     }
 
     ~@GameInputs()
     {
-        UnityEngine.Debug.Assert(!m_TileModeThreeKeys.enabled, "This will cause a leak and performance issues, GameInputs.TileModeThreeKeys.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, GameInputs.UI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Editor.enabled, "This will cause a leak and performance issues, GameInputs.Editor.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, GameInputs.UI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TileModeOneKey.enabled, "This will cause a leak and performance issues, GameInputs.TileModeOneKey.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TileModeTwoKeys.enabled, "This will cause a leak and performance issues, GameInputs.TileModeTwoKeys.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TileModeThreeKeys.enabled, "This will cause a leak and performance issues, GameInputs.TileModeThreeKeys.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TileModeFourKeys.enabled, "This will cause a leak and performance issues, GameInputs.TileModeFourKeys.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TileModeFiveKeys.enabled, "This will cause a leak and performance issues, GameInputs.TileModeFiveKeys.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TileModeSixKeys.enabled, "This will cause a leak and performance issues, GameInputs.TileModeSixKeys.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TileModeSevenKeys.enabled, "This will cause a leak and performance issues, GameInputs.TileModeSevenKeys.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TileModeEightKeys.enabled, "This will cause a leak and performance issues, GameInputs.TileModeEightKeys.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TileModeNineKeys.enabled, "This will cause a leak and performance issues, GameInputs.TileModeNineKeys.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_TileModeTenKeys.enabled, "This will cause a leak and performance issues, GameInputs.TileModeTenKeys.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1028,39 +2340,29 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // TileModeThreeKeys
-    private readonly InputActionMap m_TileModeThreeKeys;
-    private List<ITileModeThreeKeysActions> m_TileModeThreeKeysActionsCallbackInterfaces = new List<ITileModeThreeKeysActions>();
-    private readonly InputAction m_TileModeThreeKeys_One;
-    private readonly InputAction m_TileModeThreeKeys_Two;
-    private readonly InputAction m_TileModeThreeKeys_Three;
+    // Editor
+    private readonly InputActionMap m_Editor;
+    private List<IEditorActions> m_EditorActionsCallbackInterfaces = new List<IEditorActions>();
+    private readonly InputAction m_Editor_Mouse;
     /// <summary>
-    /// Provides access to input actions defined in input action map "TileModeThreeKeys".
+    /// Provides access to input actions defined in input action map "Editor".
     /// </summary>
-    public struct TileModeThreeKeysActions
+    public struct EditorActions
     {
         private @GameInputs m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public TileModeThreeKeysActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        public EditorActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "TileModeThreeKeys/One".
+        /// Provides access to the underlying input action "Editor/Mouse".
         /// </summary>
-        public InputAction @One => m_Wrapper.m_TileModeThreeKeys_One;
-        /// <summary>
-        /// Provides access to the underlying input action "TileModeThreeKeys/Two".
-        /// </summary>
-        public InputAction @Two => m_Wrapper.m_TileModeThreeKeys_Two;
-        /// <summary>
-        /// Provides access to the underlying input action "TileModeThreeKeys/Three".
-        /// </summary>
-        public InputAction @Three => m_Wrapper.m_TileModeThreeKeys_Three;
+        public InputAction @Mouse => m_Wrapper.m_Editor_Mouse;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_TileModeThreeKeys; }
+        public InputActionMap Get() { return m_Wrapper.m_Editor; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -1068,9 +2370,9 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="TileModeThreeKeysActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="EditorActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(TileModeThreeKeysActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(EditorActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -1078,20 +2380,14 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="TileModeThreeKeysActions" />
-        public void AddCallbacks(ITileModeThreeKeysActions instance)
+        /// <seealso cref="EditorActions" />
+        public void AddCallbacks(IEditorActions instance)
         {
-            if (instance == null || m_Wrapper.m_TileModeThreeKeysActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_TileModeThreeKeysActionsCallbackInterfaces.Add(instance);
-            @One.started += instance.OnOne;
-            @One.performed += instance.OnOne;
-            @One.canceled += instance.OnOne;
-            @Two.started += instance.OnTwo;
-            @Two.performed += instance.OnTwo;
-            @Two.canceled += instance.OnTwo;
-            @Three.started += instance.OnThree;
-            @Three.performed += instance.OnThree;
-            @Three.canceled += instance.OnThree;
+            if (instance == null || m_Wrapper.m_EditorActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_EditorActionsCallbackInterfaces.Add(instance);
+            @Mouse.started += instance.OnMouse;
+            @Mouse.performed += instance.OnMouse;
+            @Mouse.canceled += instance.OnMouse;
         }
 
         /// <summary>
@@ -1100,27 +2396,21 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="TileModeThreeKeysActions" />
-        private void UnregisterCallbacks(ITileModeThreeKeysActions instance)
+        /// <seealso cref="EditorActions" />
+        private void UnregisterCallbacks(IEditorActions instance)
         {
-            @One.started -= instance.OnOne;
-            @One.performed -= instance.OnOne;
-            @One.canceled -= instance.OnOne;
-            @Two.started -= instance.OnTwo;
-            @Two.performed -= instance.OnTwo;
-            @Two.canceled -= instance.OnTwo;
-            @Three.started -= instance.OnThree;
-            @Three.performed -= instance.OnThree;
-            @Three.canceled -= instance.OnThree;
+            @Mouse.started -= instance.OnMouse;
+            @Mouse.performed -= instance.OnMouse;
+            @Mouse.canceled -= instance.OnMouse;
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TileModeThreeKeysActions.UnregisterCallbacks(ITileModeThreeKeysActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="EditorActions.UnregisterCallbacks(IEditorActions)" />.
         /// </summary>
-        /// <seealso cref="TileModeThreeKeysActions.UnregisterCallbacks(ITileModeThreeKeysActions)" />
-        public void RemoveCallbacks(ITileModeThreeKeysActions instance)
+        /// <seealso cref="EditorActions.UnregisterCallbacks(IEditorActions)" />
+        public void RemoveCallbacks(IEditorActions instance)
         {
-            if (m_Wrapper.m_TileModeThreeKeysActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_EditorActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -1130,21 +2420,21 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="TileModeThreeKeysActions.AddCallbacks(ITileModeThreeKeysActions)" />
-        /// <seealso cref="TileModeThreeKeysActions.RemoveCallbacks(ITileModeThreeKeysActions)" />
-        /// <seealso cref="TileModeThreeKeysActions.UnregisterCallbacks(ITileModeThreeKeysActions)" />
-        public void SetCallbacks(ITileModeThreeKeysActions instance)
+        /// <seealso cref="EditorActions.AddCallbacks(IEditorActions)" />
+        /// <seealso cref="EditorActions.RemoveCallbacks(IEditorActions)" />
+        /// <seealso cref="EditorActions.UnregisterCallbacks(IEditorActions)" />
+        public void SetCallbacks(IEditorActions instance)
         {
-            foreach (var item in m_Wrapper.m_TileModeThreeKeysActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_EditorActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_TileModeThreeKeysActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_EditorActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="TileModeThreeKeysActions" /> instance referencing this action map.
+    /// Provides a new <see cref="EditorActions" /> instance referencing this action map.
     /// </summary>
-    public TileModeThreeKeysActions @TileModeThreeKeys => new TileModeThreeKeysActions(this);
+    public EditorActions @Editor => new EditorActions(this);
 
     // UI
     private readonly InputActionMap m_UI;
@@ -1341,29 +2631,29 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
     /// </summary>
     public UIActions @UI => new UIActions(this);
 
-    // Editor
-    private readonly InputActionMap m_Editor;
-    private List<IEditorActions> m_EditorActionsCallbackInterfaces = new List<IEditorActions>();
-    private readonly InputAction m_Editor_Mouse;
+    // TileModeOneKey
+    private readonly InputActionMap m_TileModeOneKey;
+    private List<ITileModeOneKeyActions> m_TileModeOneKeyActionsCallbackInterfaces = new List<ITileModeOneKeyActions>();
+    private readonly InputAction m_TileModeOneKey_One;
     /// <summary>
-    /// Provides access to input actions defined in input action map "Editor".
+    /// Provides access to input actions defined in input action map "TileModeOneKey".
     /// </summary>
-    public struct EditorActions
+    public struct TileModeOneKeyActions
     {
         private @GameInputs m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public EditorActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        public TileModeOneKeyActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Editor/Mouse".
+        /// Provides access to the underlying input action "TileModeOneKey/One".
         /// </summary>
-        public InputAction @Mouse => m_Wrapper.m_Editor_Mouse;
+        public InputAction @One => m_Wrapper.m_TileModeOneKey_One;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_Editor; }
+        public InputActionMap Get() { return m_Wrapper.m_TileModeOneKey; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -1371,9 +2661,9 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="EditorActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="TileModeOneKeyActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(EditorActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(TileModeOneKeyActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -1381,14 +2671,14 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="EditorActions" />
-        public void AddCallbacks(IEditorActions instance)
+        /// <seealso cref="TileModeOneKeyActions" />
+        public void AddCallbacks(ITileModeOneKeyActions instance)
         {
-            if (instance == null || m_Wrapper.m_EditorActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_EditorActionsCallbackInterfaces.Add(instance);
-            @Mouse.started += instance.OnMouse;
-            @Mouse.performed += instance.OnMouse;
-            @Mouse.canceled += instance.OnMouse;
+            if (instance == null || m_Wrapper.m_TileModeOneKeyActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TileModeOneKeyActionsCallbackInterfaces.Add(instance);
+            @One.started += instance.OnOne;
+            @One.performed += instance.OnOne;
+            @One.canceled += instance.OnOne;
         }
 
         /// <summary>
@@ -1397,21 +2687,21 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="EditorActions" />
-        private void UnregisterCallbacks(IEditorActions instance)
+        /// <seealso cref="TileModeOneKeyActions" />
+        private void UnregisterCallbacks(ITileModeOneKeyActions instance)
         {
-            @Mouse.started -= instance.OnMouse;
-            @Mouse.performed -= instance.OnMouse;
-            @Mouse.canceled -= instance.OnMouse;
+            @One.started -= instance.OnOne;
+            @One.performed -= instance.OnOne;
+            @One.canceled -= instance.OnOne;
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="EditorActions.UnregisterCallbacks(IEditorActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TileModeOneKeyActions.UnregisterCallbacks(ITileModeOneKeyActions)" />.
         /// </summary>
-        /// <seealso cref="EditorActions.UnregisterCallbacks(IEditorActions)" />
-        public void RemoveCallbacks(IEditorActions instance)
+        /// <seealso cref="TileModeOneKeyActions.UnregisterCallbacks(ITileModeOneKeyActions)" />
+        public void RemoveCallbacks(ITileModeOneKeyActions instance)
         {
-            if (m_Wrapper.m_EditorActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_TileModeOneKeyActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -1421,21 +2711,1380 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="EditorActions.AddCallbacks(IEditorActions)" />
-        /// <seealso cref="EditorActions.RemoveCallbacks(IEditorActions)" />
-        /// <seealso cref="EditorActions.UnregisterCallbacks(IEditorActions)" />
-        public void SetCallbacks(IEditorActions instance)
+        /// <seealso cref="TileModeOneKeyActions.AddCallbacks(ITileModeOneKeyActions)" />
+        /// <seealso cref="TileModeOneKeyActions.RemoveCallbacks(ITileModeOneKeyActions)" />
+        /// <seealso cref="TileModeOneKeyActions.UnregisterCallbacks(ITileModeOneKeyActions)" />
+        public void SetCallbacks(ITileModeOneKeyActions instance)
         {
-            foreach (var item in m_Wrapper.m_EditorActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_TileModeOneKeyActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_EditorActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_TileModeOneKeyActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="EditorActions" /> instance referencing this action map.
+    /// Provides a new <see cref="TileModeOneKeyActions" /> instance referencing this action map.
     /// </summary>
-    public EditorActions @Editor => new EditorActions(this);
+    public TileModeOneKeyActions @TileModeOneKey => new TileModeOneKeyActions(this);
+
+    // TileModeTwoKeys
+    private readonly InputActionMap m_TileModeTwoKeys;
+    private List<ITileModeTwoKeysActions> m_TileModeTwoKeysActionsCallbackInterfaces = new List<ITileModeTwoKeysActions>();
+    private readonly InputAction m_TileModeTwoKeys_One;
+    private readonly InputAction m_TileModeTwoKeys_Two;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "TileModeTwoKeys".
+    /// </summary>
+    public struct TileModeTwoKeysActions
+    {
+        private @GameInputs m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TileModeTwoKeysActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeTwoKeys/One".
+        /// </summary>
+        public InputAction @One => m_Wrapper.m_TileModeTwoKeys_One;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeTwoKeys/Two".
+        /// </summary>
+        public InputAction @Two => m_Wrapper.m_TileModeTwoKeys_Two;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TileModeTwoKeys; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TileModeTwoKeysActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TileModeTwoKeysActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TileModeTwoKeysActions" />
+        public void AddCallbacks(ITileModeTwoKeysActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TileModeTwoKeysActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TileModeTwoKeysActionsCallbackInterfaces.Add(instance);
+            @One.started += instance.OnOne;
+            @One.performed += instance.OnOne;
+            @One.canceled += instance.OnOne;
+            @Two.started += instance.OnTwo;
+            @Two.performed += instance.OnTwo;
+            @Two.canceled += instance.OnTwo;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TileModeTwoKeysActions" />
+        private void UnregisterCallbacks(ITileModeTwoKeysActions instance)
+        {
+            @One.started -= instance.OnOne;
+            @One.performed -= instance.OnOne;
+            @One.canceled -= instance.OnOne;
+            @Two.started -= instance.OnTwo;
+            @Two.performed -= instance.OnTwo;
+            @Two.canceled -= instance.OnTwo;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TileModeTwoKeysActions.UnregisterCallbacks(ITileModeTwoKeysActions)" />.
+        /// </summary>
+        /// <seealso cref="TileModeTwoKeysActions.UnregisterCallbacks(ITileModeTwoKeysActions)" />
+        public void RemoveCallbacks(ITileModeTwoKeysActions instance)
+        {
+            if (m_Wrapper.m_TileModeTwoKeysActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TileModeTwoKeysActions.AddCallbacks(ITileModeTwoKeysActions)" />
+        /// <seealso cref="TileModeTwoKeysActions.RemoveCallbacks(ITileModeTwoKeysActions)" />
+        /// <seealso cref="TileModeTwoKeysActions.UnregisterCallbacks(ITileModeTwoKeysActions)" />
+        public void SetCallbacks(ITileModeTwoKeysActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TileModeTwoKeysActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TileModeTwoKeysActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TileModeTwoKeysActions" /> instance referencing this action map.
+    /// </summary>
+    public TileModeTwoKeysActions @TileModeTwoKeys => new TileModeTwoKeysActions(this);
+
+    // TileModeThreeKeys
+    private readonly InputActionMap m_TileModeThreeKeys;
+    private List<ITileModeThreeKeysActions> m_TileModeThreeKeysActionsCallbackInterfaces = new List<ITileModeThreeKeysActions>();
+    private readonly InputAction m_TileModeThreeKeys_One;
+    private readonly InputAction m_TileModeThreeKeys_Two;
+    private readonly InputAction m_TileModeThreeKeys_Three;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "TileModeThreeKeys".
+    /// </summary>
+    public struct TileModeThreeKeysActions
+    {
+        private @GameInputs m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TileModeThreeKeysActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeThreeKeys/One".
+        /// </summary>
+        public InputAction @One => m_Wrapper.m_TileModeThreeKeys_One;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeThreeKeys/Two".
+        /// </summary>
+        public InputAction @Two => m_Wrapper.m_TileModeThreeKeys_Two;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeThreeKeys/Three".
+        /// </summary>
+        public InputAction @Three => m_Wrapper.m_TileModeThreeKeys_Three;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TileModeThreeKeys; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TileModeThreeKeysActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TileModeThreeKeysActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TileModeThreeKeysActions" />
+        public void AddCallbacks(ITileModeThreeKeysActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TileModeThreeKeysActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TileModeThreeKeysActionsCallbackInterfaces.Add(instance);
+            @One.started += instance.OnOne;
+            @One.performed += instance.OnOne;
+            @One.canceled += instance.OnOne;
+            @Two.started += instance.OnTwo;
+            @Two.performed += instance.OnTwo;
+            @Two.canceled += instance.OnTwo;
+            @Three.started += instance.OnThree;
+            @Three.performed += instance.OnThree;
+            @Three.canceled += instance.OnThree;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TileModeThreeKeysActions" />
+        private void UnregisterCallbacks(ITileModeThreeKeysActions instance)
+        {
+            @One.started -= instance.OnOne;
+            @One.performed -= instance.OnOne;
+            @One.canceled -= instance.OnOne;
+            @Two.started -= instance.OnTwo;
+            @Two.performed -= instance.OnTwo;
+            @Two.canceled -= instance.OnTwo;
+            @Three.started -= instance.OnThree;
+            @Three.performed -= instance.OnThree;
+            @Three.canceled -= instance.OnThree;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TileModeThreeKeysActions.UnregisterCallbacks(ITileModeThreeKeysActions)" />.
+        /// </summary>
+        /// <seealso cref="TileModeThreeKeysActions.UnregisterCallbacks(ITileModeThreeKeysActions)" />
+        public void RemoveCallbacks(ITileModeThreeKeysActions instance)
+        {
+            if (m_Wrapper.m_TileModeThreeKeysActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TileModeThreeKeysActions.AddCallbacks(ITileModeThreeKeysActions)" />
+        /// <seealso cref="TileModeThreeKeysActions.RemoveCallbacks(ITileModeThreeKeysActions)" />
+        /// <seealso cref="TileModeThreeKeysActions.UnregisterCallbacks(ITileModeThreeKeysActions)" />
+        public void SetCallbacks(ITileModeThreeKeysActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TileModeThreeKeysActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TileModeThreeKeysActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TileModeThreeKeysActions" /> instance referencing this action map.
+    /// </summary>
+    public TileModeThreeKeysActions @TileModeThreeKeys => new TileModeThreeKeysActions(this);
+
+    // TileModeFourKeys
+    private readonly InputActionMap m_TileModeFourKeys;
+    private List<ITileModeFourKeysActions> m_TileModeFourKeysActionsCallbackInterfaces = new List<ITileModeFourKeysActions>();
+    private readonly InputAction m_TileModeFourKeys_One;
+    private readonly InputAction m_TileModeFourKeys_Two;
+    private readonly InputAction m_TileModeFourKeys_Three;
+    private readonly InputAction m_TileModeFourKeys_Four;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "TileModeFourKeys".
+    /// </summary>
+    public struct TileModeFourKeysActions
+    {
+        private @GameInputs m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TileModeFourKeysActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeFourKeys/One".
+        /// </summary>
+        public InputAction @One => m_Wrapper.m_TileModeFourKeys_One;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeFourKeys/Two".
+        /// </summary>
+        public InputAction @Two => m_Wrapper.m_TileModeFourKeys_Two;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeFourKeys/Three".
+        /// </summary>
+        public InputAction @Three => m_Wrapper.m_TileModeFourKeys_Three;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeFourKeys/Four".
+        /// </summary>
+        public InputAction @Four => m_Wrapper.m_TileModeFourKeys_Four;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TileModeFourKeys; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TileModeFourKeysActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TileModeFourKeysActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TileModeFourKeysActions" />
+        public void AddCallbacks(ITileModeFourKeysActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TileModeFourKeysActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TileModeFourKeysActionsCallbackInterfaces.Add(instance);
+            @One.started += instance.OnOne;
+            @One.performed += instance.OnOne;
+            @One.canceled += instance.OnOne;
+            @Two.started += instance.OnTwo;
+            @Two.performed += instance.OnTwo;
+            @Two.canceled += instance.OnTwo;
+            @Three.started += instance.OnThree;
+            @Three.performed += instance.OnThree;
+            @Three.canceled += instance.OnThree;
+            @Four.started += instance.OnFour;
+            @Four.performed += instance.OnFour;
+            @Four.canceled += instance.OnFour;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TileModeFourKeysActions" />
+        private void UnregisterCallbacks(ITileModeFourKeysActions instance)
+        {
+            @One.started -= instance.OnOne;
+            @One.performed -= instance.OnOne;
+            @One.canceled -= instance.OnOne;
+            @Two.started -= instance.OnTwo;
+            @Two.performed -= instance.OnTwo;
+            @Two.canceled -= instance.OnTwo;
+            @Three.started -= instance.OnThree;
+            @Three.performed -= instance.OnThree;
+            @Three.canceled -= instance.OnThree;
+            @Four.started -= instance.OnFour;
+            @Four.performed -= instance.OnFour;
+            @Four.canceled -= instance.OnFour;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TileModeFourKeysActions.UnregisterCallbacks(ITileModeFourKeysActions)" />.
+        /// </summary>
+        /// <seealso cref="TileModeFourKeysActions.UnregisterCallbacks(ITileModeFourKeysActions)" />
+        public void RemoveCallbacks(ITileModeFourKeysActions instance)
+        {
+            if (m_Wrapper.m_TileModeFourKeysActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TileModeFourKeysActions.AddCallbacks(ITileModeFourKeysActions)" />
+        /// <seealso cref="TileModeFourKeysActions.RemoveCallbacks(ITileModeFourKeysActions)" />
+        /// <seealso cref="TileModeFourKeysActions.UnregisterCallbacks(ITileModeFourKeysActions)" />
+        public void SetCallbacks(ITileModeFourKeysActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TileModeFourKeysActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TileModeFourKeysActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TileModeFourKeysActions" /> instance referencing this action map.
+    /// </summary>
+    public TileModeFourKeysActions @TileModeFourKeys => new TileModeFourKeysActions(this);
+
+    // TileModeFiveKeys
+    private readonly InputActionMap m_TileModeFiveKeys;
+    private List<ITileModeFiveKeysActions> m_TileModeFiveKeysActionsCallbackInterfaces = new List<ITileModeFiveKeysActions>();
+    private readonly InputAction m_TileModeFiveKeys_One;
+    private readonly InputAction m_TileModeFiveKeys_Two;
+    private readonly InputAction m_TileModeFiveKeys_Three;
+    private readonly InputAction m_TileModeFiveKeys_Four;
+    private readonly InputAction m_TileModeFiveKeys_Five;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "TileModeFiveKeys".
+    /// </summary>
+    public struct TileModeFiveKeysActions
+    {
+        private @GameInputs m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TileModeFiveKeysActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeFiveKeys/One".
+        /// </summary>
+        public InputAction @One => m_Wrapper.m_TileModeFiveKeys_One;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeFiveKeys/Two".
+        /// </summary>
+        public InputAction @Two => m_Wrapper.m_TileModeFiveKeys_Two;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeFiveKeys/Three".
+        /// </summary>
+        public InputAction @Three => m_Wrapper.m_TileModeFiveKeys_Three;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeFiveKeys/Four".
+        /// </summary>
+        public InputAction @Four => m_Wrapper.m_TileModeFiveKeys_Four;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeFiveKeys/Five".
+        /// </summary>
+        public InputAction @Five => m_Wrapper.m_TileModeFiveKeys_Five;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TileModeFiveKeys; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TileModeFiveKeysActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TileModeFiveKeysActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TileModeFiveKeysActions" />
+        public void AddCallbacks(ITileModeFiveKeysActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TileModeFiveKeysActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TileModeFiveKeysActionsCallbackInterfaces.Add(instance);
+            @One.started += instance.OnOne;
+            @One.performed += instance.OnOne;
+            @One.canceled += instance.OnOne;
+            @Two.started += instance.OnTwo;
+            @Two.performed += instance.OnTwo;
+            @Two.canceled += instance.OnTwo;
+            @Three.started += instance.OnThree;
+            @Three.performed += instance.OnThree;
+            @Three.canceled += instance.OnThree;
+            @Four.started += instance.OnFour;
+            @Four.performed += instance.OnFour;
+            @Four.canceled += instance.OnFour;
+            @Five.started += instance.OnFive;
+            @Five.performed += instance.OnFive;
+            @Five.canceled += instance.OnFive;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TileModeFiveKeysActions" />
+        private void UnregisterCallbacks(ITileModeFiveKeysActions instance)
+        {
+            @One.started -= instance.OnOne;
+            @One.performed -= instance.OnOne;
+            @One.canceled -= instance.OnOne;
+            @Two.started -= instance.OnTwo;
+            @Two.performed -= instance.OnTwo;
+            @Two.canceled -= instance.OnTwo;
+            @Three.started -= instance.OnThree;
+            @Three.performed -= instance.OnThree;
+            @Three.canceled -= instance.OnThree;
+            @Four.started -= instance.OnFour;
+            @Four.performed -= instance.OnFour;
+            @Four.canceled -= instance.OnFour;
+            @Five.started -= instance.OnFive;
+            @Five.performed -= instance.OnFive;
+            @Five.canceled -= instance.OnFive;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TileModeFiveKeysActions.UnregisterCallbacks(ITileModeFiveKeysActions)" />.
+        /// </summary>
+        /// <seealso cref="TileModeFiveKeysActions.UnregisterCallbacks(ITileModeFiveKeysActions)" />
+        public void RemoveCallbacks(ITileModeFiveKeysActions instance)
+        {
+            if (m_Wrapper.m_TileModeFiveKeysActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TileModeFiveKeysActions.AddCallbacks(ITileModeFiveKeysActions)" />
+        /// <seealso cref="TileModeFiveKeysActions.RemoveCallbacks(ITileModeFiveKeysActions)" />
+        /// <seealso cref="TileModeFiveKeysActions.UnregisterCallbacks(ITileModeFiveKeysActions)" />
+        public void SetCallbacks(ITileModeFiveKeysActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TileModeFiveKeysActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TileModeFiveKeysActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TileModeFiveKeysActions" /> instance referencing this action map.
+    /// </summary>
+    public TileModeFiveKeysActions @TileModeFiveKeys => new TileModeFiveKeysActions(this);
+
+    // TileModeSixKeys
+    private readonly InputActionMap m_TileModeSixKeys;
+    private List<ITileModeSixKeysActions> m_TileModeSixKeysActionsCallbackInterfaces = new List<ITileModeSixKeysActions>();
+    private readonly InputAction m_TileModeSixKeys_One;
+    private readonly InputAction m_TileModeSixKeys_Two;
+    private readonly InputAction m_TileModeSixKeys_Three;
+    private readonly InputAction m_TileModeSixKeys_Four;
+    private readonly InputAction m_TileModeSixKeys_Five;
+    private readonly InputAction m_TileModeSixKeys_Six;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "TileModeSixKeys".
+    /// </summary>
+    public struct TileModeSixKeysActions
+    {
+        private @GameInputs m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TileModeSixKeysActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeSixKeys/One".
+        /// </summary>
+        public InputAction @One => m_Wrapper.m_TileModeSixKeys_One;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeSixKeys/Two".
+        /// </summary>
+        public InputAction @Two => m_Wrapper.m_TileModeSixKeys_Two;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeSixKeys/Three".
+        /// </summary>
+        public InputAction @Three => m_Wrapper.m_TileModeSixKeys_Three;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeSixKeys/Four".
+        /// </summary>
+        public InputAction @Four => m_Wrapper.m_TileModeSixKeys_Four;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeSixKeys/Five".
+        /// </summary>
+        public InputAction @Five => m_Wrapper.m_TileModeSixKeys_Five;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeSixKeys/Six".
+        /// </summary>
+        public InputAction @Six => m_Wrapper.m_TileModeSixKeys_Six;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TileModeSixKeys; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TileModeSixKeysActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TileModeSixKeysActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TileModeSixKeysActions" />
+        public void AddCallbacks(ITileModeSixKeysActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TileModeSixKeysActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TileModeSixKeysActionsCallbackInterfaces.Add(instance);
+            @One.started += instance.OnOne;
+            @One.performed += instance.OnOne;
+            @One.canceled += instance.OnOne;
+            @Two.started += instance.OnTwo;
+            @Two.performed += instance.OnTwo;
+            @Two.canceled += instance.OnTwo;
+            @Three.started += instance.OnThree;
+            @Three.performed += instance.OnThree;
+            @Three.canceled += instance.OnThree;
+            @Four.started += instance.OnFour;
+            @Four.performed += instance.OnFour;
+            @Four.canceled += instance.OnFour;
+            @Five.started += instance.OnFive;
+            @Five.performed += instance.OnFive;
+            @Five.canceled += instance.OnFive;
+            @Six.started += instance.OnSix;
+            @Six.performed += instance.OnSix;
+            @Six.canceled += instance.OnSix;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TileModeSixKeysActions" />
+        private void UnregisterCallbacks(ITileModeSixKeysActions instance)
+        {
+            @One.started -= instance.OnOne;
+            @One.performed -= instance.OnOne;
+            @One.canceled -= instance.OnOne;
+            @Two.started -= instance.OnTwo;
+            @Two.performed -= instance.OnTwo;
+            @Two.canceled -= instance.OnTwo;
+            @Three.started -= instance.OnThree;
+            @Three.performed -= instance.OnThree;
+            @Three.canceled -= instance.OnThree;
+            @Four.started -= instance.OnFour;
+            @Four.performed -= instance.OnFour;
+            @Four.canceled -= instance.OnFour;
+            @Five.started -= instance.OnFive;
+            @Five.performed -= instance.OnFive;
+            @Five.canceled -= instance.OnFive;
+            @Six.started -= instance.OnSix;
+            @Six.performed -= instance.OnSix;
+            @Six.canceled -= instance.OnSix;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TileModeSixKeysActions.UnregisterCallbacks(ITileModeSixKeysActions)" />.
+        /// </summary>
+        /// <seealso cref="TileModeSixKeysActions.UnregisterCallbacks(ITileModeSixKeysActions)" />
+        public void RemoveCallbacks(ITileModeSixKeysActions instance)
+        {
+            if (m_Wrapper.m_TileModeSixKeysActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TileModeSixKeysActions.AddCallbacks(ITileModeSixKeysActions)" />
+        /// <seealso cref="TileModeSixKeysActions.RemoveCallbacks(ITileModeSixKeysActions)" />
+        /// <seealso cref="TileModeSixKeysActions.UnregisterCallbacks(ITileModeSixKeysActions)" />
+        public void SetCallbacks(ITileModeSixKeysActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TileModeSixKeysActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TileModeSixKeysActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TileModeSixKeysActions" /> instance referencing this action map.
+    /// </summary>
+    public TileModeSixKeysActions @TileModeSixKeys => new TileModeSixKeysActions(this);
+
+    // TileModeSevenKeys
+    private readonly InputActionMap m_TileModeSevenKeys;
+    private List<ITileModeSevenKeysActions> m_TileModeSevenKeysActionsCallbackInterfaces = new List<ITileModeSevenKeysActions>();
+    private readonly InputAction m_TileModeSevenKeys_One;
+    private readonly InputAction m_TileModeSevenKeys_Two;
+    private readonly InputAction m_TileModeSevenKeys_Three;
+    private readonly InputAction m_TileModeSevenKeys_Four;
+    private readonly InputAction m_TileModeSevenKeys_Five;
+    private readonly InputAction m_TileModeSevenKeys_Six;
+    private readonly InputAction m_TileModeSevenKeys_Seven;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "TileModeSevenKeys".
+    /// </summary>
+    public struct TileModeSevenKeysActions
+    {
+        private @GameInputs m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TileModeSevenKeysActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeSevenKeys/One".
+        /// </summary>
+        public InputAction @One => m_Wrapper.m_TileModeSevenKeys_One;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeSevenKeys/Two".
+        /// </summary>
+        public InputAction @Two => m_Wrapper.m_TileModeSevenKeys_Two;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeSevenKeys/Three".
+        /// </summary>
+        public InputAction @Three => m_Wrapper.m_TileModeSevenKeys_Three;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeSevenKeys/Four".
+        /// </summary>
+        public InputAction @Four => m_Wrapper.m_TileModeSevenKeys_Four;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeSevenKeys/Five".
+        /// </summary>
+        public InputAction @Five => m_Wrapper.m_TileModeSevenKeys_Five;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeSevenKeys/Six".
+        /// </summary>
+        public InputAction @Six => m_Wrapper.m_TileModeSevenKeys_Six;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeSevenKeys/Seven".
+        /// </summary>
+        public InputAction @Seven => m_Wrapper.m_TileModeSevenKeys_Seven;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TileModeSevenKeys; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TileModeSevenKeysActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TileModeSevenKeysActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TileModeSevenKeysActions" />
+        public void AddCallbacks(ITileModeSevenKeysActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TileModeSevenKeysActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TileModeSevenKeysActionsCallbackInterfaces.Add(instance);
+            @One.started += instance.OnOne;
+            @One.performed += instance.OnOne;
+            @One.canceled += instance.OnOne;
+            @Two.started += instance.OnTwo;
+            @Two.performed += instance.OnTwo;
+            @Two.canceled += instance.OnTwo;
+            @Three.started += instance.OnThree;
+            @Three.performed += instance.OnThree;
+            @Three.canceled += instance.OnThree;
+            @Four.started += instance.OnFour;
+            @Four.performed += instance.OnFour;
+            @Four.canceled += instance.OnFour;
+            @Five.started += instance.OnFive;
+            @Five.performed += instance.OnFive;
+            @Five.canceled += instance.OnFive;
+            @Six.started += instance.OnSix;
+            @Six.performed += instance.OnSix;
+            @Six.canceled += instance.OnSix;
+            @Seven.started += instance.OnSeven;
+            @Seven.performed += instance.OnSeven;
+            @Seven.canceled += instance.OnSeven;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TileModeSevenKeysActions" />
+        private void UnregisterCallbacks(ITileModeSevenKeysActions instance)
+        {
+            @One.started -= instance.OnOne;
+            @One.performed -= instance.OnOne;
+            @One.canceled -= instance.OnOne;
+            @Two.started -= instance.OnTwo;
+            @Two.performed -= instance.OnTwo;
+            @Two.canceled -= instance.OnTwo;
+            @Three.started -= instance.OnThree;
+            @Three.performed -= instance.OnThree;
+            @Three.canceled -= instance.OnThree;
+            @Four.started -= instance.OnFour;
+            @Four.performed -= instance.OnFour;
+            @Four.canceled -= instance.OnFour;
+            @Five.started -= instance.OnFive;
+            @Five.performed -= instance.OnFive;
+            @Five.canceled -= instance.OnFive;
+            @Six.started -= instance.OnSix;
+            @Six.performed -= instance.OnSix;
+            @Six.canceled -= instance.OnSix;
+            @Seven.started -= instance.OnSeven;
+            @Seven.performed -= instance.OnSeven;
+            @Seven.canceled -= instance.OnSeven;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TileModeSevenKeysActions.UnregisterCallbacks(ITileModeSevenKeysActions)" />.
+        /// </summary>
+        /// <seealso cref="TileModeSevenKeysActions.UnregisterCallbacks(ITileModeSevenKeysActions)" />
+        public void RemoveCallbacks(ITileModeSevenKeysActions instance)
+        {
+            if (m_Wrapper.m_TileModeSevenKeysActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TileModeSevenKeysActions.AddCallbacks(ITileModeSevenKeysActions)" />
+        /// <seealso cref="TileModeSevenKeysActions.RemoveCallbacks(ITileModeSevenKeysActions)" />
+        /// <seealso cref="TileModeSevenKeysActions.UnregisterCallbacks(ITileModeSevenKeysActions)" />
+        public void SetCallbacks(ITileModeSevenKeysActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TileModeSevenKeysActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TileModeSevenKeysActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TileModeSevenKeysActions" /> instance referencing this action map.
+    /// </summary>
+    public TileModeSevenKeysActions @TileModeSevenKeys => new TileModeSevenKeysActions(this);
+
+    // TileModeEightKeys
+    private readonly InputActionMap m_TileModeEightKeys;
+    private List<ITileModeEightKeysActions> m_TileModeEightKeysActionsCallbackInterfaces = new List<ITileModeEightKeysActions>();
+    private readonly InputAction m_TileModeEightKeys_One;
+    private readonly InputAction m_TileModeEightKeys_Two;
+    private readonly InputAction m_TileModeEightKeys_Three;
+    private readonly InputAction m_TileModeEightKeys_Four;
+    private readonly InputAction m_TileModeEightKeys_Five;
+    private readonly InputAction m_TileModeEightKeys_Six;
+    private readonly InputAction m_TileModeEightKeys_Seven;
+    private readonly InputAction m_TileModeEightKeys_Eight;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "TileModeEightKeys".
+    /// </summary>
+    public struct TileModeEightKeysActions
+    {
+        private @GameInputs m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TileModeEightKeysActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeEightKeys/One".
+        /// </summary>
+        public InputAction @One => m_Wrapper.m_TileModeEightKeys_One;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeEightKeys/Two".
+        /// </summary>
+        public InputAction @Two => m_Wrapper.m_TileModeEightKeys_Two;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeEightKeys/Three".
+        /// </summary>
+        public InputAction @Three => m_Wrapper.m_TileModeEightKeys_Three;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeEightKeys/Four".
+        /// </summary>
+        public InputAction @Four => m_Wrapper.m_TileModeEightKeys_Four;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeEightKeys/Five".
+        /// </summary>
+        public InputAction @Five => m_Wrapper.m_TileModeEightKeys_Five;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeEightKeys/Six".
+        /// </summary>
+        public InputAction @Six => m_Wrapper.m_TileModeEightKeys_Six;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeEightKeys/Seven".
+        /// </summary>
+        public InputAction @Seven => m_Wrapper.m_TileModeEightKeys_Seven;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeEightKeys/Eight".
+        /// </summary>
+        public InputAction @Eight => m_Wrapper.m_TileModeEightKeys_Eight;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TileModeEightKeys; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TileModeEightKeysActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TileModeEightKeysActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TileModeEightKeysActions" />
+        public void AddCallbacks(ITileModeEightKeysActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TileModeEightKeysActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TileModeEightKeysActionsCallbackInterfaces.Add(instance);
+            @One.started += instance.OnOne;
+            @One.performed += instance.OnOne;
+            @One.canceled += instance.OnOne;
+            @Two.started += instance.OnTwo;
+            @Two.performed += instance.OnTwo;
+            @Two.canceled += instance.OnTwo;
+            @Three.started += instance.OnThree;
+            @Three.performed += instance.OnThree;
+            @Three.canceled += instance.OnThree;
+            @Four.started += instance.OnFour;
+            @Four.performed += instance.OnFour;
+            @Four.canceled += instance.OnFour;
+            @Five.started += instance.OnFive;
+            @Five.performed += instance.OnFive;
+            @Five.canceled += instance.OnFive;
+            @Six.started += instance.OnSix;
+            @Six.performed += instance.OnSix;
+            @Six.canceled += instance.OnSix;
+            @Seven.started += instance.OnSeven;
+            @Seven.performed += instance.OnSeven;
+            @Seven.canceled += instance.OnSeven;
+            @Eight.started += instance.OnEight;
+            @Eight.performed += instance.OnEight;
+            @Eight.canceled += instance.OnEight;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TileModeEightKeysActions" />
+        private void UnregisterCallbacks(ITileModeEightKeysActions instance)
+        {
+            @One.started -= instance.OnOne;
+            @One.performed -= instance.OnOne;
+            @One.canceled -= instance.OnOne;
+            @Two.started -= instance.OnTwo;
+            @Two.performed -= instance.OnTwo;
+            @Two.canceled -= instance.OnTwo;
+            @Three.started -= instance.OnThree;
+            @Three.performed -= instance.OnThree;
+            @Three.canceled -= instance.OnThree;
+            @Four.started -= instance.OnFour;
+            @Four.performed -= instance.OnFour;
+            @Four.canceled -= instance.OnFour;
+            @Five.started -= instance.OnFive;
+            @Five.performed -= instance.OnFive;
+            @Five.canceled -= instance.OnFive;
+            @Six.started -= instance.OnSix;
+            @Six.performed -= instance.OnSix;
+            @Six.canceled -= instance.OnSix;
+            @Seven.started -= instance.OnSeven;
+            @Seven.performed -= instance.OnSeven;
+            @Seven.canceled -= instance.OnSeven;
+            @Eight.started -= instance.OnEight;
+            @Eight.performed -= instance.OnEight;
+            @Eight.canceled -= instance.OnEight;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TileModeEightKeysActions.UnregisterCallbacks(ITileModeEightKeysActions)" />.
+        /// </summary>
+        /// <seealso cref="TileModeEightKeysActions.UnregisterCallbacks(ITileModeEightKeysActions)" />
+        public void RemoveCallbacks(ITileModeEightKeysActions instance)
+        {
+            if (m_Wrapper.m_TileModeEightKeysActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TileModeEightKeysActions.AddCallbacks(ITileModeEightKeysActions)" />
+        /// <seealso cref="TileModeEightKeysActions.RemoveCallbacks(ITileModeEightKeysActions)" />
+        /// <seealso cref="TileModeEightKeysActions.UnregisterCallbacks(ITileModeEightKeysActions)" />
+        public void SetCallbacks(ITileModeEightKeysActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TileModeEightKeysActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TileModeEightKeysActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TileModeEightKeysActions" /> instance referencing this action map.
+    /// </summary>
+    public TileModeEightKeysActions @TileModeEightKeys => new TileModeEightKeysActions(this);
+
+    // TileModeNineKeys
+    private readonly InputActionMap m_TileModeNineKeys;
+    private List<ITileModeNineKeysActions> m_TileModeNineKeysActionsCallbackInterfaces = new List<ITileModeNineKeysActions>();
+    private readonly InputAction m_TileModeNineKeys_One;
+    private readonly InputAction m_TileModeNineKeys_Two;
+    private readonly InputAction m_TileModeNineKeys_Three;
+    private readonly InputAction m_TileModeNineKeys_Four;
+    private readonly InputAction m_TileModeNineKeys_Five;
+    private readonly InputAction m_TileModeNineKeys_Six;
+    private readonly InputAction m_TileModeNineKeys_Seven;
+    private readonly InputAction m_TileModeNineKeys_Eight;
+    private readonly InputAction m_TileModeNineKeys_Nine;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "TileModeNineKeys".
+    /// </summary>
+    public struct TileModeNineKeysActions
+    {
+        private @GameInputs m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TileModeNineKeysActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeNineKeys/One".
+        /// </summary>
+        public InputAction @One => m_Wrapper.m_TileModeNineKeys_One;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeNineKeys/Two".
+        /// </summary>
+        public InputAction @Two => m_Wrapper.m_TileModeNineKeys_Two;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeNineKeys/Three".
+        /// </summary>
+        public InputAction @Three => m_Wrapper.m_TileModeNineKeys_Three;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeNineKeys/Four".
+        /// </summary>
+        public InputAction @Four => m_Wrapper.m_TileModeNineKeys_Four;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeNineKeys/Five".
+        /// </summary>
+        public InputAction @Five => m_Wrapper.m_TileModeNineKeys_Five;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeNineKeys/Six".
+        /// </summary>
+        public InputAction @Six => m_Wrapper.m_TileModeNineKeys_Six;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeNineKeys/Seven".
+        /// </summary>
+        public InputAction @Seven => m_Wrapper.m_TileModeNineKeys_Seven;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeNineKeys/Eight".
+        /// </summary>
+        public InputAction @Eight => m_Wrapper.m_TileModeNineKeys_Eight;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeNineKeys/Nine".
+        /// </summary>
+        public InputAction @Nine => m_Wrapper.m_TileModeNineKeys_Nine;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TileModeNineKeys; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TileModeNineKeysActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TileModeNineKeysActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TileModeNineKeysActions" />
+        public void AddCallbacks(ITileModeNineKeysActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TileModeNineKeysActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TileModeNineKeysActionsCallbackInterfaces.Add(instance);
+            @One.started += instance.OnOne;
+            @One.performed += instance.OnOne;
+            @One.canceled += instance.OnOne;
+            @Two.started += instance.OnTwo;
+            @Two.performed += instance.OnTwo;
+            @Two.canceled += instance.OnTwo;
+            @Three.started += instance.OnThree;
+            @Three.performed += instance.OnThree;
+            @Three.canceled += instance.OnThree;
+            @Four.started += instance.OnFour;
+            @Four.performed += instance.OnFour;
+            @Four.canceled += instance.OnFour;
+            @Five.started += instance.OnFive;
+            @Five.performed += instance.OnFive;
+            @Five.canceled += instance.OnFive;
+            @Six.started += instance.OnSix;
+            @Six.performed += instance.OnSix;
+            @Six.canceled += instance.OnSix;
+            @Seven.started += instance.OnSeven;
+            @Seven.performed += instance.OnSeven;
+            @Seven.canceled += instance.OnSeven;
+            @Eight.started += instance.OnEight;
+            @Eight.performed += instance.OnEight;
+            @Eight.canceled += instance.OnEight;
+            @Nine.started += instance.OnNine;
+            @Nine.performed += instance.OnNine;
+            @Nine.canceled += instance.OnNine;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TileModeNineKeysActions" />
+        private void UnregisterCallbacks(ITileModeNineKeysActions instance)
+        {
+            @One.started -= instance.OnOne;
+            @One.performed -= instance.OnOne;
+            @One.canceled -= instance.OnOne;
+            @Two.started -= instance.OnTwo;
+            @Two.performed -= instance.OnTwo;
+            @Two.canceled -= instance.OnTwo;
+            @Three.started -= instance.OnThree;
+            @Three.performed -= instance.OnThree;
+            @Three.canceled -= instance.OnThree;
+            @Four.started -= instance.OnFour;
+            @Four.performed -= instance.OnFour;
+            @Four.canceled -= instance.OnFour;
+            @Five.started -= instance.OnFive;
+            @Five.performed -= instance.OnFive;
+            @Five.canceled -= instance.OnFive;
+            @Six.started -= instance.OnSix;
+            @Six.performed -= instance.OnSix;
+            @Six.canceled -= instance.OnSix;
+            @Seven.started -= instance.OnSeven;
+            @Seven.performed -= instance.OnSeven;
+            @Seven.canceled -= instance.OnSeven;
+            @Eight.started -= instance.OnEight;
+            @Eight.performed -= instance.OnEight;
+            @Eight.canceled -= instance.OnEight;
+            @Nine.started -= instance.OnNine;
+            @Nine.performed -= instance.OnNine;
+            @Nine.canceled -= instance.OnNine;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TileModeNineKeysActions.UnregisterCallbacks(ITileModeNineKeysActions)" />.
+        /// </summary>
+        /// <seealso cref="TileModeNineKeysActions.UnregisterCallbacks(ITileModeNineKeysActions)" />
+        public void RemoveCallbacks(ITileModeNineKeysActions instance)
+        {
+            if (m_Wrapper.m_TileModeNineKeysActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TileModeNineKeysActions.AddCallbacks(ITileModeNineKeysActions)" />
+        /// <seealso cref="TileModeNineKeysActions.RemoveCallbacks(ITileModeNineKeysActions)" />
+        /// <seealso cref="TileModeNineKeysActions.UnregisterCallbacks(ITileModeNineKeysActions)" />
+        public void SetCallbacks(ITileModeNineKeysActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TileModeNineKeysActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TileModeNineKeysActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TileModeNineKeysActions" /> instance referencing this action map.
+    /// </summary>
+    public TileModeNineKeysActions @TileModeNineKeys => new TileModeNineKeysActions(this);
+
+    // TileModeTenKeys
+    private readonly InputActionMap m_TileModeTenKeys;
+    private List<ITileModeTenKeysActions> m_TileModeTenKeysActionsCallbackInterfaces = new List<ITileModeTenKeysActions>();
+    private readonly InputAction m_TileModeTenKeys_One;
+    private readonly InputAction m_TileModeTenKeys_Two;
+    private readonly InputAction m_TileModeTenKeys_Three;
+    private readonly InputAction m_TileModeTenKeys_Four;
+    private readonly InputAction m_TileModeTenKeys_Five;
+    private readonly InputAction m_TileModeTenKeys_Six;
+    private readonly InputAction m_TileModeTenKeys_Seven;
+    private readonly InputAction m_TileModeTenKeys_Eight;
+    private readonly InputAction m_TileModeTenKeys_Nine;
+    private readonly InputAction m_TileModeTenKeys_Ten;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "TileModeTenKeys".
+    /// </summary>
+    public struct TileModeTenKeysActions
+    {
+        private @GameInputs m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public TileModeTenKeysActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeTenKeys/One".
+        /// </summary>
+        public InputAction @One => m_Wrapper.m_TileModeTenKeys_One;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeTenKeys/Two".
+        /// </summary>
+        public InputAction @Two => m_Wrapper.m_TileModeTenKeys_Two;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeTenKeys/Three".
+        /// </summary>
+        public InputAction @Three => m_Wrapper.m_TileModeTenKeys_Three;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeTenKeys/Four".
+        /// </summary>
+        public InputAction @Four => m_Wrapper.m_TileModeTenKeys_Four;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeTenKeys/Five".
+        /// </summary>
+        public InputAction @Five => m_Wrapper.m_TileModeTenKeys_Five;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeTenKeys/Six".
+        /// </summary>
+        public InputAction @Six => m_Wrapper.m_TileModeTenKeys_Six;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeTenKeys/Seven".
+        /// </summary>
+        public InputAction @Seven => m_Wrapper.m_TileModeTenKeys_Seven;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeTenKeys/Eight".
+        /// </summary>
+        public InputAction @Eight => m_Wrapper.m_TileModeTenKeys_Eight;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeTenKeys/Nine".
+        /// </summary>
+        public InputAction @Nine => m_Wrapper.m_TileModeTenKeys_Nine;
+        /// <summary>
+        /// Provides access to the underlying input action "TileModeTenKeys/Ten".
+        /// </summary>
+        public InputAction @Ten => m_Wrapper.m_TileModeTenKeys_Ten;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_TileModeTenKeys; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="TileModeTenKeysActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(TileModeTenKeysActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="TileModeTenKeysActions" />
+        public void AddCallbacks(ITileModeTenKeysActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TileModeTenKeysActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TileModeTenKeysActionsCallbackInterfaces.Add(instance);
+            @One.started += instance.OnOne;
+            @One.performed += instance.OnOne;
+            @One.canceled += instance.OnOne;
+            @Two.started += instance.OnTwo;
+            @Two.performed += instance.OnTwo;
+            @Two.canceled += instance.OnTwo;
+            @Three.started += instance.OnThree;
+            @Three.performed += instance.OnThree;
+            @Three.canceled += instance.OnThree;
+            @Four.started += instance.OnFour;
+            @Four.performed += instance.OnFour;
+            @Four.canceled += instance.OnFour;
+            @Five.started += instance.OnFive;
+            @Five.performed += instance.OnFive;
+            @Five.canceled += instance.OnFive;
+            @Six.started += instance.OnSix;
+            @Six.performed += instance.OnSix;
+            @Six.canceled += instance.OnSix;
+            @Seven.started += instance.OnSeven;
+            @Seven.performed += instance.OnSeven;
+            @Seven.canceled += instance.OnSeven;
+            @Eight.started += instance.OnEight;
+            @Eight.performed += instance.OnEight;
+            @Eight.canceled += instance.OnEight;
+            @Nine.started += instance.OnNine;
+            @Nine.performed += instance.OnNine;
+            @Nine.canceled += instance.OnNine;
+            @Ten.started += instance.OnTen;
+            @Ten.performed += instance.OnTen;
+            @Ten.canceled += instance.OnTen;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="TileModeTenKeysActions" />
+        private void UnregisterCallbacks(ITileModeTenKeysActions instance)
+        {
+            @One.started -= instance.OnOne;
+            @One.performed -= instance.OnOne;
+            @One.canceled -= instance.OnOne;
+            @Two.started -= instance.OnTwo;
+            @Two.performed -= instance.OnTwo;
+            @Two.canceled -= instance.OnTwo;
+            @Three.started -= instance.OnThree;
+            @Three.performed -= instance.OnThree;
+            @Three.canceled -= instance.OnThree;
+            @Four.started -= instance.OnFour;
+            @Four.performed -= instance.OnFour;
+            @Four.canceled -= instance.OnFour;
+            @Five.started -= instance.OnFive;
+            @Five.performed -= instance.OnFive;
+            @Five.canceled -= instance.OnFive;
+            @Six.started -= instance.OnSix;
+            @Six.performed -= instance.OnSix;
+            @Six.canceled -= instance.OnSix;
+            @Seven.started -= instance.OnSeven;
+            @Seven.performed -= instance.OnSeven;
+            @Seven.canceled -= instance.OnSeven;
+            @Eight.started -= instance.OnEight;
+            @Eight.performed -= instance.OnEight;
+            @Eight.canceled -= instance.OnEight;
+            @Nine.started -= instance.OnNine;
+            @Nine.performed -= instance.OnNine;
+            @Nine.canceled -= instance.OnNine;
+            @Ten.started -= instance.OnTen;
+            @Ten.performed -= instance.OnTen;
+            @Ten.canceled -= instance.OnTen;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="TileModeTenKeysActions.UnregisterCallbacks(ITileModeTenKeysActions)" />.
+        /// </summary>
+        /// <seealso cref="TileModeTenKeysActions.UnregisterCallbacks(ITileModeTenKeysActions)" />
+        public void RemoveCallbacks(ITileModeTenKeysActions instance)
+        {
+            if (m_Wrapper.m_TileModeTenKeysActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="TileModeTenKeysActions.AddCallbacks(ITileModeTenKeysActions)" />
+        /// <seealso cref="TileModeTenKeysActions.RemoveCallbacks(ITileModeTenKeysActions)" />
+        /// <seealso cref="TileModeTenKeysActions.UnregisterCallbacks(ITileModeTenKeysActions)" />
+        public void SetCallbacks(ITileModeTenKeysActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TileModeTenKeysActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TileModeTenKeysActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="TileModeTenKeysActions" /> instance referencing this action map.
+    /// </summary>
+    public TileModeTenKeysActions @TileModeTenKeys => new TileModeTenKeysActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -1502,33 +4151,19 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         }
     }
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TileModeThreeKeys" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Editor" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="TileModeThreeKeysActions.AddCallbacks(ITileModeThreeKeysActions)" />
-    /// <seealso cref="TileModeThreeKeysActions.RemoveCallbacks(ITileModeThreeKeysActions)" />
-    public interface ITileModeThreeKeysActions
+    /// <seealso cref="EditorActions.AddCallbacks(IEditorActions)" />
+    /// <seealso cref="EditorActions.RemoveCallbacks(IEditorActions)" />
+    public interface IEditorActions
     {
         /// <summary>
-        /// Method invoked when associated input action "One" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Mouse" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnOne(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Two" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTwo(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Three" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnThree(InputAction.CallbackContext context);
+        void OnMouse(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
@@ -1609,18 +4244,468 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
     }
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Editor" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TileModeOneKey" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="EditorActions.AddCallbacks(IEditorActions)" />
-    /// <seealso cref="EditorActions.RemoveCallbacks(IEditorActions)" />
-    public interface IEditorActions
+    /// <seealso cref="TileModeOneKeyActions.AddCallbacks(ITileModeOneKeyActions)" />
+    /// <seealso cref="TileModeOneKeyActions.RemoveCallbacks(ITileModeOneKeyActions)" />
+    public interface ITileModeOneKeyActions
     {
         /// <summary>
-        /// Method invoked when associated input action "Mouse" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "One" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMouse(InputAction.CallbackContext context);
+        void OnOne(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TileModeTwoKeys" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TileModeTwoKeysActions.AddCallbacks(ITileModeTwoKeysActions)" />
+    /// <seealso cref="TileModeTwoKeysActions.RemoveCallbacks(ITileModeTwoKeysActions)" />
+    public interface ITileModeTwoKeysActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "One" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOne(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Two" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTwo(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TileModeThreeKeys" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TileModeThreeKeysActions.AddCallbacks(ITileModeThreeKeysActions)" />
+    /// <seealso cref="TileModeThreeKeysActions.RemoveCallbacks(ITileModeThreeKeysActions)" />
+    public interface ITileModeThreeKeysActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "One" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOne(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Two" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTwo(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Three" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThree(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TileModeFourKeys" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TileModeFourKeysActions.AddCallbacks(ITileModeFourKeysActions)" />
+    /// <seealso cref="TileModeFourKeysActions.RemoveCallbacks(ITileModeFourKeysActions)" />
+    public interface ITileModeFourKeysActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "One" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOne(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Two" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTwo(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Three" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThree(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Four" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFour(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TileModeFiveKeys" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TileModeFiveKeysActions.AddCallbacks(ITileModeFiveKeysActions)" />
+    /// <seealso cref="TileModeFiveKeysActions.RemoveCallbacks(ITileModeFiveKeysActions)" />
+    public interface ITileModeFiveKeysActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "One" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOne(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Two" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTwo(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Three" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThree(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Four" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFour(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Five" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFive(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TileModeSixKeys" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TileModeSixKeysActions.AddCallbacks(ITileModeSixKeysActions)" />
+    /// <seealso cref="TileModeSixKeysActions.RemoveCallbacks(ITileModeSixKeysActions)" />
+    public interface ITileModeSixKeysActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "One" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOne(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Two" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTwo(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Three" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThree(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Four" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFour(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Five" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFive(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Six" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSix(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TileModeSevenKeys" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TileModeSevenKeysActions.AddCallbacks(ITileModeSevenKeysActions)" />
+    /// <seealso cref="TileModeSevenKeysActions.RemoveCallbacks(ITileModeSevenKeysActions)" />
+    public interface ITileModeSevenKeysActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "One" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOne(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Two" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTwo(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Three" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThree(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Four" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFour(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Five" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFive(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Six" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSix(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Seven" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSeven(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TileModeEightKeys" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TileModeEightKeysActions.AddCallbacks(ITileModeEightKeysActions)" />
+    /// <seealso cref="TileModeEightKeysActions.RemoveCallbacks(ITileModeEightKeysActions)" />
+    public interface ITileModeEightKeysActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "One" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOne(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Two" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTwo(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Three" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThree(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Four" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFour(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Five" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFive(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Six" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSix(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Seven" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSeven(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Eight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEight(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TileModeNineKeys" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TileModeNineKeysActions.AddCallbacks(ITileModeNineKeysActions)" />
+    /// <seealso cref="TileModeNineKeysActions.RemoveCallbacks(ITileModeNineKeysActions)" />
+    public interface ITileModeNineKeysActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "One" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOne(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Two" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTwo(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Three" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThree(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Four" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFour(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Five" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFive(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Six" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSix(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Seven" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSeven(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Eight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Nine" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNine(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "TileModeTenKeys" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="TileModeTenKeysActions.AddCallbacks(ITileModeTenKeysActions)" />
+    /// <seealso cref="TileModeTenKeysActions.RemoveCallbacks(ITileModeTenKeysActions)" />
+    public interface ITileModeTenKeysActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "One" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOne(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Two" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTwo(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Three" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnThree(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Four" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFour(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Five" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFive(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Six" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSix(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Seven" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSeven(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Eight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Nine" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNine(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ten" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTen(InputAction.CallbackContext context);
     }
 }

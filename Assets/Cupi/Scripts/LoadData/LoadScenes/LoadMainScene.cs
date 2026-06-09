@@ -16,7 +16,6 @@ public class LoadMain : MonoBehaviour
     {
         yield return new WaitUntil(() => Time.time > 3.0f);
 
-        print(Time.time);
         StartCoroutine(CargarEscena("TestZone"));
     }
 

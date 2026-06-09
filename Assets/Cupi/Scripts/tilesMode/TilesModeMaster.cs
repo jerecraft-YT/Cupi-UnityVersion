@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class TilesModeMaster : MonoBehaviour
 {
@@ -13,6 +11,11 @@ public class TilesModeMaster : MonoBehaviour
 
     [Tooltip("Velocidad general de notas")]
     public float notaTileSpeed = 4;
+
+    [Tooltip("Separacion de objetivos de notas")]
+    public float separacionObjetivosNotas = 2.0f;
+
+    public TileModePlayStyle PlayStyle;
 
     private void Awake()
     {

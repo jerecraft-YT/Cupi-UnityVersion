@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TilesModeParticles : MonoBehaviour
+public class TilesModeParticlesController : MonoBehaviour
 {
     [Header("parentParticles")]
     [SerializeField] private GameObject parentParticles;

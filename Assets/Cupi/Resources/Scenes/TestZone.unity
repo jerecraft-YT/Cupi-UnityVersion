@@ -472,10 +472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9464ff53b198dc94baf8fe38359cacb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TilesModeInputController
-  padTile:
-  - {fileID: 6313823144912909794, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  - {fileID: 724949318750166607, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  - {fileID: 511222886655884415, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!114 &179359626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,7 +499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30adef611c006f44f863842cda312d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerNotas
-  notesController: {fileID: 179359628}
   PosicionFinalNota:
   - tecla: 0
     posicion: {fileID: 1737966155}
@@ -539,33 +534,7 @@ MonoBehaviour:
     duracion: 1
     offsetPositionToGo: {x: 0, y: 0}
     DireccionCustom: {x: 0, y: 0}
-  - noteIndex: 0
-    tipoNota: 0
-    CorrespondenciaTecla: 0
-    DireccionMovimiento: 0
-    timeToArrive: 5
-    localSpeed: 1
-    duracion: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
-  - noteIndex: 0
-    tipoNota: 0
-    CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
-    timeToArrive: 5
-    localSpeed: 1
-    duracion: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
-  - noteIndex: 0
-    tipoNota: 1
-    CorrespondenciaTecla: 2
-    DireccionMovimiento: 0
-    timeToArrive: 5
-    localSpeed: 1
-    duracion: 2
-    offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
+  spriteReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!114 &179359628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +561,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TilesModeMasterConfig
   toleranciaError: 0.1
   notaTileSpeed: 6
+  separacionObjetivosNotas: 2
+  PlayStyle: 2
 --- !u!1 &419790459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,7 +1316,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.25819492, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2018,7 +1989,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.25819492, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2088,8 +2059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374b23aa490c07649abde8a17ea66c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadAndSaveData
-  instance: {fileID: 0}
-  defaultConfigKeys: {fileID: 0}
 --- !u!4 &2035325056
 Transform:
   m_ObjectHideFlags: 0
@@ -2187,7 +2156,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.25819492, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

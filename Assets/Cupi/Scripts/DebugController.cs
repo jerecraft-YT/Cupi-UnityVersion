@@ -11,15 +11,10 @@ public class DebugController : MonoBehaviour
 
     private bool updateDebugInfo = true;
 
-    private string textDebugInfo = "UnscaledCustomTime: {0:N2}\nCustomTime: {1:N2} \nMusicTime: {2:N2}\nTimeScale: {3:N2}";
+    private string textDebugInfo = "UnscaledCustomTime: {0:N2}\nCustomTime: {1:N2} \nMusicTime: {2:N2}\nTimeScale: {3:N2}\nPosicionMouse: {4:N2,5:N2}";
 
     private void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            TimeController.instance.RestartTime();
-        }
-
         if (updateDebugInfo)
         {
             StartCoroutine(UpdateDebug());
@@ -28,7 +23,14 @@ public class DebugController : MonoBehaviour
     }
     private IEnumerator UpdateDebug()
     {
-        textMeshPro.text = string.Format(textDebugInfo, TimeController.instance.ActualTime, TimeController.instance.AdditiveTime, audioSource.time, TimeController.instance.TimeScale);
+        textMeshPro.text = string.Format(
+            textDebugInfo,
+            TimeController.instance.ActualTime,
+            TimeController.instance.AdditiveTime,
+            audioSource.time,
+            TimeController.instance.TimeScale,
+            Mouse.current.position, Mouse.current.position.y
+            );
 
         yield return new WaitForSecondsRealtime(0.1f);
 

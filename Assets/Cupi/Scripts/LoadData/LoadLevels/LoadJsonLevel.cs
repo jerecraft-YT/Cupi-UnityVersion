@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class LoadJsonLevel : MonoBehaviour
 {
-    public void SaveJson()
+
+    public static void SaveJson()
     {
-        NotaTileList conversor = new NotaTileList { notasTiles = SpawnerNotas.instance.notasTiles };
+        NotasList conversor = new NotasList { notas = SpawnerNotas.instance.notasToInstance };
 
         string JsonString = JsonUtility.ToJson(conversor, true);
 
@@ -16,7 +17,7 @@ public class LoadJsonLevel : MonoBehaviour
         File.WriteAllText(dir, JsonString);
     }
 
-    public void LoadJson()
+    public static void LoadJson()
     {
         string dir = Path.Combine(Application.persistentDataPath, "dataTest.json");
 
@@ -27,8 +28,12 @@ public class LoadJsonLevel : MonoBehaviour
 
         string JsonString = File.ReadAllText(dir);
 
-        NotaTileList notas = JsonUtility.FromJson<NotaTileList>(JsonString);
+        print(JsonString);
 
-        SpawnerNotas.instance.notasTiles = notas.notasTiles;
+        NotasList notas = JsonUtility.FromJson<NotasList>(JsonString);
+
+        print(notas.ToString());
+
+        SpawnerNotas.instance.notasToInstance = notas.notas;
     }
 }

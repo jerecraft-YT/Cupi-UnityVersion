@@ -9,9 +9,10 @@ public class TilesModeParticlesController : MonoBehaviour
     [Header("particles Prefab")]
     [SerializeField] private GameObject particleHit;
     [SerializeField] private GameObject particleNoHit;
-    //private List<ParticleSystem> ParticulasHit;
-    private Dictionary<CorrespondenciaTecla, ParticleSystem> ParticulasHit;
-    private Dictionary<CorrespondenciaTecla, ParticleSystem> ParticulasNoHit;
+
+    //aprendi a la mala que si o si debes inicializarlos si no estaras sufriendo por nada :c
+    private Dictionary<CorrespondenciaTecla, ParticleSystem> ParticulasHit = new();
+    private Dictionary<CorrespondenciaTecla, ParticleSystem> ParticulasNoHit = new();
 
     private void OnEnable()
     {
@@ -27,22 +28,20 @@ public class TilesModeParticlesController : MonoBehaviour
 
     private void Start()
     {
-        //aprendi a la mala que si o si debes inicializarlos si no estaras sufriendo por nada :c
-        ParticulasHit = new();
-        ParticulasNoHit = new();
         InstantiateParticles();
     }
 
     private void InstantiateParticles()
     {
-        foreach (var (correspondencia, origenParticulas) in SpawnerNotas.PosicionFinalNotaDic)
+        foreach (var (tecla, origenParticulas) in SpawnerNotas.PosicionFinalNotaTile)
         {
             Vector3 posicionParticulas = origenParticulas.transform.position;
 
             GameObject particulaHit = Instantiate(particleHit, posicionParticulas, Quaternion.identity, parentParticles.transform);
             GameObject particulaNoHit = Instantiate(particleNoHit, posicionParticulas, Quaternion.identity, parentParticles.transform);
-            ParticulasHit[correspondencia] = particulaHit.GetComponent<ParticleSystem>();
-            ParticulasNoHit[correspondencia] = particulaNoHit.GetComponent<ParticleSystem>();
+            
+            ParticulasHit[tecla] = particulaHit.GetComponent<ParticleSystem>();
+            ParticulasNoHit[tecla] = particulaNoHit.GetComponent<ParticleSystem>();
         }
     }
 

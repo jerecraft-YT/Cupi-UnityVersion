@@ -8,7 +8,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
     //esto permitira tener efectos complejos mas adelante pero de momento lo dejo asi
     private int numberPoints = 2;
     private int framesToUpdate;
-    private bool canMiss = true;
+    private bool canMiss;
     private bool firstHit;
     private int actualPointGetter;
     private float getPointsEvery;
@@ -19,6 +19,14 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
     protected override void OnEnable()
     {
+        firstHit = true;
+        canMiss = true;
+        framesToUpdate = 0;
+        lockProgress = false;
+        actualPointGetter = 0;
+        consumoNota = 0;
+        offsetRendering = 0;
+
         base.OnEnable();
 
         TilesModeInputController.NoteClick += ClickNote;
@@ -40,11 +48,11 @@ public class NotaTileSostenida : NotaTileBaseLogic
         TileNoteController();
     }
 
-    private void Start()
+    protected override void PostInitialize()
     {
         timeToArriveForLine = data.duracion + data.timeToArrive;
 
-        getPointsEvery = 1.0f / (data.duracion * seccionesPorSegundos);
+        getPointsEvery = data.duracion > 0 ? 1.0f / (data.duracion * seccionesPorSegundos) : 1.0f;
     }
 
     private void SetLinePoints()
@@ -62,15 +70,15 @@ public class NotaTileSostenida : NotaTileBaseLogic
     {
         if (tecla != data.CorrespondenciaTecla || !canMiss) return;
 
-        float timeDiff = Mathf.Abs((data.timeToArrive + (consumoNota * data.duracion)) - (float)TimeController.instance.AdditiveTime);
+        float timeDiff = Mathf.Abs((data.timeToArrive + (consumoNota * data.duracion)) - (float)timeController.AdditiveTime);
 
-        if (timeDiff < TilesModeMaster.instance.toleranciaError)
+        if (timeDiff < tilesModeMaster.toleranciaError)
         {
             lockProgress = true;
-            if (!firstHit)
+            if (firstHit)
             {
                 TilesModeNotesController.HitNote(data.CorrespondenciaTecla);
-                firstHit = true;
+                firstHit = false;
             }
         }
 
@@ -85,11 +93,13 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
     public void LogicLine()
     {
-        float currentTime = (float)TimeController.instance.AdditiveTime;
+        float currentTime = (float)timeController.AdditiveTime;
 
         consumoNota = 1 - Mathf.InverseLerp(timeToArriveForLine, data.timeToArrive, currentTime);
 
-        if (data.timeToArrive + offsetRendering + TilesModeMaster.instance.toleranciaError < currentTime && canMiss)
+        float tiempoActual = data.timeToArrive + offsetRendering;
+
+        if (tiempoActual + tilesModeMaster.toleranciaError < currentTime && canMiss)
         {
             canMiss = false;
             lockProgress = false;
@@ -97,7 +107,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
         while (actualPointGetter * getPointsEvery < consumoNota + getPointsEvery && lockProgress)
         {
-            print("ganaste puntos" +  actualPointGetter);
+            //print("ganaste puntos" +  actualPointGetter);
             actualPointGetter++;
         }
 
@@ -138,11 +148,11 @@ public class NotaTileSostenida : NotaTileBaseLogic
             }
             else
             {
-                float progress = 1 - InverseLerpUnclamped(0.0f, timeToArriveForLine, (float)TimeController.instance.AdditiveTime);
+                float progress = 1 - InverseLerpUnclamped(0.0f, timeToArriveForLine, (float)timeController.AdditiveTime);
 
                 if (lockProgress) progress = Mathf.Max(0, progress);
 
-                float distancia = (progress * timeToArriveForLine * data.localSpeed * TilesModeMaster.instance.notaTileSpeed);
+                float distancia = (progress * timeToArriveForLine * data.localSpeed * tilesModeMaster.notaTileSpeed);
 
                 Vector2 finalPos = data.offsetPositionToGo + (DireccionMovimiento * distancia);
 

@@ -11,14 +11,14 @@ public class TilesModeInputController : MonoBehaviour
 
     private TilesModeMaster tilesModeMaster;
 
-    private InputActionMap[] actionMaps;
+    private Dictionary<TileModePlayStyle, InputActionMap> InputActionMaps;
 
     private InputActionMap actualActionMap;
 
     public static event Action<CorrespondenciaTecla> NoteClick;
     public static event Action<CorrespondenciaTecla> NoteUnClick;
 
-    private Dictionary<string, CorrespondenciaTecla> inputKeys = new();
+    private Dictionary<InputAction, CorrespondenciaTecla> inputKeys = new();
 
     private void Awake()
     {
@@ -35,37 +35,29 @@ public class TilesModeInputController : MonoBehaviour
 
         TileModeInputs = new GameInputs();
 
-        actionMaps = new InputActionMap[]{
-            TileModeInputs.TileModeOneKey,
-
-            TileModeInputs.TileModeTwoKeys,
-
-            TileModeInputs.TileModeThreeKeys,
-
-            TileModeInputs.TileModeFourKeys,
-
-            TileModeInputs.TileModeFiveKeys,
-
-            TileModeInputs.TileModeSixKeys,
-
-            TileModeInputs.TileModeSevenKeys,
-
-            TileModeInputs.TileModeEightKeys,
-
-            TileModeInputs.TileModeNineKeys,
-
-            TileModeInputs.TileModeTenKeys
+        InputActionMaps = new()
+        {
+            {TileModePlayStyle.OneKey,TileModeInputs.TileModeOneKey },
+            {TileModePlayStyle.TwoKeys,TileModeInputs.TileModeTwoKeys },
+            {TileModePlayStyle.ThreeKeys,TileModeInputs.TileModeThreeKeys },
+            {TileModePlayStyle.FourKeys,TileModeInputs.TileModeFourKeys },
+            {TileModePlayStyle.FiveKeys,TileModeInputs.TileModeFiveKeys },
+            {TileModePlayStyle.SixKeys,TileModeInputs.TileModeSixKeys },
+            {TileModePlayStyle.SevenKeys,TileModeInputs.TileModeSevenKeys  },
+            {TileModePlayStyle.EightKeys,TileModeInputs.TileModeEightKeys  },
+            {TileModePlayStyle.NineKeys,TileModeInputs.TileModeNineKeys  },
+            {TileModePlayStyle.TenKeys,TileModeInputs.TileModeTenKeys },
         };
 
-        actualActionMap = actionMaps[(int)tilesModeMaster.PlayStyle];
+        actualActionMap = InputActionMaps[tilesModeMaster.PlayStyle];
     }
 
     private void OnEnable()
     {
+        actualActionMap.Enable();
+
         CreateKeys();
         SuscribePad();
-
-        actualActionMap.Enable();
     }
 
     private void OnDisable()
@@ -80,7 +72,7 @@ public class TilesModeInputController : MonoBehaviour
         actualActionMap?.Disable();
         UnsuscribePad();
 
-        actualActionMap = actionMaps[(int)playStyle];
+        actualActionMap = InputActionMaps[playStyle];
 
         actualActionMap.Enable();
         SuscribePad();
@@ -94,13 +86,14 @@ public class TilesModeInputController : MonoBehaviour
 
         foreach (InputAction InputAction in actualActionMap.actions)
         {
-            inputKeys.Add(InputAction.name, Enum.Parse<CorrespondenciaTecla>(InputAction.name));
+            inputKeys.Add(InputAction, Enum.Parse<CorrespondenciaTecla>(InputAction.name));
         }
     }
 
     private void OnPad(InputAction.CallbackContext ctx)
     {
-        CorrespondenciaTecla tecla = inputKeys[ctx.action.name];
+        CorrespondenciaTecla tecla = inputKeys[ctx.action];
+
 
         if (ctx.performed)
         {

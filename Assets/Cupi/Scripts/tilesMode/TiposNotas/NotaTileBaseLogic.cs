@@ -2,14 +2,23 @@ using UnityEngine;
 
 public class NotaTileBaseLogic : MonoBehaviour
 {
-    public NotaTileInstance data;
+    protected TimeController timeController;
+    protected TilesModeMaster tilesModeMaster;
+
+    [SerializeField] private Transform note;
+    public NotaInstance data;
     public Vector2 DireccionMovimiento;
     public Vector2 finalPos;
     public Transform origin;
-    [SerializeField] private Transform note;
     private float progress;
     public bool lockProgress;
     public float offsetRendering;
+
+    private void Awake()
+    {
+        timeController = TimeController.instance;
+        tilesModeMaster = TilesModeMaster.instance;
+    }
 
     protected virtual void OnEnable()
     {
@@ -59,9 +68,15 @@ public class NotaTileBaseLogic : MonoBehaviour
         transform.parent = origin;
         gameObject.SetActive(false);
     }
-
-    public void Initialize(NotaTileInstance config)
+    public void Initialize(NotaInstance config)
     {
         data = config;
+
+        PostInitialize();
+    }
+
+    protected virtual void PostInitialize()
+    {
+
     }
 }

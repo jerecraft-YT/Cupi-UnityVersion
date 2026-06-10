@@ -38,7 +38,7 @@ public class BpmController : MonoBehaviour
             bpmAnterior = bpm;
         }
 
-        while (AudioSettings.dspTime > prevBeatTime + timeForBeat)
+        while (AudioSettings.dspTime > prevBeatTime + timeForBeat * TimeController.instance.TimeScale)
         {
             prevBeatTime += timeForBeat;
 

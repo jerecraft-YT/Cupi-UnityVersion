@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BpmController : MonoBehaviour
@@ -15,6 +16,7 @@ public class BpmController : MonoBehaviour
     private float bpmAnterior = 60.0f;
     private float timeForBeat;
     private int numberBeats;
+    public static Action GlobalBeat;
 
     private void UpdateTimeForBeat()
     {
@@ -58,6 +60,8 @@ public class BpmController : MonoBehaviour
         numberBeats += 1;
 
         MusicController.instance?.SincronizarMusica();
+
+        GlobalBeat?.Invoke();
 
         //print("beat: " + numberBeats);
     }

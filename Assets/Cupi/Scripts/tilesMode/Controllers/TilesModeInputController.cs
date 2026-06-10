@@ -67,7 +67,7 @@ public class TilesModeInputController : MonoBehaviour
         UnsuscribePad();
     }
 
-    private void SetActionMap(TileModePlayStyle playStyle)
+    public void SetActionMap(TileModePlayStyle playStyle)
     {
         actualActionMap?.Disable();
         UnsuscribePad();

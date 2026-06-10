@@ -164,7 +164,7 @@ MonoBehaviour:
   m_ShadowDetail: 16
   m_ShadowOffset: 0.5
   m_BoundsScale: 2
-  m_UpdateGeometry: 1
+  m_UpdateGeometry: 0
   m_Creator: {fileID: 0}
   m_Modifiers: []
   m_ColliderSegment: []

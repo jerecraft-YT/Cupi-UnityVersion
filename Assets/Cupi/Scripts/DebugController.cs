@@ -11,7 +11,7 @@ public class DebugController : MonoBehaviour
 
     private bool updateDebugInfo = true;
 
-    private string textDebugInfo = "UnscaledCustomTime: {0:N2}\nCustomTime: {1:N2} \nMusicTime: {2:N2}\nTimeScale: {3:N2}\nPosicionMouse: {4:N2,5:N2}";
+    private string textDebugInfo = "UnscaledCustomTime: {0:N2}\nCustomTime: {1:N2} \nMusicTime: {2:N2}\nTimeScale: {3:N2}\nPosicionMouse: {4:N2}";
 
     private void Update()
     {
@@ -29,7 +29,7 @@ public class DebugController : MonoBehaviour
             TimeController.instance.AdditiveTime,
             audioSource.time,
             TimeController.instance.TimeScale,
-            Mouse.current.position, Mouse.current.position.y
+            RadialModeInputController.instance.mouseMovement.action.ReadValue<Vector2>()
             );
 
         yield return new WaitForSecondsRealtime(0.1f);

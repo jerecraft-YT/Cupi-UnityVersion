@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class DebugController : MonoBehaviour
 {
@@ -27,7 +26,7 @@ public class DebugController : MonoBehaviour
             textDebugInfo,
             TimeController.instance.ActualTime,
             TimeController.instance.AdditiveTime,
-            audioSource.time,
+            audioSource != null ? audioSource.time : "no hay musica XD",
             TimeController.instance.TimeScale,
             RadialModeInputController.instance.mouseMovement.action.ReadValue<Vector2>()
             );
@@ -38,6 +37,8 @@ public class DebugController : MonoBehaviour
     }
     public void ChangeTimeScale(float valor)
     {
+        if (audioSource == null) return;
+
         TimeController.instance.TimeScale = valor;
 
         audioSource.pitch = valor;

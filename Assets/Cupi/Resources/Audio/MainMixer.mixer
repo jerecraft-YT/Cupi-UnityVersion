@@ -136,7 +136,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: sfx
+  m_Name: Sfx
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 8069c92316051ad429ca434619104813
   m_Children: []
@@ -155,7 +155,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: music
+  m_Name: Music
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 6eb5a35c4b4437945af7eb36d5d06e68
   m_Children: []

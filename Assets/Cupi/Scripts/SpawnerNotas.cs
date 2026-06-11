@@ -7,6 +7,8 @@ public class SpawnerNotas : MonoBehaviour
 
     public Transform tileModeReference;
 
+    public string levelName;
+
     const string capaTileMode = "TileMode";
 
     public Transform radialModeReference;
@@ -74,7 +76,7 @@ public class SpawnerNotas : MonoBehaviour
     private void Start()
     {
         //LoadJsonLevel.SaveJson();
-        LoadJsonLevel.LoadJson();
+        notasToInstance = LoadJsonLevel.LoadLevel(levelName);
 
         int playStyle = (int)tileModeMaster.PlayStyle;
 

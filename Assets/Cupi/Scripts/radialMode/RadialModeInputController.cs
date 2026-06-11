@@ -9,7 +9,7 @@ public class RadialModeInputController : MonoBehaviour
 
     public LineRenderer escudoLine;
 
-    public RadialModeMaster radialModeMaster;
+    private RadialModeMaster _radialModeMaster;
 
     private void Awake()
     {
@@ -20,6 +20,11 @@ public class RadialModeInputController : MonoBehaviour
         }
 
         instance = this;
+    }
+
+    private void OnEnable()
+    {
+        _radialModeMaster = RadialModeMaster.instance;
 
         CreateLine();
     }
@@ -28,17 +33,19 @@ public class RadialModeInputController : MonoBehaviour
     {
         int puntosLinea = GetPointsForShield();
 
-        float coberturaEscudo = radialModeMaster.coberturaEscudo;
+        float coberturaEscudo = _radialModeMaster.coberturaEscudo;
 
-        float radioEscudo = radialModeMaster.radioEscudo;
+        float radioEscudo = _radialModeMaster.radioEscudo;
 
         escudoLine.positionCount = puntosLinea;
 
         float progresoPorIteracion =  coberturaEscudo / puntosLinea;
 
+        float centroCobertura = coberturaEscudo / 2.0f;
+
         for (int i = 0; i < puntosLinea; i++)
         {
-            float anguloRad = (i * progresoPorIteracion) * Mathf.Deg2Rad;
+            float anguloRad = ((i * progresoPorIteracion) - centroCobertura) * Mathf.Deg2Rad;
 
             Vector2 posicionPunto = new Vector2(Mathf.Cos(anguloRad) * radioEscudo,Mathf.Sin(anguloRad) * radioEscudo);
            
@@ -48,7 +55,7 @@ public class RadialModeInputController : MonoBehaviour
 
     private int GetPointsForShield()
     {
-        return Mathf.Max(2,(int)(radialModeMaster.coberturaEscudo / radialModeMaster.calidadEscudo));
+        return Mathf.Max(2,(int)(_radialModeMaster.coberturaEscudo / _radialModeMaster.calidadEscudo));
     }
 
     // Update is called once per frame

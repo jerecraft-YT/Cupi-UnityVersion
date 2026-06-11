@@ -37,6 +37,7 @@ public class PrefabNote
     public int IntialInstances;
 }
 
+//esto se hace asi para que lo pueda guardar el json
 [Serializable]
 public class NotasList
 {
@@ -44,8 +45,15 @@ public class NotasList
 }
 
 [Serializable]
-public class PosicionNota
+public struct LevelData
 {
-    public CorrespondenciaTecla tecla;
-    public Transform posicion;
+    [Header("Datos")]
+    public string Name;
+    public string Description;
+    public string Artist;
+    public string Autor;
+    public float PreviewTimeMusic;
+    public string MusicFileName;
+    public string Tags;
+    public float Bpm;
 }

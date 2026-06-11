@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba94a0b9d4d8784a9e6427aa516b58e, type: 3}
+  m_Name: MusicBaseConfig
+  m_EditorClassIdentifier: Assembly-CSharp::MusicConfig
+  audioMixerGroup: {fileID: 7862800670138509336, guid: bd4c90dd648748148b634fd8ccffab22, type: 2}
+  toleranciaSincronizacion: 0.025
+  pitchRegulator: 1
+  musicPausedDefault: 0

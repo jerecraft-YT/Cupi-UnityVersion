@@ -7,9 +7,9 @@ public class TimeController : MonoBehaviour
 
     private double prevTime;
 
-    public double dspOffset;
+    private double dspOffset;
 
-    public double progressTime;
+    private double progressTime;
 
     private double additiveTime;
 

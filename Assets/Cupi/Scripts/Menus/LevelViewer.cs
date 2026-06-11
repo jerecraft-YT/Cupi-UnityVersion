@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
 public class LevelViewer : MonoBehaviour
 {
     public TMP_Dropdown dropdown;
@@ -14,31 +15,34 @@ public class LevelViewer : MonoBehaviour
 
     public TextMeshProUGUI detallesNivel;
 
-    public LevelData[] levels;
+    public List<LevelData> levels = new();
 
-    public string[] nombreNiveles;
+    public List<string> nombreNiveles = new();
 
-    public string[] direccionesNiveles;
+    public List<string> direccionesNiveles;
+
+    public Dictionary<string, AudioClip> cacheAudio = new();
+
+    private Coroutine loadMusicCoroutine;
 
     public string plantillaInfo = "Nombre: {0} \nDescripcion: {1}\nArtista: {2}\nAutor:{3}\nBpm:{4}";
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //FindLevels();
         //testGuardado();
 
-        nombreNiveles = GetLevels();
+        GetLevels();
 
-        levels = new LevelData[nombreNiveles.Length];
-
-        for (int  i = 0; i < nombreNiveles.Length; i++)
+        for (int  i = 0; i < nombreNiveles.Count; i++)
         {
-            LoadDataLevel(nombreNiveles[i],i);
+            LoadDataLevel(nombreNiveles[i]);
         }
 
-        showLevels();
-        ChangeOptionSelected(0);
+        if (nombreNiveles.Count != 0)
+        {
+            showLevels();
+            ChangeOptionSelected(0);
+        }
     }
 
 
@@ -63,31 +67,46 @@ public class LevelViewer : MonoBehaviour
         LoadJsonLevel.SaveMetadata(testDataLevel, "otroTest");
     }
 
-    private void LoadDataLevel(string levelName,int indice)
+    private void LoadDataLevel(string levelName)
     {
-        levels[indice] = LoadJsonLevel.LoadMetadata(levelName);
+        LevelData levelData = LoadJsonLevel.LoadMetadata(levelName);
+
+        if (!string.IsNullOrEmpty(levelData.Name))
+        {
+            levels.Add(levelData);
+        }
     }
 
-    private string[] GetLevels()
+    private void GetLevels()
     {
         LoadJsonLevel.FindGameFolder();
 
         mainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-        direccionesNiveles = Directory.GetDirectories(Path.Combine(mainDirectory, LoadJsonLevel.nombreCarpetaJuego));
+        direccionesNiveles = new List<string>(Directory.GetDirectories(Path.Combine(mainDirectory, LoadJsonLevel.nombreCarpetaJuego)));
 
-        string[] nombreNiveles = new string[direccionesNiveles.Length];
+        //List<string> nombreNiveles = new();
 
-        for (int i = 0; i < direccionesNiveles.Length; i++)
+        List<int> direccionesEliminar = new();
+
+        for (int i = 0; i < direccionesNiveles.Count; i++)
         {
-
             string nombreCarpeta = Path.GetFileName(direccionesNiveles[i].TrimEnd(Path.DirectorySeparatorChar));
 
-
-            nombreNiveles[i] += nombreCarpeta;
+            if (LoadJsonLevel.MetadataExists(nombreCarpeta))
+            {
+                nombreNiveles.Add(nombreCarpeta);
+            }
+            else
+            {
+                direccionesEliminar.Add(i);
+            }
         }
         
-        return nombreNiveles;
+        for (int i = 0; i < direccionesEliminar.Count; i++)
+        {
+            direccionesNiveles.RemoveAt(direccionesEliminar[i]);
+        }
     }
 
     public void ChangeOptionSelected(int option)
@@ -101,24 +120,33 @@ public class LevelViewer : MonoBehaviour
 
     public IEnumerator LoadMusic(int index)
     {
-        print(Path.Combine(direccionesNiveles[index], levels[index].MusicFileName));
-
-        using (UnityWebRequest request = UnityWebRequestMultimedia.GetAudioClip(Path.Combine(direccionesNiveles[index], levels[index].MusicFileName), AudioType.UNKNOWN))
+        if (cacheAudio.ContainsKey(nombreNiveles[index]))
         {
-            yield return request.SendWebRequest();
+            MusicController.instance.PlayMusic(cacheAudio[nombreNiveles[index]]);
+            print("se cargo una musica de cache");
+            yield break;
+        }
 
-            if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
-            {
-                Debug.LogError("Error al cargar la música: " + request.error);
-            }
-            else
-            {
-                // Obtenemos el AudioClip descargado
-                AudioClip clip = DownloadHandlerAudioClip.GetContent(request);
-                print("recurso si cargo");
-                MusicController.instance.PlayMusic(clip);
-            }
+        string path = Path.Combine(direccionesNiveles[index], levels[index].MusicFileName);
+
+        UnityWebRequest audio = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.UNKNOWN);
+
+        DownloadHandlerAudioClip AudioHandler = (DownloadHandlerAudioClip)audio.downloadHandler;
+        AudioHandler.streamAudio = true;
+
+        yield return audio.SendWebRequest();
+
+        if (audio.result == UnityWebRequest.Result.ConnectionError || audio.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError("Error al cargar la música: " + audio.error);
+        }
+        else
+        {
+            //Obtenemos el AudioClip descargado
+            AudioClip clip = DownloadHandlerAudioClip.GetContent(audio);
+            cacheAudio.Add(nombreNiveles[index], clip);
+
+            MusicController.instance.PlayMusic(clip);
         }
     }
-    
 }

@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using UnityEngine;
 
-public class LoadJsonLevel : MonoBehaviour
+public class LoadJsonLevel
 {
     public static string nombreCarpetaJuego = "CUPI";
 
@@ -126,12 +126,20 @@ public class LoadJsonLevel : MonoBehaviour
 
         if (!File.Exists(dir))
         {
-            print("el archivo no existe");
+            Debug.Log("el archivo no existe |" + dir);
             return new LevelData();
         }
 
         string JsonString = File.ReadAllText(dir);
 
         return JsonUtility.FromJson<LevelData>(JsonString);
+    }
+
+    public static bool MetadataExists(string levelName)
+    {
+        string dataName = levelName + ".meta";
+        string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        string dir = Path.Combine(MainPath, nombreCarpetaJuego, levelName, dataName);
+        return File.Exists(dir);
     }
 }

@@ -42,7 +42,7 @@ public class TilesModePoolController : MonoBehaviour
             }
         }
 
-        print($"no hay instancias suficientes de {tipoNota}, se creara una nueva");
+        //print($"no hay instancias suficientes de {tipoNota}, se creara una nueva");
 
         AddInstance(index);
         GameObject newObject = Instances[index][Instances[index].Count - 1];

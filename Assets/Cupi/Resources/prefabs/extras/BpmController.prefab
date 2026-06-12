@@ -106,11 +106,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   animateBPM: 1
+  fuerzaMaxBeat: 1.4
+  fuerzaMinBeat: 1.2
   bpm: 120
   tiempos: 4
+  offset: 0
   beatFuerte: {fileID: 8300000, guid: 3de9bc4313ab81144b26b52997ea1e8d, type: 3}
   beatSuave: {fileID: 8300000, guid: 4b1c0bf6f88902b4ba9e90eb7900f3c2, type: 3}
   musicPlayer: {fileID: 2438031035930587396}
+  puedeSincronizar: 1
 --- !u!82 &2438031035930587396
 AudioSource:
   m_ObjectHideFlags: 0
@@ -130,7 +134,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 196
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

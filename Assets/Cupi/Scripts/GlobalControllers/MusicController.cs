@@ -1,12 +1,14 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class MusicController : MonoBehaviour
 {
-    private AudioSource mainMusic;
+    public AudioSource mainMusic;
     public static MusicController instance;
-    private bool pitchRegulator;
+    [SerializeField] private bool pitchRegulator;
+    [SerializeField] private bool musicMixerVolume;
     private AudioMixerGroup musicGroup;
     private float toleranciaSincronizacion;
     private bool musicPaused;
@@ -21,6 +23,19 @@ public class MusicController : MonoBehaviour
         instance = this;
 
         CargarDefaultConfig();
+    }
+
+    public IEnumerator WakeUpVolumeMusic(float duracion)
+    {
+        float startVolumen = mainMusic.volume;
+
+        for (float t = 0; t < duracion; t += Time.deltaTime)
+        {
+            mainMusic.volume = Mathf.Lerp(startVolumen, 1.0f, t / duracion);
+            yield return null;
+        }
+
+        mainMusic.volume = 1.0f;
     }
 
     private void CargarDefaultConfig()
@@ -88,7 +103,7 @@ public class MusicController : MonoBehaviour
 
         if (additiveTime < 0 || additiveTime > mainMusic.clip.length) return;
 
-        if (Mathf.Abs(additiveTime - mainMusic.time) >= toleranciaSincronizacion)
+        if (Mathf.Abs(additiveTime - mainMusic.time) >= Mathf.Abs(toleranciaSincronizacion * TimeController.instance.timeScale))
         {
             if (!mainMusic.isPlaying) mainMusic.Play();
 

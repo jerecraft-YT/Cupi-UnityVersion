@@ -12,6 +12,11 @@ public class DebugController : MonoBehaviour
 
     private string textDebugInfo = "UnscaledCustomTime: {0:N2}\nCustomTime: {1:N2} \nMusicTime: {2:N2}\nTimeScale: {3:N2}\nPosicionMouse: {4:N2}";
 
+    private void Start()
+    {
+        if (MusicController.instance.mainMusic != null) audioSource = MusicController.instance.mainMusic;
+    }
+
     private void Update()
     {
         if (updateDebugInfo)

@@ -1,29 +1,26 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Networking;
-
 
 public class LevelViewer : MonoBehaviour
 {
-    public TMP_Dropdown dropdown;
+    public TMP_Dropdown nivelesDropdown;
+
+    public TMP_Dropdown dificultadesDropDown;
+
+    public BpmController bpmController;
 
     private string mainDirectory;
 
+    [SerializeField] private MusicLoader musicLoader;
+    [SerializeField] private LevelLoader levelLoader;
+
     public TextMeshProUGUI detallesNivel;
 
-    public List<LevelData> levels = new();
-
-    public List<string> nombreNiveles = new();
-
-    public List<string> direccionesNiveles;
-
-    public Dictionary<string, AudioClip> cacheAudio = new();
-
-    private Coroutine loadMusicCoroutine;
+    [Tooltip("coleccion de metadatas de los niveles")]
+    public List<LevelInfo> levels = new();
 
     public string plantillaInfo = "Nombre: {0} \nDescripcion: {1}\nArtista: {2}\nAutor:{3}\nBpm:{4}";
 
@@ -33,48 +30,40 @@ public class LevelViewer : MonoBehaviour
 
         GetLevels();
 
-        for (int  i = 0; i < nombreNiveles.Count; i++)
-        {
-            LoadDataLevel(nombreNiveles[i]);
-        }
-
-        if (nombreNiveles.Count != 0)
+        if (levels.Count != 0)
         {
             showLevels();
             ChangeOptionSelected(0);
         }
     }
 
-
     private void showLevels()
     {
-        dropdown.AddOptions(new List<string>(nombreNiveles));
+
+        List<string> levelsName = levels.ConvertAll(x => x.levelData.Name);
+
+        nivelesDropdown.AddOptions(levelsName);
     }
 
     private void testGuardado()
     {
-        LevelData testDataLevel = new LevelData();
+        LevelData levelData = new("dificultad 1",100,"miNivel.json");
 
-        testDataLevel.Name = "beni";
-        testDataLevel.Description = "esta es un prueba";
-        testDataLevel.Artist = "benito";
-        testDataLevel.Autor = "Yo";
+        List<LevelData> niveles = new(){levelData};
+
+        LevelMetadata testDataLevel = new LevelMetadata();
+
+        testDataLevel.Name = "NombreNivel";
+        testDataLevel.Artist = "ArtistaNivel";
+        testDataLevel.Autor = "AutorNivel";
         testDataLevel.Bpm = 123;
-        testDataLevel.PreviewTimeMusic = -1;
-        testDataLevel.Tags = "testeo|cool|nice";
-        testDataLevel.MusicFileName = "test.ogg";
+        testDataLevel.PreviewTimeMusic = 0;
+        testDataLevel.MusicFileName = "DireccionNivel(local y con extension)";
+        testDataLevel.Description = "DescripcionNivel";
+        testDataLevel.Tags = "TagsSeparadosPor(|)";
+        testDataLevel.LevelsFiles = new(){levelData};
 
-        LoadJsonLevel.SaveMetadata(testDataLevel, "otroTest");
-    }
-
-    private void LoadDataLevel(string levelName)
-    {
-        LevelData levelData = LoadJsonLevel.LoadMetadata(levelName);
-
-        if (!string.IsNullOrEmpty(levelData.Name))
-        {
-            levels.Add(levelData);
-        }
+        LoadJsonLevel.SaveMetadata(testDataLevel, "nivel");
     }
 
     private void GetLevels()
@@ -83,70 +72,66 @@ public class LevelViewer : MonoBehaviour
 
         mainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-        direccionesNiveles = new List<string>(Directory.GetDirectories(Path.Combine(mainDirectory, LoadJsonLevel.nombreCarpetaJuego)));
+        List<string> direccionesNiveles = new List<string>(Directory.GetDirectories(Path.Combine(mainDirectory, LoadJsonLevel.nombreCarpetaJuego)));
 
-        //List<string> nombreNiveles = new();
-
-        List<int> direccionesEliminar = new();
-
-        for (int i = 0; i < direccionesNiveles.Count; i++)
+        foreach(string levelPath in direccionesNiveles)
         {
-            string nombreCarpeta = Path.GetFileName(direccionesNiveles[i].TrimEnd(Path.DirectorySeparatorChar));
+            string nombreCarpeta = Path.GetFileName(levelPath.TrimEnd(Path.DirectorySeparatorChar));
 
             if (LoadJsonLevel.MetadataExists(nombreCarpeta))
             {
-                nombreNiveles.Add(nombreCarpeta);
+                LevelInfo LevelInfo = new LevelInfo(nombreCarpeta, levelPath, LoadJsonLevel.LoadMetadata(nombreCarpeta));
+
+                if (VerificarNiveles(nombreCarpeta, LevelInfo))
+                {
+                    levels.Add(LevelInfo);
+                }
+
             }
-            else
-            {
-                direccionesEliminar.Add(i);
-            }
-        }
-        
-        for (int i = 0; i < direccionesEliminar.Count; i++)
-        {
-            direccionesNiveles.RemoveAt(direccionesEliminar[i]);
         }
     }
+
+    private bool VerificarNiveles(string nombreCarpeta,LevelInfo levelInfo)
+    {
+        int nivelesVerificar = levelInfo.levelData.LevelsFiles.Count;
+
+        if (nivelesVerificar == 0)
+        {
+            NivelCorruptoAviso(nombreCarpeta);
+            return false;
+        }
+
+        foreach (LevelData _levelData in levelInfo.levelData.LevelsFiles)
+        {
+            if (!LoadJsonLevel.LevelExist(nombreCarpeta, _levelData.levelFileName))
+            {
+                NivelCorruptoAviso(nombreCarpeta);
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void NivelCorruptoAviso(string carpetaCorrupta)
+    {
+        Debug.LogWarning("nivel en la carpeta |" + carpetaCorrupta +"| corrupto");
+    }
+
 
     public void ChangeOptionSelected(int option)
     {
-        LevelData nivel = levels[option];
+        LevelMetadata nivel = levels[option].levelData;
 
-        detallesNivel.text = string.Format(plantillaInfo,nivel.Name, nivel.Description,nivel.Artist,nivel.Autor,nivel.Bpm);
+        detallesNivel.text = string.Format(plantillaInfo, nivel.Name, nivel.Description, nivel.Artist, nivel.Autor, nivel.Bpm);
 
-        StartCoroutine(LoadMusic(option));
-    }
+        List<string> dificultades = nivel.LevelsFiles.ConvertAll(x => x.nombreDificultad);
 
-    public IEnumerator LoadMusic(int index)
-    {
-        if (cacheAudio.ContainsKey(nombreNiveles[index]))
-        {
-            MusicController.instance.PlayMusic(cacheAudio[nombreNiveles[index]]);
-            print("se cargo una musica de cache");
-            yield break;
-        }
+        levelLoader.ultimoNivelSeleccionado = option;
 
-        string path = Path.Combine(direccionesNiveles[index], levels[index].MusicFileName);
+        dificultadesDropDown.ClearOptions();
+        dificultadesDropDown.AddOptions(dificultades);
 
-        UnityWebRequest audio = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.UNKNOWN);
-
-        DownloadHandlerAudioClip AudioHandler = (DownloadHandlerAudioClip)audio.downloadHandler;
-        AudioHandler.streamAudio = true;
-
-        yield return audio.SendWebRequest();
-
-        if (audio.result == UnityWebRequest.Result.ConnectionError || audio.result == UnityWebRequest.Result.ProtocolError)
-        {
-            Debug.LogError("Error al cargar la música: " + audio.error);
-        }
-        else
-        {
-            //Obtenemos el AudioClip descargado
-            AudioClip clip = DownloadHandlerAudioClip.GetContent(audio);
-            cacheAudio.Add(nombreNiveles[index], clip);
-
-            MusicController.instance.PlayMusic(clip);
-        }
+        musicLoader.MusicChangeRequest(option);
     }
 }

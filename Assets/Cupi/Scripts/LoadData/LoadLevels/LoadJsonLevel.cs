@@ -7,7 +7,7 @@ public class LoadJsonLevel
 {
     public static string nombreCarpetaJuego = "CUPI";
 
-    public static void SaveAll(List<NotaInstance> notasToSave, string levelName, LevelData metadata)
+    public static void SaveAll(List<NotaInstance> notasToSave, string levelName, LevelMetadata metadata)
     {
         SaveLevel(notasToSave,levelName);
         SaveMetadata(metadata,levelName);
@@ -15,70 +15,42 @@ public class LoadJsonLevel
 
     public static void FindGameFolder()
     {
-        string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        string MainPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),nombreCarpetaJuego);
 
-        string[] carpetas = Directory.GetDirectories(MainPath);
-
-        foreach (string carpet in carpetas)
+        if (!Directory.Exists(MainPath))
         {
-            string textoVerificar = Path.GetFileName(carpet.TrimEnd(Path.DirectorySeparatorChar));
-
-            if (textoVerificar == nombreCarpetaJuego)
-            {
-                return;
-            }
+            Directory.CreateDirectory(MainPath);
         }
-
-        CreateBaseFolder();
     }
 
     private static void FindLevelFolder(string folderName)
     {
-        string MainPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),nombreCarpetaJuego);
+        string MainPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),nombreCarpetaJuego,folderName);
 
-        string[] carpetas = Directory.GetDirectories(MainPath);
-
-        foreach (string carpet in carpetas)
+        if (!Directory.Exists(MainPath))
         {
-            string textoVerificar = Path.GetFileName(carpet.TrimEnd(Path.DirectorySeparatorChar));
-
-            if (textoVerificar == folderName)
-            {
-                return;
-            }
+            Directory.CreateDirectory(MainPath);
         }
-
-        CreateLevelFolder(folderName);
-    }
-
-    private static void CreateLevelFolder(string folderName)
-    {
-        string MainPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),nombreCarpetaJuego);
-        Directory.CreateDirectory(Path.Combine(MainPath, folderName));
-    }
-
-    private static void CreateBaseFolder()
-    {
-        string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        Directory.CreateDirectory(Path.Combine(MainPath, nombreCarpetaJuego));
     }
 
     public static void SaveLevel(List<NotaInstance> notasToSave,string levelName)
     {
         FindGameFolder();
+        FindLevelFolder(levelName);
 
         string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-        NotasList conversor = new NotasList { notas = notasToSave};
 
-        string JsonString = JsonUtility.ToJson(conversor, true);
+        Level LevelToSave = new(notasToSave);
+
+        string JsonString = JsonUtility.ToJson(LevelToSave, true);
 
         string dir = Path.Combine(MainPath, nombreCarpetaJuego, levelName);
 
         File.WriteAllText(dir, JsonString);
     }
 
-    public static void SaveMetadata(LevelData metadata,string levelName)
+    public static void SaveMetadata(LevelMetadata metadata,string levelName)
     {
         FindGameFolder();
         FindLevelFolder(levelName);
@@ -94,30 +66,33 @@ public class LoadJsonLevel
         File.WriteAllText(dir, JsonString);
     }
 
-    public static List<NotaInstance> LoadLevel(string levelName)
+    public static Level LoadLevel(string folderName,string levelName)
     {
         string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-        string dir = Path.Combine(MainPath , nombreCarpetaJuego, levelName, "dataTest.json");
+        string dir = Path.Combine(MainPath , nombreCarpetaJuego, folderName, levelName);
 
         if (!File.Exists(dir))
         {
-            return new List<NotaInstance>();
+            return new(new());
         }
 
         string JsonString = File.ReadAllText(dir);
 
-        NotasList notas = JsonUtility.FromJson<NotasList>(JsonString);
+        Level notas = JsonUtility.FromJson<Level>(JsonString);
 
-        return notas.notas;
+        return notas;
     }
 
-    public static LevelData LoadMetadata(string levelName)
+    public static bool LevelExist(string folderName, string levelName)
     {
-        //un poco raro verificar esto pero es por si acaso
-        FindGameFolder();
-        FindLevelFolder(levelName);
+        string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        string dir = Path.Combine(MainPath, nombreCarpetaJuego, folderName, levelName);
+        return File.Exists(dir);
+    }
 
+    public static LevelMetadata LoadMetadata(string levelName)
+    {
         string dataName = levelName + ".meta";
 
         string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -127,12 +102,12 @@ public class LoadJsonLevel
         if (!File.Exists(dir))
         {
             Debug.Log("el archivo no existe |" + dir);
-            return new LevelData();
+            return new LevelMetadata();
         }
 
         string JsonString = File.ReadAllText(dir);
 
-        return JsonUtility.FromJson<LevelData>(JsonString);
+        return JsonUtility.FromJson<LevelMetadata>(JsonString);
     }
 
     public static bool MetadataExists(string levelName)

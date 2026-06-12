@@ -17,6 +17,7 @@ public class BpmController : MonoBehaviour
     private float timeForBeat;
     private int numberBeats;
     public static Action GlobalBeat;
+    public bool puedeSincronizar = true;
 
     private void UpdateTimeForBeat()
     {
@@ -26,7 +27,18 @@ public class BpmController : MonoBehaviour
     private void Start()
     {
         UpdateTimeForBeat();
-        prevBeatTime = AudioSettings.dspTime - offset;
+        ResetBpm();
+    }
+
+    public void ResetBpm(float customStart = 0.0f)
+    {
+        if (customStart != 0.0f)
+        {
+            prevBeatTime = customStart;
+            return;
+        }
+
+        prevBeatTime = TimeController.instance.AdditiveTime - offset;
     }
 
     private void Update()
@@ -40,7 +52,7 @@ public class BpmController : MonoBehaviour
             bpmAnterior = bpm;
         }
 
-        while (AudioSettings.dspTime > prevBeatTime + timeForBeat * TimeController.instance.TimeScale)
+        while (TimeController.instance.AdditiveTime > prevBeatTime + timeForBeat)
         {
             prevBeatTime += timeForBeat;
 
@@ -59,7 +71,7 @@ public class BpmController : MonoBehaviour
 
         numberBeats += 1;
 
-        MusicController.instance?.SincronizarMusica();
+        if (puedeSincronizar) MusicController.instance.SincronizarMusica();
 
         GlobalBeat?.Invoke();
 

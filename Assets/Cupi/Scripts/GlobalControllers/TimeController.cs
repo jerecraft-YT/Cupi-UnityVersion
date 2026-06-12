@@ -13,7 +13,9 @@ public class TimeController : MonoBehaviour
 
     private double additiveTime;
 
-    private float timeScale = 1.0f;
+    public float timeScale = 1.0f;
+
+    private float oldTimeScale = 1.0f;
 
     public static event Action updateTimeScale;
 
@@ -38,6 +40,12 @@ public class TimeController : MonoBehaviour
     private void Update()
     {
         UpdateAdditiveTime();
+
+        if (oldTimeScale != timeScale)
+        {
+            updateTimeScale?.Invoke();
+            oldTimeScale = timeScale;
+        }
     }
 
     private void UpdateAdditiveTime()
@@ -58,6 +66,17 @@ public class TimeController : MonoBehaviour
         prevTime = ActualTime;
 
         if (source != null) source.time = 0.0f;
+    }
+
+    public void SetTime(float time ,AudioSource source = null)
+    {
+        dspOffset = AudioSettings.dspTime;
+
+        additiveTime = time;
+
+        prevTime = ActualTime;
+
+        if (source != null) source.time = time;
     }
 
     public double ActualTime => AudioSettings.dspTime - dspOffset;

@@ -70,18 +70,15 @@ public class metaball : MonoBehaviour
             enabled = false;
             return;
         }
+
+        musica = MusicController.instance.mainMusic;
+
         CreateCirclePoints();
         CreateMetaballFollowInstances();
     }
 
     private bool validateComponents()
     {
-        if (musica == null)
-        {
-            Debug.LogError("recurso de musica no establecido");
-            return false;
-        }
-
         if (followAsset == null && maxFollow != 0)
         {
             Debug.LogError("follow asset no establecido");

@@ -9,7 +9,7 @@ public class LoadSingletons : MonoBehaviour
         DontDestroyOnLoad(go);
 
         go.AddComponent<TimeController>();
-       //go.AddComponent<LoadAndSaveData>();
         go.AddComponent<MusicController>();
+        go.AddComponent<LevelDataController>();
     }
 }

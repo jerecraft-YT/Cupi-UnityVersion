@@ -94,7 +94,7 @@ public class SpawnerNotas : MonoBehaviour
 
             if ((int)tecla > playStyle) scriptNota.data.CorrespondenciaTecla = (CorrespondenciaTecla)playStyle;
 
-            nota.transform.parent = DefinirCorrespondenciaTecla(scriptNota.data.CorrespondenciaTecla);
+            nota.transform.SetParent(DefinirCorrespondenciaTecla(scriptNota.data.CorrespondenciaTecla));
             nota.transform.localPosition = Vector2.zero;
 
             scriptNota.origin = TilesModePoolController.instance.RequestGroupPool(notaActual.tipoNota).transform;

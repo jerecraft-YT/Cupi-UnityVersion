@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using UnityEngine;
 
-public class LoadJsonLevel
+public class DataLevelsLoader
 {
     public static string nombreCarpetaJuego = "CUPI";
 
@@ -66,7 +66,7 @@ public class LoadJsonLevel
         File.WriteAllText(dir, JsonString);
     }
 
-    public static Level LoadLevel(string folderName,string levelName)
+    public static Level LoadDataLevel(string folderName,string levelName)
     {
         string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 

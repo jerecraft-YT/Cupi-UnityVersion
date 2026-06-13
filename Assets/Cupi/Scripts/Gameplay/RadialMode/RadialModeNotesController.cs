@@ -5,13 +5,7 @@ public class RadialModeNotesController : MonoBehaviour
 {
     public Transform testSeguimiento;
 
-    private Camera mainCamera;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        mainCamera = Camera.main;
-    }
+    public Camera mainCamera;
 
     // Update is called once per frame
     void Update()

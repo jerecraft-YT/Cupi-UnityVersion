@@ -2,29 +2,39 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class LoadMainLevel : MonoBehaviour
+public class LoadLevelManager : MonoBehaviour
 {
     public Slider slider;
     public AsyncOperation carga;
-    public BpmController bpm;
+    public SceneField sceneToLoad;
+    public SceneField[] scenesToUnload;
 
     void Start()
     {
         StartCoroutine(EsperaCarga());
-        LevelDataController.instance.musicLoader.bpmController = bpm;
     }
 
     private IEnumerator EsperaCarga()
     {
-        yield return new WaitUntil(() => Time.timeSinceLevelLoad > 2.0f);
+        yield return new WaitForSeconds(3.0f);
 
         Debug.Log("cargando nivel...");
 
-        LevelDataController.instance.LoadLevel();
+        LevelDataController.instance.LoadDataLevel();
 
-        yield return new WaitUntil(() => Time.timeSinceLevelLoad > 1.0f && LevelDataController.instance.musicLoader == null);
+        yield return new WaitForSeconds(3.0f);
 
-        StartCoroutine(CargarEscena("TestZone"));
+        carga = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
+        carga.allowSceneActivation = false;
+        UnloadScenes();
+    }
+
+    private void UnloadScenes()
+    {
+        foreach(string scene in scenesToUnload)
+        {
+            SceneManager.UnloadSceneAsync(scene);
+        }
     }
 
     private IEnumerator CargarEscena(string escena)
@@ -41,11 +51,10 @@ public class LoadMainLevel : MonoBehaviour
 
     private void Update()
     {
-        if (LevelDataController.instance.musicLoader != null && LevelDataController.instance.musicLoader.musicToLoadComplete == true)
+        if (LevelDataController.instance.musicLoader != null && LevelDataController.instance.musicLoader.readyForNewLoad == true)
         {
             Destroy(LevelDataController.instance.musicLoader.gameObject);
         }
-
         if (carga != null && carga.progress >= 0.9f)
         {
             TimeController.instance.SetTime(0.0f);

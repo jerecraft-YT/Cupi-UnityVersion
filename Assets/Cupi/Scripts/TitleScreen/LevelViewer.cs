@@ -15,7 +15,7 @@ public class LevelViewer : MonoBehaviour
     private string mainDirectory;
 
     [SerializeField] private MusicLoader musicLoader;
-    [SerializeField] private LevelLoader levelLoader;
+    [SerializeField] private TitleScreenManager TitleScreenManager;
 
     public TextMeshProUGUI detallesNivel;
 
@@ -63,24 +63,24 @@ public class LevelViewer : MonoBehaviour
         testDataLevel.Tags = "TagsSeparadosPor(|)";
         testDataLevel.LevelsFiles = new(){levelData};
 
-        LoadJsonLevel.SaveMetadata(testDataLevel, "nivel");
+        DataLevelsLoader.SaveMetadata(testDataLevel, "nivel");
     }
 
     private void GetLevels()
     {
-        LoadJsonLevel.FindGameFolder();
+        DataLevelsLoader.FindGameFolder();
 
         mainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-        List<string> direccionesNiveles = new List<string>(Directory.GetDirectories(Path.Combine(mainDirectory, LoadJsonLevel.nombreCarpetaJuego)));
+        List<string> direccionesNiveles = new List<string>(Directory.GetDirectories(Path.Combine(mainDirectory, DataLevelsLoader.nombreCarpetaJuego)));
 
         foreach(string levelPath in direccionesNiveles)
         {
             string nombreCarpeta = Path.GetFileName(levelPath.TrimEnd(Path.DirectorySeparatorChar));
 
-            if (LoadJsonLevel.MetadataExists(nombreCarpeta))
+            if (DataLevelsLoader.MetadataExists(nombreCarpeta))
             {
-                LevelInfo LevelInfo = new LevelInfo(nombreCarpeta, levelPath, LoadJsonLevel.LoadMetadata(nombreCarpeta));
+                LevelInfo LevelInfo = new LevelInfo(nombreCarpeta, levelPath, DataLevelsLoader.LoadMetadata(nombreCarpeta));
 
                 if (VerificarNiveles(nombreCarpeta, LevelInfo))
                 {
@@ -103,7 +103,7 @@ public class LevelViewer : MonoBehaviour
 
         foreach (LevelData _levelData in levelInfo.levelData.LevelsFiles)
         {
-            if (!LoadJsonLevel.LevelExist(nombreCarpeta, _levelData.levelFileName))
+            if (!DataLevelsLoader.LevelExist(nombreCarpeta, _levelData.levelFileName))
             {
                 NivelCorruptoAviso(nombreCarpeta);
                 return false;
@@ -127,7 +127,7 @@ public class LevelViewer : MonoBehaviour
 
         List<string> dificultades = nivel.LevelsFiles.ConvertAll(x => x.nombreDificultad);
 
-        levelLoader.ultimoNivelSeleccionado = option;
+        TitleScreenManager.ultimoNivelSeleccionado = option;
 
         dificultadesDropDown.ClearOptions();
         dificultadesDropDown.AddOptions(dificultades);

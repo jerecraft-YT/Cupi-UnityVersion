@@ -24,15 +24,16 @@ public class LevelDataController : MonoBehaviour
 
         instance = this;
     }
-    
+
+    [Tooltip("convierte los datos del nivel de este script a null pero no elimina los archivos en carpetas")]
     public void RemoveAllDataLevel()
     {
         actualLevel = null;
         actualMetadata = null;
     }
 
-    public void LoadLevel()
+    public void LoadDataLevel()
     {
-        actualLevel = LoadJsonLevel.LoadLevel(folderName, levelName);
+        actualLevel = DataLevelsLoader.LoadDataLevel(folderName, levelName);
     }
 }

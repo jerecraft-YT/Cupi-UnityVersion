@@ -121,9 +121,9 @@ public class NotaTileSostenida : NotaTileBaseLogic
         }
         else
         {
-            float margenNota = timeToArriveForLine + margenDestruirNotaTile;
+            float margenNota = timeToArriveForLine + tilesModeMaster.RenderLimit;
 
-            if ( margenNota < currentTime || (consumoNota >= 1.0f - getPointsEvery && actualPointGetter > seccionesPorSegundos - 1))
+            if (currentTime > margenNota || (consumoNota >= 1.0f - getPointsEvery && actualPointGetter > seccionesPorSegundos - 1))
             {
                 DestroyNote();
             }

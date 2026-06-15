@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,6 +19,12 @@ public class TitleScreenManager : MonoBehaviour
 
     public void LoadLevel()
     {
+        if (_levelViewer.levels.Count == 0)
+        {
+            Debug.Log("no hay niveles para jugar");
+            return;
+        }
+
         _botonJugar.interactable = false;
 
         LevelDataController dataLevel = LevelDataController.instance;

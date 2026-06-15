@@ -1,14 +1,16 @@
 public enum DireccionesMovimientoNotas
 {
-    Up,
-    Down,
-    Left,
-    Right,
-    Custom
+    None = 5,
+    Up = 0,
+    Down = 1,
+    Left = 2,
+    Right = 3,
+    Custom = 4
 }
 
 public enum CorrespondenciaTecla
 {
+    None = 10,
     One = 0,
     Two = 1,
     Three = 2,
@@ -20,21 +22,26 @@ public enum CorrespondenciaTecla
     Nine = 8,
     Ten = 9
 }
+
 public enum TipoNota
 {
-    Normal,
-    Sostenida
+    None,
+    Normal = 0,
+    Sostenida = 1
 }
 
 public enum ModoNota
 {
-    Tile,
-    Radial
+    None,
+    Tile = 0,
+    Radial = 1
 }
 
 // por si algun especialito agrega un valor en medio (osea yo :P)
+
 public enum TileModePlayStyle
 {
+    None = 10,
     OneKey = 0,
     TwoKeys = 1,
     ThreeKeys = 2,
@@ -46,4 +53,3 @@ public enum TileModePlayStyle
     NineKeys = 8,
     TenKeys = 9
 }
-

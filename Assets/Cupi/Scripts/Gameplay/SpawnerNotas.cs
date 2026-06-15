@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class SpawnerNotas : MonoBehaviour
 {
@@ -75,12 +76,19 @@ public class SpawnerNotas : MonoBehaviour
         }
     }
 
+    private void SortNotes()
+    {
+        notasToInstance = notasToInstance.OrderBy(t => t.timeToArrive).ToList();
+    }
+
     private void Start()
     {
         if (!string.IsNullOrEmpty(LevelDataController.instance.levelName))
         {
             notasToInstance = LevelDataController.instance.actualLevel.notas;
         }
+
+        SortNotes();
 
         chunckController.GenerateBulletChuncks(notasToInstance);
 

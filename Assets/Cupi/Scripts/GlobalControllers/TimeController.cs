@@ -23,13 +23,10 @@ public class TimeController : MonoBehaviour
     {
         if (instance != null && instance != this)
         {
+            print("oh no");
             Destroy(gameObject);
         }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        instance = this;
     }
 
     private void Start()

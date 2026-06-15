@@ -14,7 +14,7 @@ public class DebugController : MonoBehaviour
 
     private void Start()
     {
-        if (MusicController.instance.mainMusic != null) audioSource = MusicController.instance.mainMusic;
+        if (MusicController.instance.mainMusic.clip != null) audioSource = MusicController.instance.mainMusic;
     }
 
     private void Update()

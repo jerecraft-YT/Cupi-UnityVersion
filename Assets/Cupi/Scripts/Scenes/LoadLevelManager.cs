@@ -37,18 +37,6 @@ public class LoadLevelManager : MonoBehaviour
         }
     }
 
-    private IEnumerator CargarEscena(string escena)
-    {
-        carga = SceneManager.LoadSceneAsync(escena);
-
-        carga.allowSceneActivation = false;
-
-        while (!carga.isDone)
-        {
-            yield return null;
-        }
-    }
-
     private void Update()
     {
         if (LevelDataController.instance.musicLoader != null && LevelDataController.instance.musicLoader.readyForNewLoad == true)

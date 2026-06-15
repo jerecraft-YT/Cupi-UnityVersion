@@ -3,6 +3,17 @@ using System.Collections.Generic;
 
 public class SpawnerNotas : MonoBehaviour
 {
+    public static SpawnerNotas instance;
+
+    public static Dictionary<CorrespondenciaTecla, Transform> PosicionFinalNotaTile;
+
+    private static Dictionary<DireccionesMovimientoNotas, Vector2> direccionesMovimientoNotas = new(){
+        {DireccionesMovimientoNotas.Up ,Vector2.up},
+        {DireccionesMovimientoNotas.Down,Vector2.down},
+        {DireccionesMovimientoNotas.Left ,Vector2.left},
+        {DireccionesMovimientoNotas.Right,Vector2.right}
+    };
+
     public TilesModeMaster tileModeMaster;
 
     public Transform tileModeReference;
@@ -13,20 +24,11 @@ public class SpawnerNotas : MonoBehaviour
 
     const string capaRadialMode = "RadialMode";
 
-    public static SpawnerNotas instance;
-
-    public static Dictionary<CorrespondenciaTecla, Transform> PosicionFinalNotaTile;
-
     public List<NotaInstance> notasToInstance;
 
     public Sprite spriteReference;
 
-    private static Dictionary<DireccionesMovimientoNotas, Vector2> direccionesMovimientoNotas = new(){
-        {DireccionesMovimientoNotas.Up ,Vector2.up},
-        {DireccionesMovimientoNotas.Down,Vector2.down},
-        {DireccionesMovimientoNotas.Left ,Vector2.left},
-        {DireccionesMovimientoNotas.Right,Vector2.right}
-    };
+    private ChunckController chunckController;
 
     private void Awake()
     {
@@ -37,6 +39,8 @@ public class SpawnerNotas : MonoBehaviour
         }
 
         instance = this;
+
+        chunckController = GetComponent<ChunckController>();
 
         SpawnReferences();
     }
@@ -73,10 +77,12 @@ public class SpawnerNotas : MonoBehaviour
 
     private void Start()
     {
-        if (LevelDataController.instance.actualLevel != null)
+        if (!string.IsNullOrEmpty(LevelDataController.instance.levelName))
         {
             notasToInstance = LevelDataController.instance.actualLevel.notas;
         }
+
+        chunckController.GenerateBulletChuncks(notasToInstance);
 
         int playStyle = (int)tileModeMaster.PlayStyle;
 

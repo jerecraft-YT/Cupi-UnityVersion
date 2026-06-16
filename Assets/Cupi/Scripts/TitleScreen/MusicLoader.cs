@@ -10,6 +10,8 @@ public class MusicLoader : MonoBehaviour
 {
     [SerializeField] private LevelViewer _levelViewer;
 
+    [SerializeField] private BpmController bpmController;
+
     [SerializeField] private float _timeTransitionMusic = 0.3f;
 
     [SerializeField] private int _maxMusicInCache = 5;
@@ -21,8 +23,6 @@ public class MusicLoader : MonoBehaviour
     private int _musicToLoad = -1;
 
     private bool _canCancelLoading = true;
-
-    public BpmController bpmController;
 
     public bool readyForNewLoad = false;
 

@@ -26,7 +26,7 @@ public class LevelViewer : MonoBehaviour
 
     void Start()
     {
-        //testGuardado();
+        testGuardado();
 
         GetLevels();
 
@@ -63,7 +63,18 @@ public class LevelViewer : MonoBehaviour
         testDataLevel.Tags = "TagsSeparadosPor(|)";
         testDataLevel.LevelsFiles = new(){levelData};
 
-        DataLevelsLoader.SaveMetadata(testDataLevel, "nivel");
+        //DataLevelsLoader.SaveMetadata(testDataLevel, "nivel");
+
+        NotaInstance notaInstance = new NotaInstance();
+        notaInstance.tipoNota = TipoNota.Normal;
+        notaInstance.duracion = 0;
+        notaInstance.CorrespondenciaTecla = CorrespondenciaTecla.One;
+        notaInstance.timeToArrive = 1;
+        notaInstance.DireccionMovimiento = DireccionesMovimientoNotas.Up;
+
+        List<NotaInstance> notaInstances = new() { notaInstance};
+
+        DataLevelsLoader.SaveAll(notaInstances, "nivelPrueba", testDataLevel,"test");
     }
 
     private void GetLevels()

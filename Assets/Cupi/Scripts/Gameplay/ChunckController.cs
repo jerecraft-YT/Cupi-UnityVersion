@@ -1,74 +1,58 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
-
-[Serializable]
-public class ChunckViewer
-{
-    public Dictionary<float, List<NotaInstance>> notas;
-
-    public ChunckViewer(Dictionary<float, List<NotaInstance>> notas)
-    {
-        this.notas = notas;
-    }
-}
 
 public class ChunckController : MonoBehaviour
 {
-    public Dictionary<float,List<NotaInstance>> chuncksNotes = new();
+    public Dictionary<float,List<NotaInstance>> chunksNotes = new();
 
-    public float chunckSize = 1.0f;
+    public float chunkSize = 1.0f;
 
     public List<int> chuncksToGenerate = new();
 
-    public void Update()
-    {
-        
-    }
-
     public void GenerateBulletChuncks(List<NotaInstance> listaNotas)
     {
-        float expectedSize = chunckSize;
+        float expectedSize = chunkSize;
 
-        List<NotaInstance> actualChunck = new();
+        List<NotaInstance> actualChunk = new();
+
+        Debug.Log("-----GENERANDO CHUNKS-----");
 
         foreach(NotaInstance notaActual in listaNotas)
         {
-            //print(notaActual.timeToArrive);
             while(notaActual.timeToArrive > expectedSize)
             {
-                //print(notaActual.timeToArrive);
-                expectedSize += chunckSize;
-                if (actualChunck.Count != 0)
+                expectedSize += chunkSize;
+                if (actualChunk.Count != 0)
                 {
-                    print("creando Chunck");
-                    chuncksNotes.Add(actualChunck[0].timeToArrive, new List<NotaInstance>(actualChunck));
-                    actualChunck.Clear();
+                    print("creando Chunk");
+                    chunksNotes.Add(actualChunk[0].timeToArrive, new List<NotaInstance>(actualChunk));
+                    actualChunk.Clear();
                 }
                 continue;
             }
 
-            actualChunck.Add(notaActual);
+            actualChunk.Add(notaActual);
         }
 
-        if (actualChunck.Count != 0)
+        if (actualChunk.Count != 0)
         {
-            print("creando Chunck, al final");
-            chuncksNotes.Add(actualChunck[0].timeToArrive, new List<NotaInstance>(actualChunck));
-            actualChunck.Clear();
+            print("creando Chunk, al final");
+            chunksNotes.Add(actualChunk[0].timeToArrive, new List<NotaInstance>(actualChunk));
+            actualChunk.Clear();
         }
+        Debug.Log("-----ACABO GENERACION DE CHUNKS-----");
 
-        print(chuncksNotes.Count);
-
-
-        foreach (var chunks in chuncksNotes)
+        //esto es mucha info que solo se usara cuando lo necesite
+        /*
+        Debug.Log("-----INFO CHUNCKS-----");
+        foreach (var chunk in chuncksNotes)
         {
-             print(chunks.Key + "|" + chunks.Value);
+            foreach(NotaInstance nota in chunk.Value)
+            {
+                Debug.Log(chunk.Key + "|" + nota.timeToArrive);
+            }
         }
-
-
-       
+        Debug.Log("-----ACABO INFO CHUNCKS-----");
+        */
     }
 }

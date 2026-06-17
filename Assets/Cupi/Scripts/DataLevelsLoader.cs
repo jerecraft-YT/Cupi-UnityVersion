@@ -2,29 +2,46 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class DataLevelsLoader
 {
     public static string nombreCarpetaJuego = "CUPI";
+    public static int errorMusicLoad = -1;
 
-    public static void SaveAll(List<NotaInstance> notasToSave, string levelName, LevelMetadata metadata,string musicOriginalPath)
+    //si es una task es mas facil de saber cuando acabo en vez de ponerle variables de end
+    public static async Task SaveAll(List<NotaInstance> notasToSave, string levelName, LevelMetadata metadata,string musicOriginalPath)
     {
-        Debug.Log("guardando metadata");
-        SaveMetadata(metadata, levelName);
+        Debug.Log("-----GUARDANDO NIVEL COMPLETO-----");
 
         foreach(LevelData levelData in metadata.LevelsFiles)
         {
             Debug.Log("guardando nivel");
-            SaveLevel(notasToSave, levelName,levelData.levelFileName);
+            await SaveLevel(notasToSave, levelName,levelData.levelFileName);
         }
 
-        SaveMusic(musicOriginalPath, levelName);
+        Debug.Log("guardando musica");
+        await SaveMusic(musicOriginalPath, levelName);
+
+        if (errorMusicLoad != -1)
+        {
+            errorMusicLoad = -1;
+        }
+        else
+        {
+            Debug.Log("se sobreescribio la direccion de la musica en metadata");
+            string fileName = Path.GetFileName(musicOriginalPath);
+            metadata.MusicFileName = fileName;
+        }
+
+        Debug.Log("guardando metadata");
+        await SaveMetadata(metadata, levelName);
+
+        Debug.Log("-----TERMINO DE GUARDAR NIVEL COMPLETO-----");
     }
 
     public static void FindGameFolder()
     {
-        //string MainPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),nombreCarpetaJuego);
-        
         string dir = Path.Combine(MainPath, nombreCarpetaJuego);
         
         if (!Directory.Exists(dir))
@@ -35,8 +52,6 @@ public class DataLevelsLoader
 
     private static void FindLevelFolder(string folderName)
     {
-        //string MainPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),nombreCarpetaJuego,folderName);
-
         string dir = Path.Combine(MainPath, nombreCarpetaJuego, folderName);
 
         if (!Directory.Exists(dir))
@@ -46,13 +61,10 @@ public class DataLevelsLoader
         }
     }
 
-    public static void SaveLevel(List<NotaInstance> notasToSave,string levelName,string fileName)
+    public static async Task SaveLevel(List<NotaInstance> notasToSave,string levelName,string fileName)
     {
         FindGameFolder();
         FindLevelFolder(levelName);
-
-        //string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
 
         Level LevelToSave = new(notasToSave);
 
@@ -60,44 +72,61 @@ public class DataLevelsLoader
 
         string dir = Path.Combine(MainPath, nombreCarpetaJuego, levelName, fileName);
 
-        File.WriteAllText(dir, JsonString);
+        await Task.Run(() =>
+        {
+            File.WriteAllText(dir, JsonString);
+        }); 
         Debug.Log("se guardo el nivel");
     }
 
-    public static void SaveMusic(string originalPath,string levelName)
+    public static async Task SaveMusic(string originalPath,string levelName)
     {
         FindGameFolder();
         FindLevelFolder(levelName);
 
-        //string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        string fileName = Path.GetFileName(originalPath);
+        string finalDir = Path.Combine(MainPath, nombreCarpetaJuego, levelName, fileName);
 
-        string finalDir = Path.Combine(MainPath, nombreCarpetaJuego, levelName);
+        if (!File.Exists(originalPath))
+        {
+            errorMusicLoad = 1;
+            Debug.LogWarning("direccion de musica no valido");
+            return;
+        }
 
-        File.Copy(originalPath, finalDir, true);
+        if (File.Exists(finalDir))
+        {
+            Debug.LogWarning("el archivo ya existe en la carpeta de nivel");
+            return;
+        }
+
+        await Task.Run(() =>
+        {
+            File.Copy(originalPath, finalDir, true);
+        });
     }
 
-    public static void SaveMetadata(LevelMetadata metadata,string levelName)
+    public static async Task SaveMetadata(LevelMetadata metadata,string levelName)
     {
         FindGameFolder();
         FindLevelFolder(levelName);
 
         string dataName = levelName + ".meta";
 
-        //string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
         string JsonString = JsonUtility.ToJson(metadata, true);
 
         string dir = Path.Combine(MainPath,nombreCarpetaJuego, levelName,dataName);
 
-        File.WriteAllText(dir, JsonString);
+        await Task.Run(() =>
+        {
+            File.WriteAllText(dir, JsonString);
+        });
 
         Debug.Log("se guardo la metadata");
     }
 
     public static Level LoadDataLevel(string folderName,string levelName)
     {
-        //string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
         string dir = Path.Combine(MainPath , nombreCarpetaJuego, folderName, levelName);
 
         if (!File.Exists(dir))
@@ -105,16 +134,18 @@ public class DataLevelsLoader
             return new(new());
         }
 
+        Level notas;
+
         string JsonString = File.ReadAllText(dir);
 
-        Level notas = JsonUtility.FromJson<Level>(JsonString);
+        //hacer esto con task.run es pegriloso :c
+        notas = JsonUtility.FromJson<Level>(JsonString);
 
         return notas;
     }
 
     public static bool LevelExist(string folderName, string levelName)
     {
-        //string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         string dir = Path.Combine(MainPath, nombreCarpetaJuego, folderName, levelName);
         return File.Exists(dir);
     }
@@ -122,8 +153,6 @@ public class DataLevelsLoader
     public static LevelMetadata LoadMetadata(string levelName)
     {
         string dataName = levelName + ".meta";
-
-        //string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
         string dir = Path.Combine(MainPath, nombreCarpetaJuego, levelName, dataName);
 
@@ -141,7 +170,6 @@ public class DataLevelsLoader
     public static bool MetadataExists(string levelName)
     {
         string dataName = levelName + ".meta";
-        //string MainPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         string dir = Path.Combine(MainPath, nombreCarpetaJuego, levelName, dataName);
         return File.Exists(dir);
     }

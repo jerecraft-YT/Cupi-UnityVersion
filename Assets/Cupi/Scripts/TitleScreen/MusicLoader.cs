@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,9 +15,9 @@ public class MusicLoader : MonoBehaviour
 
     [SerializeField] private int _maxMusicInCache = 5;
 
-    private Dictionary<string, CacheAudio> _cacheAudio = new();
+    private AudioClip _emptyClip;
 
-    private Coroutine _loadMusicCoroutine;
+    private Dictionary<string, CacheAudio> _cacheAudio = new();
 
     private int _musicToLoad = -1;
 
@@ -30,38 +29,54 @@ public class MusicLoader : MonoBehaviour
 
     private UnityWebRequest _audioRequest;
 
+    private bool _loading;
 
     void Start()
     {
         DontDestroyOnLoad(gameObject);
 
         MusicController.instance.mainMusic.loop = true;
+
+        _emptyClip = AudioClip.Create("EmptyMusic", 1, 1, 1000, true);
     }
 
     void Update()
     {
-        MusicDinamicLoader();
+        if (!_loading)
+        {
+            MusicDinamicLoader();
+        }
     }
 
-    private void MusicDinamicLoader()
+    private async void MusicDinamicLoader()
     {
+        if (_loading)
+        {
+            return;
+        }
+
         if (_musicToLoad != -1 && readyForNewLoad == true)
         {
-            readyForNewLoad = false;
-            _canCancelLoading = true;
-            LevelInfo level = _levelViewer.levels[_musicToLoad];
-            LevelMetadata levelData = level.levelData;
+            _loading = true;
 
-            _loadMusicCoroutine = StartCoroutine(
-                LoadMusic(
-                    _timeTransitionMusic,
-                    level.name,
-                    levelData.MusicFileName,
-                    level.directory,
-                    levelData.PreviewTimeMusic,
-                    levelData.Bpm
-                    ));
-            _musicToLoad = -1;
+            try
+            {
+                readyForNewLoad = false;
+                _canCancelLoading = true;
+
+                //esto para que no pierda la referencia por si el numero se cambia fuera del task
+                int musicIndex = _musicToLoad;
+                _musicToLoad = -1;
+
+                LevelInfo level = _levelViewer.levels[musicIndex];
+                LevelMetadata levelMetadata = level.levelData;
+
+                await LoadMusic(level, levelMetadata);
+            }
+            finally
+            {
+                _loading = false;
+            }
         }
     }
 
@@ -79,6 +94,7 @@ public class MusicLoader : MonoBehaviour
 
     public void ClearMusicCache()
     {
+
         if (string.IsNullOrEmpty(musicInUse))
         {
             foreach (var item in _cacheAudio) Destroy(item.Value.clip);
@@ -96,84 +112,139 @@ public class MusicLoader : MonoBehaviour
         }
     }
 
-    public IEnumerator LoadMusic(float duracion,string levelName,string musicFileName,string levelDirectory,float previewMusicTime,float bpm)
+    public async Task LoadMusic(LevelInfo levelInfo,LevelMetadata levelMetadata)
     {
         MusicController _musicController = MusicController.instance;
 
-        yield return StartCoroutine(MusicFadeIn(_musicController, duracion));
+        //algo obvio por el nombre :/
+        await MusicFadeIn(_musicController);
 
-        if (_cacheAudio.ContainsKey(levelName))
-        {
-            _musicController.PlayMusic(_cacheAudio[levelName].clip);
-            musicInUse = levelName;
-            _cacheAudio[levelName].lastUse = Time.time;
-            Debug.Log("se cargo una musica de cache");
-        }
-        else
-        {
-            string path = Path.Combine(levelDirectory, musicFileName);
+        Debug.Log("-----CARGANDO AUDIO-----");
 
-            _audioRequest = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.UNKNOWN);
+        await SelectMusic(levelInfo, levelMetadata, _musicController);
 
-            DownloadHandlerAudioClip audioHandler = (DownloadHandlerAudioClip)_audioRequest.downloadHandler;
-            audioHandler.streamAudio = true;
+        Debug.Log("-----ACABO DE CARGAR AUDIO-----");
 
-            yield return _audioRequest.SendWebRequest();
-
-            if (_audioRequest == null) yield break;
-
-            if (_audioRequest.result == UnityWebRequest.Result.ConnectionError || _audioRequest.result == UnityWebRequest.Result.ProtocolError)
-            {
-                Debug.LogError("Error al cargar la música: " + _audioRequest.error);
-                AudioClip clip = AudioClip.Create("EmptyMusic", 1, 1, 1000, true);
-                _cacheAudio.Add(levelName, new CacheAudio(clip, Time.time));
-                musicInUse = levelName;
-                _musicController.PlayMusic(clip);
-            }
-            else
-            {
-                //Obtenemos el AudioClip descargado
-                AudioClip clip = DownloadHandlerAudioClip.GetContent(_audioRequest);
-                clip.name = levelName;
-                _cacheAudio.Add(levelName, new CacheAudio(clip, Time.time));
-                musicInUse = levelName;
-                _musicController.PlayMusic(clip);
-            }
-
-            _audioRequest?.Dispose();
-            _audioRequest = null;
-        }
-
-        _musicController.mainMusic.time = previewMusicTime;
-
-        SincronizarMusica(previewMusicTime,bpm);
         _canCancelLoading = false;
 
-        yield return StartCoroutine(MusicFadeOut(_musicController, duracion));
+        EndMusicLoad(levelMetadata,_musicController);
+
+        await MusicFadeOut(_musicController);
+    }
+
+    private void EndMusicLoad(LevelMetadata levelMetadata,MusicController musicController)
+    {
+        float previewMusicTime = levelMetadata.PreviewTimeMusic;
+
+        musicController.mainMusic.time = previewMusicTime;
+
+        SincronizarMusica(previewMusicTime, levelMetadata.Bpm);
 
         readyForNewLoad = true;
 
         DinamicClearCache();
     }
 
-    private IEnumerator MusicFadeIn(MusicController musicController,float duracion)
+    private async Task SelectMusic(LevelInfo levelInfo, LevelMetadata levelMetadata,MusicController musicController)
+    {
+        string levelName = levelInfo.name;
+
+        if(_cacheAudio.TryGetValue(levelName,out CacheAudio cache))
+        {
+            musicController.PlayMusic(cache.clip);
+            cache.lastUse = Time.time;
+            musicInUse = levelName;
+
+            Debug.Log("se cargo una musica de cache");
+            return;
+        }
+
+        string levelDirectory = levelInfo.directory;
+
+        string path = Path.Combine(levelDirectory, levelMetadata.MusicFileName);
+
+        Debug.Log("obteniendo musica");
+
+        AudioClip audioClip = await GetMusic(levelName, path);
+
+        Debug.Log("cargo musica");
+
+        if (audioClip == null)
+        {
+            audioClip = _emptyClip;
+        }
+
+        musicController.PlayMusic(audioClip);
+        
+    }
+
+    public async Task<AudioClip> GetMusic(string levelName,string path)
+    {
+
+        UnityWebRequest request = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.UNKNOWN);
+
+        DownloadHandlerAudioClip audioHandler = (DownloadHandlerAudioClip)request.downloadHandler;
+        audioHandler.streamAudio = true;
+
+        _audioRequest = request;
+
+        try
+        {
+            await request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.ConnectionError ||
+                request.result == UnityWebRequest.Result.ProtocolError)
+            {
+                Debug.LogError("Error al cargar la música: " + request.error);
+
+                AudioClip clip = _emptyClip;
+
+                return clip;
+            }
+
+            if (request.result != UnityWebRequest.Result.Success)
+            {
+                return null;
+            }
+
+            //Obtenemos el AudioClip descargado
+            AudioClip loadedClip = DownloadHandlerAudioClip.GetContent(request);
+            loadedClip.name = levelName;
+
+            _cacheAudio[levelName] = new(loadedClip, Time.time);
+            musicInUse = levelName;
+
+            return loadedClip;
+        }
+        finally
+        {
+            if (_audioRequest == request)
+            {
+                _audioRequest = null;
+            }
+
+            request.Dispose();
+        }
+    }
+
+    private async Task MusicFadeIn(MusicController musicController)
     {
         float startVolumen = musicController.mainMusic.volume;
 
-        for (float t = 0; t < duracion; t += Time.deltaTime)
+        for (float t = 0; t < _timeTransitionMusic; t += Time.deltaTime)
         {
-            musicController.mainMusic.volume = Mathf.Lerp(startVolumen, 0, t / duracion);
-            yield return null;
+            musicController.mainMusic.volume = Mathf.Lerp(startVolumen, 0, t / _timeTransitionMusic);
+            await Awaitable.EndOfFrameAsync();
         }
         musicController.mainMusic.volume = 0;
     }
 
-    private IEnumerator MusicFadeOut(MusicController musicController, float duracion)
+    private async Task MusicFadeOut(MusicController musicController)
     {
-        for (float t = 0; t < duracion; t += Time.deltaTime)
+        for (float t = 0; t < _timeTransitionMusic; t += Time.deltaTime)
         {
-            musicController.mainMusic.volume = Mathf.Lerp(0.0f, 1.0f, t / duracion);
-            yield return null;
+            musicController.mainMusic.volume = Mathf.Lerp(0.0f, 1.0f, t / _timeTransitionMusic);
+            await Awaitable.EndOfFrameAsync();
         }
 
         musicController.mainMusic.volume = 1.0f;
@@ -193,28 +264,39 @@ public class MusicLoader : MonoBehaviour
         }
     }
 
-    public void MusicChangeRequest(int option)
+    public async void MusicChangeRequest(int option)
     {
-        if (_canCancelLoading)
+        if (_loading)
         {
-            if (_loadMusicCoroutine != null) StopCoroutine(_loadMusicCoroutine);
-
-            _audioRequest?.Abort();
-            _audioRequest?.Dispose();
-            _audioRequest = null;
-
-            LevelInfo level = _levelViewer.levels[option];
-            LevelMetadata levelData = level.levelData;
-
-            _loadMusicCoroutine = StartCoroutine(
-                LoadMusic(
-                    _timeTransitionMusic, level.name, levelData.MusicFileName, level.directory, levelData.PreviewTimeMusic, levelData.Bpm
-                    ));
-        }
-        else
-        {
-
             _musicToLoad = option;
+            return;
+        }
+
+        _loading = true;
+
+        try
+        {
+            if (_canCancelLoading)
+            {
+                _audioRequest?.Abort();
+                _audioRequest = null;
+
+                int musicIndex = option;
+
+                LevelInfo level = _levelViewer.levels[musicIndex];
+                LevelMetadata levelMetadata = level.levelData;
+
+                await LoadMusic(level, levelMetadata);
+            }
+            else
+            {
+                _musicToLoad = option;
+            }
+        }
+        finally
+        {
+
+            _loading = false;
         }
     }
 }

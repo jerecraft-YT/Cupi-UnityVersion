@@ -45,7 +45,7 @@ public class LevelViewer : MonoBehaviour
         nivelesDropdown.AddOptions(levelsName);
     }
 
-    private void testGuardado()
+    private async void testGuardado()
     {
         LevelData levelData = new("dificultad 1",100,"miNivel.json");
 
@@ -74,7 +74,7 @@ public class LevelViewer : MonoBehaviour
 
         List<NotaInstance> notaInstances = new() { notaInstance};
 
-        DataLevelsLoader.SaveAll(notaInstances, "nivelPrueba", testDataLevel,"test");
+        await DataLevelsLoader.SaveAll(notaInstances, "nivelPrueba", testDataLevel, "E:/proyectos/Cupi/Assets/Cupi/Resources/audiosPrueba/DJ Quads - The Improv (SPOTISAVER).mp3");
     }
 
     private void GetLevels()
@@ -97,7 +97,6 @@ public class LevelViewer : MonoBehaviour
                 {
                     levels.Add(LevelInfo);
                 }
-
             }
         }
     }
@@ -126,7 +125,7 @@ public class LevelViewer : MonoBehaviour
 
     private void NivelCorruptoAviso(string carpetaCorrupta)
     {
-        Debug.LogWarning("nivel en la carpeta |" + carpetaCorrupta +"| corrupto");
+        Debug.LogWarning("NIVEL |" + carpetaCorrupta +"| CORRUPTO");
     }
 
 

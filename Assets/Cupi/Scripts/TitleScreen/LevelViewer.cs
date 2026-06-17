@@ -26,7 +26,7 @@ public class LevelViewer : MonoBehaviour
 
     void Start()
     {
-        testGuardado();
+        //testGuardado();
 
         GetLevels();
 

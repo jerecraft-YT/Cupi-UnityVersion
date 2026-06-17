@@ -1,3 +1,5 @@
+using System;
+
 public enum DireccionesMovimientoNotas
 {
     None = 5,
@@ -52,4 +54,16 @@ public enum TileModePlayStyle
     EightKeys = 7,
     NineKeys = 8,
     TenKeys = 9
+}
+
+
+[Flags]
+public enum Something
+{
+    None = 0 << 0,// 0000000
+    SuddenDeath = 1 << 1,// 0000010 == 2
+    Multiplier = 2 << 2,//0001000 == 4
+    abc = 3 << 3,
+    bca = 4<<4,
+    aaa = 5 << 5 //>>
 }

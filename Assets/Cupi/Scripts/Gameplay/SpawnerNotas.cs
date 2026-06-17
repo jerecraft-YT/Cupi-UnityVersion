@@ -4,6 +4,7 @@ using System.Linq;
 
 public class SpawnerNotas : MonoBehaviour
 {
+    public Something smt;
     public static SpawnerNotas instance;
 
     public static Dictionary<CorrespondenciaTecla, Transform> PosicionFinalNotaTile;

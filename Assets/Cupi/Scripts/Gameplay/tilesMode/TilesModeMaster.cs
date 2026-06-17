@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class TilesModeMaster : MonoBehaviour
 {
-
     public static TilesModeMaster instance;
 
     public SpriteRenderer sprite;

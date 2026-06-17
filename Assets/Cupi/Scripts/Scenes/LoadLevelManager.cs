@@ -8,14 +8,19 @@ public class LoadLevelManager : MonoBehaviour
     public AsyncOperation carga;
     public SceneField sceneToLoad;
     public SceneField[] scenesToUnload;
+    private MusicLoader musicLoader;
 
     void Start()
     {
+        musicLoader = LevelDataController.instance.musicLoader;
+
         StartCoroutine(EsperaCarga());
     }
 
     private IEnumerator EsperaCarga()
     {
+        Debug.Log("-----CARGANDO-----");
+
         yield return new WaitForSeconds(3.0f);
 
         Debug.Log("cargando nivel...");
@@ -27,6 +32,8 @@ public class LoadLevelManager : MonoBehaviour
         carga = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
         carga.allowSceneActivation = false;
         UnloadScenes();
+
+        Debug.Log("-----TERMINO CARGA-----");
     }
 
     private void UnloadScenes()
@@ -39,14 +46,16 @@ public class LoadLevelManager : MonoBehaviour
 
     private void Update()
     {
-        if (LevelDataController.instance.musicLoader != null && LevelDataController.instance.musicLoader.readyForNewLoad == true)
+        if (musicLoader != null && musicLoader.readyForNewLoad == true)
         {
-            Destroy(LevelDataController.instance.musicLoader.gameObject);
+            Destroy(musicLoader.gameObject);
         }
+
         if (carga != null && carga.progress >= 0.9f)
         {
             TimeController.instance.SetTime(0.0f);
             carga.allowSceneActivation = true;
         }
+
     }
 }

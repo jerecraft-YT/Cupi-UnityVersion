@@ -587,6 +587,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7890023053708671959, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7890023053708671959, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 288880309
+      objectReference: {fileID: 0}
+    - target: {fileID: 7890023053708671959, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
@@ -1045,9 +1053,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -10
+  m_SortingLayerID: -450035017
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 1}
@@ -1122,6 +1130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30adef611c006f44f863842cda312d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerNotas
+  smt: 24
   tileModeMaster: {fileID: 179359629}
   tileModeReference: {fileID: 179359623}
   radialModeReference: {fileID: 29140253}
@@ -1247,7 +1256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a571a494cf7f3e409e7354497185f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChunckController
-  chunckSize: 1
+  chunkSize: 1
+  chuncksToGenerate: 
 --- !u!4 &995682708 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3012614556007921656, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}

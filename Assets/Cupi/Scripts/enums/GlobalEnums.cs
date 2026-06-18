@@ -27,14 +27,14 @@ public enum CorrespondenciaTecla
 
 public enum TipoNota
 {
-    None,
+    None = 2,
     Normal = 0,
     Sostenida = 1
 }
 
 public enum ModoNota
 {
-    None,
+    None = 2,
     Tile = 0,
     Radial = 1
 }

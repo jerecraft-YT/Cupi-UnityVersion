@@ -30,7 +30,7 @@ public class SpawnerNotas : MonoBehaviour
 
     public Sprite spriteReference;
 
-    private ChunckController chunckController;
+    private ChunkController chunckController;
 
     private void Awake()
     {
@@ -42,7 +42,7 @@ public class SpawnerNotas : MonoBehaviour
 
         instance = this;
 
-        chunckController = GetComponent<ChunckController>();
+        chunckController = GetComponent<ChunkController>();
 
         SpawnReferences();
     }

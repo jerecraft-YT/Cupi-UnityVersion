@@ -134,3 +134,33 @@ public class CacheAudio
         this.lastUse = lastUse;
     }
 }
+
+public struct ChunkInfo
+{
+    public int start;
+    public int end;
+
+    public ChunkInfo(int start,int end)
+    {
+        this.start = start;
+        this.end = end;
+    }
+}
+
+public struct ChunkSeparation
+{
+    public TipoNota tipoNota;
+    public ModoNota modoNota;
+
+    public ChunkSeparation(TipoNota tipoNota,ModoNota modoNota)
+    {
+        this.tipoNota = tipoNota;
+        this.modoNota = modoNota;
+    }
+
+    public ChunkSeparation(ChunkSeparation chunkSeparation)
+    {
+        tipoNota = chunkSeparation.tipoNota;
+        modoNota = chunkSeparation.modoNota;
+    }
+}

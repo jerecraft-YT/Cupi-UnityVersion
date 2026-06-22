@@ -1,126 +1,141 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ChunkController : MonoBehaviour
 {
-    //public Dictionary<float,List<NotaInstance>> chunksNotes = new();
+    //public Dictionary<ChunkSeparation,List<ChunkData>> chunks = new();
+    public Dictionary<ChunkSeparation, Dictionary<int,Level>> chunks = new();
 
-    public Dictionary<ChunkSeparation,Dictionary<ChunkInfo,List<NotaInstance>>> chunks = new();
+    private int chunkSize = 3;
 
-    public float chunkSize = 1.0f;
-
-    public List<int> chuncksToGenerate = new();
-
-    ChunkSeparation grupoChunk = new(TipoNota.None, ModoNota.None);
-
-    public void GenerateBulletChuncks(List<NotaInstance> listaNotas)
+    public void GenerateBulletChunks(List<NotaInstance> listaNotas)
     {
-        //replantear toda esta vaina
-        /*
-        float expectedSize = chunkSize;
-
-        List<NotaInstance> actualChunk = new();
-
         Debug.Log("-----GENERANDO CHUNKS-----");
 
-        bool groupCheck = false;
+        CreateChunksGroups();
 
-        foreach(NotaInstance notaActual in listaNotas)
-        {
-            if (!groupCheck)
-            {
-                grupoChunk.tipoNota = notaActual.tipoNota;
-                grupoChunk.modoNota = notaActual.modoNota;
-                groupCheck = true;
-            }
+        CreateChunks(listaNotas);
 
-            while(notaActual.timeToArrive > expectedSize || !NotaEsValida(notaActual.tipoNota,notaActual.modoNota))
-            {
-                expectedSize += chunkSize;
-                if (actualChunk.Count != 0)
-                {
-                    print("creando Chunk");
-                    //chunksNotes.Add(actualChunk[0].timeToArrive, new List<NotaInstance>(actualChunk));
-                    int intialChunkInfo = Mathf.FloorToInt(actualChunk[0].timeToArrive);
-                    int finalChunkInfo = Mathf.FloorToInt(actualChunk[actualChunk.Count - 1].timeToArrive);
+        FilterChunks();
 
-                    ChunkInfo chunkInfo = new ChunkInfo(intialChunkInfo, finalChunkInfo);
-                    
-                    Dictionary<ChunkInfo, List<NotaInstance>> chunkContent = new()
-                    {
-                        {chunkInfo, new List<NotaInstance>(actualChunk)}
-                    };
+        ChunksDebugInfo();
 
-                    if (!chunks.TryGetValue(grupoChunk,out var chunkGroup))
-                    {
-                        chunkGroup = new Dictionary<ChunkInfo, List<NotaInstance>>();
-                        chunks.Add(new ChunkSeparation(grupoChunk),chunkGroup);
-                    }
-
-                    chunkGroup.Add(chunkInfo, new List<NotaInstance>(actualChunk));
-                    //chunks.Add(new ChunkSeparation(grupoChunk), chunkContent);
-
-                    actualChunk.Clear();
-                    grupoChunk.modoNota = ModoNota.None;
-                    grupoChunk.tipoNota = TipoNota.None;
-
-                    actualChunk.Add(notaActual);
-                    grupoChunk.tipoNota = notaActual.tipoNota;
-                    grupoChunk.modoNota = notaActual.modoNota;
-                }
-                continue;
-            }
-
-            actualChunk.Add(notaActual);
-        }
-
-        if (actualChunk.Count != 0)
-        {
-            print("creando Chunk, al final");
-            //chunksNotes.Add(actualChunk[0].timeToArrive, new List<NotaInstance>(actualChunk));
-            //actualChunk.Clear();
-            int intialChunkInfo = Mathf.FloorToInt(actualChunk[0].timeToArrive);
-            int finalChunkInfo = Mathf.FloorToInt(actualChunk[actualChunk.Count - 1].timeToArrive);
-
-            ChunkInfo chunkInfo = new ChunkInfo(intialChunkInfo, finalChunkInfo);
-
-            Dictionary<ChunkInfo, List<NotaInstance>> chunkContent = new()
-                    {
-                        {chunkInfo, new List<NotaInstance>(actualChunk)}
-                    };
-
-            chunks.Add(new ChunkSeparation(grupoChunk), chunkContent);
-
-            actualChunk.Clear();
-            grupoChunk.modoNota = ModoNota.None;
-            grupoChunk.tipoNota = TipoNota.None;
-            groupCheck = false;
-
-
-        }
         Debug.Log("-----ACABO GENERACION DE CHUNKS-----");
+    }
 
-        //esto es mucha info que solo se usara cuando lo necesite
-        /*
-        Debug.Log("-----INFO CHUNCKS-----");
-        foreach (var chunk in chuncksNotes)
+    private void FilterChunks()
+    {
+        List<ChunkSeparation> chunksToRemove = new();
+
+        foreach (var chunk in chunks)
         {
-            foreach(NotaInstance nota in chunk.Value)
+            if (chunk.Value.Count == 0)
             {
-                Debug.Log(chunk.Key + "|" + nota.timeToArrive);
+                chunksToRemove.Add(chunk.Key);
             }
         }
-        Debug.Log("-----ACABO INFO CHUNCKS-----");
-        */
+
+        foreach(var itemRemove in chunksToRemove)
+        {
+            chunks.Remove(itemRemove);
+        }
     }
 
-    private bool NotaEsValida(TipoNota tipoNota,ModoNota modoNota)
+    private void ChunksDebugInfo()
     {
-        if (tipoNota != grupoChunk.tipoNota || modoNota != grupoChunk.modoNota)
+        foreach (var chunk in chunks)
         {
-            return false;
+            Debug.Log("chunk de modo: " + chunk.Key.modoNota + " y tipo: " + chunk.Key.tipoNota );
+            Debug.Log("tiene " + chunk.Value.Count + " chunks");
+        }
+    }
+
+    private void CreateChunks(List<NotaInstance> listaNotas)
+    {
+        ChunkSeparation tempSeparation = new();
+
+        foreach (NotaInstance nota in listaNotas)
+        {
+            tempSeparation.modoNota = nota.modoNota;
+            tempSeparation.tipoNota = nota.tipoNota;
+
+            //^1 es para consultar al revez osea del final al inicio
+
+            if (chunks[tempSeparation].Count == 0)
+            {
+                NewChunk(nota, tempSeparation);
+            }
+            else
+            {
+                //ChunkData actualChunk = chunks[tempSeparation][^1];
+
+                int startChunk = chunks[tempSeparation].Last().Key;
+
+                float timeNote = nota.timeToArrive;
+
+                if (timeNote < startChunk + chunkSize)
+                {
+                    //Debug.Log("AGREGANDO NOTA NUEVA");
+                    chunks[tempSeparation][startChunk].notas.Add(nota);
+                }
+                else
+                {
+                    NewChunk(nota, tempSeparation);
+                }
+            }
+        }
+    }
+
+    private void NewChunk(NotaInstance nota, ChunkSeparation separation)
+    {
+        /*
+        Debug.Log("-----INFO DE CHUNK-----");
+        Debug.Log("AGREGANDO CHUNK NUEVO");
+        Debug.Log("MODO CHUNCK " + nota.modoNota);
+        Debug.Log("TIPO CHUNCK " + nota.tipoNota);
+        Debug.Log("-----FINAL DE INFO DE CHUNK-----");
+        */
+
+        float TimeNote = Mathf.FloorToInt(nota.timeToArrive);
+        int startChunk = 0;
+
+        if (TimeNote >= chunkSize)
+        {
+            startChunk = (int)(TimeNote - (TimeNote % chunkSize));
         }
 
-        return true;
+        ChunkData chunkData = new ChunkData();
+        chunkData.startChunk = startChunk;
+
+        List<NotaInstance> notas = new() { nota };
+
+        chunkData.level = new(notas);
+
+        chunks[separation].Add(startChunk, new(notas));
     }
+
+    private void CreateChunksGroups()
+    {
+        foreach (var tipoNota in Enum.GetValues(typeof(TipoNota)))
+        {
+            if ((TipoNota)tipoNota == TipoNota.None) continue;
+
+            foreach (var modoNota in Enum.GetValues(typeof(ModoNota)))
+            {
+                if ((ModoNota)modoNota == ModoNota.None) continue;
+
+                ChunkSeparation chunkSeparation = new((TipoNota)tipoNota, (ModoNota)modoNota);
+
+                Dictionary<int,Level> chunk = new();
+
+                chunks.Add(chunkSeparation, chunk);
+            }
+        }
+    }
+
+    public int ChunkSize => chunkSize;
+
+    public Dictionary<ChunkSeparation, Dictionary<int, Level>> Chunks => chunks;
 }

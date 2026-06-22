@@ -1,5 +1,3 @@
-using System;
-
 public enum DireccionesMovimientoNotas
 {
     None = 5,
@@ -32,6 +30,14 @@ public enum TipoNota
     Sostenida = 1
 }
 
+public enum TipoObjetoPool
+{
+    None = 2,
+    NotaNormal = 0,
+    NotaSostenida = 1,
+    Chunk = 3
+}
+
 public enum ModoNota
 {
     None = 2,
@@ -40,7 +46,6 @@ public enum ModoNota
 }
 
 // por si algun especialito agrega un valor en medio (osea yo :P)
-
 public enum TileModePlayStyle
 {
     None = 10,
@@ -56,14 +61,17 @@ public enum TileModePlayStyle
     TenKeys = 9
 }
 
-
+/*
 [Flags]
+//<< mueve los bits a un lado
+//deben ser multiplos de 2 para seleccionar varios a la vez sin problemas
 public enum Something
 {
     None = 0 << 0,// 0000000
     SuddenDeath = 1 << 1,// 0000010 == 2
     Multiplier = 2 << 2,//0001000 == 4
     abc = 3 << 3,
-    bca = 4<<4,
-    aaa = 5 << 5 //>>
+    bca = 4 << 4,
+    aaa = 5 << 5
 }
+*/

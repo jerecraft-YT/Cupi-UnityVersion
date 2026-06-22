@@ -46,21 +46,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NotaTileNormal
   note: {fileID: 3029405834559605538}
+  spriteNote: {fileID: 6402324039425181279}
   data:
     noteIndex: 0
+    modoNota: 0
     tipoNota: 0
     CorrespondenciaTecla: 0
     DireccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    DireccionCustom: {x: 0, y: 0}
     timeToArrive: 0
     localSpeed: 0
     duracion: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
+    angulo: 0
+    anguloFinal: 0
   DireccionMovimiento: {x: 0, y: 0}
   finalPos: {x: 0, y: 0}
   origin: {fileID: 0}
+  progress: 0
   lockProgress: 0
   offsetRendering: 0
+  Myindex: 0
+  initialized: 0
+  hit: 0
 --- !u!1 &9017525300231842862
 GameObject:
   m_ObjectHideFlags: 0

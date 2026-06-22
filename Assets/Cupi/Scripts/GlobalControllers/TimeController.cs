@@ -13,7 +13,7 @@ public class TimeController : MonoBehaviour
 
     private double additiveTime;
 
-    public float timeScale = 1.0f;
+    private float timeScale = 1.0f;
 
     private float oldTimeScale = 1.0f;
 

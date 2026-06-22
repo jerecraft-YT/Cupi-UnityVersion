@@ -15,7 +15,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
     //esto define cuantas secciones de un segundo daran puntos de la nota sostenida
     const int seccionesPorSegundos = 8;
 
-    const float margenDestruirNotaTile = 2.0f;
+    //const float margenDestruirNotaTile = 2.0f;
 
     protected override void OnEnable()
     {
@@ -52,7 +52,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
     {
         timeToArriveForLine = data.duracion + data.timeToArrive;
 
-        getPointsEvery = data.duracion > 0 ? 1.0f / (data.duracion * seccionesPorSegundos) : 1.0f;
+        getPointsEvery = data.duracion > 0 ? 1.0f / (data.duracion * seccionesPorSegundos) : 0.125f;
     }
 
     private void SetLinePoints()
@@ -111,8 +111,11 @@ public class NotaTileSostenida : NotaTileBaseLogic
             actualPointGetter++;
         }
 
+        if (timeController.TimeScale < 0) return;
+
         if (lockProgress)
         {
+            // hit
             offsetRendering = consumoNota * data.duracion;
             if (consumoNota >= 1.0f)
             {
@@ -121,6 +124,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
         }
         else
         {
+            //hit por margen de soltar
             float margenNota = timeToArriveForLine + tilesModeMaster.RenderLimit;
 
             if (currentTime > margenNota || (consumoNota >= 1.0f - getPointsEvery && actualPointGetter > seccionesPorSegundos - 1))

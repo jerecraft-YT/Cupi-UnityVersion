@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class NotaTileNormal : NotaTileBaseLogic
 {
-    private bool canMiss;
+    private bool canHit;
+    private bool changeNoteState;
 
     protected override void OnEnable()
     {
-        canMiss = true;
+        canHit = true;
+        changeNoteState = true;
 
         base.OnEnable();
 
@@ -21,29 +23,70 @@ public class NotaTileNormal : NotaTileBaseLogic
     protected override void LogicUpdate()
     {
         DetectMiss();
+
+        if (!canHit)
+        {
+            if (data.timeToArrive - tilesModeMaster.toleranciaError > timeController.AdditiveTime)
+            {
+                canHit = true;
+                changeNoteState = true;
+            }
+        }
+
+        if (changeNoteState)
+        {
+            if (!canHit)
+            {
+                Color colorActual = spriteNote.color;
+
+                colorActual.a = 0f;
+
+                spriteNote.color = colorActual;
+            }
+            else
+            {
+                Color colorActual = spriteNote.color;
+
+                colorActual.a = 1f;
+
+                spriteNote.color = colorActual;
+            }
+
+            changeNoteState = false;
+        }
     }
 
     private void DetectClick(CorrespondenciaTecla tecla)
     {
-        if (tecla != data.CorrespondenciaTecla) return;
+        if (tecla != data.CorrespondenciaTecla || timeController.TimeScale < 0 || !canHit) return;
 
         float timeDiff = Mathf.Abs(data.timeToArrive - (float)timeController.AdditiveTime);
 
         if (timeDiff < tilesModeMaster.toleranciaError)
         {
             TilesModeNotesController.HitNote(data.CorrespondenciaTecla);
-            DestroyNote();
+            canHit = false;
+            changeNoteState = true;
+            //DestroyNote();
         }
     }
 
     private void DetectMiss()
     {
-        if (!canMiss) return;
+        if (timeController.TimeScale < 0) return;
 
-        if (data.timeToArrive + tilesModeMaster.toleranciaError < timeController.AdditiveTime)
+        //bool reverseMiss = data.timeToArrive
+
+        bool standartMiss = data.timeToArrive + tilesModeMaster.toleranciaError < timeController.AdditiveTime;
+
+        if (standartMiss)
         {
-            canMiss = false;
-            TilesModeNotesController.MissNote(data.CorrespondenciaTecla);
+            if (canHit)
+            {
+                canHit = false;
+                changeNoteState = true;
+                TilesModeNotesController.MissNote(data.CorrespondenciaTecla);
+            }
             DestroyNote();
         }
     }

@@ -103,11 +103,11 @@ public class MusicController : MonoBehaviour
 
         if (additiveTime < 0 || additiveTime > mainMusic.clip.length) return;
 
-        if (Mathf.Abs(additiveTime - mainMusic.time) >= Mathf.Abs(toleranciaSincronizacion * TimeController.instance.timeScale))
+        if (Mathf.Abs(additiveTime - mainMusic.time) >= Mathf.Abs(toleranciaSincronizacion * TimeController.instance.TimeScale))
         {
             if (!mainMusic.isPlaying) mainMusic.Play();
 
-            Debug.Log("resincronizando musica");
+            //Debug.Log("resincronizando musica");
 
             mainMusic.time = additiveTime;
         }

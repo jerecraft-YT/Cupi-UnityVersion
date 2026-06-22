@@ -53,7 +53,7 @@ public class LoadLevelManager : MonoBehaviour
 
         if (carga != null && carga.progress >= 0.9f)
         {
-            TimeController.instance.SetTime(0.0f);
+            TimeController.instance.SetTime(-5.0f);
             carga.allowSceneActivation = true;
         }
 

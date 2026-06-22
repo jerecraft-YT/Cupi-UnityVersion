@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public struct NotaInstance
+public class NotaInstance
 {
     [Header("Definicion Inicial")]
     public int noteIndex;
@@ -33,7 +33,7 @@ public struct NotaInstance
 public class PrefabNote
 {
     public GameObject prefab;
-    public TipoNota tipoNota;
+    public TipoObjetoPool tipoObjetoPool;
     public int IntialInstances;
 }
 
@@ -135,16 +135,10 @@ public class CacheAudio
     }
 }
 
-public struct ChunkInfo
+public class ChunkData
 {
-    public int start;
-    public int end;
-
-    public ChunkInfo(int start,int end)
-    {
-        this.start = start;
-        this.end = end;
-    }
+    public int startChunk;
+    public Level level;
 }
 
 public struct ChunkSeparation
@@ -156,11 +150,5 @@ public struct ChunkSeparation
     {
         this.tipoNota = tipoNota;
         this.modoNota = modoNota;
-    }
-
-    public ChunkSeparation(ChunkSeparation chunkSeparation)
-    {
-        tipoNota = chunkSeparation.tipoNota;
-        modoNota = chunkSeparation.modoNota;
     }
 }

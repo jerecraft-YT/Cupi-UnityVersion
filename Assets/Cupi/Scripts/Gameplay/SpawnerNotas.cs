@@ -1,10 +1,9 @@
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class SpawnerNotas : MonoBehaviour
 {
-    public Something smt;
     public static SpawnerNotas instance;
 
     public static Dictionary<CorrespondenciaTecla, Transform> PosicionFinalNotaTile;
@@ -22,6 +21,9 @@ public class SpawnerNotas : MonoBehaviour
 
     const string capaTileMode = "TileMode";
 
+    public int prevTimeForChunk = -1;
+    public int prevSizeSearching = -1;
+
     public Transform radialModeReference;
 
     const string capaRadialMode = "RadialMode";
@@ -30,7 +32,16 @@ public class SpawnerNotas : MonoBehaviour
 
     public Sprite spriteReference;
 
-    private ChunkController chunckController;
+    private ChunkController chunkController;
+
+    private PoolController PoolController;
+
+    private TimeController timeController;
+
+    //sirve para agregar elementos unicos
+    //public HashSet<int> spawnedNotes = new();
+
+    public HashSet<int> spawnedNotes = new();
 
     private void Awake()
     {
@@ -42,13 +53,8 @@ public class SpawnerNotas : MonoBehaviour
 
         instance = this;
 
-        chunckController = GetComponent<ChunkController>();
+        chunkController = GetComponent<ChunkController>();
 
-        SpawnReferences();
-    }
-
-    private void SpawnReferences()
-    {
         SpawnTileReferences();
     }
 
@@ -80,10 +86,26 @@ public class SpawnerNotas : MonoBehaviour
     private void SortNotes()
     {
         notasToInstance = notasToInstance.OrderBy(t => t.timeToArrive).ToList();
+
+        for (int i = 0; i < notasToInstance.Count; i++)
+        {
+            notasToInstance[i].noteIndex = i;
+        }
     }
 
     private void Start()
     {
+        PoolController = PoolController.instance;
+
+        timeController = TimeController.instance;
+
+        StartLevel();
+    }
+
+    private void StartLevel()
+    {
+        //TilesModeNotesController.RemoveNote += RemoveNote;
+
         if (!string.IsNullOrEmpty(LevelDataController.instance.levelName))
         {
             notasToInstance = LevelDataController.instance.actualLevel.notas;
@@ -91,31 +113,90 @@ public class SpawnerNotas : MonoBehaviour
 
         SortNotes();
 
-        chunckController.GenerateBulletChuncks(notasToInstance);
+        chunkController.GenerateBulletChunks(notasToInstance);
 
+        ChunkSpawnController();
+    }
+
+    public void RemoveNote(int notaInstance)
+    {
+        //Debug.Log("se quito nota");
+        spawnedNotes.Remove(notaInstance);
+    }
+
+    public float NotesWindowEnd;
+
+    private void ChunkSpawnController()
+    {
+        float currentTime = (float)timeController.AdditiveTime;
+
+        float travelTime = tileModeMaster.NotesVisibleRender / tileModeMaster.notaTileSpeed;
+
+        float spawnWindowStart = currentTime;
+        float spawnWindowEnd = currentTime + travelTime;
+
+        NotesWindowEnd = spawnWindowEnd + chunkController.ChunkSize;
+
+        int firstChunk = FloorChunk(spawnWindowStart, chunkController.ChunkSize);
+
+        int lastChunk = FloorChunk(spawnWindowEnd, chunkController.ChunkSize);
+
+        foreach (var chunkGroup in chunkController.Chunks)
+        {
+            var dict = chunkGroup.Value;
+
+            for (int chunkTime = firstChunk; chunkTime <= lastChunk; chunkTime += chunkController.ChunkSize)
+            {
+                if (!dict.TryGetValue(chunkTime, out var level))
+                    continue;
+
+                foreach (var nota in level.notas)
+                {
+                    if (spawnedNotes.Contains(nota.noteIndex) || (nota.timeToArrive < currentTime))
+                        continue;
+
+                    SpawnNote(nota);
+                }
+            }
+        }
+    }
+
+    private int FloorChunk(float valor, int modulo)
+    {
+        return Mathf.FloorToInt(valor / modulo) * modulo;
+    }
+
+    private void Update()
+    {
+        ChunkSpawnController();
+    }
+
+    private void SpawnNote(NotaInstance notaActual)
+    {
         int playStyle = (int)tileModeMaster.PlayStyle;
 
-        foreach (NotaInstance notaActual in notasToInstance)
-        {
-            GameObject nota = TilesModePoolController.instance.RequestInstance(notaActual.tipoNota);
+        spawnedNotes.Add(notaActual.noteIndex);
 
-            if (nota == null) continue;
+        TipoObjetoPool tipoObjetoPool = (TipoObjetoPool)(int)notaActual.tipoNota;
 
-            CorrespondenciaTecla tecla = notaActual.CorrespondenciaTecla;
+        GameObject nota = PoolController.RequestInstance(tipoObjetoPool);
 
-            NotaTileBaseLogic scriptNota = nota.GetComponent<NotaTileBaseLogic>();
+        if (nota == null) return;
 
-            scriptNota.Initialize(notaActual);
+        CorrespondenciaTecla tecla = notaActual.CorrespondenciaTecla;
 
-            if ((int)tecla > playStyle) scriptNota.data.CorrespondenciaTecla = (CorrespondenciaTecla)playStyle;
+        NotaTileBaseLogic scriptNota = nota.GetComponent<NotaTileBaseLogic>();
 
-            nota.transform.SetParent(DefinirCorrespondenciaTecla(scriptNota.data.CorrespondenciaTecla));
-            nota.transform.localPosition = Vector2.zero;
+        scriptNota.Initialize(notaActual);
 
-            scriptNota.origin = TilesModePoolController.instance.RequestGroupPool(notaActual.tipoNota).transform;
+        if ((int)tecla > playStyle) scriptNota.data.CorrespondenciaTecla = (CorrespondenciaTecla)playStyle;
 
-            scriptNota.DireccionMovimiento = EstablecerDireccionMovimiento(notaActual.DireccionMovimiento, notaActual.DireccionCustom);
-        }
+        nota.transform.SetParent(DefinirCorrespondenciaTecla(scriptNota.data.CorrespondenciaTecla));
+        nota.transform.localPosition = Vector2.zero;
+
+        scriptNota.origin = PoolController.RequestGroupPool(tipoObjetoPool).transform;
+
+        scriptNota.DireccionMovimiento = EstablecerDireccionMovimiento(notaActual.DireccionMovimiento, notaActual.DireccionCustom);
     }
 
     private Transform DefinirCorrespondenciaTecla(CorrespondenciaTecla Tecla)

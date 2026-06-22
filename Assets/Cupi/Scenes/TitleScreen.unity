@@ -815,8 +815,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+      - m_Target: {fileID: 370558558}
+        m_TargetAssemblyTypeName: TitleScreenManager, Assembly-CSharp
         m_MethodName: DificultadSeleccionada
         m_Mode: 0
         m_Arguments:
@@ -2533,9 +2533,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicLoader
   _levelViewer: {fileID: 2128877445}
+  bpmController: {fileID: 55097105}
   _timeTransitionMusic: 0.3
   _maxMusicInCache: 5
-  bpmController: {fileID: 55097105}
   readyForNewLoad: 0
   musicInUse: 
 --- !u!4 &1625078172

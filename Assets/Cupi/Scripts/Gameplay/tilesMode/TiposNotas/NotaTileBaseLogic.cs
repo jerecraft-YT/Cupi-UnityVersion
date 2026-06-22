@@ -4,26 +4,30 @@ public class NotaTileBaseLogic : MonoBehaviour
 {
     protected TimeController timeController;
     protected TilesModeMaster tilesModeMaster;
+    protected SpawnerNotas spawnerNotas;
 
     [SerializeField] private Transform note;
+    public SpriteRenderer spriteNote;
     public NotaInstance data;
     public Vector2 DireccionMovimiento;
     public Vector2 finalPos;
     public Transform origin;
-    private float progress;
+    public float progress;
     public bool lockProgress;
     public float offsetRendering;
+    public int Myindex;
+    public bool initialized;
 
     private void Awake()
     {
         timeController = TimeController.instance;
         tilesModeMaster = TilesModeMaster.instance;
+        spawnerNotas = SpawnerNotas.instance;
     }
 
     protected virtual void OnEnable()
     {
         TilesModeNotesController.NotasActivas += UpdateNote;
-        NoteVisualUpdate();
     }
     protected virtual void OnDisable()
     {
@@ -40,6 +44,8 @@ public class NotaTileBaseLogic : MonoBehaviour
 
     public void NoteVisualUpdate()
     {
+        if (!initialized) return;
+
         progress = 1 - InverseLerpUnclamped(0.0f, data.timeToArrive + offsetRendering, (float)TimeController.instance.AdditiveTime);
 
         if (lockProgress) progress = Mathf.Max(0, progress);
@@ -49,6 +55,11 @@ public class NotaTileBaseLogic : MonoBehaviour
         finalPos = data.offsetPositionToGo + (DireccionMovimiento * distancia);
 
         note.localPosition = finalPos;
+
+        if (data.timeToArrive > spawnerNotas.NotesWindowEnd)
+        {
+            DestroyNote();
+        }
     }
 
     public void DestroyNote()
@@ -65,14 +76,22 @@ public class NotaTileBaseLogic : MonoBehaviour
 
     public void GoToPool()
     {
+        //Debug.Log($"Pooling note {Myindex} {data.noteIndex}");
+        spawnerNotas.RemoveNote(Myindex);
+        Myindex = -1;
         transform.parent = origin;
+        initialized = false;
         gameObject.SetActive(false);
     }
     public void Initialize(NotaInstance config)
     {
         data = config;
 
+        Myindex = config.noteIndex;
+
         PostInitialize();
+
+        initialized = true;
     }
 
     protected virtual void PostInitialize()

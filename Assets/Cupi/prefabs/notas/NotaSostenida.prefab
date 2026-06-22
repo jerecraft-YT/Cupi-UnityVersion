@@ -277,22 +277,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7469a47e6d8bd44a52968e4e074d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NotaTileSostenida
+  note: {fileID: 8139045553488692202}
+  spriteNote: {fileID: 4124667020694486612}
   data:
     noteIndex: 0
+    modoNota: 0
     tipoNota: 0
     CorrespondenciaTecla: 0
     DireccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    DireccionCustom: {x: 0, y: 0}
     timeToArrive: 0
     localSpeed: 0
     duracion: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
+    angulo: 0
+    anguloFinal: 0
   DireccionMovimiento: {x: 0, y: 0}
   finalPos: {x: 0, y: 0}
   origin: {fileID: 0}
-  note: {fileID: 8139045553488692202}
   progress: 0
   lockProgress: 0
+  offsetRendering: 0
+  Myindex: 0
+  initialized: 0
+  hit: 0
   lineNote: {fileID: 7100625877865951975}
-  timeToArriveForLine: 0
-  consumoNota: 0

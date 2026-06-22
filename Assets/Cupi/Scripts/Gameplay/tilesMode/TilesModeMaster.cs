@@ -4,16 +4,12 @@ public class TilesModeMaster : MonoBehaviour
 {
     public static TilesModeMaster instance;
 
-    public SpriteRenderer sprite;
-
     [Header("Config Notas")]
 
     public TileModePlayStyle PlayStyle;
 
     [Tooltip("Margen de error para las notas (en segundos) ademas variara segun la velocidad")]
-    public float toleranciaError;
-
-    private float toleranciaErrorBase;
+    public float toleranciaErrorBase;
 
     [Tooltip("Velocidad general de notas")]
     public float notaTileSpeed = 4;
@@ -26,7 +22,6 @@ public class TilesModeMaster : MonoBehaviour
     public float limiteInferiorRender = 1.0f;
 
     public float extraRenderSize = 2.0f;
-
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -35,22 +30,15 @@ public class TilesModeMaster : MonoBehaviour
             return;
         }
         instance = this;
-
-        toleranciaErrorBase = toleranciaError;
     }
 
-    private void Update()
-    {
-        //actualizacion en tiempo real de la toleracia :3
-        toleranciaError = toleranciaErrorBase / notaTileSpeed;
-
-        sprite.transform.localScale = new Vector3 (sprite.transform.localScale.x, NotesVisibleRenderSize, sprite.transform.localScale.z);
-    }
+    //es mejor asi para no calcularlo en el update
+    public float toleranciaError => toleranciaErrorBase / notaTileSpeed;
 
     public float RenderLimit => (limiteInferiorRender / notaTileSpeed) + extraRenderSize;
 
-    public float NotesVisibleRenderSize => ((Camera.main.orthographicSize * 2.0f) + extraRenderSize) / notaTileSpeed;
+    [Tooltip("marca el rango de tiempo en que las notas seran visibles")]
+    public float NotesVisibleRender => ((Camera.main.orthographicSize * 2.0f) + extraRenderSize);
 
-
-
+    public float NotesMidleVisibleRender => (Camera.main.orthographicSize + extraRenderSize);
 }

@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class TilesModePoolController : MonoBehaviour
+public class PoolController : MonoBehaviour
 {
-    public static TilesModePoolController instance;
+    public static PoolController instance;
     [SerializeField] private List<PrefabNote> Prefabs;
     private List<List<GameObject>> Instances = new List<List<GameObject>>();
     private List<GameObject> groupPool = new List<GameObject>();
@@ -19,11 +19,11 @@ public class TilesModePoolController : MonoBehaviour
         InstancePrefabs();
     }
 
-    private int GetPrefabIndex(TipoNota notaGet)
+    private int GetPrefabIndex(TipoObjetoPool tipoObjetoPool)
     {
         for (int index = 0; index < Prefabs.Count; index++)
         {
-            if (Prefabs[index].tipoNota == notaGet)
+            if (Prefabs[index].tipoObjetoPool == tipoObjetoPool)
             {
                 return index;
             }
@@ -31,7 +31,7 @@ public class TilesModePoolController : MonoBehaviour
         return -1;
     }
 
-    private GameObject SearchActiveInstance(int index,TipoNota tipoNota)
+    private GameObject SearchActiveInstance(int index)
     {
         foreach (GameObject objectPool in Instances[index])
         {
@@ -66,7 +66,7 @@ public class TilesModePoolController : MonoBehaviour
 
         GameObject groupInstance = new GameObject();
         groupInstance.transform.SetParent(transform);
-        groupInstance.name = Prefabs[indexPrefab].tipoNota.ToString();
+        groupInstance.name = Prefabs[indexPrefab].tipoObjetoPool.ToString();
         groupPool.Add(groupInstance);
     }
 
@@ -92,25 +92,25 @@ public class TilesModePoolController : MonoBehaviour
             }
         }
     }
-    public GameObject RequestInstance(TipoNota notaGet)
+    public GameObject RequestInstance(TipoObjetoPool tipoObjetoPool)
     {
-        int index = GetPrefabIndex(notaGet);
+        int index = GetPrefabIndex(tipoObjetoPool);
 
         if (index == -1)
         {
-            Debug.LogError($"instancia  {notaGet} no existe en la pool actual");
+            Debug.LogError($"instancia  {tipoObjetoPool} no existe en la pool actual");
             return null;
         }
-        return SearchActiveInstance(index, notaGet);
+        return SearchActiveInstance(index);
     }
 
-    public GameObject RequestGroupPool(TipoNota notaGet)
+    public GameObject RequestGroupPool(TipoObjetoPool tipoObjetoPool)
     {
-        int index = GetPrefabIndex(notaGet);
+        int index = GetPrefabIndex(tipoObjetoPool);
 
         if (index == -1)
         {
-            Debug.LogError($"instancia  {notaGet} no existe en la pool actual");
+            Debug.LogError($"instancia  {tipoObjetoPool} no existe en la pool actual");
             return null;
         }
         return groupPool[index];

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -44,7 +45,7 @@ public class DebugController : MonoBehaviour
     {
         if (audioSource == null) return;
 
-        TimeController.instance.TimeScale = valor;
+        TimeController.instance.TimeScale = (float)Math.Round(valor,2);
 
         audioSource.pitch = valor;
     }

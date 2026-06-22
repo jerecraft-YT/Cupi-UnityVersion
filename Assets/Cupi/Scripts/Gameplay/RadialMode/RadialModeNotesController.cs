@@ -12,7 +12,7 @@ public class RadialModeNotesController : MonoBehaviour
     {
         Vector3 mousePos = Mouse.current.position.ReadValue();
 
-        Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, mainCamera.nearClipPlane));
+        Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0.0f));
 
         Vector3 direction = mouseWorldPos - testSeguimiento.transform.position;
 

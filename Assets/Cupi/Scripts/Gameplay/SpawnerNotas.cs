@@ -21,8 +21,7 @@ public class SpawnerNotas : MonoBehaviour
 
     const string capaTileMode = "TileMode";
 
-    public int prevTimeForChunk = -1;
-    public int prevSizeSearching = -1;
+    public float NotesWindowEnd;
 
     public Transform radialModeReference;
 
@@ -39,8 +38,6 @@ public class SpawnerNotas : MonoBehaviour
     private TimeController timeController;
 
     //sirve para agregar elementos unicos
-    //public HashSet<int> spawnedNotes = new();
-
     public HashSet<int> spawnedNotes = new();
 
     private void Awake()
@@ -104,8 +101,6 @@ public class SpawnerNotas : MonoBehaviour
 
     private void StartLevel()
     {
-        //TilesModeNotesController.RemoveNote += RemoveNote;
-
         if (!string.IsNullOrEmpty(LevelDataController.instance.levelName))
         {
             notasToInstance = LevelDataController.instance.actualLevel.notas;
@@ -123,8 +118,6 @@ public class SpawnerNotas : MonoBehaviour
         //Debug.Log("se quito nota");
         spawnedNotes.Remove(notaInstance);
     }
-
-    public float NotesWindowEnd;
 
     private void ChunkSpawnController()
     {

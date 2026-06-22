@@ -43,10 +43,9 @@ public class DebugController : MonoBehaviour
     }
     public void ChangeTimeScale(float valor)
     {
-        if (audioSource == null) return;
-
         TimeController.instance.TimeScale = (float)Math.Round(valor,2);
-
+        
+        if (audioSource == null) return;
         audioSource.pitch = valor;
     }
 }

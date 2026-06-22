@@ -1130,8 +1130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerNotas
   tileModeMaster: {fileID: 179359629}
   tileModeReference: {fileID: 179359623}
-  prevTimeForChunk: -1
-  prevSizeSearching: -1
+  NotesWindowEnd: 0
   radialModeReference: {fileID: 29140253}
   notasToInstance:
   - noteIndex: 0

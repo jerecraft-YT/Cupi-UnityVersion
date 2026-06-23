@@ -89,7 +89,7 @@ SpriteRenderer:
   m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1666205149790237592
 GameObject:
@@ -300,5 +300,4 @@ MonoBehaviour:
   offsetRendering: 0
   Myindex: 0
   initialized: 0
-  hit: 0
   lineNote: {fileID: 7100625877865951975}

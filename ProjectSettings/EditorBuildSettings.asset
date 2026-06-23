@@ -6,16 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Cupi/Scenes/TitleScreen.unity
+    path: Assets/Cupi/Resources/Scenes/TitleScreen.unity
     guid: 51f0a74ddba011c43a40588c24150ab0
   - enabled: 1
-    path: Assets/Cupi/Scenes/PersistentGameplay.unity
+    path: Assets/Cupi/Resources/Scenes/PersistentGameplay.unity
     guid: aa531c829721b324e9f6a0ccc979a698
   - enabled: 1
-    path: Assets/Cupi/Scenes/LoadLevel.unity
+    path: Assets/Cupi/Resources/Scenes/LoadLevel.unity
     guid: 6d301c78e4eb9d44c81111d514e75ab3
   - enabled: 1
-    path: Assets/Cupi/Scenes/TestZone.unity
+    path: Assets/Cupi/Resources/Scenes/TestZone.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RadialModeMaster
   coberturaEscudo: 75
   radioEscudo: 1.1
-  calidadEscudo: 1
+  calidadEscudo: 4
 --- !u!114 &29140255
 MonoBehaviour:
   m_ObjectHideFlags: 0

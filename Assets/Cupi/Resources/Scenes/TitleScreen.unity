@@ -2498,6 +2498,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: BpmController
       objectReference: {fileID: 0}
+    - target: {fileID: 4639647881117908518, guid: 23004adb88981594eb338a065d50843c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114484699902056748, guid: 23004adb88981594eb338a065d50843c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: adb74db3afadd544f83f40bf8404548d, type: 3}
+    - target: {fileID: 6114484699902056748, guid: 23004adb88981594eb338a065d50843c, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

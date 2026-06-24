@@ -166,6 +166,23 @@ public class SpawnerNotas : MonoBehaviour
 
     private void SpawnNote(NotaInstance notaActual)
     {
+        switch (notaActual.modoNota)
+        {
+            case ModoNota.None:
+                break;
+            case ModoNota.Tile:
+                SpawnTileNote(notaActual);
+                break;
+            case ModoNota.Radial:
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private void SpawnTileNote(NotaInstance notaActual)
+    {
         int playStyle = (int)tileModeMaster.PlayStyle;
 
         spawnedNotes.Add(notaActual.noteIndex);

@@ -58,7 +58,7 @@ public class LevelViewer : MonoBehaviour
         testDataLevel.Autor = "AutorNivel";
         testDataLevel.Bpm = 123;
         testDataLevel.PreviewTimeMusic = 0;
-        testDataLevel.MusicFileName = "DireccionNivel(local y con extension)";
+        //testDataLevel.MusicFileName = "DireccionNivel(local y con extension)";
         testDataLevel.Description = "DescripcionNivel";
         testDataLevel.Tags = "TagsSeparadosPor(|)";
         testDataLevel.LevelsFiles = new(){levelData};
@@ -71,10 +71,11 @@ public class LevelViewer : MonoBehaviour
         notaInstance.CorrespondenciaTecla = CorrespondenciaTecla.One;
         notaInstance.timeToArrive = 1;
         notaInstance.DireccionMovimiento = DireccionesMovimientoNotas.Up;
+        notaInstance.localSpeed = 1;
 
         List<NotaInstance> notaInstances = new() { notaInstance};
 
-        await DataLevelsLoader.SaveAll(notaInstances, "nivelPrueba", testDataLevel, "E:/proyectos/Cupi/Assets/Cupi/Resources/audiosPrueba/DJ Quads - The Improv (SPOTISAVER).mp3");
+        await DataLevelsLoader.SaveAll(notaInstances, "nivelPrueba", testDataLevel, "C:/Users/Alumno/Documents/GitHub/Cupi-UnityVersion/Assets/Cupi/Resources/audiosPrueba/DJ Quads - The Improv (SPOTISAVER).mp3");
     }
 
     private void GetLevels()

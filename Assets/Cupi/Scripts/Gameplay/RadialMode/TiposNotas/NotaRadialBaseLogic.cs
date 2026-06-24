@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class NotaTileBaseLogic : MonoBehaviour
+public class NotaRadialBaseLogic : MonoBehaviour
 {
     protected TimeController timeController;
-    protected TilesModeMaster tilesModeMaster;
+    protected RadialModeMaster radialModeMaster;
     protected SpawnerNotas spawnerNotas;
 
     [SerializeField] private Transform note;
@@ -21,7 +21,7 @@ public class NotaTileBaseLogic : MonoBehaviour
     private void Awake()
     {
         timeController = TimeController.instance;
-        tilesModeMaster = TilesModeMaster.instance;
+        radialModeMaster = RadialModeMaster.instance;
         spawnerNotas = SpawnerNotas.instance;
     }
 
@@ -86,6 +86,11 @@ public class NotaTileBaseLogic : MonoBehaviour
     public void Initialize(NotaInstance config)
     {
         data = config;
+
+        float cosDir = Mathf.Cos(data.angulo * Mathf.Deg2Rad);
+        float sinDir = Mathf.Sin(data.angulo * Mathf.Deg2Rad);
+
+        DireccionMovimiento = new Vector2(cosDir , sinDir);
 
         Myindex = config.noteIndex;
 

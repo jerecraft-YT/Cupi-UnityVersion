@@ -64,7 +64,7 @@ public class NotaTileNormal : NotaTileBaseLogic
 
         if (timeDiff < tilesModeMaster.toleranciaError)
         {
-            TilesModeNotesController.HitNote(data.CorrespondenciaTecla);
+            NotesController.HitNote(data.CorrespondenciaTecla);
             canHit = false;
             changeNoteState = true;
             //DestroyNote();
@@ -85,7 +85,7 @@ public class NotaTileNormal : NotaTileBaseLogic
             {
                 canHit = false;
                 changeNoteState = true;
-                TilesModeNotesController.MissNote(data.CorrespondenciaTecla);
+                NotesController.MissNote(data.CorrespondenciaTecla);
             }
             DestroyNote();
         }

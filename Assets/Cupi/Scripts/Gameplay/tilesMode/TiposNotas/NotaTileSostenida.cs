@@ -77,7 +77,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
             lockProgress = true;
             if (firstHit)
             {
-                TilesModeNotesController.HitNote(data.CorrespondenciaTecla);
+                NotesController.HitNote(data.CorrespondenciaTecla);
                 firstHit = false;
             }
         }

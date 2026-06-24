@@ -1,9 +1,9 @@
 using UnityEngine;
 using System;
 
-public class TilesModeNotesController : MonoBehaviour
+public class NotesController : MonoBehaviour
 {
-    public static TilesModeNotesController instance;
+    public static NotesController instance;
 
     public static event Action NotasActivas;
 

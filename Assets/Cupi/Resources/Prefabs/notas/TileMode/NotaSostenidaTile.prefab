@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 4646146315428729361}
   - component: {fileID: 4661412166383302511}
   m_Layer: 0
-  m_Name: NotaSostenida
+  m_Name: NotaSostenidaTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

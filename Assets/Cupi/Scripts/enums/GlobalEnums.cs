@@ -33,9 +33,10 @@ public enum TipoNota
 public enum TipoObjetoPool
 {
     None = 2,
-    NotaNormal = 0,
-    NotaSostenida = 1,
-    Chunk = 3
+    NotaNormalTile = 0,
+    NotaSostenidaTile = 1,
+    NotaNormalRadial = 3,
+    NotaSostenidaRadial = 4,
 }
 
 public enum ModoNota

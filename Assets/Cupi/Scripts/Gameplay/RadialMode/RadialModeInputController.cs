@@ -70,6 +70,8 @@ public class RadialModeInputController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(virtualMouse, Vector3.one);
         Gizmos.DrawCube(referenceMouse, Vector3.one);
     }
 

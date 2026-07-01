@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RadialModeMaster
   coberturaEscudo: 75
   radioEscudo: 1.1
-  sensibilidadEscudo: 15
+  sensibilidadEscudo: 1
   calidadEscudo: 4
 --- !u!114 &29140255
 MonoBehaviour:
@@ -186,7 +186,7 @@ MonoBehaviour:
   mainCamera: {fileID: 519420031}
   mouse: {fileID: 8583077432868110708, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   virtualMouse: {x: 0, y: 0, z: 0}
-  sensitivity: 1
+  sensitivity: 0.01
 --- !u!1 &95344106
 GameObject:
   m_ObjectHideFlags: 0

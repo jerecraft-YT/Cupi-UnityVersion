@@ -11,6 +11,14 @@ public class RadialModeInputController : MonoBehaviour
 
     public Camera mainCamera;
 
+    private Vector3 referenceMouse;
+
+    public InputActionReference mouse;
+
+    public Vector3 virtualMouse;
+
+    public float sensitivity = 1.0f;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -20,6 +28,8 @@ public class RadialModeInputController : MonoBehaviour
         }
 
         instance = this;
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnEnable()
@@ -37,14 +47,30 @@ public class RadialModeInputController : MonoBehaviour
 
     private void MoveShield()
     {
-        Vector3 mousePos = Mouse.current.position.ReadValue();
+        Vector3 mousePos = mouse.action.ReadValue<Vector2>();
 
-        Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 0.0f));
+        virtualMouse.x += mousePos.x * sensitivity;
 
-        Vector3 direction = mouseWorldPos - escudoLine.transform.position;
+        virtualMouse.y += mousePos.y * sensitivity;
+
+        Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(virtualMouse.x, virtualMouse.y, 0.0f));
+
+        Vector3 direction = virtualMouse - referenceMouse;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         escudoLine.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+        float distanceToChange = Vector3.Distance(virtualMouse, referenceMouse);
+
+        if (distanceToChange > RadialModeMaster.instance.sensibilidadEscudo)
+        {
+            referenceMouse = virtualMouse + (referenceMouse - virtualMouse).normalized * RadialModeMaster.instance.sensibilidadEscudo;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(referenceMouse, Vector3.one);
     }
 
     private void CreateLine()

@@ -8,9 +8,10 @@ public class RadialModeMaster : MonoBehaviour
 
     public float radioEscudo = 1f;
 
+    public float sensibilidadEscudo = 1f;
+
     [Tooltip("valores mas altos son una calidad mas baja")]
     public float calidadEscudo = 1.0f;
-
     private void Awake()
     {
         if (instance != null && instance != this)

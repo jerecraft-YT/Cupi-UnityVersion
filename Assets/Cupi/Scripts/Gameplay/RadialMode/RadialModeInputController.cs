@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,11 +14,11 @@ public class RadialModeInputController : MonoBehaviour
 
     private Vector3 referenceMouse;
 
-    public InputActionReference mouse;
+    //public InputActionReference mouse;
 
-    public Vector3 virtualMouse;
+    public Vector3 virtualCursor;
 
-    public float sensitivity = 1.0f;
+    public float sensitivityCursor = 0.01f;
 
     private void Awake()
     {
@@ -32,46 +33,57 @@ public class RadialModeInputController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    private void ControlSchemeChange()
+    {
+
+    }
+
     private void OnEnable()
     {
         _radialModeMaster = RadialModeMaster.instance;
 
+        InputController.instance.gameInputs.RadialMode.Cursor.performed += MoveShield;
+
         CreateLine();
+    }
+
+    private void OnDisable()
+    {
+        InputController.instance.gameInputs.RadialMode.Cursor.performed -= MoveShield;
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveShield();
+        //MoveShield();
     }
 
-    private void MoveShield()
+    private void MoveShield(InputAction.CallbackContext ctx)
     {
-        Vector3 mousePos = mouse.action.ReadValue<Vector2>();
+        Vector3 mousePos = ctx.ReadValue<Vector2>();
 
-        virtualMouse.x += mousePos.x * sensitivity;
+        float sensitivity = ctx.control.device is Pointer ? sensitivityCursor : 1f;
 
-        virtualMouse.y += mousePos.y * sensitivity;
+        virtualCursor += mousePos * sensitivity;
 
-        Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(virtualMouse.x, virtualMouse.y, 0.0f));
-
-        Vector3 direction = virtualMouse - referenceMouse;
+        Vector3 direction = virtualCursor - referenceMouse;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         escudoLine.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-        float distanceToChange = Vector3.Distance(virtualMouse, referenceMouse);
+        float distanceToChange = Vector3.Distance(virtualCursor, referenceMouse);
 
-        if (distanceToChange > RadialModeMaster.instance.sensibilidadEscudo)
+        if (distanceToChange > _radialModeMaster.sensibilidadEscudo)
         {
-            referenceMouse = virtualMouse + (referenceMouse - virtualMouse).normalized * RadialModeMaster.instance.sensibilidadEscudo;
+            referenceMouse = virtualCursor + (referenceMouse - virtualCursor).normalized * _radialModeMaster.sensibilidadEscudo;
         }
     }
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.beige;
+        Gizmos.DrawCube(virtualCursor, Vector3.one * 0.5f);
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(virtualMouse, Vector3.one);
         Gizmos.DrawCube(referenceMouse, Vector3.one);
     }
 

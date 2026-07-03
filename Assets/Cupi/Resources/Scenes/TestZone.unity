@@ -184,9 +184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RadialModeInputController
   escudoLine: {fileID: 1925913455}
   mainCamera: {fileID: 519420031}
-  mouse: {fileID: 8583077432868110708, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  virtualMouse: {x: 0, y: 0, z: 0}
-  sensitivity: 0.01
+  virtualCursor: {x: 0, y: 0, z: 0}
+  sensitivityCursor: 0.01
 --- !u!1 &95344106
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class TilesModeInputController : MonoBehaviour
 {
     public static TilesModeInputController instance;
 
-    public GameInputs TileModeInputs;
+    public GameInputs gameInputs;
 
     private TilesModeMaster tilesModeMaster;
 
@@ -22,7 +22,6 @@ public class TilesModeInputController : MonoBehaviour
 
     private void Awake()
     {
-
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -33,22 +32,27 @@ public class TilesModeInputController : MonoBehaviour
 
         tilesModeMaster = GetComponent<TilesModeMaster>();
 
-        TileModeInputs = new GameInputs();
+        gameInputs = InputController.instance.gameInputs;
 
         InputActionMaps = new()
         {
-            {TileModePlayStyle.OneKey,TileModeInputs.TileModeOneKey },
-            {TileModePlayStyle.TwoKeys,TileModeInputs.TileModeTwoKeys },
-            {TileModePlayStyle.ThreeKeys,TileModeInputs.TileModeThreeKeys },
-            {TileModePlayStyle.FourKeys,TileModeInputs.TileModeFourKeys },
-            {TileModePlayStyle.FiveKeys,TileModeInputs.TileModeFiveKeys },
-            {TileModePlayStyle.SixKeys,TileModeInputs.TileModeSixKeys },
-            {TileModePlayStyle.SevenKeys,TileModeInputs.TileModeSevenKeys  },
-            {TileModePlayStyle.EightKeys,TileModeInputs.TileModeEightKeys  },
-            {TileModePlayStyle.NineKeys,TileModeInputs.TileModeNineKeys  },
-            {TileModePlayStyle.TenKeys,TileModeInputs.TileModeTenKeys },
+            {TileModePlayStyle.OneKey       ,   gameInputs.TileModeOneKey },
+            {TileModePlayStyle.TwoKeys      ,   gameInputs.TileModeTwoKeys },
+            {TileModePlayStyle.ThreeKeys    ,   gameInputs.TileModeThreeKeys },
+            {TileModePlayStyle.FourKeys     ,   gameInputs.TileModeFourKeys },
+            {TileModePlayStyle.FiveKeys     ,   gameInputs.TileModeFiveKeys },
+            {TileModePlayStyle.SixKeys      ,   gameInputs.TileModeSixKeys },
+            {TileModePlayStyle.SevenKeys    ,   gameInputs.TileModeSevenKeys  },
+            {TileModePlayStyle.EightKeys    ,   gameInputs.TileModeEightKeys  },
+            {TileModePlayStyle.NineKeys     ,   gameInputs.TileModeNineKeys  },
+            {TileModePlayStyle.TenKeys      ,   gameInputs.TileModeTenKeys },
         };
 
+        SetActualActionMap();
+    }
+
+    private void SetActualActionMap()
+    {
         actualActionMap = InputActionMaps[tilesModeMaster.PlayStyle];
     }
 
@@ -93,7 +97,6 @@ public class TilesModeInputController : MonoBehaviour
     private void OnPad(InputAction.CallbackContext ctx)
     {
         CorrespondenciaTecla tecla = inputKeys[ctx.action];
-
 
         if (ctx.performed)
         {

@@ -2075,7 +2075,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
             ""id"": ""aa474eca-32de-4172-b65e-58cc0de2d358"",
             ""actions"": [
                 {
-                    ""name"": ""Mouse"",
+                    ""name"": ""Cursor"",
                     ""type"": ""Value"",
                     ""id"": ""9994a3cf-6164-47e5-9a1d-6f35f08f15dd"",
                     ""expectedControlType"": ""Vector2"",
@@ -2092,7 +2092,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Mouse"",
+                    ""action"": ""Cursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -2103,7 +2103,18 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Mouse"",
+                    ""action"": ""Cursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a379cc5-e1a4-4b37-991d-d3b5c95a4d6b"",
+                    ""path"": ""<Touchscreen>/primaryTouch/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Cursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -2114,7 +2125,29 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Mouse"",
+                    ""action"": ""Cursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""247ec66e-2174-42d0-9055-fd5cde52cb44"",
+                    ""path"": ""<Joystick>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Joystick"",
+                    ""action"": ""Cursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""beb3bf51-8a3f-4775-9ed7-7b5f343fb157"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Cursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -2166,17 +2199,6 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
             ""devices"": [
                 {
                     ""devicePath"": ""<Joystick>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""XR"",
-            ""bindingGroup"": ""XR"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<XRController>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -2273,7 +2295,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         m_TileModeTenKeys_Ten = m_TileModeTenKeys.FindAction("Ten", throwIfNotFound: true);
         // RadialMode
         m_RadialMode = asset.FindActionMap("RadialMode", throwIfNotFound: true);
-        m_RadialMode_Mouse = m_RadialMode.FindAction("Mouse", throwIfNotFound: true);
+        m_RadialMode_Cursor = m_RadialMode.FindAction("Cursor", throwIfNotFound: true);
     }
 
     ~@GameInputs()
@@ -4015,7 +4037,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
     // RadialMode
     private readonly InputActionMap m_RadialMode;
     private List<IRadialModeActions> m_RadialModeActionsCallbackInterfaces = new List<IRadialModeActions>();
-    private readonly InputAction m_RadialMode_Mouse;
+    private readonly InputAction m_RadialMode_Cursor;
     /// <summary>
     /// Provides access to input actions defined in input action map "RadialMode".
     /// </summary>
@@ -4028,9 +4050,9 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// </summary>
         public RadialModeActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "RadialMode/Mouse".
+        /// Provides access to the underlying input action "RadialMode/Cursor".
         /// </summary>
-        public InputAction @Mouse => m_Wrapper.m_RadialMode_Mouse;
+        public InputAction @Cursor => m_Wrapper.m_RadialMode_Cursor;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -4057,9 +4079,9 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_RadialModeActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_RadialModeActionsCallbackInterfaces.Add(instance);
-            @Mouse.started += instance.OnMouse;
-            @Mouse.performed += instance.OnMouse;
-            @Mouse.canceled += instance.OnMouse;
+            @Cursor.started += instance.OnCursor;
+            @Cursor.performed += instance.OnCursor;
+            @Cursor.canceled += instance.OnCursor;
         }
 
         /// <summary>
@@ -4071,9 +4093,9 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="RadialModeActions" />
         private void UnregisterCallbacks(IRadialModeActions instance)
         {
-            @Mouse.started -= instance.OnMouse;
-            @Mouse.performed -= instance.OnMouse;
-            @Mouse.canceled -= instance.OnMouse;
+            @Cursor.started -= instance.OnCursor;
+            @Cursor.performed -= instance.OnCursor;
+            @Cursor.canceled -= instance.OnCursor;
         }
 
         /// <summary>
@@ -4157,19 +4179,6 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
         {
             if (m_JoystickSchemeIndex == -1) m_JoystickSchemeIndex = asset.FindControlSchemeIndex("Joystick");
             return asset.controlSchemes[m_JoystickSchemeIndex];
-        }
-    }
-    private int m_XRSchemeIndex = -1;
-    /// <summary>
-    /// Provides access to the input control scheme.
-    /// </summary>
-    /// <seealso cref="UnityEngine.InputSystem.InputControlScheme" />
-    public InputControlScheme XRScheme
-    {
-        get
-        {
-            if (m_XRSchemeIndex == -1) m_XRSchemeIndex = asset.FindControlSchemeIndex("XR");
-            return asset.controlSchemes[m_XRSchemeIndex];
         }
     }
     /// <summary>
@@ -4723,11 +4732,11 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
     public interface IRadialModeActions
     {
         /// <summary>
-        /// Method invoked when associated input action "Mouse" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Cursor" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMouse(InputAction.CallbackContext context);
+        void OnCursor(InputAction.CallbackContext context);
     }
 }

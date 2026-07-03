@@ -9,10 +9,10 @@ public class TilesModeMaster : MonoBehaviour
     public TileModePlayStyle PlayStyle;
 
     [Tooltip("Margen de error para las notas (en segundos) ademas variara segun la velocidad")]
-    public float toleranciaErrorBase;
+    public float toleranciaErrorBase = 0.5f;
 
     [Tooltip("Velocidad general de notas")]
-    public float notaTileSpeed = 4;
+    public float notaTileSpeed = 7;
 
     [Header("Config Render")]
 
@@ -21,7 +21,7 @@ public class TilesModeMaster : MonoBehaviour
 
     public float limiteInferiorRender = 1.0f;
 
-    public float extraRenderSize = 2.0f;
+    public float extraRenderSize = 3.0f;
     private void Awake()
     {
         if (instance != null && instance != this)

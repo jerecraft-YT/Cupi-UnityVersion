@@ -19,6 +19,7 @@ public class LoadPersistentGameplay : MonoBehaviour
         go.AddComponent<TimeController>();
         go.AddComponent<MusicController>();
         go.AddComponent<LevelDataController>();
+        go.AddComponent<InputController>();
     }
 
     static bool VerificarEscena()

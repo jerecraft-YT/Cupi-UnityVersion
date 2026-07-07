@@ -1,50 +1,66 @@
 using System;
-using System.Collections;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DebugController : MonoBehaviour
 {
-    public TextMeshProUGUI textMeshPro;
+    [SerializeField] private TextMeshProUGUI _textoDebug;
+    [SerializeField] private float _timeUpdateDebugInfo;
 
-    public AudioSource audioSource;
+    private AudioSource _audioSource;
 
-    private bool updateDebugInfo = true;
+    private bool _updateDebugInfo = true;
 
-    private string textDebugInfo = "UnscaledCustomTime: {0:N2}\nCustomTime: {1:N2} \nMusicTime: {2:N2}\nTimeScale: {3:N2}";
+    private const string TEXT_DEBUG_INFO = "UnscaledCustomTime: {0:N2}\nCustomTime: {1:N2} \nMusicTime: {2:N2}\nTimeScale: {3:N2}";
 
     private void Start()
     {
-        if (MusicController.instance.mainMusic.clip != null) audioSource = MusicController.instance.mainMusic;
+        _audioSource = MusicController.instance.mainMusic.clip != null ? MusicController.instance.mainMusic : null;
+        
+        InputController.instance.gameInputs.UI.Enable();
+
+        InputController.instance.gameInputs.UI.ScrollWheel.performed += ScrollMouse;
     }
 
-    private void Update()
+    private async void Update()
     {
-        if (updateDebugInfo)
+
+
+        if (_updateDebugInfo)
         {
-            StartCoroutine(UpdateDebug());
-            updateDebugInfo = false;
+            _updateDebugInfo = false;
+            await UpdateDebug();
         }
     }
-    private IEnumerator UpdateDebug()
+
+    private void ScrollMouse(InputAction.CallbackContext ctx)
     {
-        textMeshPro.text = string.Format(
-            textDebugInfo,
+        TimeController.instance.TimeScale += ctx.ReadValue<Vector2>().y * 0.1f;
+
+        ChangeTimeScale(TimeController.instance.TimeScale);
+    }
+
+    private async Task UpdateDebug()
+    {
+        _textoDebug.text = string.Format(
+            TEXT_DEBUG_INFO,
             TimeController.instance.ActualTime,
             TimeController.instance.AdditiveTime,
-            audioSource != null ? audioSource.time : "no hay musica XD",
+            _audioSource != null ? _audioSource.time : "no hay musica XD",
             TimeController.instance.TimeScale
             );
 
-        yield return new WaitForSecondsRealtime(0.1f);
+        await Awaitable.WaitForSecondsAsync(_timeUpdateDebugInfo);
 
-        updateDebugInfo = true;
+        _updateDebugInfo = true;
     }
     public void ChangeTimeScale(float valor)
     {
         TimeController.instance.TimeScale = (float)Math.Round(valor,2);
         
-        if (audioSource == null) return;
-        audioSource.pitch = valor;
+        if (_audioSource == null) return;
+        _audioSource.pitch = valor;
     }
 }

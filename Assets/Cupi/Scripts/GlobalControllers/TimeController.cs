@@ -5,25 +5,24 @@ public class TimeController : MonoBehaviour
 {
     public static TimeController instance;
 
-    private double prevTime;
+    private double _prevTime;
 
-    private double dspOffset;
+    private double _dspOffset;
 
-    private double progressTime;
+    private double _progressTime;
 
-    private double additiveTime;
+    private double _additiveTime;
 
-    private float timeScale = 1.0f;
+    private float _timeScale = 1.0f;
 
-    private float oldTimeScale = 1.0f;
+    private float _oldTimeScale = 1.0f;
 
-    public static event Action updateTimeScale;
+    public static event Action UpdateTimeScale;
 
     private void Awake()
     {
         if (instance != null && instance != this)
         {
-            print("oh no");
             Destroy(gameObject);
         }
         instance = this;
@@ -38,58 +37,58 @@ public class TimeController : MonoBehaviour
     {
         UpdateAdditiveTime();
 
-        if (oldTimeScale != timeScale)
+        if (_oldTimeScale != _timeScale)
         {
-            updateTimeScale?.Invoke();
-            oldTimeScale = timeScale;
+            UpdateTimeScale?.Invoke();
+            _oldTimeScale = _timeScale;
         }
     }
 
     private void UpdateAdditiveTime()
     {
-        progressTime = ActualTime - prevTime;
+        _progressTime = ActualTime - _prevTime;
 
-        prevTime = ActualTime;
+        _prevTime = ActualTime;
 
-        additiveTime += progressTime * timeScale;
+        _additiveTime += _progressTime * _timeScale;
     }
 
     public void RestartTime(AudioSource source = null)
     {
-        dspOffset = AudioSettings.dspTime;
+        _dspOffset = AudioSettings.dspTime;
 
-        additiveTime = 0.0f;
+        _additiveTime = 0.0f;
 
-        prevTime = ActualTime;
+        _prevTime = ActualTime;
 
         if (source != null) source.time = 0.0f;
     }
 
     public void SetTime(float time ,AudioSource source = null)
     {
-        dspOffset = AudioSettings.dspTime;
+        _dspOffset = AudioSettings.dspTime;
 
-        additiveTime = time;
+        _additiveTime = time;
 
-        prevTime = ActualTime;
+        _prevTime = ActualTime;
 
         if (source != null) source.time = time;
     }
 
-    public double ActualTime => AudioSettings.dspTime - dspOffset;
-    public double AdditiveTime => additiveTime;
+    public double ActualTime => AudioSettings.dspTime - _dspOffset;
+    public double AdditiveTime => _additiveTime;
     public float TimeScale
     {
         get
         {
-            return timeScale;
+            return _timeScale;
         }
         set
         {
-            if (value != timeScale)
+            if (value != _timeScale)
             {
-                updateTimeScale?.Invoke();
-                timeScale = value;
+                UpdateTimeScale?.Invoke();
+                _timeScale = value;
             }
         }
     }

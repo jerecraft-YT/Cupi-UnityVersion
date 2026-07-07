@@ -4,9 +4,10 @@ using System.Collections.Generic;
 public class PoolController : MonoBehaviour
 {
     public static PoolController instance;
-    [SerializeField] private List<PrefabNote> Prefabs;
-    private List<List<GameObject>> Instances = new List<List<GameObject>>();
-    private List<GameObject> groupPool = new List<GameObject>();
+
+    [SerializeField] private List<PrefabNote> _prefabs;
+    private List<List<GameObject>> _instances = new();
+    private List<GameObject> _groupPool = new();
 
     private void Awake()
     {
@@ -16,14 +17,15 @@ public class PoolController : MonoBehaviour
             return;
         }
         instance = this;
+
         InstancePrefabs();
     }
 
     private int GetPrefabIndex(TipoObjetoPool tipoObjetoPool)
     {
-        for (int index = 0; index < Prefabs.Count; index++)
+        for (int index = 0; index < _prefabs.Count; index++)
         {
-            if (Prefabs[index].tipoObjetoPool == tipoObjetoPool)
+            if (_prefabs[index].tipoObjetoPool == tipoObjetoPool)
             {
                 return index;
             }
@@ -33,7 +35,7 @@ public class PoolController : MonoBehaviour
 
     private GameObject SearchActiveInstance(int index)
     {
-        foreach (GameObject objectPool in Instances[index])
+        foreach (GameObject objectPool in _instances[index])
         {
             if (!objectPool.activeSelf)
             {
@@ -45,7 +47,7 @@ public class PoolController : MonoBehaviour
         //print($"no hay instancias suficientes de {tipoNota}, se creara una nueva");
 
         AddInstance(index);
-        GameObject newObject = Instances[index][Instances[index].Count - 1];
+        GameObject newObject = _instances[index][_instances[index].Count - 1];
         newObject.SetActive(true);
 
         return newObject;
@@ -53,40 +55,40 @@ public class PoolController : MonoBehaviour
 
     private void AddInstance(int indexPrefab)
     {
-        if (Prefabs[indexPrefab].prefab == null) return;
+        if (_prefabs[indexPrefab].prefab == null) return;
 
-        GameObject instance = Instantiate(Prefabs[indexPrefab].prefab, groupPool[indexPrefab].transform);
+        GameObject instance = Instantiate(_prefabs[indexPrefab].prefab, _groupPool[indexPrefab].transform);
         instance.SetActive(false);
-        Instances[indexPrefab].Add(instance);
+        _instances[indexPrefab].Add(instance);
     }
 
     private void AddGroupPool(int indexPrefab)
     {
-        if (Prefabs[indexPrefab].prefab == null) return;
+        if (_prefabs[indexPrefab].prefab == null) return;
 
-        GameObject groupInstance = new GameObject();
+        GameObject groupInstance = new(_prefabs[indexPrefab].tipoObjetoPool.ToString());
         groupInstance.transform.SetParent(transform);
-        groupInstance.name = Prefabs[indexPrefab].tipoObjetoPool.ToString();
-        groupPool.Add(groupInstance);
+
+        _groupPool.Add(groupInstance);
     }
 
     private void InstancePrefabs()
     {
-        if (Prefabs.Count == 0)
+        if (_prefabs.Count == 0)
         {
             Debug.LogError("no hay prefabs establecidos");
             return;
         }
 
-        for (int i = 0; i < Prefabs.Count; i++)
+        for (int i = 0; i < _prefabs.Count; i++)
         {
-            Instances.Add(new List<GameObject>());
+            _instances.Add(new List<GameObject>());
 
             AddGroupPool(i);
 
-            for (int j = 0; j < Prefabs[i].IntialInstances; j++)
+            for (int j = 0; j < _prefabs[i].intialInstances; j++)
             {
-                if (Prefabs[i].prefab == null) break;
+                if (_prefabs[i].prefab == null) break;
 
                 AddInstance(i);
             }
@@ -101,6 +103,7 @@ public class PoolController : MonoBehaviour
             Debug.LogError($"instancia  {tipoObjetoPool} no existe en la pool actual");
             return null;
         }
+
         return SearchActiveInstance(index);
     }
 
@@ -113,6 +116,6 @@ public class PoolController : MonoBehaviour
             Debug.LogError($"instancia  {tipoObjetoPool} no existe en la pool actual");
             return null;
         }
-        return groupPool[index];
+        return _groupPool[index];
     }
 }

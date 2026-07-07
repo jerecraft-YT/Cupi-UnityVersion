@@ -1,18 +1,18 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 public class LoadLevelManager : MonoBehaviour
 {
-    public Slider slider;
-    public AsyncOperation carga;
-    public SceneField sceneToLoad;
-    public SceneField[] scenesToUnload;
-    private MusicLoader musicLoader;
+    [SerializeField] private float _tiempoBaseNivel;
+    private AsyncOperation _carga;
+    [SerializeField] private SceneField _sceneToLoad;
+    [SerializeField] private SceneField[] scenesToUnload;
+    private MusicLoader _musicLoader;
 
     void Start()
     {
-        musicLoader = LevelDataController.instance.musicLoader;
+        _musicLoader = LevelDataController.instance.musicLoader;
 
         StartCoroutine(EsperaCarga());
     }
@@ -21,16 +21,16 @@ public class LoadLevelManager : MonoBehaviour
     {
         Debug.Log("-----CARGANDO-----");
 
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(2.0f);
 
         Debug.Log("cargando nivel...");
 
         LevelDataController.instance.LoadDataLevel();
 
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(2.0f);
 
-        carga = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive);
-        carga.allowSceneActivation = false;
+        _carga = SceneManager.LoadSceneAsync(_sceneToLoad, LoadSceneMode.Additive);
+        _carga.allowSceneActivation = false;
         UnloadScenes();
 
         Debug.Log("-----TERMINO CARGA-----");
@@ -46,15 +46,16 @@ public class LoadLevelManager : MonoBehaviour
 
     private void Update()
     {
-        if (musicLoader != null && musicLoader.readyForNewLoad == true)
+        if (_musicLoader != null && _musicLoader.readyForNewLoad == true)
         {
-            Destroy(musicLoader.gameObject);
+            //elimina music loader porque ya no lo necesitamos para el resto del nivel
+            Destroy(_musicLoader.gameObject);
         }
 
-        if (carga != null && carga.progress >= 0.9f)
+        if (_carga != null && _carga.progress >= 0.9f)
         {
-            TimeController.instance.SetTime(-5.0f);
-            carga.allowSceneActivation = true;
+            TimeController.instance.SetTime(_tiempoBaseNivel);
+            _carga.allowSceneActivation = true;
         }
 
     }

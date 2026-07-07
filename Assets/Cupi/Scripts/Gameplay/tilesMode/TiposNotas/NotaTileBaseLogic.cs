@@ -7,8 +7,10 @@ public class NotaTileBaseLogic : MonoBehaviour
     protected SpawnerNotas spawnerNotas;
 
     [SerializeField] private Transform note;
+
     public SpriteRenderer spriteNote;
     public NotaInstance data;
+
     public Vector2 DireccionMovimiento;
     public Vector2 finalPos;
     public Transform origin;
@@ -40,24 +42,27 @@ public class NotaTileBaseLogic : MonoBehaviour
     }
     protected virtual void LogicUpdate()
     {
+
     }
 
     public void NoteVisualUpdate()
     {
         if (!initialized) return;
 
-        progress = 1 - InverseLerpUnclamped(0.0f, data.timeToArrive + offsetRendering, (float)TimeController.instance.AdditiveTime);
+        progress = 1 - InverseLerpUnclamped(0.0f, data.timeToArrive + offsetRendering, (float)timeController.AdditiveTime);
 
         if (lockProgress) progress = Mathf.Max(0, progress);
 
-        float distancia = (progress * (data.timeToArrive + offsetRendering) * data.localSpeed * TilesModeMaster.instance.notaTileSpeed);
+        float distancia = (progress * (data.timeToArrive + offsetRendering) * data.localSpeed * tilesModeMaster.notaTileSpeed);
 
         finalPos = data.offsetPositionToGo + (DireccionMovimiento * distancia);
 
         note.localPosition = finalPos;
 
+        //esto hace que las notas se destruyan cuando se esta en reversa
         if (data.timeToArrive > spawnerNotas.NotesWindowEnd)
         {
+            print("destruccion por reversa");
             DestroyNote();
         }
     }

@@ -417,7 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TilesModeMasterConfig
   PlayStyle: 2
   toleranciaErrorBase: 0.5
-  notaTileSpeed: 7
+  notaTileSpeed: 1
   separacionObjetivosNotas: 2
   limiteInferiorRender: 1
   extraRenderSize: 3
@@ -676,7 +676,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1105,7 +1105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30adef611c006f44f863842cda312d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnerNotas
-  tileModeMaster: {fileID: 179359629}
+  _tileModeMaster: {fileID: 179359629}
+  _chunkController: {fileID: 930970437}
   tileModeReference: {fileID: 179359623}
   NotesWindowEnd: 0
   radialModeReference: {fileID: 29140253}
@@ -1113,10 +1114,10 @@ MonoBehaviour:
   - noteIndex: 0
     modoNota: 0
     tipoNota: 0
-    CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
     offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
     timeToArrive: 5
     localSpeed: 1
     duracion: 2
@@ -1124,23 +1125,23 @@ MonoBehaviour:
     anguloFinal: 0
   - noteIndex: 0
     modoNota: 0
-    tipoNota: 0
-    CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
+    tipoNota: 1
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
     offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
-    timeToArrive: 10
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 5
     localSpeed: 1
-    duracion: 2
+    duracion: 3
     angulo: 0
     anguloFinal: 0
   - noteIndex: 0
     modoNota: 0
     tipoNota: 0
-    CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
     offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
     timeToArrive: 15
     localSpeed: 1
     duracion: 2
@@ -1149,10 +1150,10 @@ MonoBehaviour:
   - noteIndex: 0
     modoNota: 0
     tipoNota: 0
-    CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
     offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
     timeToArrive: 20
     localSpeed: 1
     duracion: 2
@@ -1161,10 +1162,10 @@ MonoBehaviour:
   - noteIndex: 0
     modoNota: 0
     tipoNota: 0
-    CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
     offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
     timeToArrive: 25
     localSpeed: 1
     duracion: 2
@@ -1173,10 +1174,10 @@ MonoBehaviour:
   - noteIndex: 0
     modoNota: 0
     tipoNota: 0
-    CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
     offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
     timeToArrive: 30
     localSpeed: 1
     duracion: 2
@@ -1185,10 +1186,10 @@ MonoBehaviour:
   - noteIndex: 0
     modoNota: 0
     tipoNota: 0
-    CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
     offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
     timeToArrive: 35
     localSpeed: 1
     duracion: 2
@@ -1197,10 +1198,10 @@ MonoBehaviour:
   - noteIndex: 0
     modoNota: 0
     tipoNota: 0
-    CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
     offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
     timeToArrive: 40
     localSpeed: 1
     duracion: 2
@@ -1209,10 +1210,10 @@ MonoBehaviour:
   - noteIndex: 0
     modoNota: 0
     tipoNota: 0
-    CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
     offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
     timeToArrive: 45
     localSpeed: 1
     duracion: 2
@@ -1221,10 +1222,10 @@ MonoBehaviour:
   - noteIndex: 0
     modoNota: 0
     tipoNota: 0
-    CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
     offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
     timeToArrive: 50
     localSpeed: 1
     duracion: 2
@@ -1233,10 +1234,10 @@ MonoBehaviour:
   - noteIndex: 0
     modoNota: 0
     tipoNota: 0
-    CorrespondenciaTecla: 1
-    DireccionMovimiento: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
     offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
     timeToArrive: 55
     localSpeed: 1
     duracion: 2
@@ -1255,6 +1256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a571a494cf7f3e409e7354497185f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChunckController
+  _chunkSize: 3
 --- !u!114 &930970438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1657,16 +1659,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c79ed5f18f5297249893c429d2ff60d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TilesModePoolController
-  Prefabs:
+  _prefabs:
   - prefab: {fileID: 2373320976798151475, guid: fb4a274d67f7444449ffb87c4ef74ebd, type: 3}
     tipoObjetoPool: 0
-    IntialInstances: 15
+    intialInstances: 15
   - prefab: {fileID: 2373320976798151475, guid: e66e32241b5403547b13b5330561c96a, type: 3}
     tipoObjetoPool: 1
-    IntialInstances: 15
+    intialInstances: 15
   - prefab: {fileID: 507058147081189937, guid: 4d3ba18e085acf843812c7b7a5a58507, type: 3}
     tipoObjetoPool: 3
-    IntialInstances: 15
+    intialInstances: 15
 --- !u!1 &1611273193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1798,8 +1800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6900ff29b8ef1d4e8e6b8ff420561ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DebugController
-  textMeshPro: {fileID: 717482312}
-  audioSource: {fileID: 0}
+  _textoDebug: {fileID: 717482312}
+  _timeUpdateDebugInfo: 0.16
 --- !u!4 &1710346485
 Transform:
   m_ObjectHideFlags: 0

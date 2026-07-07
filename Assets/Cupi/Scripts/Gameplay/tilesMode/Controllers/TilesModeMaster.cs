@@ -33,7 +33,7 @@ public class TilesModeMaster : MonoBehaviour
     }
 
     //es mejor asi para no calcularlo en el update
-    public float toleranciaError => toleranciaErrorBase / notaTileSpeed;
+    public float ToleranciaError => toleranciaErrorBase / notaTileSpeed;
 
     public float RenderLimit => (limiteInferiorRender / notaTileSpeed) + extraRenderSize;
 

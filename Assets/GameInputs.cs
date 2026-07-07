@@ -625,7 +625,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -662,7 +662,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -673,7 +673,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -684,7 +684,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Two"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -695,7 +695,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Two"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -752,7 +752,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -983,7 +983,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -994,7 +994,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1124,7 +1124,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1135,7 +1135,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1296,7 +1296,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1433,7 +1433,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1590,7 +1590,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1767,7 +1767,7 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1960,17 +1960,6 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""5af45c69-c53c-4dd4-a7f4-9f8f9aa13280"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""One"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""b7a09033-af9b-4d2f-924f-db7947bf18a6"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
@@ -2065,6 +2054,17 @@ public partial class @GameInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Ten"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8cda5112-9e4b-4b0a-ac8b-a990d7b17bb4"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""One"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }

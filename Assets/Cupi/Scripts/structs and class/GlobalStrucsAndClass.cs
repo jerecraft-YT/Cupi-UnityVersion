@@ -11,11 +11,11 @@ public class NotaInstance
     public ModoNota modoNota;
     public TipoNota tipoNota;
     [Space(16)]
-    public CorrespondenciaTecla CorrespondenciaTecla;
-    public DireccionesMovimientoNotas DireccionMovimiento;
+    public CorrespondenciaTecla correspondenciaTecla;
+    public DireccionesMovimientoNotas direccionMovimiento;
     [Space(16)]
     public Vector2 offsetPositionToGo;
-    public Vector2 DireccionCustom;
+    public Vector2 direccionCustom;
 
     [Header("configuracion Base")]
     public float timeToArrive;
@@ -34,7 +34,7 @@ public class PrefabNote
 {
     public GameObject prefab;
     public TipoObjetoPool tipoObjetoPool;
-    public int IntialInstances;
+    public int intialInstances;
 }
 
 //esto se hace asi para que lo pueda guardar el json
@@ -70,15 +70,15 @@ public class LevelData
 public class LevelMetadata
 {
     [Tooltip("nombre interno del nivel en general")]
-    public string Name;
-    public string Description;
-    public string Artist;
-    public string Autor;
-    public float PreviewTimeMusic;
-    public string MusicFileName;
-    public string Tags;
-    public float Bpm;
-    public List<LevelData> LevelsFiles;
+    public string name;
+    public string description;
+    public string artist;
+    public string autor;
+    public float previewTimeMusic;
+    public string musicFileName;
+    public string tags;
+    public float bpm;
+    public List<LevelData> levelsFiles;
 
     public LevelMetadata(
         string name = "",
@@ -91,15 +91,15 @@ public class LevelMetadata
         string tags = "",
         string description = "")
     {
-        Name = name;
-        Description = description;
-        Artist = artist;
-        Autor = autor;
-        PreviewTimeMusic = previewTimeMusic;
-        MusicFileName = musicFileName;
-        Tags = tags;
-        Bpm = bpm;
-        LevelsFiles = levelsFiles;
+        this.name = name;
+        this.description = description;
+        this.artist = artist;
+        this.autor = autor;
+        this.previewTimeMusic = previewTimeMusic;
+        this.musicFileName = musicFileName;
+        this.tags = tags;
+        this.bpm = bpm;
+        this.levelsFiles = levelsFiles;
     }
 }
 

@@ -2,16 +2,18 @@ using UnityEngine;
 
 public class NotaTileSostenida : NotaTileBaseLogic
 {
-    [SerializeField] private LineRenderer lineNote;
-    private float timeToArriveForLine;
-    private float consumoNota;
+    [SerializeField] private LineRenderer _lineNote;
+    private bool _canHit;
+    private bool _firstHit;
+
+    private float _timeToArriveForLine;
+    public float _consumoNota;
     //esto permitira tener efectos complejos mas adelante pero de momento lo dejo asi
-    private int numberPoints = 2;
-    private int framesToUpdate;
-    private bool canMiss;
-    private bool firstHit;
-    private int actualPointGetter;
-    private float getPointsEvery;
+    private int _numberPoints = 2;
+    private int _framesToUpdate;
+    public int _actualPointGetter;
+    public float _getPointsEvery;
+    public int totalSecciones;
     //esto define cuantas secciones de un segundo daran puntos de la nota sostenida
     const int seccionesPorSegundos = 8;
 
@@ -19,12 +21,12 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
     protected override void OnEnable()
     {
-        firstHit = true;
-        canMiss = true;
-        framesToUpdate = 0;
+        _firstHit = true;
+        _canHit = true;
+        _framesToUpdate = 0;
         lockProgress = false;
-        actualPointGetter = 0;
-        consumoNota = 0;
+        _actualPointGetter = 0;
+        _consumoNota = 0;
         offsetRendering = 0;
 
         base.OnEnable();
@@ -50,14 +52,16 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
     protected override void PostInitialize()
     {
-        timeToArriveForLine = data.duracion + data.timeToArrive;
+        _timeToArriveForLine = data.duracion + data.timeToArrive;
 
-        getPointsEvery = data.duracion > 0 ? 1.0f / (data.duracion * seccionesPorSegundos) : 0.125f;
+        _getPointsEvery = data.duracion > 0 ? 1.0f / (data.duracion * seccionesPorSegundos) : 0.125f;
+
+        totalSecciones = Mathf.FloorToInt(seccionesPorSegundos * data.duracion);
     }
 
     private void SetLinePoints()
     {
-        lineNote.positionCount = numberPoints;
+        _lineNote.positionCount = _numberPoints;
     }
 
     public void TileNoteController()
@@ -68,17 +72,17 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
     public void ClickNote(CorrespondenciaTecla tecla)
     {
-        if (tecla != data.CorrespondenciaTecla || !canMiss) return;
+        if (tecla != data.correspondenciaTecla || !_canHit) return;
 
-        float timeDiff = Mathf.Abs((data.timeToArrive + (consumoNota * data.duracion)) - (float)timeController.AdditiveTime);
+        float timeDiff = Mathf.Abs((data.timeToArrive + (_consumoNota * data.duracion)) - (float)timeController.AdditiveTime);
 
-        if (timeDiff < tilesModeMaster.toleranciaError)
+        if (timeDiff < tilesModeMaster.ToleranciaError)
         {
             lockProgress = true;
-            if (firstHit)
+            if (_firstHit)
             {
-                NotesController.HitNote(data.CorrespondenciaTecla);
-                firstHit = false;
+                NotesController.HitNote(data.correspondenciaTecla);
+                _firstHit = false;
             }
         }
 
@@ -86,7 +90,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
     public void UnClickNote(CorrespondenciaTecla tecla)
     {
-        if (tecla != data.CorrespondenciaTecla || !canMiss) return;
+        if (tecla != data.correspondenciaTecla || !_canHit) return;
 
         lockProgress = false;
     }
@@ -95,20 +99,20 @@ public class NotaTileSostenida : NotaTileBaseLogic
     {
         float currentTime = (float)timeController.AdditiveTime;
 
-        consumoNota = 1 - Mathf.InverseLerp(timeToArriveForLine, data.timeToArrive, currentTime);
+        _consumoNota = 1 - Mathf.InverseLerp(_timeToArriveForLine, data.timeToArrive, currentTime);
 
         float tiempoActual = data.timeToArrive + offsetRendering;
 
-        if (tiempoActual + tilesModeMaster.toleranciaError < currentTime && canMiss)
+        if (tiempoActual + tilesModeMaster.ToleranciaError < currentTime && _canHit)
         {
-            canMiss = false;
+            _canHit = false;
             lockProgress = false;
         }
 
-        while (actualPointGetter * getPointsEvery < consumoNota + getPointsEvery && lockProgress)
+        while (_actualPointGetter * _getPointsEvery < _consumoNota + _getPointsEvery && lockProgress)
         {
             //print("ganaste puntos" +  actualPointGetter);
-            actualPointGetter++;
+            _actualPointGetter++;
         }
 
         if (timeController.TimeScale < 0) return;
@@ -116,18 +120,19 @@ public class NotaTileSostenida : NotaTileBaseLogic
         if (lockProgress)
         {
             // hit
-            offsetRendering = consumoNota * data.duracion;
-            if (consumoNota >= 1.0f)
+            offsetRendering = _consumoNota * data.duracion;
+            if (_consumoNota >= 1.0f)
             {
+                print("destruccionFijaNotaSostenida");
                 DestroyNote();
             }
         }
         else
         {
             //hit por margen de soltar
-            float margenNota = timeToArriveForLine + tilesModeMaster.RenderLimit;
+            float margenNota = _timeToArriveForLine + tilesModeMaster.RenderLimit;
 
-            if (currentTime > margenNota || (consumoNota >= 1.0f - getPointsEvery && actualPointGetter > seccionesPorSegundos - 1))
+            if (currentTime > margenNota || (_consumoNota >= 1.0f - _getPointsEvery && _actualPointGetter > totalSecciones - 1))
             {
                 DestroyNote();
             }
@@ -138,29 +143,29 @@ public class NotaTileSostenida : NotaTileBaseLogic
     {
         //retardamos el update de la linea un frame
         //para que no haya erorres de renderizado
-        if (framesToUpdate < 1)
+        if (_framesToUpdate < 1)
         {
-            framesToUpdate += 1;
+            _framesToUpdate += 1;
             return;
         }
 
-        for (int i = 0; i < lineNote.positionCount; i++)
+        for (int i = 0; i < _lineNote.positionCount; i++)
         {
             if (i == 0)
             {
-                lineNote.SetPosition(i, finalPos);
+                _lineNote.SetPosition(i, finalPos);
             }
             else
             {
-                float progress = 1 - InverseLerpUnclamped(0.0f, timeToArriveForLine, (float)timeController.AdditiveTime);
+                float progress = 1 - InverseLerpUnclamped(0.0f, _timeToArriveForLine, (float)timeController.AdditiveTime);
 
                 if (lockProgress) progress = Mathf.Max(0, progress);
 
-                float distancia = (progress * timeToArriveForLine * data.localSpeed * tilesModeMaster.notaTileSpeed);
+                float distancia = (progress * _timeToArriveForLine * data.localSpeed * tilesModeMaster.notaTileSpeed);
 
                 Vector2 finalPos = data.offsetPositionToGo + (DireccionMovimiento * distancia);
 
-                lineNote.SetPosition(i, finalPos);
+                _lineNote.SetPosition(i, finalPos);
             }
         }
     }

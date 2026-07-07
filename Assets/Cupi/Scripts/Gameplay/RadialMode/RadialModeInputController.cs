@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,8 +12,6 @@ public class RadialModeInputController : MonoBehaviour
     public Camera mainCamera;
 
     private Vector3 referenceMouse;
-
-    //public InputActionReference mouse;
 
     public Vector3 virtualCursor;
 
@@ -33,11 +30,6 @@ public class RadialModeInputController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void ControlSchemeChange()
-    {
-
-    }
-
     private void OnEnable()
     {
         _radialModeMaster = RadialModeMaster.instance;
@@ -50,12 +42,6 @@ public class RadialModeInputController : MonoBehaviour
     private void OnDisable()
     {
         InputController.instance.gameInputs.RadialMode.Cursor.performed -= MoveShield;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //MoveShield();
     }
 
     private void MoveShield(InputAction.CallbackContext ctx)

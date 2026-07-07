@@ -5,13 +5,13 @@ using UnityEngine.Audio;
 [RequireComponent(typeof(AudioSource))]
 public class MusicController : MonoBehaviour
 {
-    public AudioSource mainMusic;
     public static MusicController instance;
-    [SerializeField] private bool pitchRegulator;
-    [SerializeField] private bool musicMixerVolume;
-    private AudioMixerGroup musicGroup;
-    private float toleranciaSincronizacion;
-    private bool musicPaused;
+
+    [SerializeField] private bool _pitchRegulator;
+    private AudioMixerGroup _musicGroup;
+    private float _toleranciaSincronizacion;
+    private bool _musicPaused;
+    public AudioSource mainMusic;
 
     private void Awake()
     {
@@ -56,21 +56,21 @@ public class MusicController : MonoBehaviour
         }
 
         mainMusic = GetComponent<AudioSource>();
-        musicGroup = config.audioMixerGroup;
-        pitchRegulator = config.pitchRegulator;
-        toleranciaSincronizacion = config.toleranciaSincronizacion;
-        musicPaused = config.musicPausedDefault;
-        mainMusic.outputAudioMixerGroup = musicGroup;
+        _musicGroup = config.audioMixerGroup;
+        _pitchRegulator = config.pitchRegulator;
+        _toleranciaSincronizacion = config.toleranciaSincronizacion;
+        _musicPaused = config.musicPausedDefault;
+        mainMusic.outputAudioMixerGroup = _musicGroup;
     }
 
     private void OnEnable()
     {
-        TimeController.updateTimeScale += UpdateMusic;
+        TimeController.UpdateTimeScale += UpdateMusic;
     }
 
     private void OnDisable()
     {
-        TimeController.updateTimeScale -= UpdateMusic;
+        TimeController.UpdateTimeScale -= UpdateMusic;
     }
 
     private void UpdateMusic()
@@ -90,20 +90,20 @@ public class MusicController : MonoBehaviour
     {
         if (mainMusic.clip != null)
         {
-            if (musicPaused) mainMusic.Pause();
+            if (_musicPaused) mainMusic.Pause();
             else mainMusic.UnPause();
         }
     }
 
     public void SincronizarMusica()
     {
-        if (musicPaused || mainMusic.clip == null) return;
+        if (_musicPaused || mainMusic.clip == null) return;
 
         float additiveTime = (float)TimeController.instance.AdditiveTime;
 
         if (additiveTime < 0 || additiveTime > mainMusic.clip.length) return;
 
-        if (Mathf.Abs(additiveTime - mainMusic.time) >= Mathf.Abs(toleranciaSincronizacion * TimeController.instance.TimeScale))
+        if (Mathf.Abs(additiveTime - mainMusic.time) >= Mathf.Abs(_toleranciaSincronizacion * TimeController.instance.TimeScale))
         {
             if (!mainMusic.isPlaying) mainMusic.Play();
 
@@ -121,13 +121,13 @@ public class MusicController : MonoBehaviour
 
     private void RegulatePitch()
     {
-        if (pitchRegulator)
+        if (_pitchRegulator)
         {
-            musicGroup.audioMixer.SetFloat("pitchShifter", 2.0f - Mathf.Abs(mainMusic.pitch));
+            _musicGroup.audioMixer.SetFloat("pitchShifter", 2.0f - Mathf.Abs(mainMusic.pitch));
         }
         else
         {
-            musicGroup.audioMixer.SetFloat("pitchShifter", 1.0f);
+            _musicGroup.audioMixer.SetFloat("pitchShifter", 1.0f);
         }
     }
 
@@ -135,13 +135,13 @@ public class MusicController : MonoBehaviour
     {
         get
         {
-            return pitchRegulator;
+            return _pitchRegulator;
         }
         set
         {
-            if (pitchRegulator != value)
+            if (_pitchRegulator != value)
             {
-                pitchRegulator = value;
+                _pitchRegulator = value;
                 RegulatePitch();
             }
         }
@@ -151,13 +151,13 @@ public class MusicController : MonoBehaviour
     {
         get
         {
-            return musicPaused;
+            return _musicPaused;
         }
         set
         {
-            if(musicPaused != value)
+            if(_musicPaused != value)
             {
-                musicPaused = value;
+                _musicPaused = value;
                 PausarMusica();
             }
         }

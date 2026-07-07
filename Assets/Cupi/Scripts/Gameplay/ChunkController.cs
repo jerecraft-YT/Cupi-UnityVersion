@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class ChunkController : MonoBehaviour
 {
-    //public Dictionary<ChunkSeparation,List<ChunkData>> chunks = new();
     public Dictionary<ChunkSeparation, Dictionary<int,Level>> chunks = new();
 
-    private int chunkSize = 3;
+    [Tooltip("tamaño de los chunks en segundos")]
+    [SerializeField] private int _chunkSize = 3;
 
     public void GenerateBulletChunks(List<NotaInstance> listaNotas)
     {
@@ -75,7 +75,7 @@ public class ChunkController : MonoBehaviour
 
                 float timeNote = nota.timeToArrive;
 
-                if (timeNote < startChunk + chunkSize)
+                if (timeNote < startChunk + _chunkSize)
                 {
                     //Debug.Log("AGREGANDO NOTA NUEVA");
                     chunks[tempSeparation][startChunk].notas.Add(nota);
@@ -101,9 +101,9 @@ public class ChunkController : MonoBehaviour
         float TimeNote = Mathf.FloorToInt(nota.timeToArrive);
         int startChunk = 0;
 
-        if (TimeNote >= chunkSize)
+        if (TimeNote >= _chunkSize)
         {
-            startChunk = (int)(TimeNote - (TimeNote % chunkSize));
+            startChunk = (int)(TimeNote - (TimeNote % _chunkSize));
         }
 
         ChunkData chunkData = new ChunkData();
@@ -135,7 +135,7 @@ public class ChunkController : MonoBehaviour
         }
     }
 
-    public int ChunkSize => chunkSize;
+    public int ChunkSize => _chunkSize;
 
     public Dictionary<ChunkSeparation, Dictionary<int, Level>> Chunks => chunks;
 }

@@ -32,7 +32,7 @@ public class TitleScreenManager : MonoBehaviour
 
         dataLevel.folderName = infoActualLevel.name;
 
-        dataLevel.levelName = infoActualLevel.levelData.LevelsFiles[_ultimaDificultadSeleccionada].levelFileName;
+        dataLevel.levelName = infoActualLevel.levelData.levelsFiles[_ultimaDificultadSeleccionada].levelFileName;
 
         dataLevel.actualMetadata = infoActualLevel.levelData;
 

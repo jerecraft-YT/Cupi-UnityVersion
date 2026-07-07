@@ -46,7 +46,7 @@ public class NotaRadialBaseLogic : MonoBehaviour
     {
         if (!initialized) return;
 
-        progress = 1 - InverseLerpUnclamped(0.0f, data.timeToArrive + offsetRendering, (float)TimeController.instance.AdditiveTime);
+        progress = 1 - InverseLerpUnclamped(0.0f, data.timeToArrive + offsetRendering, (float)timeController.AdditiveTime);
 
         if (lockProgress) progress = Mathf.Max(0, progress);
 

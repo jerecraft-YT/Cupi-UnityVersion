@@ -26,7 +26,7 @@ public class NotaTileNormal : NotaTileBaseLogic
 
         if (!canHit)
         {
-            if (data.timeToArrive - tilesModeMaster.toleranciaError > timeController.AdditiveTime)
+            if (data.timeToArrive - tilesModeMaster.ToleranciaError > timeController.AdditiveTime)
             {
                 canHit = true;
                 changeNoteState = true;
@@ -58,16 +58,15 @@ public class NotaTileNormal : NotaTileBaseLogic
 
     private void DetectClick(CorrespondenciaTecla tecla)
     {
-        if (tecla != data.CorrespondenciaTecla || timeController.TimeScale < 0 || !canHit) return;
+        if (tecla != data.correspondenciaTecla || timeController.TimeScale < 0 || !canHit) return;
 
         float timeDiff = Mathf.Abs(data.timeToArrive - (float)timeController.AdditiveTime);
 
-        if (timeDiff < tilesModeMaster.toleranciaError)
+        if (timeDiff < tilesModeMaster.ToleranciaError)
         {
-            NotesController.HitNote(data.CorrespondenciaTecla);
+            NotesController.HitNote(data.correspondenciaTecla);
             canHit = false;
             changeNoteState = true;
-            //DestroyNote();
         }
     }
 
@@ -75,9 +74,7 @@ public class NotaTileNormal : NotaTileBaseLogic
     {
         if (timeController.TimeScale < 0) return;
 
-        //bool reverseMiss = data.timeToArrive
-
-        bool standartMiss = data.timeToArrive + tilesModeMaster.toleranciaError < timeController.AdditiveTime;
+        bool standartMiss = data.timeToArrive + tilesModeMaster.ToleranciaError < timeController.AdditiveTime;
 
         if (standartMiss)
         {
@@ -85,7 +82,7 @@ public class NotaTileNormal : NotaTileBaseLogic
             {
                 canHit = false;
                 changeNoteState = true;
-                NotesController.MissNote(data.CorrespondenciaTecla);
+                NotesController.MissNote(data.correspondenciaTecla);
             }
             DestroyNote();
         }

@@ -14,7 +14,7 @@ public class DataLevelsLoader
     {
         Debug.Log("-----GUARDANDO NIVEL COMPLETO-----");
 
-        foreach(LevelData levelData in metadata.LevelsFiles)
+        foreach(LevelData levelData in metadata.levelsFiles)
         {
             Debug.Log("guardando nivel");
             await SaveLevel(notasToSave, levelName,levelData.levelFileName);
@@ -31,7 +31,7 @@ public class DataLevelsLoader
         {
             Debug.Log("se sobreescribio la direccion de la musica en metadata");
             string fileName = Path.GetFileName(musicOriginalPath);
-            metadata.MusicFileName = fileName;
+            metadata.musicFileName = fileName;
         }
 
         Debug.Log("guardando metadata");

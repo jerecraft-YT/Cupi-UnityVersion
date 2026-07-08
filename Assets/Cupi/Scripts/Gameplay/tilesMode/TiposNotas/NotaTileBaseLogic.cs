@@ -51,7 +51,7 @@ public class NotaTileBaseLogic : MonoBehaviour
 
         progress = 1 - InverseLerpUnclamped(0.0f, data.timeToArrive + offsetRendering, (float)timeController.AdditiveTime);
 
-        if (lockProgress) progress = Mathf.Max(0, progress);
+        if (lockProgress) progress = Mathf.Max(0);
 
         float distancia = (progress * (data.timeToArrive + offsetRendering) * data.localSpeed * tilesModeMaster.notaTileSpeed);
 
@@ -62,13 +62,23 @@ public class NotaTileBaseLogic : MonoBehaviour
         //esto hace que las notas se destruyan cuando se esta en reversa
         if (data.timeToArrive > spawnerNotas.NotesWindowEnd)
         {
-            print("destruccion por reversa");
+            if (data.tipoNota == TipoNota.Sostenida)
+            {
+                print("destruccion por reversa");
+            }
+
             DestroyNote();
         }
     }
 
     public void DestroyNote()
     {
+        /*
+        if (data.tipoNota == TipoNota.Sostenida)
+        {
+            Debug.Log("destruir nota sostenida");
+        }
+        */
         GoToPool();
     }
 
@@ -83,11 +93,21 @@ public class NotaTileBaseLogic : MonoBehaviour
     {
         //Debug.Log($"Pooling note {Myindex} {data.noteIndex}");
         spawnerNotas.RemoveNote(Myindex);
-        Myindex = -1;
-        transform.parent = origin;
-        initialized = false;
+
+        SetDefaultConfig();
+
         gameObject.SetActive(false);
     }
+
+    protected virtual void SetDefaultConfig()
+    {
+        Myindex = -1;
+        transform.parent = origin;
+        transform.position = Vector2.one * 1000.0f;
+        initialized = false;
+        finalPos = Vector2.one * 1000.0f;
+    }
+
     public void Initialize(NotaInstance config)
     {
         data = config;

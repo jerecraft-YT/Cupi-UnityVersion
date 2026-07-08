@@ -39,16 +39,57 @@ public class PrefabNote
 
 //esto se hace asi para que lo pueda guardar el json
 [Serializable]
-public class Level
+public class MainLevel
 {
     [Tooltip("datos de las notas del nivel")]
     public List<NotaInstance> notas;
 
-    public Level(List<NotaInstance> notas)
+    public MainLevel(List<NotaInstance> notas)
     {
         this.notas = notas;
     }
 }
+
+[Tooltip("dato de nota individiual para usar en chunks")]
+public class ChunkNoteData
+{
+    public NotaInstance nota;
+
+    //este es un valor configurable para no cambiar los datos bases de la nota
+    //asi se puede tener offset de spawn o varias notas con varios puntos de aparicion
+    //muy util para la nota sostenida si se ve en reversa
+    public float timeToSpawn;
+
+    public ChunkNoteData(NotaInstance nota, float timeToSpawn)
+    {
+        this.nota = nota;
+        this.timeToSpawn = timeToSpawn;
+    }
+}
+
+[Tooltip("conjunto de notas usable para chunk")]
+public class ChunkLevelData
+{
+    public List<ChunkNoteData> notas;
+
+    public ChunkLevelData (List<ChunkNoteData> notas)
+    {
+        this.notas = notas;
+    }
+}
+
+public struct ChunkSeparation
+{
+    public TipoNota tipoNota;
+    public ModoNota modoNota;
+
+    public ChunkSeparation(TipoNota tipoNota, ModoNota modoNota)
+    {
+        this.tipoNota = tipoNota;
+        this.modoNota = modoNota;
+    }
+}
+
 
 [Serializable]
 public class LevelData
@@ -132,23 +173,5 @@ public class CacheAudio
     {
         this.clip = clip;
         this.lastUse = lastUse;
-    }
-}
-
-public class ChunkData
-{
-    public int startChunk;
-    public Level level;
-}
-
-public struct ChunkSeparation
-{
-    public TipoNota tipoNota;
-    public ModoNota modoNota;
-
-    public ChunkSeparation(TipoNota tipoNota,ModoNota modoNota)
-    {
-        this.tipoNota = tipoNota;
-        this.modoNota = modoNota;
     }
 }

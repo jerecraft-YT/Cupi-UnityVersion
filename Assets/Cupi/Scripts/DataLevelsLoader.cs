@@ -66,7 +66,7 @@ public class DataLevelsLoader
         FindGameFolder();
         FindLevelFolder(levelName);
 
-        Level LevelToSave = new(notasToSave);
+        MainLevel LevelToSave = new(notasToSave);
 
         string JsonString = JsonUtility.ToJson(LevelToSave, true);
 
@@ -125,7 +125,7 @@ public class DataLevelsLoader
         Debug.Log("se guardo la metadata");
     }
 
-    public static Level LoadDataLevel(string folderName,string levelName)
+    public static MainLevel LoadDataLevel(string folderName,string levelName)
     {
         string dir = Path.Combine(MainPath , nombreCarpetaJuego, folderName, levelName);
 
@@ -134,12 +134,12 @@ public class DataLevelsLoader
             return new(new());
         }
 
-        Level notas;
+        MainLevel notas;
 
         string JsonString = File.ReadAllText(dir);
 
         //hacer esto con task.run es pegriloso :c
-        notas = JsonUtility.FromJson<Level>(JsonString);
+        notas = JsonUtility.FromJson<MainLevel>(JsonString);
 
         return notas;
     }

@@ -301,3 +301,9 @@ MonoBehaviour:
   Myindex: 0
   initialized: 0
   _lineNote: {fileID: 7100625877865951975}
+  _canHit: 0
+  _firstHit: 0
+  _renderNote: 0
+  _consumoNota: 0
+  totalSecciones: 0
+  _changeNoteState: 0

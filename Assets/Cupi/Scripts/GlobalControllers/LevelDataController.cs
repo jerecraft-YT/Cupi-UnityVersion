@@ -4,7 +4,7 @@ public class LevelDataController : MonoBehaviour
 {
     public static LevelDataController instance;
 
-    public Level actualLevel;
+    public MainLevel actualLevel;
 
     public LevelMetadata actualMetadata;
 

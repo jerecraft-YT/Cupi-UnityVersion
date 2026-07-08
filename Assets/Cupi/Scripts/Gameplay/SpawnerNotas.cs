@@ -25,6 +25,14 @@ public class SpawnerNotas : MonoBehaviour
 
     public float NotesWindowEnd;
 
+    public int firstChunk;
+
+    public int lastChunk;
+
+    public float spawnWindowStart;
+
+    public float spawnWindowEnd;
+
     public Transform radialModeReference;
 
     const string capaRadialMode = "RadialMode";
@@ -92,6 +100,7 @@ public class SpawnerNotas : MonoBehaviour
         }
     }
 
+
     private void SortNotes()
     {
         notasToInstance = notasToInstance.OrderBy(t => t.timeToArrive).ToList();
@@ -127,14 +136,14 @@ public class SpawnerNotas : MonoBehaviour
 
         float travelTime = _tileModeMaster.NotesVisibleRender / _tileModeMaster.notaTileSpeed;
 
-        float spawnWindowStart = currentTime;
-        float spawnWindowEnd = currentTime + travelTime;
+        spawnWindowStart = currentTime;
+        spawnWindowEnd = currentTime + travelTime;
 
         NotesWindowEnd = spawnWindowEnd + _chunkController.ChunkSize;
 
-        int firstChunk = FloorChunk(spawnWindowStart, _chunkController.ChunkSize);
+        firstChunk = FloorChunk(spawnWindowStart, _chunkController.ChunkSize);
 
-        int lastChunk = FloorChunk(spawnWindowEnd, _chunkController.ChunkSize);
+        lastChunk = FloorChunk(spawnWindowEnd, _chunkController.ChunkSize);
 
         foreach (var chunkGroup in _chunkController.Chunks)
         {
@@ -145,12 +154,20 @@ public class SpawnerNotas : MonoBehaviour
                 if (!dict.TryGetValue(chunkTime, out var level))
                     continue;
 
-                foreach (var nota in level.notas)
+                foreach (var noteData in level.notas)
                 {
-                    if (_spawnedNotes.Contains(nota.noteIndex) || (nota.timeToArrive < currentTime))
+                    /*
+                    if (noteData.nota.tipoNota == TipoNota.Sostenida && TimeController.instance.TimeScale < 0)
+                    {
+                        Debug.Log("podria generarse una nota sostenida");
+                        Debug.Log($"en este chunk hay {level.notas.Count} notas");
+                    }
+                    */
+
+                    if (_spawnedNotes.Contains(noteData.nota.noteIndex) || (noteData.timeToSpawn < currentTime))
                         continue;
 
-                    SpawnNote(nota);
+                    SpawnNote(noteData.nota);
                 }
             }
         }

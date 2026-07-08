@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class NotaTileNormal : NotaTileBaseLogic
 {
-    private bool canHit;
-    private bool changeNoteState;
+
+    private bool _canHit;
+    private bool _needsRenderUpdate;
 
     protected override void OnEnable()
     {
-        canHit = true;
-        changeNoteState = true;
+        _canHit = true;
+        _needsRenderUpdate = true;
 
         base.OnEnable();
 
@@ -23,50 +24,44 @@ public class NotaTileNormal : NotaTileBaseLogic
     protected override void LogicUpdate()
     {
         DetectMiss();
+        RenderControl();
+    }
 
-        if (!canHit)
+    private void RenderControl()
+    {
+        if (!_canHit)
         {
             if (data.timeToArrive - tilesModeMaster.ToleranciaError > timeController.AdditiveTime)
             {
-                canHit = true;
-                changeNoteState = true;
+                _canHit = true;
+                _needsRenderUpdate = true;
             }
         }
 
-        if (changeNoteState)
+        if (_needsRenderUpdate)
         {
-            if (!canHit)
-            {
-                Color colorActual = spriteNote.color;
+            SetNoteVisibility(_canHit);
 
-                colorActual.a = 0f;
-
-                spriteNote.color = colorActual;
-            }
-            else
-            {
-                Color colorActual = spriteNote.color;
-
-                colorActual.a = 1f;
-
-                spriteNote.color = colorActual;
-            }
-
-            changeNoteState = false;
+            _needsRenderUpdate = false;
         }
+    }
+
+    private void SetNoteVisibility(bool isVisible)
+    {
+        spriteNote.enabled = isVisible;
     }
 
     private void DetectClick(CorrespondenciaTecla tecla)
     {
-        if (tecla != data.correspondenciaTecla || timeController.TimeScale < 0 || !canHit) return;
+        if (tecla != data.correspondenciaTecla || timeController.TimeScale < 0 || !_canHit) return;
 
         float timeDiff = Mathf.Abs(data.timeToArrive - (float)timeController.AdditiveTime);
 
         if (timeDiff < tilesModeMaster.ToleranciaError)
         {
             NotesController.HitNote(data.correspondenciaTecla);
-            canHit = false;
-            changeNoteState = true;
+            _canHit = false;
+            _needsRenderUpdate = true;
         }
     }
 
@@ -74,14 +69,14 @@ public class NotaTileNormal : NotaTileBaseLogic
     {
         if (timeController.TimeScale < 0) return;
 
-        bool standartMiss = data.timeToArrive + tilesModeMaster.ToleranciaError < timeController.AdditiveTime;
+        bool standardMiss = data.timeToArrive + tilesModeMaster.ToleranciaError < timeController.AdditiveTime;
 
-        if (standartMiss)
+        if (standardMiss)
         {
-            if (canHit)
+            if (_canHit)
             {
-                canHit = false;
-                changeNoteState = true;
+                _canHit = false;
+                _needsRenderUpdate = true;
                 NotesController.MissNote(data.correspondenciaTecla);
             }
             DestroyNote();

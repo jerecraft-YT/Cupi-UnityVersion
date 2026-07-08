@@ -29,6 +29,12 @@ public enum TipoNota
     Normal = 0,
     Sostenida = 1
 }
+public enum ModoNota
+{
+    None = 2,
+    Tile = 0,
+    Radial = 1
+}
 
 public enum TipoObjetoPool
 {
@@ -39,12 +45,6 @@ public enum TipoObjetoPool
     NotaSostenidaRadial = 4,
 }
 
-public enum ModoNota
-{
-    None = 2,
-    Tile = 0,
-    Radial = 1
-}
 
 // por si algun especialito agrega un valor en medio (osea yo :P)
 public enum TileModePlayStyle

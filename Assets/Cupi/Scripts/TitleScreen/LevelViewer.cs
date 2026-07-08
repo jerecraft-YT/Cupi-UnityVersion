@@ -72,7 +72,7 @@ public class LevelViewer : MonoBehaviour
         notaInstance.direccionMovimiento = DireccionesMovimientoNotas.Up;
         notaInstance.localSpeed = 1;
 
-        List<NotaInstance> notaInstances = new() {notaInstance};
+        List<NotaInstance> notaInstances = new() { notaInstance };
 
         await DataLevelsLoader.SaveAll(notaInstances, "nivelPrueba", testDataLevel, "C:/Users/Alumno/Documents/GitHub/Cupi-UnityVersion/Assets/Cupi/Resources/audiosPrueba/DJ Quads - The Improv (SPOTISAVER).mp3");
     }

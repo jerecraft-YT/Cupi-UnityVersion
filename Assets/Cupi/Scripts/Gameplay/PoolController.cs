@@ -49,6 +49,7 @@ public class PoolController : MonoBehaviour
         AddInstance(index);
         GameObject newObject = _instances[index][_instances[index].Count - 1];
         newObject.SetActive(true);
+        
 
         return newObject;
     }
@@ -58,6 +59,7 @@ public class PoolController : MonoBehaviour
         if (_prefabs[indexPrefab].prefab == null) return;
 
         GameObject instance = Instantiate(_prefabs[indexPrefab].prefab, _groupPool[indexPrefab].transform);
+        instance.transform.position = Vector2.one * 1000.0f;
         instance.SetActive(false);
         _instances[indexPrefab].Add(instance);
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ChunkController : MonoBehaviour
 {
-    public Dictionary<ChunkSeparation, Dictionary<int,Level>> chunks = new();
+    public Dictionary<ChunkSeparation, Dictionary<int,ChunkLevelData>> chunks = new();
 
     [Tooltip("tamaño de los chunks en segundos")]
     [SerializeField] private int _chunkSize = 3;
@@ -24,7 +24,7 @@ public class ChunkController : MonoBehaviour
 
         Debug.Log("-----ACABO GENERACION DE CHUNKS-----");
     }
-
+    
     private void FilterChunks()
     {
         List<ChunkSeparation> chunksToRemove = new();
@@ -56,39 +56,56 @@ public class ChunkController : MonoBehaviour
     {
         ChunkSeparation tempSeparation = new();
 
-        foreach (NotaInstance nota in listaNotas)
+        foreach (var noteData in listaNotas)
         {
-            tempSeparation.modoNota = nota.modoNota;
-            tempSeparation.tipoNota = nota.tipoNota;
+            tempSeparation.modoNota = noteData.modoNota;
+            tempSeparation.tipoNota = noteData.tipoNota;
 
-            //^1 es para consultar al revez osea del final al inicio
-
-            if (chunks[tempSeparation].Count == 0)
+            //si la nota es sostenida se registra dos veces, una para su inicio y otra para su final
+            if (noteData.tipoNota == TipoNota.Sostenida)
             {
-                NewChunk(nota, tempSeparation);
+                AddDataToChunk(tempSeparation, noteData);
+
+                AddDataToChunk(tempSeparation, noteData, noteData.duracion);
+
+                continue;
+            }
+
+            //esto seria si la nota es normal entonces se registra una sola vez
+            AddDataToChunk(tempSeparation, noteData);
+        }
+    }
+
+    private void AddDataToChunk(ChunkSeparation tempSeparation, NotaInstance nota, float offsetSpawn = 0.0f)
+    {
+        //^1 es para consultar al revez osea del final al inicio
+
+        if (chunks[tempSeparation].Count == 0)
+        {
+            NewChunk(nota, tempSeparation);
+        }
+        else
+        {
+            //ChunkData actualChunk = chunks[tempSeparation][^1];
+
+            int startChunk = chunks[tempSeparation].Last().Key;
+
+            float timeNote = nota.timeToArrive + offsetSpawn;
+
+            if (timeNote < startChunk + _chunkSize)
+            {
+                //Debug.Log("AGREGANDO NOTA NUEVA");
+                ChunkNoteData chunkData = new (nota,timeNote);
+                chunks[tempSeparation][startChunk].notas.Add(chunkData);
             }
             else
             {
-                //ChunkData actualChunk = chunks[tempSeparation][^1];
-
-                int startChunk = chunks[tempSeparation].Last().Key;
-
-                float timeNote = nota.timeToArrive;
-
-                if (timeNote < startChunk + _chunkSize)
-                {
-                    //Debug.Log("AGREGANDO NOTA NUEVA");
-                    chunks[tempSeparation][startChunk].notas.Add(nota);
-                }
-                else
-                {
-                    NewChunk(nota, tempSeparation);
-                }
+                NewChunk(nota, tempSeparation,offsetSpawn);
             }
         }
     }
 
-    private void NewChunk(NotaInstance nota, ChunkSeparation separation)
+    private void NewChunk(NotaInstance nota, ChunkSeparation separation, float offsetSpawn = 0.0f)
     {
         /*
         Debug.Log("-----INFO DE CHUNK-----");
@@ -98,7 +115,7 @@ public class ChunkController : MonoBehaviour
         Debug.Log("-----FINAL DE INFO DE CHUNK-----");
         */
 
-        float TimeNote = Mathf.FloorToInt(nota.timeToArrive);
+        float TimeNote = Mathf.FloorToInt(nota.timeToArrive + offsetSpawn);
         int startChunk = 0;
 
         if (TimeNote >= _chunkSize)
@@ -106,12 +123,14 @@ public class ChunkController : MonoBehaviour
             startChunk = (int)(TimeNote - (TimeNote % _chunkSize));
         }
 
-        ChunkData chunkData = new ChunkData();
-        chunkData.startChunk = startChunk;
+        //ChunkData chunkData = new ChunkData();
+        //chunkData.startChunk = startChunk;
 
-        List<NotaInstance> notas = new() { nota };
+        ChunkNoteData chunkLevelData = new(nota, nota.timeToArrive + offsetSpawn);
 
-        chunkData.level = new(notas);
+        List<ChunkNoteData> notas = new() { chunkLevelData };
+
+        //chunkData.level = new(notas);
 
         chunks[separation].Add(startChunk, new(notas));
     }
@@ -128,7 +147,7 @@ public class ChunkController : MonoBehaviour
 
                 ChunkSeparation chunkSeparation = new((TipoNota)tipoNota, (ModoNota)modoNota);
 
-                Dictionary<int,Level> chunk = new();
+                Dictionary<int,ChunkLevelData> chunk = new();
 
                 chunks.Add(chunkSeparation, chunk);
             }
@@ -137,5 +156,5 @@ public class ChunkController : MonoBehaviour
 
     public int ChunkSize => _chunkSize;
 
-    public Dictionary<ChunkSeparation, Dictionary<int, Level>> Chunks => chunks;
+    public Dictionary<ChunkSeparation, Dictionary<int, ChunkLevelData>> Chunks => chunks;
 }

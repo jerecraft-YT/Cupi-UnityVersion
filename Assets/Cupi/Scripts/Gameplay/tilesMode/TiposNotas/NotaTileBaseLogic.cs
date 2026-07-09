@@ -73,12 +73,6 @@ public class NotaTileBaseLogic : MonoBehaviour
 
     public void DestroyNote()
     {
-        /*
-        if (data.tipoNota == TipoNota.Sostenida)
-        {
-            Debug.Log("destruir nota sostenida");
-        }
-        */
         GoToPool();
     }
 

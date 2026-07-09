@@ -267,8 +267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TilesModeMasterConfig
   PlayStyle: 3
-  toleranciaErrorBase: 0.5
-  notaTileSpeed: 7
+  toleranciaErrorBase: 0.14
+  notaTileSpeed: 12
   separacionObjetivosNotas: 2
   limiteInferiorRender: 1
   extraRenderSize: 3

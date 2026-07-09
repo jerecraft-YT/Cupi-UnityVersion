@@ -8,7 +8,7 @@ public class TilesModeMaster : MonoBehaviour
 
     public TileModePlayStyle PlayStyle;
 
-    [Tooltip("Margen de error para las notas (en segundos) ademas variara segun la velocidad")]
+    [Tooltip("Margen de error para las notas (en segundos)")]
     public float toleranciaErrorBase = 0.5f;
 
     [Tooltip("Velocidad general de notas")]
@@ -33,7 +33,7 @@ public class TilesModeMaster : MonoBehaviour
     }
 
     //es mejor asi para no calcularlo en el update
-    public float ToleranciaError => toleranciaErrorBase / notaTileSpeed;
+    public float ToleranciaError => toleranciaErrorBase;
 
     public float RenderLimit => (limiteInferiorRender / notaTileSpeed) + extraRenderSize;
 

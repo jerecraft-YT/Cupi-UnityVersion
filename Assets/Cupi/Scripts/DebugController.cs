@@ -17,17 +17,25 @@ public class DebugController : MonoBehaviour
 
     private void Start()
     {
-        _audioSource = MusicController.instance.mainMusic.clip != null ? MusicController.instance.mainMusic : null;
+        MusicController.OnMusicChanged += setMainMusic;
         
         InputController.instance.gameInputs.UI.Enable();
 
         InputController.instance.gameInputs.UI.ScrollWheel.performed += ScrollMouse;
     }
 
+    private void OnDisable()
+    {
+        MusicController.OnMusicChanged -= setMainMusic;
+    }
+
+    private void setMainMusic()
+    {
+        _audioSource = MusicController.mainMusic.clip != null ? MusicController.mainMusic : null;
+    }
+
     private async void Update()
     {
-
-
         if (_updateDebugInfo)
         {
             _updateDebugInfo = false;

@@ -25,14 +25,6 @@ public class SpawnerNotas : MonoBehaviour
 
     public float NotesWindowEnd;
 
-    public int firstChunk;
-
-    public int lastChunk;
-
-    public float spawnWindowStart;
-
-    public float spawnWindowEnd;
-
     public Transform radialModeReference;
 
     const string capaRadialMode = "RadialMode";
@@ -80,13 +72,13 @@ public class SpawnerNotas : MonoBehaviour
 
         int playStyle = (int)_tileModeMaster.PlayStyle;
 
-        float posXCentrada = (playStyle * _tileModeMaster.separacionObjetivosNotas) / 2.0f;
+        float posXCentrada = (playStyle * _tileModeMaster.SeparacionObjetivosNotas) / 2.0f;
 
         for (int i = 0; i < playStyle + 1; i++)
         {
             CorrespondenciaTecla tecla = (CorrespondenciaTecla)i;
 
-            float posX = (_tileModeMaster.separacionObjetivosNotas * i) - posXCentrada;
+            float posX = (_tileModeMaster.SeparacionObjetivosNotas * i) - posXCentrada;
             GameObject reference = new($"reference {tecla}");
             reference.transform.SetParent(tileModeReference);
 
@@ -134,16 +126,16 @@ public class SpawnerNotas : MonoBehaviour
     {
         float currentTime = (float)_timeController.AdditiveTime;
 
-        float travelTime = _tileModeMaster.NotesVisibleRender / _tileModeMaster.notaTileSpeed;
+        float travelTime = _tileModeMaster.NotesVisibleRender / _tileModeMaster.NotaTileSpeed;
 
-        spawnWindowStart = currentTime;
-        spawnWindowEnd = currentTime + travelTime;
+        float spawnWindowStart = currentTime;
+        float spawnWindowEnd = currentTime + travelTime;
 
         NotesWindowEnd = spawnWindowEnd + _chunkController.ChunkSize;
 
-        firstChunk = FloorChunk(spawnWindowStart, _chunkController.ChunkSize);
+        int firstChunk = FloorChunk(spawnWindowStart, _chunkController.ChunkSize);
 
-        lastChunk = FloorChunk(spawnWindowEnd, _chunkController.ChunkSize);
+        int lastChunk = FloorChunk(spawnWindowEnd, _chunkController.ChunkSize);
 
         foreach (var chunkGroup in _chunkController.Chunks)
         {

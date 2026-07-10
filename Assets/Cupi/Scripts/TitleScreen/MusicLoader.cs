@@ -39,7 +39,7 @@ public class MusicLoader : MonoBehaviour
 
         _musicController = MusicController.instance;
 
-        _musicController.mainMusic.loop = true;
+        MusicController.mainMusic.loop = true;
 
         _emptyClip = AudioClip.Create("EmptyMusic", 1, 1, 1000, true);
     }
@@ -119,7 +119,8 @@ public class MusicLoader : MonoBehaviour
     public async Task LoadMusic(LevelInfo levelInfo,LevelMetadata levelMetadata)
     {
         //algo obvio por el nombre :/
-        await MusicFadeIn();
+        //await MusicFadeIn();
+        await MusicController.MusicFadeIn(_timeTransitionMusic);
 
         Debug.Log("-----CARGANDO AUDIO-----");
 
@@ -131,14 +132,14 @@ public class MusicLoader : MonoBehaviour
 
         EndMusicLoad(levelMetadata);
 
-        await MusicFadeOut();
+        await MusicController.MusicFadeOut(_timeTransitionMusic);
     }
 
     private void EndMusicLoad(LevelMetadata levelMetadata)
     {
         float previewMusicTime = levelMetadata.previewTimeMusic;
 
-        _musicController.mainMusic.time = previewMusicTime;
+        MusicController.mainMusic.time = previewMusicTime;
 
         SincronizarMusica(previewMusicTime, levelMetadata.bpm);
 
@@ -229,27 +230,27 @@ public class MusicLoader : MonoBehaviour
         }
     }
 
-    private async Task MusicFadeIn()
+    public async Task MusicFadeIn()
     {
-        float startVolumen = _musicController.mainMusic.volume;
+        float startVolumen = MusicController.mainMusic.volume;
 
         for (float t = 0; t < _timeTransitionMusic; t += Time.deltaTime)
         {
-            _musicController.mainMusic.volume = Mathf.Lerp(startVolumen, 0, t / _timeTransitionMusic);
+            MusicController.mainMusic.volume = Mathf.Lerp(startVolumen, 0, t / _timeTransitionMusic);
             await Awaitable.EndOfFrameAsync();
         }
-        _musicController.mainMusic.volume = 0;
+        MusicController.mainMusic.volume = 0;
     }
 
     private async Task MusicFadeOut()
     {
         for (float t = 0; t < _timeTransitionMusic; t += Time.deltaTime)
         {
-            _musicController.mainMusic.volume = Mathf.Lerp(0.0f, 1.0f, t / _timeTransitionMusic);
+            MusicController.mainMusic.volume = Mathf.Lerp(0.0f, 1.0f, t / _timeTransitionMusic);
             await Awaitable.EndOfFrameAsync();
         }
 
-        _musicController.mainMusic.volume = 1.0f;
+        MusicController.mainMusic.volume = 1.0f;
     }
 
     private void SincronizarMusica(float previewMusicTime,float bpm)

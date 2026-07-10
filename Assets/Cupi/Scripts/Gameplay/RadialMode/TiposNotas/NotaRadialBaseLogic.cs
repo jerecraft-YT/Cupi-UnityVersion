@@ -50,7 +50,7 @@ public class NotaRadialBaseLogic : MonoBehaviour
 
         if (lockProgress) progress = Mathf.Max(0, progress);
 
-        float distancia = (progress * (data.timeToArrive + offsetRendering) * data.localSpeed * TilesModeMaster.instance.notaTileSpeed);
+        float distancia = (progress * (data.timeToArrive + offsetRendering) * data.localSpeed * TilesModeMaster.instance.NotaTileSpeed);
 
         finalPos = data.offsetPositionToGo + (DireccionMovimiento * distancia);
 

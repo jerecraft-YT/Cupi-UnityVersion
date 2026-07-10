@@ -14,6 +14,8 @@ public class LevelDataController : MonoBehaviour
 
     public MusicLoader musicLoader;
 
+    public static LevelConfig defaultLevelConfig;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -23,6 +25,13 @@ public class LevelDataController : MonoBehaviour
         }
 
         instance = this;
+
+        LoadDefaultConfig();
+    }
+
+    private void LoadDefaultConfig()
+    {
+        defaultLevelConfig = Resources.Load<LevelConfig>("LevelConfig");
     }
 
     [Tooltip("convierte los datos del nivel de este script a null pero no elimina los archivos en carpetas")]

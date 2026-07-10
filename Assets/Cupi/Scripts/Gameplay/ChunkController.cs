@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class ChunkController : MonoBehaviour
@@ -8,7 +9,19 @@ public class ChunkController : MonoBehaviour
     public Dictionary<ChunkSeparation, Dictionary<int,ChunkLevelData>> chunks = new();
 
     [Tooltip("tamaño de los chunks en segundos")]
-    [SerializeField] private int _chunkSize = 3;
+    private int _chunkSize;
+
+    private void Awake()
+    {
+        SetDefaultConfig();
+
+        _chunkSize = math.max(1, _chunkSize);
+    }
+
+    private void SetDefaultConfig()
+    {
+        _chunkSize = LevelDataController.defaultLevelConfig.chunkSize;
+    }
 
     public void GenerateBulletChunks(List<NotaInstance> listaNotas)
     {
@@ -47,6 +60,7 @@ public class ChunkController : MonoBehaviour
     {
         foreach (var chunk in chunks)
         {
+            Debug.Log("/// INFO DE CHUNKs ///");
             Debug.Log("chunk de modo: " + chunk.Key.modoNota + " y tipo: " + chunk.Key.tipoNota );
             Debug.Log("tiene " + chunk.Value.Count + " chunks");
         }

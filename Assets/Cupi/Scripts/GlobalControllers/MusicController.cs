@@ -1,4 +1,5 @@
-using System.Collections;
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -11,7 +12,8 @@ public class MusicController : MonoBehaviour
     private AudioMixerGroup _musicGroup;
     private float _toleranciaSincronizacion;
     private bool _musicPaused;
-    public AudioSource mainMusic;
+    public static AudioSource mainMusic;
+    public static event Action OnMusicChanged;
 
     private void Awake()
     {
@@ -25,18 +27,29 @@ public class MusicController : MonoBehaviour
         CargarDefaultConfig();
     }
 
-    public IEnumerator WakeUpVolumeMusic(float duracion)
+    public static async Task MusicFadeIn(float duracion)
     {
         float startVolumen = mainMusic.volume;
 
         for (float t = 0; t < duracion; t += Time.deltaTime)
         {
-            mainMusic.volume = Mathf.Lerp(startVolumen, 1.0f, t / duracion);
-            yield return null;
+            mainMusic.volume = Mathf.Lerp(startVolumen, 0, t / duracion);
+            await Awaitable.EndOfFrameAsync();
+        }
+        mainMusic.volume = 0;
+    }
+
+    public static async Task MusicFadeOut(float duracion)
+    {
+        for (float t = 0; t < duracion; t += Time.deltaTime)
+        {
+            mainMusic.volume = Mathf.Lerp(0.0f, 1.0f, t / duracion);
+            await Awaitable.EndOfFrameAsync();
         }
 
         mainMusic.volume = 1.0f;
     }
+
 
     private void CargarDefaultConfig()
     {
@@ -84,6 +97,8 @@ public class MusicController : MonoBehaviour
         mainMusic.clip = audio;
         mainMusic.time = startTime;
         mainMusic.Play();
+
+        OnMusicChanged?.Invoke();
     }
 
     private void PausarMusica()
@@ -95,11 +110,24 @@ public class MusicController : MonoBehaviour
         }
     }
 
-    public void SincronizarMusica()
+    public void SincronizarMusica(bool conTolerancia = true)
     {
         if (_musicPaused || mainMusic.clip == null) return;
 
         float additiveTime = (float)TimeController.instance.AdditiveTime;
+
+        if (!conTolerancia)
+        {
+            if (!mainMusic.isPlaying) mainMusic.Play();
+
+            //Debug.Log("resincronizando musica");
+
+            mainMusic.time = additiveTime;
+
+            return;
+        }
+
+
 
         if (additiveTime < 0 || additiveTime > mainMusic.clip.length) return;
 
@@ -123,7 +151,7 @@ public class MusicController : MonoBehaviour
     {
         if (_pitchRegulator)
         {
-            _musicGroup.audioMixer.SetFloat("pitchShifter", 2.0f - Mathf.Abs(mainMusic.pitch));
+            _musicGroup.audioMixer.SetFloat("pitchShifter", 1.0f / Mathf.Abs(mainMusic.pitch));
         }
         else
         {

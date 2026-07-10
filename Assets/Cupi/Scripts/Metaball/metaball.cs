@@ -71,7 +71,7 @@ public class metaball : MonoBehaviour
             return;
         }
 
-        musica = MusicController.instance.mainMusic;
+        musica = MusicController.mainMusic;
 
         CreateCirclePoints();
         CreateMetaballFollowInstances();

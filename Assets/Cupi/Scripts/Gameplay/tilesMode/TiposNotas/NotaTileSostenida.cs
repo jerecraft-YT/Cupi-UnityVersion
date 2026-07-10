@@ -251,7 +251,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
                 if (lockProgress) progress = Mathf.Max(0, progress);
 
-                float distancia = (progress * _timeToArriveForLine * data.localSpeed * tilesModeMaster.notaTileSpeed);
+                float distancia = (progress * _timeToArriveForLine * data.localSpeed * tilesModeMaster.NotaTileSpeed);
 
                 Vector2 finalPos = data.offsetPositionToGo + (DireccionMovimiento * distancia);
 

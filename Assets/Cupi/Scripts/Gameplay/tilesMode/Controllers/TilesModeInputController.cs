@@ -47,21 +47,11 @@ public class TilesModeInputController : MonoBehaviour
             {TileModePlayStyle.NineKeys     ,   gameInputs.TileModeNineKeys  },
             {TileModePlayStyle.TenKeys      ,   gameInputs.TileModeTenKeys },
         };
-
-        SetActualActionMap();
     }
 
-    private void SetActualActionMap()
+    private void Start()
     {
-        actualActionMap = InputActionMaps[tilesModeMaster.PlayStyle];
-    }
-
-    private void OnEnable()
-    {
-        actualActionMap.Enable();
-
-        CreateKeys();
-        SuscribePad();
+        SetActionMap(tilesModeMaster.PlayStyle);
     }
 
     private void OnDisable()
@@ -119,6 +109,8 @@ public class TilesModeInputController : MonoBehaviour
 
     private void UnsuscribePad()
     {
+        if (actualActionMap == null) return;
+
         foreach (InputAction InputAction in actualActionMap.actions)
         {
             InputAction.performed -= OnPad;

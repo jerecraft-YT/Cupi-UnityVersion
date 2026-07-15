@@ -741,7 +741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &930970435
 Transform:
   m_ObjectHideFlags: 0
@@ -755,7 +755,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1673968680}
   - {fileID: 179359623}
   - {fileID: 29140253}
   m_Father: {fileID: 0}
@@ -1222,7 +1221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1583787024
 Transform:
   m_ObjectHideFlags: 0
@@ -1290,7 +1289,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 930970435}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1673968681
 MonoBehaviour:
@@ -1304,7 +1303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4db563998eed047bf97c0785e09dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::testGeneradorPartida
-  chart:
+  chart1:
   - noteIndex: 0
     modoNota: 0
     tipoNota: 0
@@ -1313,106 +1312,11 @@ MonoBehaviour:
     offsetPositionToGo: {x: 0, y: 0}
     direccionCustom: {x: 0, y: 0}
     timeToArrive: 2
-    localSpeed: 1
+    localSpeed: 0
     duracion: 0
     angulo: 0
     anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 1
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 3
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 4
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 5
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 6
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 7
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 8
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 9
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
+  chart2:
   - noteIndex: 0
     modoNota: 0
     tipoNota: 0
@@ -1421,7 +1325,7 @@ MonoBehaviour:
     offsetPositionToGo: {x: 0, y: 0}
     direccionCustom: {x: 0, y: 0}
     timeToArrive: 10
-    localSpeed: 1
+    localSpeed: 0
     duracion: 0
     angulo: 0
     anguloFinal: 0
@@ -1734,5 +1638,6 @@ SceneRoots:
   - {fileID: 1182380751}
   - {fileID: 1583787024}
   - {fileID: 1093597824}
+  - {fileID: 1673968680}
   - {fileID: 930970435}
   - {fileID: 1798169997}

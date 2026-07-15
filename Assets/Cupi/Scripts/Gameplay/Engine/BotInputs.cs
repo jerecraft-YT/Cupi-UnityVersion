@@ -1,16 +1,23 @@
+using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class BotInputs : MonoBehaviour
+public class BotInputs : IInputDevice
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public List<NotaInstance> chart;
+
+    public event Action<CorrespondenciaTecla> OnButtonPressed;
+    public event Action<CorrespondenciaTecla> OnButtonReleased;
+
+    public bool ClickPressed(CorrespondenciaTecla tecla)
     {
-        
+        return false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Dispose()
     {
-        
+        return;
     }
+
+
 }

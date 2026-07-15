@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 [Serializable]
 public class GameplayEngine : IDisposable
@@ -108,6 +109,7 @@ public class GameplayEngine : IDisposable
 
     private void RegistrarResultado(int noteIndex,EstadoNota estado, EstadoPuntuacion puntuacion)
     {
+        Debug.Log(puntuacion);
         estadoNotas[noteIndex].estadoNota = estado;
         estadoNotas[noteIndex].estadoPuntuacion = puntuacion;
     }

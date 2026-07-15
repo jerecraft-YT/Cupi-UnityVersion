@@ -30,6 +30,34 @@ public class NotaInstance
 }
 
 [Serializable]
+public struct BufferedInput
+{
+    public CorrespondenciaTecla tecla;
+    public float songTime;
+    public bool isPressed;
+
+    public BufferedInput(CorrespondenciaTecla tecla, float songTime, bool isPressed)
+    {
+        this.tecla = tecla;
+        this.songTime = songTime;
+        this.isPressed = isPressed;
+    }
+}
+
+[Serializable]
+public struct RuntimeStateNote
+{
+    public EstadoPuntuacion estadoPuntuacion;
+    public EstadoNota estadoNota;
+
+    public RuntimeStateNote(EstadoPuntuacion estadoPuntuacion, EstadoNota estadoNota)
+    {
+        this.estadoPuntuacion = estadoPuntuacion;
+        this.estadoNota = estadoNota;
+    }
+}
+
+[Serializable]
 public class PrefabNote
 {
     public GameObject prefab;

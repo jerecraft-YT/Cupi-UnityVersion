@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &29140253
 Transform:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ GameObject:
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &179359623
 Transform:
   m_ObjectHideFlags: 0
@@ -755,6 +755,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1673968680}
   - {fileID: 179359623}
   - {fileID: 29140253}
   m_Father: {fileID: 0}
@@ -934,7 +935,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f8bb602b4b6e945a784b29d40a5b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicLevelManager
-  startFadeDuration: 0.15
 --- !u!4 &995682708 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3012614556007921656, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
@@ -1260,6 +1260,171 @@ MonoBehaviour:
   - prefab: {fileID: 507058147081189937, guid: 4d3ba18e085acf843812c7b7a5a58507, type: 3}
     tipoObjetoPool: 3
     intialInstances: 15
+--- !u!1 &1673968679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1673968680}
+  - component: {fileID: 1673968681}
+  m_Layer: 0
+  m_Name: testGeneradorPartida
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1673968680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673968679}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.16727, y: -0.47754, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 930970435}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1673968681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673968679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec4db563998eed047bf97c0785e09dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::testGeneradorPartida
+  chart:
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 2
+    localSpeed: 1
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 1
+    localSpeed: 1
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 3
+    localSpeed: 1
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 4
+    localSpeed: 1
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 5
+    localSpeed: 1
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 6
+    localSpeed: 1
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 7
+    localSpeed: 1
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 8
+    localSpeed: 1
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 9
+    localSpeed: 1
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 10
+    localSpeed: 1
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
 --- !u!1 &1733687925
 GameObject:
   m_ObjectHideFlags: 0

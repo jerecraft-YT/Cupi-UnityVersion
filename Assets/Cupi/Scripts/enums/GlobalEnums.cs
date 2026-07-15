@@ -23,6 +23,41 @@ public enum CorrespondenciaTecla
     Ten = 9
 }
 
+public enum ModoJuego
+{
+    None,
+    Tile,
+    Radial
+}
+
+public enum ModoInput
+{
+    None,
+    Player,
+    Bot,
+    Custom
+}
+
+public enum EstadoNota
+{
+    None,
+    EnProceso,
+    Presionada,
+    Fallada,
+    Procesada
+}
+
+public enum EstadoPuntuacion
+{
+    None,
+    Fallaste,
+    EnProceso,
+    Pesimo,
+    Malo,
+    Bueno,
+    Perfecto
+}
+
 public enum TipoNota
 {
     None = 2,

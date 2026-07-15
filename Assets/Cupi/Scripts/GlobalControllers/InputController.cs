@@ -5,7 +5,6 @@ public class InputController : MonoBehaviour
     public static InputController instance;
 
     public GameInputs gameInputs;
-
     private void Awake()
     {
         if (instance != null && instance != this)

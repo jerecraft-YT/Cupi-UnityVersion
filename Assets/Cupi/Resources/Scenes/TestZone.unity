@@ -1316,7 +1316,6 @@ MonoBehaviour:
     duracion: 0
     angulo: 0
     anguloFinal: 0
-  chart2:
   - noteIndex: 0
     modoNota: 0
     tipoNota: 0
@@ -1324,11 +1323,72 @@ MonoBehaviour:
     direccionMovimiento: 0
     offsetPositionToGo: {x: 0, y: 0}
     direccionCustom: {x: 0, y: 0}
-    timeToArrive: 10
+    timeToArrive: 3
     localSpeed: 0
     duracion: 0
     angulo: 0
     anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 4
+    localSpeed: 0
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 5
+    localSpeed: 0
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 6
+    localSpeed: 0
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 7
+    localSpeed: 0
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  - noteIndex: 0
+    modoNota: 0
+    tipoNota: 0
+    correspondenciaTecla: 0
+    direccionMovimiento: 0
+    offsetPositionToGo: {x: 0, y: 0}
+    direccionCustom: {x: 0, y: 0}
+    timeToArrive: 8
+    localSpeed: 0
+    duracion: 0
+    angulo: 0
+    anguloFinal: 0
+  chart2: []
 --- !u!1 &1733687925
 GameObject:
   m_ObjectHideFlags: 0

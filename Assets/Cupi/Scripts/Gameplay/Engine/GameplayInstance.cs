@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class GameplayInstance : MonoBehaviour
 {
-    //el float seria el tiempo actual de la musica
-    public event Action<float> EngineTick;
+    public event Action<float> GameTick;
 
     public GameplayEngine gameplayEngine;
     public GameplayRenderer gameplayRenderer;
@@ -28,7 +27,7 @@ public class GameplayInstance : MonoBehaviour
         gameInput = input;
 
         gameplayEngine = new GameplayEngine(input,chart);
-        EngineTick += gameplayEngine.Tick;
+        GameTick += gameplayEngine.Tick;
 
         gameplayRenderer = gameObject.AddComponent<GameplayRenderer>();
         gameplayRenderer.gameplayEngine = gameplayEngine;
@@ -50,7 +49,7 @@ public class GameplayInstance : MonoBehaviour
     {
         songTime = (float)TimeController.instance.AdditiveTime;
 
-        EngineTick?.Invoke(songTime);
+        GameTick?.Invoke(songTime);
         //gameplayEngine.Tick(songTime);
     }
 

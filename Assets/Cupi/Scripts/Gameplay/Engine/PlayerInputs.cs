@@ -29,7 +29,7 @@ public class PlayerInputs : IInputDevice
 
     private Dictionary<InputAction, CorrespondenciaTecla> inputKeys = new();
 
-    public void Initialize(TileModePlayStyle style)
+    public PlayerInputs(TileModePlayStyle style)
     {
         gameInputs = InputController.instance.gameInputs;
         SetActionMaps();

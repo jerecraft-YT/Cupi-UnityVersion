@@ -13,20 +13,40 @@ public class testGeneradorPartida : MonoBehaviour
             chart1 = LevelDataController.instance.actualLevel.notas;
         }
 
-        CreateGameplay("gameplay1", chart1);
+        CreateGameplay("gameplay1", chart1,ModoInput.Bot);
     }
 
-    private void CreateGameplay(string name, List<NotaInstance> chart)
+    private void CreateGameplay(string name, List<NotaInstance> chart,ModoInput modoInput)
     {
-        BotInputs botInputs = new BotInputs();
-        botInputs.Initialize(chart);
+        IInputDevice inputDevice = null;
 
-        GameObject gameplayInstanceGO = new GameObject();
-        gameplayInstanceGO.name = name;
+        GameObject gameplayInstanceGO = new(name);
 
         GameplayInstance gameplayInstance = gameplayInstanceGO.AddComponent<GameplayInstance>();
 
-        gameplayInstance.EngineTick += botInputs.BotTick;
-        gameplayInstance.Initialize(chart, ModoJuego.Tile, botInputs);
+        switch (modoInput)
+        {
+            case ModoInput.None:
+                break;
+            case ModoInput.Player:
+                PlayerInputs playerInputs = new PlayerInputs(TileModePlayStyle.FourKeys);
+
+                inputDevice = playerInputs;
+                break;
+
+            case ModoInput.Bot:
+                BotInputs botInputs = new BotInputs(chart);
+                gameplayInstance.GameTick += botInputs.BotTick;
+
+                inputDevice = botInputs;
+
+                break;
+            case ModoInput.Custom:
+                break;
+            default:
+                break;
+        }
+
+        gameplayInstance.Initialize(chart, ModoJuego.Tile, inputDevice);
     }
 }

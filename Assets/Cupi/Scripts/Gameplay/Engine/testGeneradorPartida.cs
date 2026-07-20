@@ -18,18 +18,15 @@ public class testGeneradorPartida : MonoBehaviour
 
     private void CreateGameplay(string name, List<NotaInstance> chart)
     {
-        /*
-        PlayerInputs playerInputs = new PlayerInputs();
-        playerInputs.Initialize(TileModePlayStyle.FourKeys);
-        */
-
-
+        BotInputs botInputs = new BotInputs();
+        botInputs.Initialize(chart);
 
         GameObject gameplayInstanceGO = new GameObject();
         gameplayInstanceGO.name = name;
 
         GameplayInstance gameplayInstance = gameplayInstanceGO.AddComponent<GameplayInstance>();
 
-        gameplayInstance.Initialize(chart, ModoJuego.Tile, playerInputs);
+        gameplayInstance.EngineTick += botInputs.BotTick;
+        gameplayInstance.Initialize(chart, ModoJuego.Tile, botInputs);
     }
 }

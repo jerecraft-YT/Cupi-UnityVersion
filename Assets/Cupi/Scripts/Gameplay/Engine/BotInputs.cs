@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System;
-using UnityEngine;
 
 public class BotInputs : IInputDevice
 {
@@ -17,6 +16,16 @@ public class BotInputs : IInputDevice
     public void Dispose()
     {
         return;
+    }
+
+    public void Initialize(List<NotaInstance> chart)
+    {
+        this.chart = chart;
+    }
+
+    public void BotTick(float songTime)
+    {
+
     }
 
 

@@ -12,6 +12,8 @@ public class BotInputs : IInputDevice
 
     private int startWindow;
     private int endWindow;
+    private float oldSongTime;
+
     const float maxProcessTime = 2.0f;
 
     const float margenPuntuacionPerfecta = 0.045f;
@@ -36,6 +38,8 @@ public class BotInputs : IInputDevice
         SetWindowRange(songTime);
 
         ProcessBot(songTime);
+
+        oldSongTime = songTime;
     }
 
     private void ProcessBot(float songTime)
@@ -59,7 +63,7 @@ public class BotInputs : IInputDevice
         //por si hay un lag y si no aumentamos el index del startWindow)
         if (!IsFinalChart(startWindow))
         {
-            while (songTime > chart[startWindow].timeToArrive + maxProcessTime)
+            while (oldSongTime > chart[startWindow].timeToArrive + maxProcessTime)
             {
                 startWindow++;
 

@@ -21,6 +21,8 @@ public class GameplayEngine : IDisposable
 
     public int endWindow;
 
+    public float oldSongTime;
+
     const float maxProcessTime = 2;
 
     const float margenPuntuacionPerfecta = 0.045f;
@@ -59,6 +61,8 @@ public class GameplayEngine : IDisposable
         SetWindowRange(songTime);
 
         ProcessNotes(songTime);
+
+        oldSongTime = songTime;
     }
 
     private void ProcessNotes(float songTime)
@@ -130,7 +134,7 @@ public class GameplayEngine : IDisposable
         //por si hay un lag y si no aumentamos el index del startWindow)
         if (!IsFinalChart(startWindow))
         {
-            while (songTime > chart[startWindow].timeToArrive + maxProcessTime)
+            while (oldSongTime > chart[startWindow].timeToArrive + maxProcessTime)
             {
                 startWindow++;
 

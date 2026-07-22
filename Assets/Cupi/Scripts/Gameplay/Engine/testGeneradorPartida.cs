@@ -8,6 +8,8 @@ public class testGeneradorPartida : MonoBehaviour
 
     void Start()
     {
+        //Application.targetFrameRate = 10;
+
         if (!string.IsNullOrEmpty(LevelDataController.instance.levelName))
         {
             chart1 = LevelDataController.instance.actualLevel.notas;

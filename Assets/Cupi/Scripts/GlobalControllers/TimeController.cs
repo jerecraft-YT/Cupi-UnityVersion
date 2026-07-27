@@ -33,7 +33,7 @@ public class TimeController : MonoBehaviour
         RestartTime();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         UpdateAdditiveTime();
 

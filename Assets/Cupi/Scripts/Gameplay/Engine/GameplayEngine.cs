@@ -15,7 +15,7 @@ public class GameplayEngine : IDisposable
 
     public ModoJuego modoJuego;
 
-    public IInputDevice input;
+    public IInputDevice inputDevice;
 
     public int startWindow;
 
@@ -36,19 +36,19 @@ public class GameplayEngine : IDisposable
     //constructor de gameplay con lo esencial
     public GameplayEngine(IInputDevice inputDevice,List<NotaInstance> chart)
     {
-        input = inputDevice;
+        this.inputDevice = inputDevice;
         this.chart = chart;
 
-        input.OnButtonPressed += OnButtonPressed;
-        input.OnButtonReleased += OnButtonReleased;
+        this.inputDevice.OnButtonPressed += OnButtonPressed;
+        this.inputDevice.OnButtonReleased += OnButtonReleased;
 
         estadoNotas = new RuntimeStateNote[chart.Count];
     }
 
     public void Dispose()
     {
-        input.OnButtonPressed -= OnButtonPressed;
-        input.OnButtonReleased -= OnButtonReleased;
+        inputDevice.OnButtonPressed -= OnButtonPressed;
+        inputDevice.OnButtonReleased -= OnButtonReleased;
     }
 
     private float GetCurrentSongTime()
@@ -165,19 +165,20 @@ public class GameplayEngine : IDisposable
         return index >= chart.Count;
     }
 
-    private void OnButtonPressed(CorrespondenciaTecla tecla)
+    private void OnButtonPressed(CorrespondenciaTecla tecla,float customInputTime)
     {
         //mas facil para no perder inputs antes del tick :3
-        BufferedInput input = new(tecla,GetCurrentSongTime(),true);
+        BufferedInput input = new(tecla, customInputTime == -1f ? GetCurrentSongTime() : customInputTime, true);
 
         inputBuffer.Add(input);
 
         //Debug.Log("Pressed :" + tecla);
     }
 
-    private void OnButtonReleased(CorrespondenciaTecla tecla)
+    private void OnButtonReleased(CorrespondenciaTecla tecla, float customInputTime)
     {
-        BufferedInput input = new BufferedInput(tecla, GetCurrentSongTime(), false);
+        //-1f es valor por defecto
+        BufferedInput input = new(tecla, customInputTime == -1f ? GetCurrentSongTime() : customInputTime, false);
 
         inputBuffer.Add(input);
 

@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputs : IInputDevice
 {
-    public event Action<CorrespondenciaTecla> OnButtonPressed;
-    public event Action<CorrespondenciaTecla> OnButtonReleased;
+    public event Action<CorrespondenciaTecla,float> OnButtonPressed;
+    public event Action<CorrespondenciaTecla,float> OnButtonReleased;
 
     public bool ClickPressed(CorrespondenciaTecla tecla)
     {
@@ -83,11 +83,11 @@ public class PlayerInputs : IInputDevice
 
         if (ctx.performed)
         {
-            OnButtonPressed?.Invoke(tecla);
+            OnButtonPressed?.Invoke(tecla,-1f);
         }
         if (ctx.canceled)
         {
-            OnButtonReleased?.Invoke(tecla);
+            OnButtonReleased?.Invoke(tecla,-1f);
         }
     }
 

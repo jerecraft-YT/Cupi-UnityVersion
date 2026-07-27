@@ -8,24 +8,30 @@ public class testGeneradorPartida : MonoBehaviour
 
     void Start()
     {
-        //Application.targetFrameRate = 10;
+        //Application.targetFrameRate = 1;
 
         if (!string.IsNullOrEmpty(LevelDataController.instance.levelName))
         {
             chart1 = LevelDataController.instance.actualLevel.notas;
         }
 
-        CreateGameplay("gameplay1", chart1,ModoInput.Bot);
+        CreateGameplay("gameplay1", chart1 , ModoInput.Bot);
     }
 
-    private void CreateGameplay(string name, List<NotaInstance> chart,ModoInput modoInput)
+    private void CreateGameplay(string gameplayName, List<NotaInstance> chart,ModoInput modoInput)
     {
-        IInputDevice inputDevice = null;
-
-        GameObject gameplayInstanceGO = new(name);
+        GameObject gameplayInstanceGO = new (gameplayName);
+        gameplayInstanceGO.transform.SetParent(transform);
 
         GameplayInstance gameplayInstance = gameplayInstanceGO.AddComponent<GameplayInstance>();
 
+        IInputDevice inputDevice = SetInputDevice(modoInput , chart ,gameplayInstance);
+
+        gameplayInstance.Initialize(chart, ModoJuego.Tile, inputDevice);
+    }
+
+    private IInputDevice SetInputDevice(ModoInput modoInput,List<NotaInstance> chart, GameplayInstance gameplayInstance)
+    {
         switch (modoInput)
         {
             case ModoInput.None:
@@ -33,22 +39,19 @@ public class testGeneradorPartida : MonoBehaviour
             case ModoInput.Player:
                 PlayerInputs playerInputs = new PlayerInputs(TileModePlayStyle.FourKeys);
 
-                inputDevice = playerInputs;
-                break;
+                return playerInputs;
 
             case ModoInput.Bot:
                 BotInputs botInputs = new BotInputs(chart);
                 gameplayInstance.GameTick += botInputs.BotTick;
 
-                inputDevice = botInputs;
-
-                break;
+                return botInputs;
             case ModoInput.Custom:
                 break;
             default:
                 break;
         }
 
-        gameplayInstance.Initialize(chart, ModoJuego.Tile, inputDevice);
+        return null;
     }
 }

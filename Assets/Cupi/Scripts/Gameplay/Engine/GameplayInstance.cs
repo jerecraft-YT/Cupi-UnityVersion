@@ -43,9 +43,7 @@ public class GameplayInstance : MonoBehaviour
         }
     }
 
-
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         songTime = (float)TimeController.instance.AdditiveTime;
 

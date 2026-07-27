@@ -149,7 +149,7 @@ MonoBehaviour:
   m_SpriteShape: {fileID: 11400000, guid: fd1a40a1c2827384cb026f84be4f5e42, type: 2}
   m_FillPixelPerUnit: 32
   m_StretchTiling: 1
-  m_SplineDetail: 8
+  m_SplineDetail: 4
   m_AdaptiveUV: 1
   m_StretchUV: 0
   m_WorldSpaceUV: 0
@@ -181,4 +181,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd5defa540f05a41b644c7df2125788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::metaballFollow
+  mainMetaball: {fileID: 0}
   velocidadSeguimiento: 5

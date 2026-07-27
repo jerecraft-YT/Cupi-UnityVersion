@@ -311,11 +311,11 @@ PrefabInstance:
       objectReference: {fileID: 7862800670138509336, guid: bd4c90dd648748148b634fd8ccffab22, type: 2}
     - target: {fileID: 3012614556007921656, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.13
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 3012614556007921656, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.13
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 3012614556007921656, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: m_LocalScale.z
@@ -375,11 +375,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: maxFollow
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: GetMusicEvery
       value: 0.033
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: metaballScale
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: noiseInfluence
@@ -392,6 +396,38 @@ PrefabInstance:
     - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: noiseReadingFrequency
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: followColors.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: followColors.Array.data[3].b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: followColors.Array.data[3].g
+      value: 0.4575472
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: followColors.Array.data[3].r
+      value: 0.5551886
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: followColors.Array.data[4].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: followColors.Array.data[4].b
+      value: 0.94375175
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: followColors.Array.data[4].g
+      value: 0.7783019
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: followColors.Array.data[4].r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6761364923240624119, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: m_Creator

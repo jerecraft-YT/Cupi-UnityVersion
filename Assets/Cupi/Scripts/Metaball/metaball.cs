@@ -7,15 +7,12 @@ public class metaball : MonoBehaviour
 {
     #region variables
     #region variablesExternas
-    public static metaball instance;
     private SpriteShapeController metaballController;
     private Vector2[] directionPoint;
     private float[] amplitudPoints;
     private float[] amplitudNoise;
     private Vector2[] tangentPositions;
     #endregion
-
-    public AudioSource musica;
 
     private float[] objetivoPoints;
     private float[] spectrumData = new float[256];
@@ -25,16 +22,19 @@ public class metaball : MonoBehaviour
 
     [Header("Metaball Config")]
     [SerializeField] private int numberPoints = 16;
-    [SerializeField] private float VelocidadRotacion = 0.1f;
-    [SerializeField] private float VelocidadAmplitud = 20.0f;
-    [SerializeField] private float VelocidadAmplitudObjetivo = 1.0f;
+    [SerializeField] private float velocidadRotacion = 0.1f;
+    [SerializeField] private float velocidadAmplitud = 20.0f;
+    [SerializeField] private float velocidadAmplitudObjetivo = 1.0f;
     [SerializeField] private float amplitud = 6.0f;
-    [SerializeField] private float TangentAmplitud = 1.0f;
-    [SerializeField] private float FuerzaMusica = 40.0f;
-    [SerializeField] private float FuerzaMaxima = 10.0f;
+    [SerializeField] private float tangentAmplitud = 1.0f;
+    [SerializeField] private float metaballScale = 0.8f;
+    [SerializeField] private float fuerzaMusica = 40.0f;
+    [SerializeField] private float fuerzaMaxima = 10.0f;
+
     [SerializeField] private int maxFollow = 4;
     [SerializeField] private Color[] followColors;
     [SerializeField] private GameObject followAsset;
+
     [SerializeField] private float refreshEvery = 0.016f;
     [SerializeField] private float noiseInfluence = 0.2f;
     [SerializeField] private float noiseReadingFrequency = 0.18f;
@@ -51,33 +51,24 @@ public class metaball : MonoBehaviour
     [SerializeField] private float SpectrumSize = 0.185f;
 
     [SerializeField] private float GetMusicEvery = 0.033f;
-    [SerializeField] private FFTWindow fftwindow = FFTWindow.BlackmanHarris;
     #endregion
 
     #region core
     private void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        instance = this;
         metaballController = GetComponent<SpriteShapeController>();
-        if (!validateComponents())
+
+        if (!ValidateComponents())
         {
             enabled = false;
             return;
         }
 
-        musica = MusicController.mainMusic;
-
         CreateCirclePoints();
         CreateMetaballFollowInstances();
     }
 
-    private bool validateComponents()
+    private bool ValidateComponents()
     {
         if (followAsset == null && maxFollow != 0)
         {
@@ -100,6 +91,7 @@ public class metaball : MonoBehaviour
             GameObject metaballFollowInstance = Instantiate(followAsset,transform,false);
 
             metaballFollow followScript = metaballFollowInstance.GetComponent<metaballFollow>();
+            followScript.mainMetaball = this;
             SpriteShapeRenderer followRenderer = metaballFollowInstance.GetComponent<SpriteShapeRenderer>();
 
             followScript.velocidadSeguimiento = maxFollow - i;
@@ -143,7 +135,7 @@ public class metaball : MonoBehaviour
 
         if (musicTime >= GetMusicEvery)
         {
-            musica.GetSpectrumData(spectrumData, 0 , fftwindow);
+            spectrumData = SpectrumAnalizer.instance.SpectrumData;
         }
 
         for (int i = 0; i < numberPoints; i++)
@@ -164,19 +156,18 @@ public class metaball : MonoBehaviour
 
                 avg = sum / rangoSpectro;
                 float fuerzaPunto = FuerzaPorPunto.Length > 0 ? FuerzaPorPunto[Mathf.Min(i, FuerzaPorPunto.Length - 1)] : 1f;
-                objetivoPoints[i] = Mathf.Min(amplitud + avg * FuerzaMusica * fuerzaPunto, FuerzaMaxima);
+                objetivoPoints[i] = Mathf.Min(amplitud + avg * fuerzaMusica * fuerzaPunto, fuerzaMaxima);
             }
             else
             {
-                objetivoPoints[i] = Mathf.Lerp(objetivoPoints[i], amplitud, VelocidadAmplitudObjetivo * Time.deltaTime);
+                objetivoPoints[i] = Mathf.Lerp(objetivoPoints[i], amplitud, velocidadAmplitudObjetivo * Time.deltaTime);
             }
 
             amplitudNoise[i] = Mathf.PerlinNoise(i * noiseReadingFrequency, Time.time) * noiseInfluence;
 
-            amplitudPoints[i] = Mathf.Max(Mathf.Lerp(amplitudPoints[i], objetivoPoints[i], VelocidadAmplitud * Time.deltaTime), amplitud);
+            amplitudPoints[i] = Mathf.Max(Mathf.Lerp(amplitudPoints[i], objetivoPoints[i], velocidadAmplitud * Time.deltaTime), amplitud);
 
-
-            metaballController.spline.SetPosition(i, directionPoint[i] * amplitudPoints[i] + (directionPoint[i] * amplitudNoise[i]));
+            metaballController.spline.SetPosition(i, metaballScale * amplitudPoints[i] * directionPoint[i] + (directionPoint[i] * amplitudNoise[i]));
 
             float tangentScale = amplitudPoints[i] / amplitud;
             metaballController.spline.SetLeftTangent(i, tangentPositions[i] * tangentScale);
@@ -198,7 +189,7 @@ public class metaball : MonoBehaviour
     //rota el circulo para darle mas variedad
     private void RotateCircle()
     {
-        baseAngle += VelocidadRotacion * Time.deltaTime;
+        baseAngle += velocidadRotacion * Time.deltaTime;
 
         transform.localRotation = Quaternion.Euler(0.0f, 0.0f, baseAngle);
         
@@ -237,8 +228,8 @@ public class metaball : MonoBehaviour
             float radAngle = angle * Mathf.Deg2Rad;
             float tangentAnglerad = (angle - 90.0f) * Mathf.Deg2Rad;
 
-            Vector2 pointAngle = new Vector2(MathF.Cos(radAngle) , -MathF.Sin(radAngle) );
-            Vector3 positionTangent = new Vector3(MathF.Cos(tangentAnglerad) * TangentAmplitud, -MathF.Sin(tangentAnglerad) * TangentAmplitud, 0.0f);
+            Vector2 pointAngle = new Vector2(MathF.Cos(radAngle) , -MathF.Sin(radAngle));
+            Vector3 positionTangent = new Vector3(MathF.Cos(tangentAnglerad) * tangentAmplitud, -MathF.Sin(tangentAnglerad) * tangentAmplitud, 0.0f);
 
             spline.InsertPointAt(i , new Vector3(pointAngle.x * amplitud, pointAngle.y * amplitud, 0.0f) );
             spline.SetTangentMode(i, ShapeTangentMode.Continuous);

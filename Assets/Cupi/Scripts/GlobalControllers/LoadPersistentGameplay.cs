@@ -12,7 +12,7 @@ public class LoadPersistentGameplay : MonoBehaviour
         }
 
 
-        GameObject go = new GameObject("GameManager");
+        GameObject go = new("GameManager");
 
         DontDestroyOnLoad(go);
 
@@ -20,6 +20,7 @@ public class LoadPersistentGameplay : MonoBehaviour
         go.AddComponent<MusicController>();
         go.AddComponent<LevelDataController>();
         go.AddComponent<InputController>();
+        go.AddComponent<SpectrumAnalizer>();
     }
 
     static bool VerificarEscena()

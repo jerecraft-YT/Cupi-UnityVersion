@@ -5,18 +5,13 @@ public class BotInputs : IInputDevice
 {
     public List<NotaInstance> chart;
 
-    public event Action<CorrespondenciaTecla> OnButtonPressed;
+    public event Action<CorrespondenciaTecla,float> OnButtonPressed;
+
     //temporal mientras no uso esto en el bot
     #pragma warning disable
-    public event Action<CorrespondenciaTecla> OnButtonReleased;
+    public event Action<CorrespondenciaTecla, float> OnButtonReleased;
 
-    private int startWindow;
-    private int endWindow;
-    private float oldSongTime;
-
-    const float maxProcessTime = 2.0f;
-
-    const float margenPuntuacionPerfecta = 0.045f;
+    private int nextNote;
 
     public bool ClickPressed(CorrespondenciaTecla tecla)
     {
@@ -35,61 +30,20 @@ public class BotInputs : IInputDevice
 
     public void BotTick(float songTime)
     {
-        SetWindowRange(songTime);
-
         ProcessBot(songTime);
-
-        oldSongTime = songTime;
     }
 
     private void ProcessBot(float songTime)
     {
-        for (int noteIndex = startWindow; noteIndex < endWindow; noteIndex++)
+        while(nextNote < chart.Count)
         {
-            NotaInstance nota = chart[noteIndex];
+            var nota = chart[nextNote];
 
-            float diferencia = nota.timeToArrive - songTime;
+            if (songTime < nota.timeToArrive) break;
 
-            if (diferencia <= margenPuntuacionPerfecta && diferencia >= -margenPuntuacionPerfecta)
-            {
-                OnButtonPressed?.Invoke(nota.correspondenciaTecla);
-            }
+            OnButtonPressed?.Invoke(nota.correspondenciaTecla , nota.timeToArrive);
+
+            nextNote++;
         }
-    }
-
-    private void SetWindowRange(float songTime)
-    {
-        //ejemplo (si song time es 2 y el chart se procesa en 2 le sumamos un tiempo de procesado extra
-        //por si hay un lag y si no aumentamos el index del startWindow)
-        if (!IsFinalChart(startWindow))
-        {
-            while (oldSongTime > chart[startWindow].timeToArrive + maxProcessTime)
-            {
-                startWindow++;
-
-                if (IsFinalChart(startWindow))
-                {
-                    break;
-                }
-            }
-        }
-
-        if (!IsFinalChart(endWindow))
-        {
-            while (songTime > chart[endWindow].timeToArrive - maxProcessTime)
-            {
-                endWindow++;
-
-                if (IsFinalChart(endWindow))
-                {
-                    break;
-                }
-            }
-        }
-    }
-
-    private bool IsFinalChart(int index)
-    {
-        return index >= chart.Count;
     }
 }

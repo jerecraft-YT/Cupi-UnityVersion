@@ -149,7 +149,7 @@ MonoBehaviour:
   m_SpriteShape: {fileID: 11400000, guid: fd1a40a1c2827384cb026f84be4f5e42, type: 2}
   m_FillPixelPerUnit: 32
   m_StretchTiling: 1
-  m_SplineDetail: 8
+  m_SplineDetail: 4
   m_AdaptiveUV: 1
   m_StretchUV: 0
   m_WorldSpaceUV: 0
@@ -181,20 +181,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e5c478398b7a748b078741f9cac47c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::metaball
-  musica: {fileID: 0}
   numberPoints: 16
-  VelocidadRotacion: 5
-  VelocidadAmplitud: 20
-  VelocidadAmplitudObjetivo: 1
+  velocidadRotacion: 0.1
+  velocidadAmplitud: 20
+  velocidadAmplitudObjetivo: 1
   amplitud: 6
-  TangentAmplitud: 1
-  FuerzaMusica: 40
-  FuerzaMaxima: 10
+  tangentAmplitud: 1
+  metaballScale: 0.8
+  fuerzaMusica: 40
+  fuerzaMaxima: 10
   maxFollow: 4
   followColors:
+  - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0.6784314, g: 0.6784314, b: 0.6784314, a: 1}
   - {r: 0.99215686, g: 0.9490196, b: 0, a: 1}
-  - {r: 0.1764706, g: 0, b: 0.99215686, a: 1}
   - {r: 0.6784314, g: 0.60784316, b: 1, a: 1}
   followAsset: {fileID: 7700269102758796974, guid: b2e273ce093e54a4aac5c1b72ca3d96e, type: 3}
   refreshEvery: 0.016
@@ -219,4 +219,3 @@ MonoBehaviour:
   - 1
   SpectrumSize: 0.185
   GetMusicEvery: 0.033
-  fftwindow: 5

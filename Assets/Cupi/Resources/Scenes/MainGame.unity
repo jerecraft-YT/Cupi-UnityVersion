@@ -1229,6 +1229,7 @@ MonoBehaviour:
   modosActivos:
   - modoInput: 2
     modoJuego: 1
+    modoTime: 1
     baseScrollSpeed: 1
     tileModePlayStyle: 2
     chart:

@@ -5,17 +5,17 @@ public class BotInputs : IInputDevice
 {
     public List<NotaInstance> chart;
 
-    public event Action<CorrespondenciaTecla,float> OnButtonPressed;
+    public event Action<CorrespondenciaTecla, double> OnButtonPressed;
 
     //temporal mientras no uso esto en el bot
     #pragma warning disable
-    public event Action<CorrespondenciaTecla, float> OnButtonReleased;
+    public event Action<CorrespondenciaTecla, double> OnButtonReleased;
 
     private int nextNote;
 
     public bool ClickPressed(CorrespondenciaTecla tecla)
     {
-        return false;
+        return true;
     }
 
     public void Dispose()
@@ -28,12 +28,12 @@ public class BotInputs : IInputDevice
         this.chart = chart;
     }
 
-    public void BotTick(float songTime)
+    public void BotTick(double songTime)
     {
         ProcessBot(songTime);
     }
 
-    private void ProcessBot(float songTime)
+    private void ProcessBot(double songTime)
     {
         while(nextNote < chart.Count)
         {

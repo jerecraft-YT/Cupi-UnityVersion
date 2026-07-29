@@ -449,6 +449,14 @@ PrefabInstance:
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7890023053708671959, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: m_LocalAABB.m_Extent.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7890023053708671959, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
+      propertyPath: m_LocalAABB.m_Extent.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1220445651859192378, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
     m_RemovedGameObjects: []
@@ -819,117 +827,9 @@ MonoBehaviour:
     direccionMovimiento: 0
     offsetPositionToGo: {x: 0, y: 0}
     direccionCustom: {x: 0, y: 0}
-    timeToArrive: 2
+    timeToArrive: 4
     localSpeed: 1
-    duracion: 1
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 1
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 2
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 6
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 8
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 10
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 12
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 14
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 16
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 18
-    localSpeed: 1
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 20
-    localSpeed: 1
-    duracion: 0
+    duracion: 5
     angulo: 0
     anguloFinal: 0
   spriteReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
@@ -1326,92 +1226,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4db563998eed047bf97c0785e09dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::testGeneradorPartida
-  chart1:
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 2
-    localSpeed: 0
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 3
-    localSpeed: 0
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 4
-    localSpeed: 0
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 5
-    localSpeed: 0
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 6
-    localSpeed: 0
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 7
-    localSpeed: 0
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  - noteIndex: 0
-    modoNota: 0
-    tipoNota: 0
-    correspondenciaTecla: 0
-    direccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    direccionCustom: {x: 0, y: 0}
-    timeToArrive: 8
-    localSpeed: 0
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  chart2: []
+  modosActivos:
+  - modoInput: 2
+    modoJuego: 1
+    baseScrollSpeed: 1
+    tileModePlayStyle: 2
+    chart:
+    - noteIndex: 0
+      modoNota: 0
+      tipoNota: 1
+      correspondenciaTecla: 0
+      direccionMovimiento: 0
+      offsetPositionToGo: {x: 0, y: 0}
+      direccionCustom: {x: 0, y: 0}
+      timeToArrive: 4
+      localSpeed: 1
+      duracion: 5
+      angulo: 0
+      anguloFinal: 0
 --- !u!1 &1733687925
 GameObject:
   m_ObjectHideFlags: 0

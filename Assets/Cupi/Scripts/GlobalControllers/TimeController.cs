@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class TimeController : MonoBehaviour
+public class TimeController : MonoBehaviour , ITimeProvider
 {
     public static TimeController instance;
 
@@ -73,6 +73,11 @@ public class TimeController : MonoBehaviour
         _prevTime = ActualTime;
 
         if (source != null) source.time = time;
+    }
+
+    public double GetCurrentTime()
+    {
+        return AdditiveTime;
     }
 
     public double ActualTime => AudioSettings.dspTime - _dspOffset;

@@ -279,12 +279,13 @@ MonoBehaviour:
   _tiempoBaseNivel: -4
   _sceneToLoad:
     m_SceneAsset: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
-    m_SceneName: TestZone
+    m_SceneName: MainGame
   scenesToUnload:
   - m_SceneAsset: {fileID: 102900000, guid: 6d301c78e4eb9d44c81111d514e75ab3, type: 3}
     m_SceneName: LoadLevel
   - m_SceneAsset: {fileID: 102900000, guid: 51f0a74ddba011c43a40588c24150ab0, type: 3}
     m_SceneName: TitleScreen
+  duracionTransicionMusica: 1
 --- !u!4 &1164701539
 Transform:
   m_ObjectHideFlags: 0

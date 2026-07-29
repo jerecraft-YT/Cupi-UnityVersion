@@ -38,7 +38,7 @@ public class metaballFollow : MonoBehaviour
 
             for (int i = 0; i < mainMetaball.NumberPoints; i++)
             {   
-                amplitudPoints[i] = amplitudPoints[i] < mainMetaball.AmplitudPoints[i] ? mainMetaball.AmplitudPoints[i] : amplitudPoints[i];
+                amplitudPoints[i] = amplitudPoints[i] < mainMetaball.AmplitudPoints[i] + 0.1f ? mainMetaball.AmplitudPoints[i] : amplitudPoints[i];
 
                 amplitudPoints[i] = amplitudPoints[i] > mainMetaball.AmplitudPoints[i] ? Mathf.Lerp(amplitudPoints[i], mainMetaball.Amplitud, velocidadSeguimiento * Time.deltaTime) : amplitudPoints[i];
                 

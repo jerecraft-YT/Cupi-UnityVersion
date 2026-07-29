@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInputs : IInputDevice
 {
-    public event Action<CorrespondenciaTecla,float> OnButtonPressed;
-    public event Action<CorrespondenciaTecla,float> OnButtonReleased;
+    public event Action<CorrespondenciaTecla, double> OnButtonPressed;
+    public event Action<CorrespondenciaTecla, double> OnButtonReleased;
 
     public bool ClickPressed(CorrespondenciaTecla tecla)
     {
@@ -14,7 +13,7 @@ public class PlayerInputs : IInputDevice
         {
             if (inputKeys[InputAction] == tecla)
             {
-                Debug.Log(InputAction.IsPressed());
+                //Debug.Log(InputAction.IsPressed() + "|" + inputKeys[InputAction] + "|" + tecla);
                 return InputAction.IsPressed();
             }
         }

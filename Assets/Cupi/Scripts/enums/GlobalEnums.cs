@@ -38,6 +38,13 @@ public enum ModoInput
     Custom
 }
 
+public enum ModoTime
+{
+    None,
+    Global,
+    Custom
+}
+
 public enum EstadoNota
 {
     None,

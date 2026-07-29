@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class NotaRadialBaseLogic : MonoBehaviour
@@ -12,7 +13,7 @@ public class NotaRadialBaseLogic : MonoBehaviour
     public Vector2 DireccionMovimiento;
     public Vector2 finalPos;
     public Transform origin;
-    public float progress;
+    public double progress;
     public bool lockProgress;
     public float offsetRendering;
     public int Myindex;
@@ -46,13 +47,13 @@ public class NotaRadialBaseLogic : MonoBehaviour
     {
         if (!initialized) return;
 
-        progress = 1 - InverseLerpUnclamped(0.0f, data.timeToArrive + offsetRendering, (float)timeController.AdditiveTime);
+        progress = 1 - InverseLerpUnclamped(0.0f, data.timeToArrive + offsetRendering, timeController.AdditiveTime);
 
-        if (lockProgress) progress = Mathf.Max(0, progress);
+        if (lockProgress) progress = Math.Max(0, progress);
 
-        float distancia = (progress * (data.timeToArrive + offsetRendering) * data.localSpeed * TilesModeMaster.instance.NotaTileSpeed);
+        double distancia = (progress * (data.timeToArrive + offsetRendering) * data.localSpeed * TilesModeMaster.instance.NotaTileSpeed);
 
-        finalPos = data.offsetPositionToGo + (DireccionMovimiento * distancia);
+        finalPos = data.offsetPositionToGo + (DireccionMovimiento * (float)distancia);
 
         note.localPosition = finalPos;
 
@@ -67,7 +68,7 @@ public class NotaRadialBaseLogic : MonoBehaviour
         GoToPool();
     }
 
-    public float InverseLerpUnclamped(float a, float b, float valor)
+    public double InverseLerpUnclamped(double a, double b, double valor)
     {
         if (b != a) return (valor - a) / (b - a);
 

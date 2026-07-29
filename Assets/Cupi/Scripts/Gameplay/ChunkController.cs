@@ -104,7 +104,7 @@ public class ChunkController : MonoBehaviour
 
             int startChunk = chunks[tempSeparation].Last().Key;
 
-            float timeNote = nota.timeToArrive + offsetSpawn;
+            double timeNote = nota.timeToArrive + offsetSpawn;
 
             if (timeNote < startChunk + _chunkSize)
             {
@@ -119,7 +119,7 @@ public class ChunkController : MonoBehaviour
         }
     }
 
-    private void NewChunk(NotaInstance nota, ChunkSeparation separation, float offsetSpawn = 0.0f)
+    private void NewChunk(NotaInstance nota, ChunkSeparation separation, double offsetSpawn = 0.0f)
     {
         /*
         Debug.Log("-----INFO DE CHUNK-----");
@@ -129,7 +129,7 @@ public class ChunkController : MonoBehaviour
         Debug.Log("-----FINAL DE INFO DE CHUNK-----");
         */
 
-        float TimeNote = Mathf.FloorToInt(nota.timeToArrive + offsetSpawn);
+        double TimeNote = Math.Floor(nota.timeToArrive + offsetSpawn);
         int startChunk = 0;
 
         if (TimeNote >= _chunkSize)

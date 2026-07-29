@@ -5,32 +5,35 @@ using UnityEngine;
 
 public class GameplayInstance : MonoBehaviour
 {
-    public event Action<float> GameTick;
+    public event Action<double> GameTick;
 
     public GameplayEngine gameplayEngine;
     public GameplayRenderer gameplayRenderer;
+    public LevelComposition level;
     public IInputDevice gameInput;
-
-    public ModoJuego modoJuego;
+    public ITimeProvider gameTime;
 
     //referencia al chart original que se cargo al inicio de la partida
     public List<NotaInstance> levelChart;
 
-    public float songTime;
+    public double songTime;
     
-    public void Initialize(List<NotaInstance> chart, ModoJuego modoJuego,IInputDevice input)
+    public void Initialize(LevelComposition level,IInputDevice input,ITimeProvider timeProvider)
     {
-        SortNotes(ref chart);
+        SortNotes(ref level.chart);
 
-        levelChart = chart;
-        this.modoJuego = modoJuego;
+        this.level = level;
+
+        levelChart = level.chart;
         gameInput = input;
+        gameTime = timeProvider;
 
-        gameplayEngine = new GameplayEngine(input,chart);
+        gameplayEngine = new GameplayEngine(input,level.chart);
         GameTick += gameplayEngine.Tick;
 
         gameplayRenderer = gameObject.AddComponent<GameplayRenderer>();
-        gameplayRenderer.gameplayEngine = gameplayEngine;
+        gameplayRenderer.Initialize(level);
+        gameplayEngine.NoteChange += gameplayRenderer.NoteChange;
     }
 
     private void SortNotes(ref List<NotaInstance> chart)
@@ -43,9 +46,10 @@ public class GameplayInstance : MonoBehaviour
         }
     }
 
+    //mejor para tener todo de manera mas consistente
     private void FixedUpdate()
     {
-        songTime = (float)TimeController.instance.AdditiveTime;
+        songTime = gameTime.GetCurrentTime();
 
         GameTick?.Invoke(songTime);
         //gameplayEngine.Tick(songTime);

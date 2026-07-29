@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class NotaTileNormal : NotaTileBaseLogic
@@ -55,7 +56,7 @@ public class NotaTileNormal : NotaTileBaseLogic
     {
         if (tecla != data.correspondenciaTecla || timeController.TimeScale < 0 || !_canHit) return;
 
-        float timeDiff = Mathf.Abs(data.timeToArrive - (float)timeController.AdditiveTime);
+        double timeDiff = Math.Abs(data.timeToArrive - timeController.AdditiveTime);
 
         if (timeDiff < tilesModeMaster.ToleranciaError)
         {

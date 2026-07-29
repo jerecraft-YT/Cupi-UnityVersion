@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class NotaTileSostenida : NotaTileBaseLogic
@@ -9,7 +10,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
     [SerializeField] private LineRenderer _lineNote;
     private bool _renderNote;
 
-    private float _timeToArriveForLine;
+    private double _timeToArriveForLine;
     private float _consumoNota;
     //esto permitira tener efectos complejos mas adelante pero de momento lo dejo asi
     private int _numberPoints = 2;
@@ -125,7 +126,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
     {
         if (tecla != data.correspondenciaTecla || timeController.TimeScale < 0 || !_canHit) return;
 
-        float timeDiff = Mathf.Abs((data.timeToArrive + (_consumoNota * data.duracion)) - (float)timeController.AdditiveTime);
+        double timeDiff = Math.Abs((data.timeToArrive + (_consumoNota * data.duracion)) - (float)timeController.AdditiveTime);
 
         if (timeDiff < tilesModeMaster.ToleranciaError)
         {
@@ -152,9 +153,9 @@ public class NotaTileSostenida : NotaTileBaseLogic
     {
         float currentTime = (float)timeController.AdditiveTime;
 
-        _consumoNota = 1 - Mathf.InverseLerp(_timeToArriveForLine, data.timeToArrive, currentTime);
+        _consumoNota = 1 - Mathf.InverseLerp((float)_timeToArriveForLine, (float)data.timeToArrive, currentTime);
 
-        float tiempoActual = data.timeToArrive + offsetRendering;
+        double tiempoActual = data.timeToArrive + offsetRendering;
 
         if (tiempoActual + tilesModeMaster.ToleranciaError < currentTime && _canHit)
         {
@@ -211,7 +212,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
             lockProgress = false;
 
             //margen para destruir la nota si sale de pantalla
-            float margenNota = _timeToArriveForLine + tilesModeMaster.RenderLimit;
+            double margenNota = _timeToArriveForLine + tilesModeMaster.RenderLimit;
 
             //hit por margen de soltar
             if (_consumoNota >= 1.0f - _getPointsEvery && _actualPointGetter > _totalSecciones - 1 && _renderNote)
@@ -247,13 +248,13 @@ public class NotaTileSostenida : NotaTileBaseLogic
             }
             else
             {
-                float progress = 1 - InverseLerpUnclamped(0.0f, _timeToArriveForLine, (float)timeController.AdditiveTime);
+                double progress = 1 - InverseLerpUnclamped(0.0f, _timeToArriveForLine, (float)timeController.AdditiveTime);
 
-                if (lockProgress) progress = Mathf.Max(0, progress);
+                if (lockProgress) progress = Math.Max(0, progress);
 
-                float distancia = (progress * _timeToArriveForLine * data.localSpeed * tilesModeMaster.NotaTileSpeed);
+                double distancia = (progress * _timeToArriveForLine * data.localSpeed * tilesModeMaster.NotaTileSpeed);
 
-                Vector2 finalPos = data.offsetPositionToGo + (DireccionMovimiento * distancia);
+                Vector2 finalPos = data.offsetPositionToGo + (DireccionMovimiento * (float)distancia);
 
                 _lineNote.SetPosition(i, finalPos);
             }

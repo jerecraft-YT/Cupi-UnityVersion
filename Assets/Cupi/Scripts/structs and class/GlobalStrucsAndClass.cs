@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,7 @@ public class NotaInstance
     public Vector2 direccionCustom;
 
     [Header("configuracion Base")]
-    public float timeToArrive;
+    public double timeToArrive;
     public float localSpeed;
     [Header("configuracion Nota Sostenida")]
     public float duracion;
@@ -33,16 +34,36 @@ public class NotaInstance
 public struct BufferedInput
 {
     public CorrespondenciaTecla tecla;
-    public float songTime;
+    public double songTime;
     public bool isPressed;
 
-    public BufferedInput(CorrespondenciaTecla tecla, float songTime, bool isPressed)
+    public BufferedInput(CorrespondenciaTecla tecla, double songTime, bool isPressed)
     {
         this.tecla = tecla;
         this.songTime = songTime;
         this.isPressed = isPressed;
     }
 }
+
+[Serializable]
+public struct LevelComposition
+{
+    [Header("configuracion general")]
+    public ModoInput modoInput;
+
+    public ModoJuego modoJuego;
+
+    public ModoTime modoTime;
+
+    public float baseScrollSpeed;
+
+    [Header("datos para modo tile (solo si se requiere)")]
+    public TileModePlayStyle tileModePlayStyle;
+
+    [Header("chart del nivel")]
+    public List<NotaInstance> chart;
+}
+
 
 [Serializable]
 public struct RuntimeStateNote
@@ -86,9 +107,9 @@ public class ChunkNoteData
     //este es un valor configurable para no cambiar los datos bases de la nota
     //asi se puede tener offset de spawn o varias notas con varios puntos de aparicion
     //muy util para la nota sostenida si se ve en reversa
-    public float timeToSpawn;
+    public double timeToSpawn;
 
-    public ChunkNoteData(NotaInstance nota, float timeToSpawn)
+    public ChunkNoteData(NotaInstance nota, double timeToSpawn)
     {
         this.nota = nota;
         this.timeToSpawn = timeToSpawn;

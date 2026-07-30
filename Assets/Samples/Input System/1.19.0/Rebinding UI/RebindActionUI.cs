@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
+
 
 ////TODO: localization support
 
@@ -55,7 +57,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// <summary>
         /// Text component that receives the name of the action. Optional.
         /// </summary>
-        public Text actionLabel
+        public TextMeshProUGUI actionLabel
         {
             get => m_ActionLabel;
             set
@@ -69,7 +71,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// Text component that receives the display string of the binding. Can be <c>null</c> in which
         /// case the component entirely relies on <see cref="updateBindingUIEvent"/>.
         /// </summary>
-        public Text bindingText
+        public TextMeshProUGUI bindingText
         {
             get => m_BindingText;
             set
@@ -84,7 +86,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// </summary>
         /// <seealso cref="startRebindEvent"/>
         /// <seealso cref="rebindOverlay"/>
-        public Text rebindPrompt
+        public TextMeshProUGUI rebindPrompt
         {
             get => m_RebindText;
             set => m_RebindText = value;
@@ -95,7 +97,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         /// </summary>
         /// <seealso cref="rebindPrompt"/>
         /// <seealso cref="rebindOverlay"/>
-        public Text rebindInfo
+        public TextMeshProUGUI rebindInfo
         {
             get => m_RebindInfo;
             set => m_RebindInfo = value;
@@ -489,11 +491,11 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         [Tooltip("Text label that will receive the name of the action. Optional. Set to None to have the "
             + "rebind UI not show a label for the action.")]
         [SerializeField]
-        private Text m_ActionLabel;
+        private TextMeshProUGUI m_ActionLabel;
 
         [Tooltip("Text label that will receive the current, formatted binding string.")]
         [SerializeField]
-        private Text m_BindingText;
+        private TextMeshProUGUI m_BindingText;
 
         [Tooltip("Optional UI that will be shown while a rebind is in progress.")]
         [SerializeField]
@@ -501,11 +503,11 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
         [Tooltip("Optional text label that will be updated with prompt for user input.")]
         [SerializeField]
-        private Text m_RebindText;
+        private TextMeshProUGUI m_RebindText;
 
         [Tooltip("Optional text label that will be updated with relevant information during rebinding.")]
         [SerializeField]
-        private Text m_RebindInfo;
+        private TextMeshProUGUI m_RebindInfo;
 
         [Tooltip("Optional cancellation UI button for rebinding overlay.")]
         [SerializeField]

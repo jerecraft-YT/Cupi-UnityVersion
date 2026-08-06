@@ -14,7 +14,7 @@ public class LevelDataController : MonoBehaviour
 
     public MusicLoader musicLoader;
 
-    public static LevelConfig defaultLevelConfig;
+    public static LevelConfigSO defaultLevelConfig;
 
     private void Awake()
     {
@@ -31,7 +31,7 @@ public class LevelDataController : MonoBehaviour
 
     private void LoadDefaultConfig()
     {
-        defaultLevelConfig = Resources.Load<LevelConfig>("LevelConfig");
+        defaultLevelConfig = Resources.Load<LevelConfigSO>("LevelConfigSO");
     }
 
     [Tooltip("convierte los datos del nivel de este script a null pero no elimina los archivos en carpetas")]

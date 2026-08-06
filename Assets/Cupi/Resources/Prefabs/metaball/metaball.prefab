@@ -80,8 +80,8 @@ SpriteShapeRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 288880309
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -182,24 +182,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::metaball
   numberPoints: 16
-  velocidadRotacion: 0.1
+  velocidadRotacion: 1
   velocidadAmplitud: 20
   velocidadAmplitudObjetivo: 1
   amplitud: 6
   tangentAmplitud: 1
-  metaballScale: 0.8
+  metaballScale: 0.85
   fuerzaMusica: 40
   fuerzaMaxima: 10
-  maxFollow: 4
+  maxFollow: 5
   followColors:
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0.6784314, g: 0.6784314, b: 0.6784314, a: 1}
   - {r: 0.99215686, g: 0.9490196, b: 0, a: 1}
-  - {r: 0.6784314, g: 0.60784316, b: 1, a: 1}
+  - {r: 0.5551886, g: 0.4575472, b: 1, a: 1}
+  - {r: 1, g: 0.7783019, b: 0.94375175, a: 1}
   followAsset: {fileID: 7700269102758796974, guid: b2e273ce093e54a4aac5c1b72ca3d96e, type: 3}
   refreshEvery: 0.016
   noiseInfluence: 1
-  noiseReadingFrequency: 0.6
+  noiseReadingFrequency: 5
   FuerzaPorPunto:
   - 0.15
   - 0.65

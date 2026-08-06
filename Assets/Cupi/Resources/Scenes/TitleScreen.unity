@@ -10482,64 +10482,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: maxFollow
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: GetMusicEvery
-      value: 0.033
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: metaballScale
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: noiseInfluence
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: VelocidadRotacion
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: velocidadRotacion
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: noiseReadingFrequency
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: followColors.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: followColors.Array.data[3].b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: followColors.Array.data[3].g
-      value: 0.4575472
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: followColors.Array.data[3].r
-      value: 0.5551886
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: followColors.Array.data[4].a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: followColors.Array.data[4].b
-      value: 0.94375175
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: followColors.Array.data[4].g
-      value: 0.7783019
-      objectReference: {fileID: 0}
-    - target: {fileID: 6671181807113474537, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: followColors.Array.data[4].r
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6761364923240624119, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: m_Creator
@@ -10549,10 +10493,6 @@ PrefabInstance:
       propertyPath: m_SpriteShape
       value: 
       objectReference: {fileID: 11400000, guid: 575e75a5a0893dc4eb849b74c2020797, type: 2}
-    - target: {fileID: 6761364923240624119, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: m_UpdateGeometry
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6761364923240624119, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: m_Modifiers.Array.size
       value: 0
@@ -10564,10 +10504,6 @@ PrefabInstance:
     - target: {fileID: 7890023053708671959, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: m_SortingLayer
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7890023053708671959, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 288880309
       objectReference: {fileID: 0}
     - target: {fileID: 7890023053708671959, guid: e08c6e40a6065f7408c488908b8b9080, type: 3}
       propertyPath: m_DynamicOccludee

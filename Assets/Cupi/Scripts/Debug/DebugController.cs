@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,8 @@ public class DebugController : MonoBehaviour
     private bool _updateDebugInfo = true;
 
     private const string TEXT_DEBUG_INFO = "UnscaledCustomTime: {0:N2}\nCustomTime: {1:N2} \nMusicTime: {2:N2}\nTimeScale: {3:N2}";
+
+    [HideInInspector] public AudioClip clip;
 
     private void Start()
     {
@@ -72,3 +75,58 @@ public class DebugController : MonoBehaviour
         _audioSource.pitch = valor;
     }
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(DebugController))]
+public class DebugControllerCustomEditor : Editor
+{
+    private SerializedProperty newAudioClip;
+
+    private void OnEnable()
+    {
+        newAudioClip = serializedObject.FindProperty("clip");
+    }
+
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+
+        //if (!Application.isPlaying) return;
+
+        serializedObject.Update();
+
+        AudioClip newClip = newAudioClip.objectReferenceValue as AudioClip;
+
+        EditorGUILayout.Space(15f);
+
+        EditorGUILayout.LabelField("Debug Tools");
+
+        EditorGUILayout.Space(15f);
+
+        EditorGUILayout.BeginHorizontal();
+
+        EditorGUILayout.LabelField("Audio Clip", GUILayout.Width(70f));
+
+        EditorGUILayout.PropertyField(newAudioClip,GUIContent.none);
+
+        //MusicController music = (MusicController)target;
+
+        if (GUILayout.Button("Play Clip", GUILayout.Width(90f)))
+        {
+            if (!Application.isPlaying)
+            {
+                Debug.LogWarning("ejecuta el juego para usar esta funcion");
+                return;
+            }
+
+            if (newClip != null)
+                MusicController.instance.PlayMusic(newClip);
+        }
+
+        EditorGUILayout.EndHorizontal();
+
+        serializedObject.ApplyModifiedProperties();
+    }
+}
+
+#endif

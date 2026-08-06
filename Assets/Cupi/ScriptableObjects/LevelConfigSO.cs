@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelConfig", menuName = "Scriptable Objects/LevelConfig")]
-public class LevelConfig : ScriptableObject
+[CreateAssetMenu(fileName = "LevelConfigSO", menuName = "Scriptable Objects/LevelConfigSO")]
+public class LevelConfigSO : ScriptableObject
 {
     [Header("Config inicio nivel")]
     public float startFadeDuration = 0.15f;

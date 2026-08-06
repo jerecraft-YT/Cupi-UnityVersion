@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-[CreateAssetMenu(fileName = "MusicConfig", menuName = "Scriptable Objects/MusicConfig")]
-public class MusicConfig : ScriptableObject
+[CreateAssetMenu(fileName = "MusicConfigSO", menuName = "Scriptable Objects/MusicConfigSO")]
+public class MusicConfigSO : ScriptableObject
 {
     [Header("Configuracion de controlador de musica")]
     public AudioMixerGroup audioMixerGroup;

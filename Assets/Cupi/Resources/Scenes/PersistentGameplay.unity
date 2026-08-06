@@ -273,6 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DebugController
   _textoDebug: {fileID: 399973913}
   _timeUpdateDebugInfo: 0.15
+  clip: {fileID: 8300000, guid: 3f6a63268f17b5848ad946db6e890ac3, type: 3}
 --- !u!114 &399973913
 MonoBehaviour:
   m_ObjectHideFlags: 0

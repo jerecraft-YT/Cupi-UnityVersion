@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -32,6 +33,8 @@ public class metaball : MonoBehaviour
     [SerializeField] private float fuerzaMaxima = 10.0f;
 
     [SerializeField] private int maxFollow = 4;
+
+    [ColorUsage(showAlpha:true,hdr:true)]
     [SerializeField] private Color[] followColors;
     [SerializeField] private GameObject followAsset;
 

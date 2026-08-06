@@ -53,7 +53,7 @@ public class MusicController : MonoBehaviour
 
     private void CargarDefaultConfig()
     {
-        MusicConfig config = Resources.Load<MusicConfig>("MusicBaseConfig");
+        MusicConfigSO config = Resources.Load<MusicConfigSO>("MusicBaseConfigSO");
 
         if (config == null)
         {

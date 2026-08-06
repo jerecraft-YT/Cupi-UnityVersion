@@ -23,6 +23,7 @@ public class SpectrumAnalizer : MonoBehaviour
         instance = this;
 
         musica = MusicController.mainMusic;
+        
     }
 
     // Update is called once per frame
@@ -33,6 +34,7 @@ public class SpectrumAnalizer : MonoBehaviour
         if (musicTime >= GetMusicEvery)
         {
             musica.GetSpectrumData(spectrumData, 0, fftwindow);
+            //AudioListener.GetSpectrumData(spectrumData,0, fftwindow);
             musicTime -= GetMusicEvery;
         }
     }

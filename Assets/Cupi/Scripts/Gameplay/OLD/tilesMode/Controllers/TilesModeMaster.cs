@@ -34,7 +34,7 @@ public class TilesModeMaster : MonoBehaviour
 
     private void SetDefaultConfig()
     {
-        LevelConfig levelConfig = LevelDataController.defaultLevelConfig;
+        LevelConfigSO levelConfig = LevelDataController.defaultLevelConfig;
 
         playStyle = levelConfig.PlayStyle;
 

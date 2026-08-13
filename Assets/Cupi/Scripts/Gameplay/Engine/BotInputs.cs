@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using UnityEngine;
 
 public class BotInputs : IInputDevice
 {
@@ -33,7 +34,7 @@ public class BotInputs : IInputDevice
         ProcessBot(songTime);
     }
 
-    private void ProcessBot(double songTime)
+    private async void ProcessBot(double songTime)
     {
         while(nextNote < chart.Count)
         {

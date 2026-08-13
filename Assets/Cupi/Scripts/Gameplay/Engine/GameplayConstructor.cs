@@ -30,7 +30,6 @@ public class GameplayConstructor
             default:
                 break;
         }
-
         return null;
     }
 

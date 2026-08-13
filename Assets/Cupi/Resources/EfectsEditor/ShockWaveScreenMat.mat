@@ -54,9 +54,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _ShockWaveStrength: -0.86
-    - _Size: 0.037
-    - _WaveDistanceFromCenter: 0.134
+    - _ShockWaveStrength: -0.1
+    - _Size: 0.01
+    - _WaveDistanceFromCenter: 0
     - _ZWrite: 0
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}

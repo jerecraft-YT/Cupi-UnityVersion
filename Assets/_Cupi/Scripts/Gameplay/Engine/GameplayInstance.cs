@@ -29,10 +29,11 @@ public class GameplayInstance : MonoBehaviour
         gameTime = timeProvider;
 
         gameplayEngine = new GameplayEngine(input,level.chart);
-        GameTick += gameplayEngine.Tick;
+        GameTick += gameplayEngine.EngineTick;
 
         gameplayRenderer = gameObject.AddComponent<GameplayRenderer>();
-        gameplayRenderer.Initialize(level);
+        gameplayRenderer.Initialize(level,timeProvider);
+        GameTick += gameplayRenderer.EngineTick;
         gameplayEngine.NoteChange += gameplayRenderer.NoteChange;
     }
 
@@ -52,7 +53,6 @@ public class GameplayInstance : MonoBehaviour
         songTime = gameTime.GetCurrentTime();
 
         GameTick?.Invoke(songTime);
-        //gameplayEngine.Tick(songTime);
     }
 
     private void OnDestroy()

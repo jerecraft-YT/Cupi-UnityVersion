@@ -1,17 +1,16 @@
 using UnityEngine;
 
-public abstract class NotaTileBaseLogic : MonoBehaviour
+public abstract class NotaTileBaseLogic : MonoBehaviour,INoteEntity
 {
-    protected TimeController timeController;
-    protected TilesModeMaster tilesModeMaster;
-    protected SpawnerNotas spawnerNotas;
+    protected ITimeProvider timeProvider;
+    protected GameplayRenderer gameplayRenderer;
 
     [SerializeField] private Transform note;
 
     public SpriteRenderer spriteNote;
     public NotaInstance data;
 
-    public Vector2 DireccionMovimiento;
+    public Vector2 direccionMovimiento;
     public Vector2 finalPos;
     public Transform origin;
     public double progress;
@@ -19,22 +18,12 @@ public abstract class NotaTileBaseLogic : MonoBehaviour
     public float offsetRendering;
     public int Myindex;
     public bool initialized;
+    public float timeToLastStateUpdate;
 
-    private void Awake()
-    {
-        timeController = TimeController.instance;
-        tilesModeMaster = TilesModeMaster.instance;
-        spawnerNotas = SpawnerNotas.instance;
-    }
+    protected virtual void OnEnable() { }
 
-    protected virtual void OnEnable()
-    {
-        NotesController.NotasActivas += UpdateNote;
-    }
-    protected virtual void OnDisable()
-    {
-        NotesController.NotasActivas -= UpdateNote;
-    }
+    protected virtual void OnDisable() { }
+
     public void UpdateNote()
     {
         LogicUpdate();
@@ -49,17 +38,18 @@ public abstract class NotaTileBaseLogic : MonoBehaviour
     {
         if (!initialized) return;
 
-        progress = 1 - InverseLerpUnclamped(0.0f, data.timeToArrive + offsetRendering, timeController.AdditiveTime);
+        progress = 1 - InverseLerpUnclamped(0.0f, data.timeToArrive + offsetRendering, timeProvider.GetCurrentTime());
 
         if (lockProgress) progress = Mathf.Max(0);
 
-        double distancia = (progress * (data.timeToArrive + offsetRendering) * data.localSpeed * tilesModeMaster.NotaTileSpeed);
+        double distancia = (progress * (data.timeToArrive + offsetRendering) * data.localSpeed * gameplayRenderer.scrollSpeed);
 
-        finalPos = data.offsetPositionToGo + (DireccionMovimiento * (float)distancia);
+        finalPos = data.offsetPositionToGo + (direccionMovimiento * (float)distancia);
 
         note.localPosition = finalPos;
 
         //esto hace que las notas se destruyan cuando se esta en reversa
+        /*
         if (data.timeToArrive > spawnerNotas.NotesWindowEnd)
         {
             if (data.tipoNota == TipoNota.Sostenida)
@@ -69,6 +59,7 @@ public abstract class NotaTileBaseLogic : MonoBehaviour
 
             DestroyNote();
         }
+        */
     }
 
     public void DestroyNote()
@@ -86,9 +77,11 @@ public abstract class NotaTileBaseLogic : MonoBehaviour
     public void GoToPool()
     {
         //Debug.Log($"Pooling note {Myindex} {data.noteIndex}");
-        spawnerNotas.RemoveNote(Myindex);
+        //spawnerNotas.RemoveNote(Myindex);
 
         SetDefaultConfig();
+
+        Debug.Log("quitando nota");
 
         gameObject.SetActive(false);
     }
@@ -102,19 +95,39 @@ public abstract class NotaTileBaseLogic : MonoBehaviour
         finalPos = Vector2.one * 1000.0f;
     }
 
-    public void Initialize(NotaInstance config)
+    protected virtual void PostInitialize()
     {
-        data = config;
 
-        Myindex = config.noteIndex;
+    }
+
+    public virtual void ChangeNoteState(EstadoPuntuacion puntuacion, EstadoNota estado)
+    {
+        
+    }
+
+    public void DespawnNote()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void InitializeNote(NoteIntialData intialData)
+    {
+        data = intialData.data;
+
+        Myindex = data.noteIndex;
+
+        origin = intialData.origin;
+
+        direccionMovimiento = intialData.direccionMovimiento;
+
+        timeProvider = intialData.timeProvider;
+
+        gameplayRenderer = intialData.gameplayRenderer;
+
+        transform.localPosition = Vector2.zero;
 
         PostInitialize();
 
         initialized = true;
-    }
-
-    protected virtual void PostInitialize()
-    {
-
     }
 }

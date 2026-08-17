@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 //using UnityEngine;
 
 public class NotaTileNormal : NotaTileBaseLogic
@@ -11,39 +12,39 @@ public class NotaTileNormal : NotaTileBaseLogic
         _canHit = true;
         _needsRenderUpdate = true;
 
-        base.OnEnable();
-
-        TilesModeInputController.NoteClick += DetectClick;
+        //TilesModeInputController.NoteClick += NoteHit;
     }
     protected override void OnDisable()
     {
-        base.OnDisable();
-
-        TilesModeInputController.NoteClick -= DetectClick;
+        //TilesModeInputController.NoteClick -= NoteHit;
     }
     protected override void LogicUpdate()
     {
-        DetectMiss();
-        RenderControl();
+        //NoteMiss();
+        //RenderControl();
     }
 
     private void RenderControl()
     {
         if (!_canHit)
         {
-            if (data.timeToArrive - tilesModeMaster.ToleranciaError > timeController.AdditiveTime)
+            /*
+            if (data.timeToArrive - tilesModeMaster.ToleranciaError > timeProvider.GetCurrentTime())
             {
                 _canHit = true;
                 _needsRenderUpdate = true;
             }
+            */
         }
 
+        /*
         if (_needsRenderUpdate)
         {
             SetNoteVisibility(_canHit);
 
             _needsRenderUpdate = false;
         }
+        */
     }
 
     private void SetNoteVisibility(bool isVisible)
@@ -51,25 +52,33 @@ public class NotaTileNormal : NotaTileBaseLogic
         spriteNote.enabled = isVisible;
     }
 
-    private void DetectClick(CorrespondenciaTecla tecla)
+    private void NoteHit()
     {
-        if (tecla != data.correspondenciaTecla || timeController.TimeScale < 0 || !_canHit) return;
+        if (timeProvider.GetCurrentTimeScale() < 0 || !_canHit) return;
 
-        double timeDiff = Math.Abs(data.timeToArrive - timeController.AdditiveTime);
+        //double timeDiff = Math.Abs(data.timeToArrive - timeProvider.GetCurrentTime());
 
+        //NotesController.HitNote(data.correspondenciaTecla);
+        _canHit = false;
+        _needsRenderUpdate = true;
+
+        /*
         if (timeDiff < tilesModeMaster.ToleranciaError)
         {
             NotesController.HitNote(data.correspondenciaTecla);
             _canHit = false;
             _needsRenderUpdate = true;
         }
+        */
+
+        DestroyNote();
     }
 
-    private void DetectMiss()
+    private void NoteMiss()
     {
-        if (timeController.TimeScale < 0) return;
-
-        bool standardMiss = data.timeToArrive + tilesModeMaster.ToleranciaError < timeController.AdditiveTime;
+        //if (timeProvider.GetCurrentTimeScale() < 0) return;
+        /*
+        bool standardMiss = data.timeToArrive + tilesModeMaster.ToleranciaError < timeProvider.GetCurrentTime();
 
         if (standardMiss)
         {
@@ -80,6 +89,32 @@ public class NotaTileNormal : NotaTileBaseLogic
                 NotesController.MissNote(data.correspondenciaTecla);
             }
             DestroyNote();
+        */
+
+        _canHit = false;
+        _needsRenderUpdate = true;
+        DestroyNote();
+        //NotesController.MissNote(data.correspondenciaTecla);
+    }
+
+    public override void ChangeNoteState(EstadoPuntuacion puntuacion, EstadoNota estado)
+    {
+        switch (estado)
+        {
+            case EstadoNota.None:
+                break;
+            case EstadoNota.EnProceso:
+                break;
+            case EstadoNota.Fallada:
+                Debug.Log("nota fallada");
+                NoteMiss();
+                break;
+            case EstadoNota.Procesada:
+                Debug.Log("nota acertada");
+                NoteHit();
+                break;
+            default:
+                break;
         }
     }
 }

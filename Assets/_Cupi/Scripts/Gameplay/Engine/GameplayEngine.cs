@@ -7,7 +7,7 @@ public class GameplayEngine : IDisposable
 {
     public event Action OnLevelEnd;
 
-    public event Action<int,EstadoPuntuacion> NoteChange;
+    public event Action<int,EstadoPuntuacion,EstadoNota> NoteChange;
 
     public RuntimeStateNote[] estadoNotas;
 
@@ -56,12 +56,13 @@ public class GameplayEngine : IDisposable
         inputDevice.OnButtonReleased -= OnButtonReleased;
     }
 
-    public void Tick(double songTime)
+    public void EngineTick(double songTime)
     {
         SetWindowRange(songTime);
 
         ProcessNotes(songTime);
 
+        //para guardar el tiempo anterior por si pasa mucho tiempo entre ticks
         oldSongTime = songTime;
     }
 
@@ -167,7 +168,7 @@ public class GameplayEngine : IDisposable
 
     private void RegistrarResultado(int noteIndex,EstadoNota estado, EstadoPuntuacion puntuacion)
     {
-        NoteChange?.Invoke(noteIndex, puntuacion);
+        NoteChange?.Invoke(noteIndex, puntuacion, estado);
         Debug.Log(puntuacion);
         estadoNotas[noteIndex].estadoNota = estado;
         estadoNotas[noteIndex].estadoPuntuacion = puntuacion;

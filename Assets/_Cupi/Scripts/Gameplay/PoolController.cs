@@ -106,6 +106,8 @@ public class PoolController : MonoBehaviour
             return null;
         }
 
+        Debug.Log($"se retorno una instancia de tipo {tipoObjetoPool}");
+
         return SearchActiveInstance(index);
     }
 

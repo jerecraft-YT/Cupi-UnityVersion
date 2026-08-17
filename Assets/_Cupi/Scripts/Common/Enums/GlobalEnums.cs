@@ -50,7 +50,6 @@ public enum EstadoNota
 {
     None,
     EnProceso,
-    Presionada,
     Fallada,
     Procesada
 }

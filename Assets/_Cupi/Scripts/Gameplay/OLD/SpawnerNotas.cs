@@ -209,7 +209,7 @@ public class SpawnerNotas : MonoBehaviour
 
         NotaTileBaseLogic scriptNota = nota.GetComponent<NotaTileBaseLogic>();
 
-        scriptNota.Initialize(notaActual);
+        ///scriptNota.Initialize(notaActual);
 
         if ((int)tecla > playStyle) scriptNota.data.correspondenciaTecla = (CorrespondenciaTecla)playStyle;
 
@@ -218,7 +218,7 @@ public class SpawnerNotas : MonoBehaviour
 
         scriptNota.origin = _poolController.RequestGroupPool(tipoObjetoPool).transform;
 
-        scriptNota.DireccionMovimiento = EstablecerDireccionMovimiento(notaActual.direccionMovimiento, notaActual.direccionCustom);
+        scriptNota.direccionMovimiento = EstablecerDireccionMovimiento(notaActual.direccionMovimiento, notaActual.direccionCustom);
     }
 
     private Transform DefinirCorrespondenciaTecla(CorrespondenciaTecla Tecla)

@@ -80,6 +80,11 @@ public class TimeController : MonoBehaviour , ITimeProvider
         return AdditiveTime;
     }
 
+    public float GetCurrentTimeScale()
+    {
+        return _timeScale;
+    }
+
     public double ActualTime => AudioSettings.dspTime - _dspOffset;
     public double AdditiveTime => _additiveTime;
     public float TimeScale

@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public interface IInputDevice : IDisposable
 {
@@ -10,4 +11,13 @@ public interface IInputDevice : IDisposable
 public interface ITimeProvider
 {
     double GetCurrentTime();
+    float GetCurrentTimeScale();
+}
+
+public interface INoteEntity
+{
+    void ChangeNoteState(EstadoPuntuacion puntuacion,EstadoNota estado);
+    void DespawnNote();
+    void InitializeNote(NoteIntialData intialData);
+    void UpdateNote();
 }

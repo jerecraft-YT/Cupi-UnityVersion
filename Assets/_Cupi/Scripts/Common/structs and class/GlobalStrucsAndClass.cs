@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +27,15 @@ public class NotaInstance
     public float angulo;
     [Header("configuracion Extra Nota Sostenida Modo Radial")]
     public float anguloFinal;
+}
+
+public class NoteIntialData
+{
+    public NotaInstance data;
+    public Transform origin;
+    public Vector2 direccionMovimiento; 
+    public ITimeProvider timeProvider;
+    public GameplayRenderer gameplayRenderer;
 }
 
 [Serializable]

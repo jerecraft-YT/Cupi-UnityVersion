@@ -784,7 +784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &930970435
 Transform:
   m_ObjectHideFlags: 0
@@ -1233,9 +1233,9 @@ MonoBehaviour:
     baseScrollSpeed: 1
     tileModePlayStyle: 2
     chart:
-    - noteIndex: 0
+    - noteIndex: 1
       modoNota: 0
-      tipoNota: 1
+      tipoNota: 0
       correspondenciaTecla: 0
       direccionMovimiento: 0
       offsetPositionToGo: {x: 0, y: 0}

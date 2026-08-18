@@ -1,16 +1,17 @@
-using System;
+//using System;
 using UnityEngine;
 //using UnityEngine;
 
 public class NotaTileNormal : NotaTileBaseLogic
 {
-    private bool _canHit;
-    private bool _needsRenderUpdate;
+    //private bool _canHit;
+    //private bool _needsRenderUpdate;
 
+    /*
     protected override void OnEnable()
     {
-        _canHit = true;
-        _needsRenderUpdate = true;
+        //_canHit = true;
+        //_needsRenderUpdate = true;
 
         //TilesModeInputController.NoteClick += NoteHit;
     }
@@ -23,7 +24,9 @@ public class NotaTileNormal : NotaTileBaseLogic
         //NoteMiss();
         //RenderControl();
     }
+    */
 
+    /*
     private void RenderControl()
     {
         if (!_canHit)
@@ -35,7 +38,7 @@ public class NotaTileNormal : NotaTileBaseLogic
                 _needsRenderUpdate = true;
             }
             */
-        }
+        //}
 
         /*
         if (_needsRenderUpdate)
@@ -45,22 +48,27 @@ public class NotaTileNormal : NotaTileBaseLogic
             _needsRenderUpdate = false;
         }
         */
-    }
+    //}
+    
 
+    /*
     private void SetNoteVisibility(bool isVisible)
     {
         spriteNote.enabled = isVisible;
     }
+    */
 
     private void NoteHit()
     {
-        if (timeProvider.GetCurrentTimeScale() < 0 || !_canHit) return;
+        //if (timeProvider.GetCurrentTimeScale() < 0) return;
+
+        //if (timeProvider.GetCurrentTimeScale() < 0 || !_canHit) return;
 
         //double timeDiff = Math.Abs(data.timeToArrive - timeProvider.GetCurrentTime());
 
         //NotesController.HitNote(data.correspondenciaTecla);
-        _canHit = false;
-        _needsRenderUpdate = true;
+        //_canHit = false;
+        //_needsRenderUpdate = true;
 
         /*
         if (timeDiff < tilesModeMaster.ToleranciaError)
@@ -91,8 +99,8 @@ public class NotaTileNormal : NotaTileBaseLogic
             DestroyNote();
         */
 
-        _canHit = false;
-        _needsRenderUpdate = true;
+        //_canHit = false;
+        //_needsRenderUpdate = true;
         DestroyNote();
         //NotesController.MissNote(data.correspondenciaTecla);
     }

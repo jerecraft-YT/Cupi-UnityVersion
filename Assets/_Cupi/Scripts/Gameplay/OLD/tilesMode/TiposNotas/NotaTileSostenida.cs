@@ -5,7 +5,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
 {
     private bool _canHit;
     private bool _needsRenderUpdate;
-    private bool _firstHit;
+    //private bool _firstHit;
     [SerializeField] private LineRenderer _lineNote;
     private bool _renderNote;
 
@@ -27,7 +27,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
     {
         base.OnEnable();
 
-        _firstHit = true;
+        //_firstHit = true;
         _canHit = true;
         _renderNote = true;
         _needsRenderUpdate = true;
@@ -38,8 +38,8 @@ public class NotaTileSostenida : NotaTileBaseLogic
         _consumoNota = 0;
         offsetRendering = 0;
 
-        TilesModeInputController.NoteClick += ClickNote;
-        TilesModeInputController.NoteUnClick += UnClickNote;
+        //TilesModeInputController.NoteClick += ClickNote;
+        //TilesModeInputController.NoteUnClick += LockNote;
 
         SetLinePoints();
     }
@@ -48,8 +48,8 @@ public class NotaTileSostenida : NotaTileBaseLogic
     {
         base.OnDisable();
 
-        TilesModeInputController.NoteClick -= ClickNote;
-        TilesModeInputController.NoteUnClick -= UnClickNote;
+        //TilesModeInputController.NoteClick -= ClickNote;
+        //TilesModeInputController.NoteUnClick -= LockNote;
     }
 
     protected override void LogicUpdate()
@@ -61,6 +61,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
     private void RenderControl()
     {
+
         if (!_canHit)
         {
             /*
@@ -107,7 +108,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
         base.SetDefaultConfig();
 
         _lineNote.positionCount = 0;
-        _firstHit = true;
+        //_firstHit = true;
         _canHit = true;
         _waitOneFrameBeforeRendering = 0;
         lockProgress = false;
@@ -122,11 +123,24 @@ public class NotaTileSostenida : NotaTileBaseLogic
         _lineNote.positionCount = _numberPoints;
     }
 
-    public void ClickNote(CorrespondenciaTecla tecla)
+    public void NoteProcess()
     {
-        if (tecla != data.correspondenciaTecla || timeProvider.GetCurrentTimeScale() < 0 || !_canHit) return;
+        if (timeProvider.GetCurrentTimeScale() < 0) return;
 
-        double timeDiff = Math.Abs((data.timeToArrive + (_consumoNota * data.duracion)) - timeProvider.GetCurrentTime());
+        _isPressed = true;
+        lockProgress = true;
+    }
+
+    public void NoteHit()
+    {
+        //if (timeProvider.GetCurrentTimeScale() < 0) return;
+
+        //if (tecla != data.correspondenciaTecla || timeProvider.GetCurrentTimeScale() < 0 || !_canHit) return;
+
+        //double timeDiff = Math.Abs((data.timeToArrive + (_consumoNota * data.duracion)) - timeProvider.GetCurrentTime());
+
+        //_isPressed = true;
+        //lockProgress = true;
 
         /*
         if (timeDiff < tilesModeMaster.ToleranciaError)
@@ -141,11 +155,13 @@ public class NotaTileSostenida : NotaTileBaseLogic
         }
         */
 
+        DestroyNote();
+
     }
 
-    public void UnClickNote(CorrespondenciaTecla tecla)
+    public void NoteMiss()
     {
-        if (tecla != data.correspondenciaTecla || !_canHit) return;
+        //if (tecla != data.correspondenciaTecla || !_canHit) return;
 
         _isPressed = false;
         lockProgress = false;
@@ -157,7 +173,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
         _consumoNota = 1 - Mathf.InverseLerp((float)_timeToArriveForLine, (float)data.timeToArrive, (float)currentTime);
 
-        double tiempoActual = data.timeToArrive + offsetRendering;
+        //double tiempoActual = data.timeToArrive + offsetRendering;
 
         /*
         if (tiempoActual + tilesModeMaster.ToleranciaError < currentTime && _canHit)
@@ -166,22 +182,25 @@ public class NotaTileSostenida : NotaTileBaseLogic
             _isPressed = false;
         }
         */
-
+        /*
         while (_actualPointGetter * _getPointsEvery < _consumoNota + _getPointsEvery && _isPressed)
         {
             //print("ganaste puntos" +  actualPointGetter);
             _actualPointGetter++;
         }
+        */
 
 
         if (timeProvider.GetCurrentTimeScale() < 0)
         {
             //recupera el conteo de puntos para que la nota no desaparezca antes de
             //tiempo por tener ya muchos puntos recogidos
+            /*
             while (_actualPointGetter * _getPointsEvery >= _consumoNota + _getPointsEvery)
             {
                 _actualPointGetter--;
             }
+            */
 
             if (_consumoNota < 1.0f && _consumoNota < offsetRendering)
             {
@@ -265,6 +284,31 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
                 _lineNote.SetPosition(i, finalPos);
             }
+        }
+    }
+
+    public override void ChangeNoteState(EstadoPuntuacion puntuacion, EstadoNota estado)
+    {
+        switch (estado)
+        {
+            case EstadoNota.None:
+                break;
+            case EstadoNota.EnProceso:
+                Debug.Log("nota en proceso");
+                NoteProcess();
+                break;
+            case EstadoNota.ProcesoFallado:
+                Debug.Log("nota fallada");
+                NoteMiss();
+                break;
+            case EstadoNota.Fallada:
+                break;
+            case EstadoNota.Procesada:
+                Debug.Log("nota acertada");
+                NoteHit();
+                break;
+            default:
+                break;
         }
     }
 }

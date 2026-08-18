@@ -3,17 +3,19 @@ using UnityEngine;
 
 public class GameplayRenderer : MonoBehaviour
 {
-    public float scrollSpeed;
+    public float scrollSpeed = 10.0f;
+
     private ModoJuego modoJuego;
     private TileModePlayStyle playStyleTile;
     private List<NotaInstance> chart;
     private ITimeProvider timeProvider;
 
     private Dictionary<int, INoteEntity> notesToRender = new();
+    private HashSet<int> notesProcess = new();
 
-    public int startWindow;
-    public float timeToProcess = 2;
-    public int endWindow;
+    private int startWindow;
+    private float timeToProcess = 2;
+    private int endWindow;
 
     //para poder procesar todas las notas si hubo un salto de tiempo muy abrupto
     public double oldSongTime;
@@ -57,7 +59,7 @@ public class GameplayRenderer : MonoBehaviour
     {
         for (int noteIndex = startWindow; noteIndex < endWindow; noteIndex++)
         {
-            if (notesToRender.ContainsKey(noteIndex)) continue;
+            if (notesToRender.ContainsKey(noteIndex) || notesProcess.Contains(noteIndex)) continue;
 
             NotaInstance noteData = chart[noteIndex];
 
@@ -141,6 +143,9 @@ public class GameplayRenderer : MonoBehaviour
                         break;
                 }
                 break;
+            default:
+                NoValidNote();
+                break;
         }
 
         return PoolController.instance.RequestInstance(tipoObjetoPool);
@@ -196,7 +201,25 @@ public class GameplayRenderer : MonoBehaviour
         }
 
         notesToRender[index].ChangeNoteState(puntuacion, estadoNota);
-        
-        //notesToRender.Remove(index);
+
+        /*
+        switch (estadoNota)
+        {
+            case EstadoNota.None:
+                break;
+            case EstadoNota.EnProceso:
+                break;
+            case EstadoNota.ProcesoFallado:
+                break;
+            case EstadoNota.Fallada:
+                break;
+            case EstadoNota.Procesada:
+                break;
+            default:
+                break;
+        }
+        notesToRender.Remove(index);
+        notesProcess.Add(index);
+        */
     }
 }

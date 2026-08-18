@@ -1,23 +1,23 @@
 using System;
-using UnityEngine;
+//using UnityEngine;
 
 public interface IInputDevice : IDisposable
 {
-    bool ClickPressed(CorrespondenciaTecla tecla);
-    event Action<CorrespondenciaTecla,double> OnButtonPressed;
-    event Action<CorrespondenciaTecla,double> OnButtonReleased;
+    public bool ClickPressed(CorrespondenciaTecla tecla);
+    public event Action<CorrespondenciaTecla,double> OnButtonPressed;
+    public event Action<CorrespondenciaTecla,double> OnButtonReleased;
 }
 
 public interface ITimeProvider
 {
-    double GetCurrentTime();
-    float GetCurrentTimeScale();
+    public double GetCurrentTime();
+    public float GetCurrentTimeScale();
 }
 
 public interface INoteEntity
 {
-    void ChangeNoteState(EstadoPuntuacion puntuacion,EstadoNota estado);
-    void DespawnNote();
-    void InitializeNote(NoteIntialData intialData);
-    void UpdateNote();
+    public void ChangeNoteState(EstadoPuntuacion puntuacion,EstadoNota estado);
+    public void DespawnNote();
+    public void InitializeNote(NoteIntialData intialData);
+    public void UpdateNote();
 }

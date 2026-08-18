@@ -9,22 +9,22 @@ public class GameplayEngine : IDisposable
 
     public event Action<int,EstadoPuntuacion,EstadoNota> NoteChange;
 
-    public RuntimeStateNote[] estadoNotas;
+    private RuntimeStateNote[] estadoNotas;
 
-    public List<NotaInstance> chart;
+    private List<NotaInstance> chart;
 
-    public List<BufferedInput> inputBuffer = new();
+    private List<BufferedInput> inputBuffer = new();
 
-    public IInputDevice inputDevice;
+    private IInputDevice inputDevice;
 
-    public ITimeProvider timeProvider;
+    private ITimeProvider timeProvider;
 
-    public int startWindow;
+    private int startWindow;
 
-    public int endWindow;
+    private int endWindow;
 
     //para poder procesar todas las notas si hubo un salto de tiempo muy abrupto
-    public double oldSongTime;
+    private double oldSongTime;
 
     #region Constantes
     const float maxProcessTime = 2;
@@ -39,10 +39,11 @@ public class GameplayEngine : IDisposable
     #endregion
 
     //constructor de gameplay con lo esencial
-    public GameplayEngine(IInputDevice inputDevice,List<NotaInstance> chart)
+    public GameplayEngine(ITimeProvider timeProvider,IInputDevice inputDevice,List<NotaInstance> chart)
     {
         this.inputDevice = inputDevice;
         this.chart = chart;
+        this.timeProvider = timeProvider;
 
         this.inputDevice.OnButtonPressed += OnButtonPressed;
         this.inputDevice.OnButtonReleased += OnButtonReleased;
@@ -90,7 +91,7 @@ public class GameplayEngine : IDisposable
 
             TipoNota tipoNota = nota.tipoNota;
 
-            bool estaProcesada = estadoNota.estadoNota == EstadoNota.Fallada || estadoNota.estadoNota == EstadoNota.Procesada;
+            bool estaProcesada = estadoNota.estadoNota == EstadoNota.Fallada || estadoNota.estadoNota == EstadoNota.Procesada || estadoNota.estadoNota == EstadoNota.ProcesoFallado;
 
             if (estaProcesada) continue; // continuar si la nota ya fue procesada
 
@@ -105,7 +106,7 @@ public class GameplayEngine : IDisposable
                 if (!inputDevice.ClickPressed(nota.correspondenciaTecla) && estaEnRango)
                 {
                     Debug.Log("soltaste muy pronto");
-                    RegistrarResultado(noteIndex, EstadoNota.Fallada, EstadoPuntuacion.Fallaste);
+                    RegistrarResultado(noteIndex, EstadoNota.ProcesoFallado, EstadoPuntuacion.Fallaste);
                     continue;
                 }
 
@@ -138,7 +139,7 @@ public class GameplayEngine : IDisposable
 
                     break;
                 case TipoNota.Sostenida:
-                    puntuacion = EstadoPuntuacion.EnProceso;
+                    puntuacion = ObtenerPuntaje(diferencia);
 
                     break;
                 default:
@@ -223,6 +224,9 @@ public class GameplayEngine : IDisposable
 
     private void OnButtonPressed(CorrespondenciaTecla tecla, double customInputTime)
     {
+        //Debug.Log(customInputTime);
+        //Debug.Log(timeProvider.GetCurrentTime());
+
         //mas facil para no perder inputs antes del tick :3
         BufferedInput input = new(tecla, customInputTime == -1f ? timeProvider.GetCurrentTime() : customInputTime, true);
 

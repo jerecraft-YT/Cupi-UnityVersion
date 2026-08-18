@@ -9,7 +9,10 @@ public class GameplayInstance : MonoBehaviour
 
     public GameplayEngine gameplayEngine;
     public GameplayRenderer gameplayRenderer;
+
+    //referencia de momento para debug :P
     public LevelComposition level;
+
     public IInputDevice gameInput;
     public ITimeProvider gameTime;
 
@@ -27,14 +30,15 @@ public class GameplayInstance : MonoBehaviour
         levelChart = level.chart;
         gameInput = input;
         gameTime = timeProvider;
-
-        gameplayEngine = new GameplayEngine(input,level.chart);
-        GameTick += gameplayEngine.EngineTick;
-
+ 
         gameplayRenderer = gameObject.AddComponent<GameplayRenderer>();
         gameplayRenderer.Initialize(level,timeProvider);
-        GameTick += gameplayRenderer.EngineTick;
+
+        gameplayEngine = new GameplayEngine(gameTime,input, level.chart);
         gameplayEngine.NoteChange += gameplayRenderer.NoteChange;
+
+        GameTick += gameplayEngine.EngineTick;
+        GameTick += gameplayRenderer.EngineTick;
     }
 
     private void SortNotes(ref List<NotaInstance> chart)

@@ -49,8 +49,13 @@ public enum ModoTime
 public enum EstadoNota
 {
     None,
+    //se usa para notas sostenidas
     EnProceso,
+    //se usa cuando fallas una nota sostenida
+    ProcesoFallado,
+    //cuando te equivocas en notas normales
     Fallada,
+    //cuando cualquier tipo de nota termino de ser procesada
     Procesada
 }
 

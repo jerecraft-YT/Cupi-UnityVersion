@@ -1240,7 +1240,19 @@ MonoBehaviour:
       direccionMovimiento: 0
       offsetPositionToGo: {x: 0, y: 0}
       direccionCustom: {x: 0, y: 0}
-      timeToArrive: 2
+      timeToArrive: 4
+      localSpeed: 1
+      duracion: 5
+      angulo: 0
+      anguloFinal: 0
+    - noteIndex: 1
+      modoNota: 0
+      tipoNota: 0
+      correspondenciaTecla: 0
+      direccionMovimiento: 0
+      offsetPositionToGo: {x: 0, y: 0}
+      direccionCustom: {x: 0, y: 0}
+      timeToArrive: 3
       localSpeed: 1
       duracion: 5
       angulo: 0

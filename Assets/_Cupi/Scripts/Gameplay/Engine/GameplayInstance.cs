@@ -20,7 +20,12 @@ public class GameplayInstance : MonoBehaviour
     public List<NotaInstance> levelChart;
 
     public double songTime;
-    
+
+    [Header("variables de debug (solo visualización)")]
+    public int startWindow;
+
+    public int endWindow;
+
     public void Initialize(LevelComposition level,IInputDevice input,ITimeProvider timeProvider)
     {
         SortNotes(ref level.chart);
@@ -57,6 +62,14 @@ public class GameplayInstance : MonoBehaviour
         songTime = gameTime.GetCurrentTime();
 
         GameTick?.Invoke(songTime);
+
+        SetDebugValues();
+    }
+
+    private void SetDebugValues()
+    {
+        endWindow = gameplayEngine.endWindow;
+        startWindow = gameplayEngine.startWindow;
     }
 
     private void OnDestroy()

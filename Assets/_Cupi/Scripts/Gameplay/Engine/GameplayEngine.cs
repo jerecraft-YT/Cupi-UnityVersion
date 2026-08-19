@@ -19,9 +19,9 @@ public class GameplayEngine : IDisposable
 
     private ITimeProvider timeProvider;
 
-    private int startWindow;
+    public int startWindow;
 
-    private int endWindow;
+    public int endWindow;
 
     //para poder procesar todas las notas si hubo un salto de tiempo muy abrupto
     private double oldSongTime;
@@ -69,6 +69,11 @@ public class GameplayEngine : IDisposable
 
     private void ProcessNotes(double songTime)
     {
+        if (inputBuffer.Count != 0 && timeProvider.GetCurrentTimeScale() < 0)
+        {
+            inputBuffer.Clear();
+        }
+
         foreach (var actualInput in inputBuffer)
         {
             if (!actualInput.isPressed) continue;
@@ -92,6 +97,17 @@ public class GameplayEngine : IDisposable
             TipoNota tipoNota = nota.tipoNota;
 
             bool estaProcesada = estadoNota.estadoNota == EstadoNota.Fallada || estadoNota.estadoNota == EstadoNota.Procesada || estadoNota.estadoNota == EstadoNota.ProcesoFallado;
+
+            //resetea el estado de la nota cuando esta en reversa
+            if (estaProcesada && timeProvider.GetCurrentTimeScale() < 0)
+            {
+                estadoNota.estadoNota = EstadoNota.None;
+                estadoNota.estadoPuntuacion = EstadoPuntuacion.None;
+
+                continue;
+            }
+
+
 
             if (estaProcesada) continue; // continuar si la nota ya fue procesada
 
@@ -170,7 +186,7 @@ public class GameplayEngine : IDisposable
     private void RegistrarResultado(int noteIndex,EstadoNota estado, EstadoPuntuacion puntuacion)
     {
         NoteChange?.Invoke(noteIndex, puntuacion, estado);
-        Debug.Log(puntuacion);
+        Debug.Log(puntuacion+ "|" + estado);
         estadoNotas[noteIndex].estadoNota = estado;
         estadoNotas[noteIndex].estadoPuntuacion = puntuacion;
     }
@@ -186,6 +202,45 @@ public class GameplayEngine : IDisposable
     }
 
     private void SetWindowRange(double songTime)
+    {
+        if (timeProvider.GetCurrentTimeScale() < 0)
+        {
+            ReverseWindowSetter(songTime);
+            return;
+        }
+
+        NormalWindowSetter(songTime);
+    }
+
+    private void ReverseWindowSetter(double songTime)
+    {
+        if (startWindow - 1 > 0)
+        {
+            while (oldSongTime <= chart[startWindow - 1].timeToArrive + chart[startWindow - 1].duracion + maxProcessTime)
+            {
+                startWindow--;
+
+                if (startWindow - 1 <= 0) break;
+            }
+        }
+
+        if (endWindow - 1 > 0)
+        {
+            //Debug.Log(endWindow + "|" + chart.Count);
+
+            while (songTime <= chart[endWindow - 1].timeToArrive - chart[endWindow - 1].duracion - maxProcessTime)
+            {
+                Debug.Log(endWindow + "|" + chart.Count);
+
+                endWindow--;
+
+                if (endWindow - 1 <= 0) break;
+                
+            }
+        }
+    }
+
+    private void NormalWindowSetter(double songTime)
     {
         //ejemplo (si song time es 2 y el chart se procesa en 2 le sumamos un tiempo de procesado extra
         //por si hay un lag y si no aumentamos el index del startWindow)
@@ -224,8 +279,7 @@ public class GameplayEngine : IDisposable
 
     private void OnButtonPressed(CorrespondenciaTecla tecla, double customInputTime)
     {
-        //Debug.Log(customInputTime);
-        //Debug.Log(timeProvider.GetCurrentTime());
+        if (timeProvider.GetCurrentTimeScale() < 0f) return;
 
         //mas facil para no perder inputs antes del tick :3
         BufferedInput input = new(tecla, customInputTime == -1f ? timeProvider.GetCurrentTime() : customInputTime, true);

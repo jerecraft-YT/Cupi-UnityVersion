@@ -20,21 +20,21 @@ public abstract class NotaTileBaseLogic : MonoBehaviour,INoteEntity
     public bool initialized;
     public float timeToLastStateUpdate;
 
-    protected virtual void OnEnable() { }
-
-    protected virtual void OnDisable() { }
-
     public void UpdateNote()
     {
         LogicUpdate();
         NoteVisualUpdate();
     }
+
+    /// <summary>
+    /// logica sobreescribible de la nota actual (reemplazar por lo que necesites)
+    /// </summary>
     protected virtual void LogicUpdate()
     {
 
     }
 
-    public void NoteVisualUpdate()
+    protected void NoteVisualUpdate()
     {
         if (!initialized) return;
 
@@ -47,46 +47,54 @@ public abstract class NotaTileBaseLogic : MonoBehaviour,INoteEntity
         finalPos = data.offsetPositionToGo + (direccionMovimiento * (float)distancia);
 
         note.localPosition = finalPos;
-
-        //esto hace que las notas se destruyan cuando se esta en reversa
-        /*
-        if (data.timeToArrive > spawnerNotas.NotesWindowEnd)
-        {
-            if (data.tipoNota == TipoNota.Sostenida)
-            {
-                print("destruccion por reversa");
-            }
-
-            DestroyNote();
-        }
-        */
     }
 
-    public void DestroyNote()
+    public NotaInstance GetNoteData()
     {
-        GoToPool();
+        return data;
     }
 
-    public double InverseLerpUnclamped(double a, double b, double valor)
+    public (double timeToArrive, float duracion) GetNoteTimeData()
     {
-        if (b != a) return (valor - a) / (b - a);
-
-        return 0.0f;
+        return (data.timeToArrive,data.duracion);
     }
 
-    public void GoToPool()
+    public double GetTimeToDespawn()
     {
-        //Debug.Log($"Pooling note {Myindex} {data.noteIndex}");
-        //spawnerNotas.RemoveNote(Myindex);
+        return data.timeToArrive + data.duracion;
+    }
 
-        SetDefaultConfig();
+    //Por temas de conveniencia solo el render puede decidir cuando quitar la nota,
+    //los scripts que hereden solo deben deshabilitar su render pero no quitarlo
+
+    /// <summary>
+    /// funcion que fuerza el despawneo de una nota
+    /// </summary>
+    public void DespawnNote()
+    {
+        //reseteamos todo antes de quitarlo
+        ResetNoteData();
 
         Debug.Log("quitando nota");
 
         gameObject.SetActive(false);
     }
 
-    protected virtual void SetDefaultConfig()
+    /// <summary>
+    /// funcion alternativa a <see cref="Mathf.InverseLerp"/> que no devuelve un valor clampeado
+    /// </summary>
+    protected double InverseLerpUnclamped(double a, double b, double valor)
+    {
+        if (b != a) return (valor - a) / (b - a);
+
+        return 0.0f;
+    }
+
+    /// <summary>
+    /// funcion que se llamara al quitar una nota,
+    /// esto puede sobreescribirse para agregar mas comportamientos de reinicio
+    /// </summary>
+    protected virtual void ResetNoteData()
     {
         Myindex = -1;
         transform.parent = origin;
@@ -95,19 +103,19 @@ public abstract class NotaTileBaseLogic : MonoBehaviour,INoteEntity
         finalPos = Vector2.one * 1000.0f;
     }
 
+    /// <summary>
+    /// funcion sobreescribible que puede usarse para reiniciar variables de la nota
+    /// </summary>
     protected virtual void PostInitialize()
     {
-
     }
 
+    /// <summary>
+    /// funcion que se llama cuando una nota cambia de estado, la gestion de llamadas es controlada por <see cref="GameplayEngine"/>
+    /// </summary>
     public virtual void ChangeNoteState(EstadoPuntuacion puntuacion, EstadoNota estado)
     {
-        
-    }
-
-    public void DespawnNote()
-    {
-        throw new System.NotImplementedException();
+        //esto usaran los scripts que lo hereden para reaccionar a los cambios
     }
 
     public void InitializeNote(NoteIntialData intialData)
@@ -126,8 +134,8 @@ public abstract class NotaTileBaseLogic : MonoBehaviour,INoteEntity
 
         transform.localPosition = Vector2.zero;
 
-        PostInitialize();
-
         initialized = true;
+
+        PostInitialize();
     }
 }

@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class NotaTileSostenida : NotaTileBaseLogic
 {
-    private bool _canHit;
-    private bool _needsRenderUpdate;
-    //private bool _firstHit;
     [SerializeField] private LineRenderer _lineNote;
     private bool _renderNote;
 
@@ -13,7 +10,6 @@ public class NotaTileSostenida : NotaTileBaseLogic
     private float _consumoNota;
     //esto permitira tener efectos complejos mas adelante pero de momento lo dejo asi
     private int _numberPoints = 2;
-    private int _waitOneFrameBeforeRendering;
     private int _actualPointGetter;
     private float _getPointsEvery;
     private int _totalSecciones;
@@ -23,63 +19,10 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
     const float defaultSection = 1f / 8f;
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-
-        //_firstHit = true;
-        _canHit = true;
-        _renderNote = true;
-        _needsRenderUpdate = true;
-        _isPressed = false;
-        lockProgress = false;
-        _actualPointGetter = 0;
-        _waitOneFrameBeforeRendering = 0;
-        _consumoNota = 0;
-        offsetRendering = 0;
-
-        //TilesModeInputController.NoteClick += ClickNote;
-        //TilesModeInputController.NoteUnClick += LockNote;
-
-        SetLinePoints();
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-
-        //TilesModeInputController.NoteClick -= ClickNote;
-        //TilesModeInputController.NoteUnClick -= LockNote;
-    }
-
     protected override void LogicUpdate()
     {
         LogicLine();
         DrawLine();
-        RenderControl();
-    }
-
-    private void RenderControl()
-    {
-
-        if (!_canHit)
-        {
-            /*
-            if (data.timeToArrive - tilesModeMaster.ToleranciaError > timeProvider.GetCurrentTime())
-            {
-                _canHit = true;
-                _needsRenderUpdate = true;
-                _renderNote = true;
-            }
-            */
-        }
-
-        if (_needsRenderUpdate)
-        {
-            SetNoteVisibility(_renderNote);
-
-            _needsRenderUpdate = false;
-        }
     }
 
     private void SetNoteVisibility(bool isVisible)
@@ -91,6 +34,13 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
     protected override void PostInitialize()
     {
+        _renderNote = true;
+        _isPressed = false;
+        lockProgress = false;
+        _actualPointGetter = 0;
+        _consumoNota = 0;
+        offsetRendering = 0;
+
         _timeToArriveForLine = data.duracion + data.timeToArrive;
 
         _getPointsEvery = data.duracion > 0 ? 1.0f / (data.duracion * seccionesPorSegundos) : defaultSection;
@@ -101,16 +51,20 @@ public class NotaTileSostenida : NotaTileBaseLogic
         {
             offsetRendering = 1.0f;
         }
+
+        SetLinePoints();
+
+        //se hace esto para tener una referencia desde el inicio de la posicion base para el line
+        NoteVisualUpdate();
+
+        DrawLine();
     }
 
-    protected override void SetDefaultConfig()
+    protected override void ResetNoteData()
     {
-        base.SetDefaultConfig();
+        base.ResetNoteData();
 
         _lineNote.positionCount = 0;
-        //_firstHit = true;
-        _canHit = true;
-        _waitOneFrameBeforeRendering = 0;
         lockProgress = false;
         _isPressed = false;
         _actualPointGetter = 0;
@@ -133,36 +87,11 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
     public void NoteHit()
     {
-        //if (timeProvider.GetCurrentTimeScale() < 0) return;
-
-        //if (tecla != data.correspondenciaTecla || timeProvider.GetCurrentTimeScale() < 0 || !_canHit) return;
-
-        //double timeDiff = Math.Abs((data.timeToArrive + (_consumoNota * data.duracion)) - timeProvider.GetCurrentTime());
-
-        //_isPressed = true;
-        //lockProgress = true;
-
-        /*
-        if (timeDiff < tilesModeMaster.ToleranciaError)
-        {
-            _isPressed = true;
-            lockProgress = true;
-            if (_firstHit)
-            {
-                NotesController.HitNote(data.correspondenciaTecla);
-                _firstHit = false;
-            }
-        }
-        */
-
-        DestroyNote();
-
+        SetNoteVisibility(false);
     }
 
     public void NoteMiss()
     {
-        //if (tecla != data.correspondenciaTecla || !_canHit) return;
-
         _isPressed = false;
         lockProgress = false;
     }
@@ -173,35 +102,8 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
         _consumoNota = 1 - Mathf.InverseLerp((float)_timeToArriveForLine, (float)data.timeToArrive, (float)currentTime);
 
-        //double tiempoActual = data.timeToArrive + offsetRendering;
-
-        /*
-        if (tiempoActual + tilesModeMaster.ToleranciaError < currentTime && _canHit)
-        {
-            _canHit = false;
-            _isPressed = false;
-        }
-        */
-        /*
-        while (_actualPointGetter * _getPointsEvery < _consumoNota + _getPointsEvery && _isPressed)
-        {
-            //print("ganaste puntos" +  actualPointGetter);
-            _actualPointGetter++;
-        }
-        */
-
-
         if (timeProvider.GetCurrentTimeScale() < 0)
         {
-            //recupera el conteo de puntos para que la nota no desaparezca antes de
-            //tiempo por tener ya muchos puntos recogidos
-            /*
-            while (_actualPointGetter * _getPointsEvery >= _consumoNota + _getPointsEvery)
-            {
-                _actualPointGetter--;
-            }
-            */
-
             if (_consumoNota < 1.0f && _consumoNota < offsetRendering)
             {
                 lockProgress = _consumoNota is > 0.0f and < 1.0f;
@@ -210,7 +112,6 @@ public class NotaTileSostenida : NotaTileBaseLogic
                 if (!_renderNote)
                 {
                     _renderNote = true;
-                    _needsRenderUpdate = true;
                 }
             }
 
@@ -227,7 +128,8 @@ public class NotaTileSostenida : NotaTileBaseLogic
             {
                 //print("destruccionFijaNotaSostenida");
                 //_renderNote = false;
-                DestroyNote();
+                //DestroyNote();
+                SetNoteVisibility(false);
             }
         }
         else
@@ -241,7 +143,6 @@ public class NotaTileSostenida : NotaTileBaseLogic
             {
                 //Debug.Log("killNote");
                 _renderNote = false;
-                _needsRenderUpdate = true;
                 //DestroyNote();
             }
             /*
@@ -260,11 +161,13 @@ public class NotaTileSostenida : NotaTileBaseLogic
     {
         //retardamos el update de la linea un frame
         //para que no haya erorres de renderizado
+        /*
         if (_waitOneFrameBeforeRendering < 1)
         {
             _waitOneFrameBeforeRendering += 1;
             return;
         }
+        */
 
         for (int i = 0; i < _lineNote.positionCount; i++)
         {

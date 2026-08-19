@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GameplayRenderer : MonoBehaviour
 {
     public float scrollSpeed = 10.0f;
+    public float extraRenderTime = 2.0f;
 
     private ModoJuego modoJuego;
     private TileModePlayStyle playStyleTile;
@@ -12,10 +14,11 @@ public class GameplayRenderer : MonoBehaviour
 
     private Dictionary<int, INoteEntity> notesToRender = new();
     private HashSet<int> notesProcess = new();
+    private Dictionary<int, INoteEntity> notesToClean = new();
 
-    private int startWindow;
-    private float timeToProcess = 2;
-    private int endWindow;
+    [SerializeField] private int startWindow;
+    [SerializeField] private float timeToProcess = 2;
+    [SerializeField] private int endWindow;
 
     //para poder procesar todas las notas si hubo un salto de tiempo muy abrupto
     public double oldSongTime;
@@ -44,6 +47,11 @@ public class GameplayRenderer : MonoBehaviour
         {
             note.UpdateNote();
         }
+
+        foreach(INoteEntity note in notesToClean.Values)
+        {
+            note.UpdateNote();
+        }
     }
 
     public void EngineTick(double songTime)
@@ -53,6 +61,31 @@ public class GameplayRenderer : MonoBehaviour
         oldSongTime = songTime;
 
         UpdateRenderQueue();
+
+        RenderCleaner(songTime);
+    }
+
+    private List<int> indexToClean = new();
+
+    private void RenderCleaner(double songTime)
+    {
+        foreach (var note in notesToClean)
+        {
+            double noteTimeToDespawn = note.Value.GetTimeToDespawn();
+
+            if (noteTimeToDespawn + extraRenderTime < songTime)
+            {
+                indexToClean.Add(note.Key);
+            }
+        }
+
+        foreach(int  index in indexToClean)
+        {
+            notesToClean[index].DespawnNote();
+            notesToClean.Remove(index);
+        }
+
+        indexToClean.Clear();
     }
 
     private void UpdateRenderQueue()
@@ -202,24 +235,23 @@ public class GameplayRenderer : MonoBehaviour
 
         notesToRender[index].ChangeNoteState(puntuacion, estadoNota);
 
-        /*
         switch (estadoNota)
         {
-            case EstadoNota.None:
-                break;
-            case EstadoNota.EnProceso:
-                break;
+            //asi se pueden agrugar varios cases en uno solo :O
             case EstadoNota.ProcesoFallado:
-                break;
             case EstadoNota.Fallada:
-                break;
             case EstadoNota.Procesada:
+                AddToCleanProcess(index);
                 break;
             default:
                 break;
         }
+    }
+
+    private void AddToCleanProcess(int index)
+    {
+        notesToClean.Add(index, notesToRender[index]);
         notesToRender.Remove(index);
         notesProcess.Add(index);
-        */
     }
 }

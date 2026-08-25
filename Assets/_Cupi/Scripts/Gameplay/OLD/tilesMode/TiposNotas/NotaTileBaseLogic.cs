@@ -4,12 +4,9 @@ public abstract class NotaTileBaseLogic : MonoBehaviour,INoteEntity
 {
     protected ITimeProvider timeProvider;
     protected GameplayRenderer gameplayRenderer;
-
     [SerializeField] private Transform note;
-
     public SpriteRenderer spriteNote;
     public NotaInstance data;
-
     public Vector2 direccionMovimiento;
     public Vector2 finalPos;
     public Transform origin;
@@ -40,9 +37,9 @@ public abstract class NotaTileBaseLogic : MonoBehaviour,INoteEntity
 
         progress = 1 - InverseLerpUnclamped(0.0f, data.timeToArrive + offsetRendering, timeProvider.GetCurrentTime());
 
-        if (lockProgress) progress = Mathf.Max(0);
+        if (lockProgress) progress = 0;
 
-        double distancia = (progress * (data.timeToArrive + offsetRendering) * data.localSpeed * gameplayRenderer.scrollSpeed);
+        double distancia = (progress * (data.timeToArrive + offsetRendering) * data.localSpeed * gameplayRenderer.ScrollSpeed);
 
         finalPos = data.offsetPositionToGo + (direccionMovimiento * (float)distancia);
 
@@ -75,7 +72,7 @@ public abstract class NotaTileBaseLogic : MonoBehaviour,INoteEntity
         //reseteamos todo antes de quitarlo
         ResetNoteData();
 
-        Debug.Log("quitando nota");
+        //Debug.Log("quitando nota");
 
         gameObject.SetActive(false);
     }
@@ -111,6 +108,15 @@ public abstract class NotaTileBaseLogic : MonoBehaviour,INoteEntity
     }
 
     /// <summary>
+    /// enciende o apaga el render de la nota, cada tipo sobreescribe esto
+    /// para apagar tambien lo suyo (la linea de la sostenida por ejemplo)
+    /// </summary>
+    protected virtual void SetNoteVisibility(bool isVisible)
+    {
+        spriteNote.enabled = isVisible;
+    }
+
+    /// <summary>
     /// funcion que se llama cuando una nota cambia de estado, la gestion de llamadas es controlada por <see cref="GameplayEngine"/>
     /// </summary>
     public virtual void ChangeNoteState(EstadoPuntuacion puntuacion, EstadoNota estado)
@@ -133,6 +139,10 @@ public abstract class NotaTileBaseLogic : MonoBehaviour,INoteEntity
         gameplayRenderer = intialData.gameplayRenderer;
 
         transform.localPosition = Vector2.zero;
+
+        //las instancias salen de la pool y pueden venir con el render apagado
+        //de la vez anterior que se usaron, asi que siempre se enciende al pedirla
+        SetNoteVisibility(true);
 
         initialized = true;
 

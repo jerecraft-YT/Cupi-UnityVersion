@@ -25,9 +25,9 @@ public class NotaTileSostenida : NotaTileBaseLogic
         DrawLine();
     }
 
-    private void SetNoteVisibility(bool isVisible)
+    protected override void SetNoteVisibility(bool isVisible)
     {
-        spriteNote.enabled = isVisible;
+        base.SetNoteVisibility(isVisible);
 
         _lineNote.enabled = isVisible;
     }
@@ -47,9 +47,16 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
         _totalSecciones = Mathf.FloorToInt(seccionesPorSegundos * data.duracion);
 
+        //si la nota aparece con el tiempo ya metido dentro de ella (esto pasa al rebobinar)
+        //tiene que aparecer ya consumida hasta donde toque y recuperarse desde ahi,
+        //no aparecer entera de golpe como si nunca se hubiera tocado
         if (data.timeToArrive < timeProvider.GetCurrentTime())
         {
-            offsetRendering = 1.0f;
+            ActualizarConsumo();
+
+            offsetRendering = GetConsumoEnTiempo();
+
+            lockProgress = offsetRendering > 0.0f;
         }
 
         SetLinePoints();
@@ -96,23 +103,59 @@ public class NotaTileSostenida : NotaTileBaseLogic
         lockProgress = false;
     }
 
-    public void LogicLine()
+    /// <summary>
+    /// el engine deshizo la nota porque el tiempo retrocedio por detras de ella,
+    /// vuelve a estar entera, visible y sin consumir
+    /// </summary>
+    public void NoteReset()
+    {
+        _isPressed = false;
+        lockProgress = false;
+        _renderNote = true;
+        _actualPointGetter = 0;
+        _consumoNota = 0;
+        offsetRendering = 0;
+
+        SetNoteVisibility(true);
+    }
+
+    /// <summary>
+    /// cuanto de la nota corresponde estar consumido segun el tiempo actual,
+    /// va de 0 (entera) a 1 (consumida del todo)
+    /// </summary>
+    private void ActualizarConsumo()
     {
         double currentTime = timeProvider.GetCurrentTime();
 
         _consumoNota = 1 - Mathf.InverseLerp((float)_timeToArriveForLine, (float)data.timeToArrive, (float)currentTime);
+    }
+
+    /// <summary>
+    /// el consumo pasado a segundos, que es la unidad en la que trabaja
+    /// <see cref="NotaTileBaseLogic.offsetRendering"/>
+    /// </summary>
+    private float GetConsumoEnTiempo()
+    {
+        return _consumoNota * data.duracion;
+    }
+
+    public void LogicLine()
+    {
+        ActualizarConsumo();
 
         if (timeProvider.GetCurrentTimeScale() < 0)
         {
-            if (_consumoNota < 1.0f && _consumoNota < offsetRendering)
+            //solo se devuelve consumo, nunca se consume de mas, asi una nota que
+            //nunca tocaste no se consume sola solo por rebobinar por encima de ella
+            if (GetConsumoEnTiempo() < offsetRendering)
             {
-                lockProgress = _consumoNota is > 0.0f and < 1.0f;
+                offsetRendering = GetConsumoEnTiempo();
 
-                offsetRendering = _consumoNota * data.duracion;
-                if (!_renderNote)
-                {
-                    _renderNote = true;
-                }
+                lockProgress = offsetRendering > 0.0f;
+
+                _renderNote = true;
+
+                SetNoteVisibility(true);
             }
 
             //si el tiempo esta en reversa no necesitamos detectar si presionaste la nota
@@ -123,7 +166,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
         {
             // hit
             lockProgress = true;
-            offsetRendering = _consumoNota * data.duracion;
+            offsetRendering = GetConsumoEnTiempo();
             if (_consumoNota >= 1.0f)
             {
                 //print("destruccionFijaNotaSostenida");
@@ -181,7 +224,7 @@ public class NotaTileSostenida : NotaTileBaseLogic
 
                 if (lockProgress) progress = Math.Max(0, progress);
 
-                double distancia = (progress * _timeToArriveForLine * data.localSpeed * gameplayRenderer.scrollSpeed);
+                double distancia = (progress * _timeToArriveForLine * data.localSpeed * gameplayRenderer.ScrollSpeed);
 
                 Vector2 finalPos = data.offsetPositionToGo + (direccionMovimiento * (float)distancia);
 
@@ -195,19 +238,21 @@ public class NotaTileSostenida : NotaTileBaseLogic
         switch (estado)
         {
             case EstadoNota.None:
+                //Debug.Log("nota reiniciada");
+                NoteReset();
                 break;
             case EstadoNota.EnProceso:
-                Debug.Log("nota en proceso");
+                //Debug.Log("nota en proceso");
                 NoteProcess();
                 break;
             case EstadoNota.ProcesoFallado:
-                Debug.Log("nota fallada");
+                //Debug.Log("nota fallada");
                 NoteMiss();
                 break;
             case EstadoNota.Fallada:
                 break;
             case EstadoNota.Procesada:
-                Debug.Log("nota acertada");
+                //Debug.Log("nota acertada");
                 NoteHit();
                 break;
             default:

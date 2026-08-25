@@ -1195,7 +1195,7 @@ GameObject:
   m_Layer: 0
   m_Name: testGeneradorPartida
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1208,7 +1208,7 @@ Transform:
   m_GameObject: {fileID: 1673968679}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1227,11 +1227,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::testGeneradorPartida
   modosActivos:
-  - modoInput: 1
+  - modoInput: 2
     modoJuego: 1
     modoTime: 1
-    baseScrollSpeed: 1
-    tileModePlayStyle: 2
+    baseScrollSpeed: 5
+    tileModePlayStyle: 3
     chart:
     - noteIndex: 1
       modoNota: 0
@@ -1249,6 +1249,66 @@ MonoBehaviour:
       modoNota: 0
       tipoNota: 0
       correspondenciaTecla: 0
+      direccionMovimiento: 0
+      offsetPositionToGo: {x: 0, y: 0}
+      direccionCustom: {x: 0, y: 0}
+      timeToArrive: 3
+      localSpeed: 1
+      duracion: 5
+      angulo: 0
+      anguloFinal: 0
+    - noteIndex: 1
+      modoNota: 0
+      tipoNota: 0
+      correspondenciaTecla: 1
+      direccionMovimiento: 0
+      offsetPositionToGo: {x: 0, y: 0}
+      direccionCustom: {x: 0, y: 0}
+      timeToArrive: 3
+      localSpeed: 1
+      duracion: 5
+      angulo: 0
+      anguloFinal: 0
+    - noteIndex: 1
+      modoNota: 0
+      tipoNota: 0
+      correspondenciaTecla: 1
+      direccionMovimiento: 0
+      offsetPositionToGo: {x: 0, y: 0}
+      direccionCustom: {x: 0, y: 0}
+      timeToArrive: 3
+      localSpeed: 1
+      duracion: 5
+      angulo: 0
+      anguloFinal: 0
+    - noteIndex: 1
+      modoNota: 0
+      tipoNota: 0
+      correspondenciaTecla: 1
+      direccionMovimiento: 0
+      offsetPositionToGo: {x: 0, y: 0}
+      direccionCustom: {x: 0, y: 0}
+      timeToArrive: 3
+      localSpeed: 1
+      duracion: 5
+      angulo: 0
+      anguloFinal: 0
+    - noteIndex: 1
+      modoNota: 0
+      tipoNota: 0
+      correspondenciaTecla: 1
+      direccionMovimiento: 0
+      offsetPositionToGo: {x: 0, y: 0}
+      direccionCustom: {x: 0, y: 0}
+      timeToArrive: 3
+      localSpeed: 1
+      duracion: 5
+      angulo: 0
+      anguloFinal: 0
+    - noteIndex: 1
+      modoNota: 0
+      tipoNota: 0
+      correspondenciaTecla: 1
       direccionMovimiento: 0
       offsetPositionToGo: {x: 0, y: 0}
       direccionCustom: {x: 0, y: 0}

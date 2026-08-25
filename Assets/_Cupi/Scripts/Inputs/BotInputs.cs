@@ -34,8 +34,10 @@ public class BotInputs : IInputDevice
         ProcessBot(songTime);
     }
 
-    private async void ProcessBot(double songTime)
+    private void ProcessBot(double songTime)
     {
+        RewindBot(songTime);
+
         while(nextNote < chart.Count)
         {
             var nota = chart[nextNote];
@@ -45,6 +47,18 @@ public class BotInputs : IInputDevice
             OnButtonPressed?.Invoke(nota.correspondenciaTecla , nota.timeToArrive);
 
             nextNote++;
+        }
+    }
+
+    /// <summary>
+    /// devuelve el indice del bot si el tiempo retrocedio, si no las notas que el engine
+    /// vuelve a poner por jugar quedan detras del indice y el bot no las presiona nunca mas
+    /// </summary>
+    private void RewindBot(double songTime)
+    {
+        while (nextNote > 0 && songTime < chart[nextNote - 1].timeToArrive)
+        {
+            nextNote--;
         }
     }
 }

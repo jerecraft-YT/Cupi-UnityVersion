@@ -9,25 +9,29 @@ public class NotaTileNormal : NotaTileBaseLogic
     }
     private void NoteMiss()
     {
-        SetNoteVisibility(false);
+        //SetNoteVisibility(false);
         //DestroyNote();
     }
 
-    private void SetNoteVisibility(bool isVisible)
+    //el engine deshizo la nota porque el tiempo retrocedio por detras de ella
+    private void NoteReset()
     {
-        spriteNote.enabled = isVisible;
+        SetNoteVisibility(true);
     }
 
     public override void ChangeNoteState(EstadoPuntuacion puntuacion, EstadoNota estado)
     {
         switch (estado)
         {
+            case EstadoNota.None:
+                NoteReset();
+                break;
             case EstadoNota.Fallada:
-                Debug.Log("nota fallada");
+                //Debug.Log("nota fallada");
                 NoteMiss();
                 break;
             case EstadoNota.Procesada:
-                Debug.Log("nota acertada");
+                //Debug.Log("nota acertada");
                 NoteHit();
                 break;
             default:

@@ -7,6 +7,7 @@ public class GameplayConstructor
     {
         GameObject gameplayInstanceGO = new(gameplayName);
         gameplayInstanceGO.transform.SetParent(parent);
+        gameplayInstanceGO.transform.localPosition = Vector3.zero;
 
         GameplayInstance gameplayInstance = gameplayInstanceGO.AddComponent<GameplayInstance>();
 

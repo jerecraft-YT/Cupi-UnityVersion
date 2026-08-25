@@ -19,6 +19,10 @@ public class GameplayEngine : IDisposable
 
     private ITimeProvider timeProvider;
 
+    //el engine tiene que saber cuantos carriles hay para no juzgar notas que el renderer
+    //no puede mostrar, si no las dos partes dejan de estar de acuerdo sobre que notas existen
+    private TileModePlayStyle playStyleTile;
+
     public int startWindow;
 
     public int endWindow;
@@ -26,8 +30,12 @@ public class GameplayEngine : IDisposable
     //para poder procesar todas las notas si hubo un salto de tiempo muy abrupto
     private double oldSongTime;
 
+    //para que el fin de nivel no se dispare otra vez si se rebobina y se vuelve a avanzar
+    private bool levelEndInvoked;
+
     #region Constantes
-    const float maxProcessTime = 2;
+    //publica para que el renderer pueda asegurarse de nunca mostrar menos tiempo que el engine
+    public const float maxProcessTime = 2;
 
     const float margenPuntuacionPerfecta = 0.045f;
 
@@ -39,11 +47,12 @@ public class GameplayEngine : IDisposable
     #endregion
 
     //constructor de gameplay con lo esencial
-    public GameplayEngine(ITimeProvider timeProvider,IInputDevice inputDevice,List<NotaInstance> chart)
+    public GameplayEngine(ITimeProvider timeProvider,IInputDevice inputDevice,List<NotaInstance> chart,TileModePlayStyle playStyleTile)
     {
         this.inputDevice = inputDevice;
         this.chart = chart;
         this.timeProvider = timeProvider;
+        this.playStyleTile = playStyleTile;
 
         this.inputDevice.OnButtonPressed += OnButtonPressed;
         this.inputDevice.OnButtonReleased += OnButtonReleased;
@@ -88,34 +97,36 @@ public class GameplayEngine : IDisposable
 
     private void CheckNoteHit(double songTime,CorrespondenciaTecla tecla)
     {
+        bool isReversed = timeProvider.GetCurrentTimeScale() < 0;
+
         for (int noteIndex = startWindow; noteIndex < endWindow; noteIndex++)
         {
             ref var estadoNota = ref estadoNotas[noteIndex]; //referencia para no copiar
 
             NotaInstance nota = chart[noteIndex]; // para mas facil acceso a la nota actual
 
+            //si el renderer no tiene carril para esta nota tampoco se puede juzgar aca,
+            //seria puntuar (o fallar) una nota que el jugador nunca llego a ver
+            if (!EsTeclaJugable(nota.correspondenciaTecla)) continue;
+
             TipoNota tipoNota = nota.tipoNota;
 
-            bool estaProcesada = estadoNota.estadoNota == EstadoNota.Fallada || estadoNota.estadoNota == EstadoNota.Procesada || estadoNota.estadoNota == EstadoNota.ProcesoFallado;
-
-            //resetea el estado de la nota cuando esta en reversa
-            if (estaProcesada && timeProvider.GetCurrentTimeScale() < 0)
+            //en reversa no se juzga ninguna nota, solo se deshace lo que el tiempo ya des-paso
+            if (isReversed)
             {
-                estadoNota.estadoNota = EstadoNota.None;
-                estadoNota.estadoPuntuacion = EstadoPuntuacion.None;
-
+                ReverseNoteReset(noteIndex, nota, songTime);
                 continue;
             }
 
+            bool isProcess = estadoNota.estadoNota == EstadoNota.Fallada || estadoNota.estadoNota == EstadoNota.Procesada || estadoNota.estadoNota == EstadoNota.ProcesoFallado;
 
-
-            if (estaProcesada) continue; // continuar si la nota ya fue procesada
+            if (isProcess) continue; // continuar a la siguiente iteracion si la nota ya fue procesada
 
             double diferencia = nota.timeToArrive - songTime;
             
             if (estadoNota.estadoNota == EstadoNota.EnProceso)
             {
-                diferencia = (nota.timeToArrive + nota.duracion) - songTime;
+                diferencia = nota.timeToArrive + nota.duracion - songTime;
 
                 bool estaEnRango = diferencia > margenPuntuacionPerfecta;
 
@@ -183,12 +194,42 @@ public class GameplayEngine : IDisposable
         }
     }
 
+    /// <summary>
+    /// una tecla por encima del modo de juego no existe para el gameplay: el renderer no
+    /// tiene donde ponerla, asi que el engine tiene que ignorarla exactamente igual
+    /// </summary>
+    private bool EsTeclaJugable(CorrespondenciaTecla tecla)
+    {
+        return (int)tecla <= (int)playStyleTile;
+    }
+
+    /// <summary>
+    /// deshace el resultado de una nota cuando el tiempo retrocedio por detras de ella,
+    /// asi se puede volver a jugar tal cual estaba antes
+    /// </summary>
+    private void ReverseNoteReset(int noteIndex,NotaInstance nota,double songTime)
+    {
+        //si nunca se toco no hay nada que deshacer
+        if (estadoNotas[noteIndex].estadoNota == EstadoNota.None) return;
+
+        //el momento mas temprano en el que la nota se podia tocar, mientras el tiempo
+        //no pase por detras de ahi el resultado que ya tenia sigue siendo valido
+        //double inicioVentanaGolpe = nota.timeToArrive - margenPuntuacionPesimo;
+
+        
+        double inicioVentanaGolpe = nota.timeToArrive;
+        
+        if (songTime >= inicioVentanaGolpe) return;
+
+        RegistrarResultado(noteIndex, EstadoNota.None, EstadoPuntuacion.None);
+    }
+
     private void RegistrarResultado(int noteIndex,EstadoNota estado, EstadoPuntuacion puntuacion)
     {
-        NoteChange?.Invoke(noteIndex, puntuacion, estado);
         Debug.Log(puntuacion+ "|" + estado);
         estadoNotas[noteIndex].estadoNota = estado;
         estadoNotas[noteIndex].estadoPuntuacion = puntuacion;
+        NoteChange?.Invoke(noteIndex, puntuacion, estado);
     }
 
     private EstadoPuntuacion ObtenerPuntaje(double diferencia)
@@ -212,32 +253,32 @@ public class GameplayEngine : IDisposable
         NormalWindowSetter(songTime);
     }
 
+    //en reversa los bordes cambian de rol: startWindow pasa a ser el que va llegando y endWindow
+    //el que se va, por eso start mira el tiempo actual y end el anterior (al reves que en normal)
     private void ReverseWindowSetter(double songTime)
     {
-        if (startWindow - 1 > 0)
+        if (startWindow > 0)
         {
-            while (oldSongTime <= chart[startWindow - 1].timeToArrive + chart[startWindow - 1].duracion + maxProcessTime)
+            while (songTime <= chart[startWindow - 1].timeToArrive + chart[startWindow - 1].duracion + maxProcessTime)
             {
                 startWindow--;
 
-                if (startWindow - 1 <= 0) break;
+                if (startWindow <= 0) break;
             }
         }
 
-        if (endWindow - 1 > 0)
+        if (endWindow > 0)
         {
-            //Debug.Log(endWindow + "|" + chart.Count);
-
-            while (songTime <= chart[endWindow - 1].timeToArrive - chart[endWindow - 1].duracion - maxProcessTime)
+            while (oldSongTime <= chart[endWindow - 1].timeToArrive - chart[endWindow - 1].duracion - maxProcessTime)
             {
-                Debug.Log(endWindow + "|" + chart.Count);
-
                 endWindow--;
 
-                if (endWindow - 1 <= 0) break;
-                
+                if (endWindow <= 0) break;
             }
         }
+
+        //si el tiempo retrocede el nivel deja de estar terminado y se puede volver a avisar
+        if (!IsFinalChart(startWindow)) levelEndInvoked = false;
     }
 
     private void NormalWindowSetter(double songTime)
@@ -252,7 +293,7 @@ public class GameplayEngine : IDisposable
 
                 if (IsFinalChart(startWindow))
                 {
-                    OnLevelEnd?.Invoke();
+                    InvokeLevelEnd();
                     break;
                 }
             }
@@ -270,6 +311,19 @@ public class GameplayEngine : IDisposable
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// avisa del fin del nivel una sola vez, si se rebobina se vuelve a armar
+    /// desde <see cref="ReverseWindowSetter"/>
+    /// </summary>
+    private void InvokeLevelEnd()
+    {
+        if (levelEndInvoked) return;
+
+        levelEndInvoked = true;
+
+        OnLevelEnd?.Invoke();
     }
 
     private bool IsFinalChart(int index)

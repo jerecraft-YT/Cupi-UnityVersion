@@ -7,103 +7,38 @@ using UnityEngine.Networking;
 
 using Cupi.ResourceLoader;
 
-public class MusicLoader : MonoBehaviour
+public static class MusicLoader
 {
-    [SerializeField] private LevelViewer _levelViewer;
+    private static BpmController _bpmController;
+    const float _timeTransitionMusic = 0.3f;
+    const int _maxMusicInCache = 5;
+    private static UnityWebRequest _audioRequest;
+    private static AudioClip _emptyClip;
+    private static Dictionary<string, CacheAudio> _cacheAudio = new();
+    private static string _musicInUse = "";
+    private static LevelInfo _musicToLoad = null;
+    private static bool _loadingNewMusic;
 
-    [SerializeField] private BpmController _bpmController;
 
-    [SerializeField] private float _timeTransitionMusic = 0.3f;
-
-    [SerializeField] private int _maxMusicInCache = 5;
-
-    private MusicController _musicController;
-
-    private UnityWebRequest _audioRequest;
-
-    private AudioClip _emptyClip;
-
-    private Dictionary<string, CacheAudio> _cacheAudio = new();
-
-    private string _musicInUse = "";
-
-    private int _musicToLoad = -1;
-
-    private bool _canCancelLoading = true;
-
-    private bool _loadingNewMusic;
-
-    public bool readyForNewLoad = false;
-
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-
-        _musicController = MusicController.instance;
-
-        MusicController.mainMusic.loop = true;
-
-        _emptyClip = AudioClip.Create("EmptyMusic", 1, 1, 1000, true);
-    }
-
-    void Update()
-    {
-        if (!_loadingNewMusic)
-        {
-            MusicDinamicLoader();
-        }
-    }
-
-    private async void MusicDinamicLoader()
-    {
-        if (_loadingNewMusic)
-        {
-            return;
-        }
-
-        if (_musicToLoad != -1 && readyForNewLoad == true)
-        {
-            _loadingNewMusic = true;
-
-            try
-            {
-                readyForNewLoad = false;
-                _canCancelLoading = true;
-
-                //esto para que no pierda la referencia por si el numero se cambia fuera del task
-                int musicIndex = _musicToLoad;
-                _musicToLoad = -1;
-
-                LevelInfo level = _levelViewer.levels[musicIndex];
-                LevelMetadata levelMetadata = level.levelData;
-
-                await LoadMusic(level, levelMetadata);
-            }
-            finally
-            {
-                _loadingNewMusic = false;
-            }
-        }
-    }
-
-    private void DinamicClearCache()
+    private static void DinamicClearCache()
     {
         if (_cacheAudio.Count > _maxMusicInCache)
         {
             var old = _cacheAudio.OrderBy(x => x.Value.lastUse).First();
 
-            Destroy(old.Value.clip);
+            Object.Destroy(old.Value.clip);
+
             _cacheAudio.Remove(old.Key);
             Debug.Log("limpiando cache de audio");
         }
     }
 
-    public void ClearMusicCache()
+    public static void ClearMusicCache()
     {
 
         if (string.IsNullOrEmpty(_musicInUse))
         {
-            foreach (var item in _cacheAudio) Destroy(item.Value.clip);
+            foreach (var item in _cacheAudio) Object.Destroy(item.Value.clip);
 
             _cacheAudio.Clear();
             return;
@@ -113,12 +48,12 @@ public class MusicLoader : MonoBehaviour
 
         foreach (var key in keysToRemove)
         {
-            Destroy(_cacheAudio[key].clip);
+            Object.Destroy(_cacheAudio[key].clip);
             _cacheAudio.Remove(key);
         }
     }
 
-    public async Task LoadMusic(LevelInfo levelInfo,LevelMetadata levelMetadata)
+    public static async Task LoadMusic(LevelInfo levelInfo,LevelMetadata levelMetadata)
     {
         //algo obvio por el nombre :/
         //await MusicFadeIn();
@@ -130,14 +65,14 @@ public class MusicLoader : MonoBehaviour
 
         Debug.Log("-----ACABO DE CARGAR AUDIO-----");
 
-        _canCancelLoading = false;
+        //_canCancelLoading = false;
 
         EndMusicLoad(levelMetadata);
 
         await MusicController.MusicFadeOut(_timeTransitionMusic);
     }
 
-    private void EndMusicLoad(LevelMetadata levelMetadata)
+    private static void EndMusicLoad(LevelMetadata levelMetadata)
     {
         float previewMusicTime = levelMetadata.previewTimeMusic;
 
@@ -145,18 +80,16 @@ public class MusicLoader : MonoBehaviour
 
         SincronizarMusica(previewMusicTime, levelMetadata.bpm);
 
-        readyForNewLoad = true;
-
         DinamicClearCache();
     }
 
-    private async Task SelectMusic(LevelInfo levelInfo, LevelMetadata levelMetadata)
+    private static async Task SelectMusic(LevelInfo levelInfo, LevelMetadata levelMetadata)
     {
         string levelName = levelInfo.name;
 
         if(_cacheAudio.TryGetValue(levelName,out CacheAudio cache))
         {
-            _musicController.PlayMusic(cache.clip);
+            MusicController.PlayMusic(cache.clip);
             cache.lastUse = Time.time;
             _musicInUse = levelName;
 
@@ -179,13 +112,15 @@ public class MusicLoader : MonoBehaviour
             audioClip = _emptyClip;
         }
 
-        _musicController.PlayMusic(audioClip);
+        MusicController.PlayMusic(audioClip);
         
     }
 
-    public async Task<AudioClip> GetMusic(string levelName, string path)
+    public static async Task<AudioClip> GetMusic(string levelName, string path)
     {
         UnityWebRequest request = UnityWebRequest.Get(path);
+
+        _audioRequest = request;
 
         try
         {
@@ -214,11 +149,14 @@ public class MusicLoader : MonoBehaviour
         }
         finally
         {
+            if (_audioRequest == request)
+                _audioRequest = null;
+
             request.Dispose();
         }
     }
 
-    public async Task<AudioClip> OldGetMusic(string levelName,string path)
+    public static async Task<AudioClip> OldGetMusic(string levelName,string path)
     {
         UnityWebRequest request = UnityWebRequestMultimedia.GetAudioClip(path, AudioType.UNKNOWN);
 
@@ -267,7 +205,7 @@ public class MusicLoader : MonoBehaviour
         }
     }
 
-    private void SincronizarMusica(float previewMusicTime,float bpm)
+    private static void SincronizarMusica(float previewMusicTime,float bpm)
     {
         float timeForBeat = 60.0f / bpm;
 
@@ -282,11 +220,17 @@ public class MusicLoader : MonoBehaviour
         }
     }
 
-    public async void MusicChangeRequest(int option)
+    public static async void MusicChangeRequest(
+        LevelInfo levelInfo,
+        BpmController bpmController = null)
     {
+        _bpmController = bpmController;
+
+        // Si ya estamos cargando, simplemente guardamos
+        // la última música solicitada.
         if (_loadingNewMusic)
         {
-            _musicToLoad = option;
+            _musicToLoad = levelInfo;
             return;
         }
 
@@ -294,26 +238,19 @@ public class MusicLoader : MonoBehaviour
 
         try
         {
-            if (_canCancelLoading)
+            await LoadMusic(levelInfo, levelInfo.levelData);
+
+            // Cuando termina, comprobamos si llegó otra petición
+            while (_musicToLoad != null)
             {
-                _audioRequest?.Abort();
-                _audioRequest = null;
+                LevelInfo nextMusic = _musicToLoad;
+                _musicToLoad = null;
 
-                int musicIndex = option;
-
-                LevelInfo level = _levelViewer.levels[musicIndex];
-                LevelMetadata levelMetadata = level.levelData;
-
-                await LoadMusic(level, levelMetadata);
-            }
-            else
-            {
-                _musicToLoad = option;
+                await LoadMusic(nextMusic, nextMusic.levelData);
             }
         }
         finally
         {
-
             _loadingNewMusic = false;
         }
     }

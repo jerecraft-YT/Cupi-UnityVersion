@@ -5,7 +5,6 @@ public class NotaTileSostenida : NotaTileBaseLogic
 {
     [SerializeField] private LineRenderer _lineNote;
     private bool _renderNote;
-
     private double _timeToArriveForLine;
     private float _consumoNota;
     //esto permitira tener efectos complejos mas adelante pero de momento lo dejo asi

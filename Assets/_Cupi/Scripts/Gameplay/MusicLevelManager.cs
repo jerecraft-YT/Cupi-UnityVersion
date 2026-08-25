@@ -5,21 +5,13 @@ public class MusicLevelManager : MonoBehaviour
     private bool musicIsPlaying = false;
     private TimeController _timeController;
     private AudioSource _mainMusic;
-
-    private float startFadeDuration;
+    private float startFadeDuration = 0.15f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _timeController = TimeController.instance;
         _mainMusic = MusicController.mainMusic;
-
-        SetDefaultConfig();
-    }
-
-    private void SetDefaultConfig()
-    {
-        startFadeDuration = LevelDataController.defaultLevelConfig.startFadeDuration;
     }
 
     // Update is called once per frame

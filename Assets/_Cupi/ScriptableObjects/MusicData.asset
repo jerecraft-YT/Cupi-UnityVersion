@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ba94a0b9d4d8784a9e6427aa516b58e, type: 3}
-  m_Name: MusicBaseConfigSO
+  m_Name: MusicData
   m_EditorClassIdentifier: Assembly-CSharp::MusicConfig
   audioMixerGroup: {fileID: 7862800670138509336, guid: bd4c90dd648748148b634fd8ccffab22, type: 2}
   toleranciaSincronizacion: 0.025

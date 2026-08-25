@@ -10,13 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14b67580ff489754f8bc35368ee89154, type: 3}
-  m_Name: LevelConfigSO
-  m_EditorClassIdentifier: Assembly-CSharp::LevelConfig
-  startFadeDuration: 0.15
-  toleranciaErrorBase: 0.14
-  PlayStyle: 3
-  notaTileSpeed: 12
-  separacionObjetivosNotas: 2
-  limiteInferiorRender: 1
-  extraRenderSize: 3
-  chunkSize: 5
+  m_Name: LevelData
+  m_EditorClassIdentifier: Assembly-CSharp::LevelDataSO
+  levelChart:
+    notas: []

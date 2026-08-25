@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class testGeneradorPartida : MonoBehaviour
+public class GameplayGenerator : MonoBehaviour
 {
     public LevelComposition[] modosActivos;
 

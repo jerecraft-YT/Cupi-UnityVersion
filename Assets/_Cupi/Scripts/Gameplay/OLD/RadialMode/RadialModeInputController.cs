@@ -5,7 +5,7 @@ public class RadialModeInputController : MonoBehaviour
 {
     public static RadialModeInputController instance;
 
-    private RadialModeMaster _radialModeMaster;
+    //private RadialModeMaster _radialModeMaster;
 
     public LineRenderer escudoLine;
 
@@ -32,11 +32,11 @@ public class RadialModeInputController : MonoBehaviour
 
     private void OnEnable()
     {
-        _radialModeMaster = RadialModeMaster.instance;
+        //_radialModeMaster = RadialModeMaster.instance;
 
         InputController.instance.gameInputs.RadialMode.Cursor.performed += MoveShield;
 
-        CreateLine();
+        //CreateLine();
     }
 
     private void OnDisable()
@@ -59,10 +59,12 @@ public class RadialModeInputController : MonoBehaviour
 
         float distanceToChange = Vector3.Distance(virtualCursor, referenceMouse);
 
+        /*
         if (distanceToChange > _radialModeMaster.sensibilidadEscudo)
         {
             referenceMouse = virtualCursor + (referenceMouse - virtualCursor).normalized * _radialModeMaster.sensibilidadEscudo;
         }
+        */
     }
 
     private void OnDrawGizmos()
@@ -73,6 +75,7 @@ public class RadialModeInputController : MonoBehaviour
         Gizmos.DrawCube(referenceMouse, Vector3.one);
     }
 
+    /*
     private void CreateLine()
     {
         int puntosLinea = GetPointsForShield();
@@ -101,4 +104,5 @@ public class RadialModeInputController : MonoBehaviour
     {
         return Mathf.Max(6, (int)(_radialModeMaster.coberturaEscudo / _radialModeMaster.calidadEscudo));
     }
+    */
 }

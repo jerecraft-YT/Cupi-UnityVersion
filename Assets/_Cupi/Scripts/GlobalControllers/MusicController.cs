@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 public class MusicController : MonoBehaviour
 {
     public static MusicController instance;
-    [SerializeField] private MusicConfigSO config;
+    [SerializeField] private MusicDataSO config;
 
     [SerializeField] private bool _pitchRegulator;
     private AudioMixerGroup _musicGroup;
@@ -91,7 +91,7 @@ public class MusicController : MonoBehaviour
         ChangePitch();
     }
 
-    public void PlayMusic(AudioClip audio, float startTime = 0.0f)
+    public static void PlayMusic(AudioClip audio, float startTime = 0.0f)
     {
         mainMusic.clip = audio;
         mainMusic.time = startTime;

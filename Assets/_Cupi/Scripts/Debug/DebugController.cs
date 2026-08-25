@@ -120,7 +120,7 @@ public class DebugControllerCustomEditor : Editor
             }
 
             if (newClip != null)
-                MusicController.instance.PlayMusic(newClip);
+                MusicController.PlayMusic(newClip);
         }
 
         EditorGUILayout.EndHorizontal();

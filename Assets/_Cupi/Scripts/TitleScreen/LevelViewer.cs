@@ -7,19 +7,12 @@ using UnityEngine;
 public class LevelViewer : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown _nivelesDropdown;
-
     [SerializeField] private TMP_Dropdown _dificultadesDropDown;
-
     [SerializeField] private BpmController _bpmController;
-
-    [SerializeField] private MusicLoader musicLoader;
-
+    //[SerializeField] private MusicLoader musicLoader;
     [SerializeField] private TitleScreenManager TitleScreenManager;
-
     [SerializeField] private TextMeshProUGUI detallesNivel;
-
     [SerializeField] private string plantillaInfo = "Nombre: {0} \nDescripcion: {1}\nArtista: {2}\nAutor:{3}\nBpm:{4}";
-
     private string mainDirectory;
 
     [Tooltip("coleccion de metadatas de los niveles")]
@@ -141,6 +134,6 @@ public class LevelViewer : MonoBehaviour
         _dificultadesDropDown.ClearOptions();
         _dificultadesDropDown.AddOptions(dificultades);
 
-        musicLoader.MusicChangeRequest(option);
+        MusicLoader.MusicChangeRequest(levels[option],_bpmController);
     }
 }

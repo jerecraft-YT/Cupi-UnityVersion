@@ -12,7 +12,7 @@ public class TitleScreenManager : MonoBehaviour
     [SerializeField] private SceneField _sceneToLoad;
 
     [SerializeField] private LevelViewer _levelViewer;
-    [SerializeField] private MusicLoader _musicLoader;
+    //[SerializeField] private MusicLoader _musicLoader;
 
     public int ultimoNivelSeleccionado;
 
@@ -36,9 +36,9 @@ public class TitleScreenManager : MonoBehaviour
 
         dataLevel.actualMetadata = infoActualLevel.levelData;
 
-        dataLevel.musicLoader = _musicLoader;
+        //dataLevel.musicLoader = _musicLoader;
 
-        _musicLoader.ClearMusicCache();
+        MusicLoader.ClearMusicCache();
 
         HideMenu();
 

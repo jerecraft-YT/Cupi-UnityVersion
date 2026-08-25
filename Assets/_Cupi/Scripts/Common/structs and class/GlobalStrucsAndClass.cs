@@ -232,3 +232,15 @@ public class CacheAudio
         this.lastUse = lastUse;
     }
 }
+
+public struct AudioCacheKey
+{
+    public string audioId;
+    public string audioName;
+
+    public AudioCacheKey(string audioId,string audioName)
+    {
+        this.audioId = audioId;
+        this.audioName = audioName;
+    }
+}

@@ -10,13 +10,13 @@ public class LoadLevelManager : MonoBehaviour
     private AsyncOperation _carga;
     [SerializeField] private SceneField _sceneToLoad;
     [SerializeField] private SceneField[] scenesToUnload;
-    private MusicLoader _musicLoader;
+    //private MusicLoader _musicLoader;
     private bool _loaded = false;
     public float duracionTransicionMusica = 1.0f;
 
     void Start()
     {
-        _musicLoader = LevelDataController.instance.musicLoader;
+        //_musicLoader = LevelDataController.instance.musicLoader;
 
         DontDestroyOnLoad(this);
 
@@ -61,13 +61,15 @@ public class LoadLevelManager : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (_musicLoader != null && _musicLoader.readyForNewLoad == true)
         {
             //elimina music loader porque ya no lo necesitamos para el resto del nivel
             Destroy(_musicLoader.gameObject);
         }
+        */
 
-        if (_carga != null && _carga.progress >= 0.9f && _musicLoader == null && !_loaded)
+        if (_carga != null && _carga.progress >= 0.9f && !_loaded)
         {
             _loaded = true;
             FinalLoading();

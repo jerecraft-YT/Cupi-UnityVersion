@@ -9,26 +9,26 @@ using Cupi.ResourceLoader;
 
 public static class MusicLoader
 {
-    private static BpmController _bpmController;
-    const float _timeTransitionMusic = 0.3f;
-    const int _maxMusicInCache = 5;
-    private static UnityWebRequest _audioRequest;
-    private static AudioClip _emptyClip;
-    private static Dictionary<string, CacheAudio> _cacheAudio = new();
-    private static string _musicInUse = "";
-    private static LevelInfo _musicToLoad = null;
-    private static bool _loadingNewMusic;
+    private static BpmController actualBpmController;
+    const float timeTransitionMusic = 0.3f;
+    const int maxMusicInCache = 5;
+    private static UnityWebRequest audioRequest;
+    private static AudioClip emptyClip;
+    private static Dictionary<string, CacheAudio> cacheAudio = new();
+    private static string musicInUse = "";
+    private static LevelInfo musicToLoad = null;
+    private static bool loadingNewMusic;
 
 
     private static void DinamicClearCache()
     {
-        if (_cacheAudio.Count > _maxMusicInCache)
+        if (cacheAudio.Count > maxMusicInCache)
         {
-            var old = _cacheAudio.OrderBy(x => x.Value.lastUse).First();
+            var old = cacheAudio.OrderBy(x => x.Value.lastUse).First();
 
             Object.Destroy(old.Value.clip);
 
-            _cacheAudio.Remove(old.Key);
+            cacheAudio.Remove(old.Key);
             Debug.Log("limpiando cache de audio");
         }
     }
@@ -36,20 +36,20 @@ public static class MusicLoader
     public static void ClearMusicCache()
     {
 
-        if (string.IsNullOrEmpty(_musicInUse))
+        if (string.IsNullOrEmpty(musicInUse))
         {
-            foreach (var item in _cacheAudio) Object.Destroy(item.Value.clip);
+            foreach (var item in cacheAudio) Object.Destroy(item.Value.clip);
 
-            _cacheAudio.Clear();
+            cacheAudio.Clear();
             return;
         }
 
-        var keysToRemove = _cacheAudio.Keys.Where(key => key != _musicInUse).ToList();
+        var keysToRemove = cacheAudio.Keys.Where(key => key != musicInUse).ToList();
 
         foreach (var key in keysToRemove)
         {
-            Object.Destroy(_cacheAudio[key].clip);
-            _cacheAudio.Remove(key);
+            Object.Destroy(cacheAudio[key].clip);
+            cacheAudio.Remove(key);
         }
     }
 
@@ -57,7 +57,7 @@ public static class MusicLoader
     {
         //algo obvio por el nombre :/
         //await MusicFadeIn();
-        await MusicController.MusicFadeIn(_timeTransitionMusic);
+        await MusicController.MusicFadeIn(timeTransitionMusic);
 
         Debug.Log("-----CARGANDO AUDIO-----");
 
@@ -69,7 +69,7 @@ public static class MusicLoader
 
         EndMusicLoad(levelMetadata);
 
-        await MusicController.MusicFadeOut(_timeTransitionMusic);
+        await MusicController.MusicFadeOut(timeTransitionMusic);
     }
 
     private static void EndMusicLoad(LevelMetadata levelMetadata)
@@ -87,13 +87,13 @@ public static class MusicLoader
     {
         string levelName = levelInfo.name;
 
-        if(_cacheAudio.TryGetValue(levelName,out CacheAudio cache))
+        if(cacheAudio.TryGetValue(levelName,out CacheAudio cache))
         {
             MusicController.PlayMusic(cache.clip);
             cache.lastUse = Time.time;
-            _musicInUse = levelName;
+            musicInUse = levelName;
 
-            Debug.Log("se cargo una musica de cache");
+            Debug.Log($"se cargo una musica de cache {levelName}");
             return;
         }
 
@@ -109,7 +109,7 @@ public static class MusicLoader
 
         if (audioClip == null)
         {
-            audioClip = _emptyClip;
+            audioClip = emptyClip;
         }
 
         MusicController.PlayMusic(audioClip);
@@ -120,7 +120,7 @@ public static class MusicLoader
     {
         UnityWebRequest request = UnityWebRequest.Get(path);
 
-        _audioRequest = request;
+        audioRequest = request;
 
         try
         {
@@ -129,7 +129,7 @@ public static class MusicLoader
             if (request.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError("Error al cargar la música: " + request.error);
-                return _emptyClip;
+                return emptyClip;
             }
 
             byte[] fileBytes = request.downloadHandler.data;
@@ -142,15 +142,15 @@ public static class MusicLoader
                 return await OldGetMusic(path, levelName);
             }
 
-            _cacheAudio[levelName] = new CacheAudio(forwardClip, Time.time);
-            _musicInUse = levelName;
+            cacheAudio[levelName] = new CacheAudio(forwardClip, Time.time);
+            musicInUse = levelName;
 
             return forwardClip;
         }
         finally
         {
-            if (_audioRequest == request)
-                _audioRequest = null;
+            if (audioRequest == request)
+                audioRequest = null;
 
             request.Dispose();
         }
@@ -163,7 +163,7 @@ public static class MusicLoader
         DownloadHandlerAudioClip audioHandler = (DownloadHandlerAudioClip)request.downloadHandler;
         audioHandler.streamAudio = true;
 
-        _audioRequest = request;
+        audioRequest = request;
 
         try
         {
@@ -174,7 +174,7 @@ public static class MusicLoader
             {
                 Debug.LogError("Error al cargar la música: " + request.error);
 
-                AudioClip clip = _emptyClip;
+                AudioClip clip = emptyClip;
 
                 return clip;
             }
@@ -189,16 +189,16 @@ public static class MusicLoader
 
             loadedClip.name = levelName;
 
-            _cacheAudio[levelName] = new(loadedClip, Time.time);
-            _musicInUse = levelName;
+            cacheAudio[levelName] = new(loadedClip, Time.time);
+            musicInUse = levelName;
 
             return loadedClip;
         }
         finally
         {
-            if (_audioRequest == request)
+            if (audioRequest == request)
             {
-                _audioRequest = null;
+                audioRequest = null;
             }
 
             request.Dispose();
@@ -213,10 +213,10 @@ public static class MusicLoader
 
         TimeController.instance.SetTime(previewMusicTime);
 
-        if (_bpmController != null)
+        if (actualBpmController != null)
         {
-            _bpmController.BPM = bpm;
-            _bpmController.ResetBpm(previewMusicTime - offset);
+            actualBpmController.BPM = bpm;
+            actualBpmController.ResetBpm(previewMusicTime - offset);
         }
     }
 
@@ -224,34 +224,34 @@ public static class MusicLoader
         LevelInfo levelInfo,
         BpmController bpmController = null)
     {
-        _bpmController = bpmController;
+        actualBpmController = bpmController;
 
         // Si ya estamos cargando, simplemente guardamos
         // la última música solicitada.
-        if (_loadingNewMusic)
+        if (loadingNewMusic)
         {
-            _musicToLoad = levelInfo;
+            musicToLoad = levelInfo;
             return;
         }
 
-        _loadingNewMusic = true;
+        loadingNewMusic = true;
 
         try
         {
             await LoadMusic(levelInfo, levelInfo.levelData);
 
             // Cuando termina, comprobamos si llegó otra petición
-            while (_musicToLoad != null)
+            while (musicToLoad != null)
             {
-                LevelInfo nextMusic = _musicToLoad;
-                _musicToLoad = null;
+                LevelInfo nextMusic = musicToLoad;
+                musicToLoad = null;
 
                 await LoadMusic(nextMusic, nextMusic.levelData);
             }
         }
         finally
         {
-            _loadingNewMusic = false;
+            loadingNewMusic = false;
         }
     }
 }

@@ -81,16 +81,24 @@ public class LevelViewer : MonoBehaviour
         foreach(string levelPath in direccionesNiveles)
         {
             string nombreCarpeta = Path.GetFileName(levelPath.TrimEnd(Path.DirectorySeparatorChar));
-
+            
             if (DataLevelsLoader.MetadataExists(nombreCarpeta))
             {
                 LevelInfo LevelInfo = new(nombreCarpeta, levelPath, DataLevelsLoader.LoadMetadata(nombreCarpeta));
-
+                
                 if (VerificarNiveles(nombreCarpeta, LevelInfo))
                 {
                     levels.Add(LevelInfo);
+                    continue;
                 }
+
+                //en caso no se pudo verificar reporta error
+                NivelCorruptoAviso(nombreCarpeta);
+                continue;
             }
+
+            // en caso que no exista la metadata reporta error
+            NivelCorruptoAviso(nombreCarpeta);
         }
     }
 

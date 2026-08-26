@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5724589729690502499}
-  - component: {fileID: 7807430472921338778}
   m_Layer: 0
   m_Name: NotaNormalRadial
   m_TagString: Untagged
@@ -33,41 +32,6 @@ Transform:
   - {fileID: 7160569613668611467}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7807430472921338778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 507058147081189937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3720bf93b673ae4409b6cb440b9c873b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NotaRadialBaseLogic
-  note: {fileID: 7160569613668611467}
-  spriteNote: {fileID: 2259636981206415913}
-  data:
-    noteIndex: 0
-    modoNota: 1
-    tipoNota: 0
-    CorrespondenciaTecla: 0
-    DireccionMovimiento: 0
-    offsetPositionToGo: {x: 0, y: 0}
-    DireccionCustom: {x: 0, y: 0}
-    timeToArrive: 0
-    localSpeed: 0
-    duracion: 0
-    angulo: 0
-    anguloFinal: 0
-  DireccionMovimiento: {x: 0, y: 0}
-  finalPos: {x: 0, y: 0}
-  origin: {fileID: 0}
-  progress: 0
-  lockProgress: 0
-  offsetRendering: 0
-  Myindex: 0
-  initialized: 0
 --- !u!1 &7934405823630285970
 GameObject:
   m_ObjectHideFlags: 0

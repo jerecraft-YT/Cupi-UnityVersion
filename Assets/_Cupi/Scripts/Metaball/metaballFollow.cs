@@ -11,11 +11,12 @@ public class metaballFollow : MonoBehaviour
     public float velocidadSeguimiento = 5.0f;
     private float refreshTime;
 
-    void Start()
+    void Awake()
     {
         controller = GetComponent<SpriteShapeController>();
         controller.spline.Clear();
     }
+
     void Update()
     {
         refreshTime += Time.deltaTime;

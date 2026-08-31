@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using NLayer;
 
-namespace Cupi.ResourceLoader.Decoders
+namespace Cupi.ResourceLoader.Audio.Decoders
 {
     public static class Mp3Decoder
     {

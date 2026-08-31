@@ -1,18 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Cupi.ResourceLoader.Audio;
+using Cupi.ResourceLoader.Levels;
 
 public class TitleScreenManager : MonoBehaviour
 {
     [SerializeField] private Button _botonJugar;
-
     [SerializeField] private int _ultimaDificultadSeleccionada;
-
     [SerializeField] private GameObject[] _objectsToHide;
     [SerializeField] private SceneField _sceneToLoad;
 
     [SerializeField] private LevelViewer _levelViewer;
-    //[SerializeField] private MusicLoader _musicLoader;
+
+    [SerializeField] private LevelDataSO _levelDataSO;
 
     public int ultimoNivelSeleccionado;
 
@@ -26,19 +27,17 @@ public class TitleScreenManager : MonoBehaviour
 
         _botonJugar.interactable = false;
 
-        LevelDataController dataLevel = LevelDataController.instance;
-
         LevelInfo infoActualLevel = _levelViewer.levels[ultimoNivelSeleccionado];
 
-        dataLevel.folderName = infoActualLevel.name;
+        string folderName = infoActualLevel.folderName;
 
-        dataLevel.levelName = infoActualLevel.levelData.levelsFiles[_ultimaDificultadSeleccionada].levelFileName;
+        string levelName = infoActualLevel.levelData.levelsFiles[_ultimaDificultadSeleccionada].levelFileName;
 
-        dataLevel.actualMetadata = infoActualLevel.levelData;
+        LevelMetadata levelMetadata = infoActualLevel.levelData;
 
-        //dataLevel.musicLoader = _musicLoader;
+        CupiLevelsLoader.SetAllLevelData(_levelDataSO, levelName, levelMetadata, folderName);
 
-        MusicLoader.ClearMusicCache();
+        CupiMusicLoader.ClearMusicCache();
 
         HideMenu();
 

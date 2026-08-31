@@ -277,6 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _tiempoBaseNivel: -4
+  levelData: {fileID: 11400000, guid: 261a0620b4e0e4f45962204ff9cc0b63, type: 2}
   _sceneToLoad:
     m_SceneAsset: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
     m_SceneName: MainGame

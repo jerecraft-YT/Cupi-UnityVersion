@@ -1,8 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
 using TMPro;
 using UnityEngine;
+using Cupi.ResourceLoader.Levels;
+using Cupi.ResourceLoader.Audio;
 
 public class LevelViewer : MonoBehaviour
 {
@@ -13,16 +13,21 @@ public class LevelViewer : MonoBehaviour
     [SerializeField] private TitleScreenManager TitleScreenManager;
     [SerializeField] private TextMeshProUGUI detallesNivel;
     [SerializeField] private string plantillaInfo = "Nombre: {0} \nDescripcion: {1}\nArtista: {2}\nAutor:{3}\nBpm:{4}";
-    private string mainDirectory;
+
+    [SerializeField] private LevelDataSO levelData;
 
     [Tooltip("coleccion de metadatas de los niveles")]
     public List<LevelInfo> levels = new();
+
+   
 
     void Start()
     {
         //testGuardado();
 
-        GetLevels();
+        levels = CupiLevelsLoader.LoadListLevels(levelData);
+        
+        //GetLevels();
 
         if (levels.Count != 0)
         {
@@ -67,66 +72,7 @@ public class LevelViewer : MonoBehaviour
 
         List<NotaInstance> notaInstances = new() { notaInstance };
 
-        await DataLevelsLoader.SaveAll(notaInstances, "nivelPrueba", testDataLevel, "C:/Users/Alumno/Documents/GitHub/Cupi-UnityVersion/Assets/Cupi/Resources/audiosPrueba/DJ Quads - The Improv (SPOTISAVER).mp3");
-    }
-
-    private void GetLevels()
-    {
-        DataLevelsLoader.FindGameFolder();
-
-        mainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-        List<string> direccionesNiveles = new(Directory.GetDirectories(Path.Combine(mainDirectory, DataLevelsLoader.nombreCarpetaJuego)));
-
-        foreach(string levelPath in direccionesNiveles)
-        {
-            string nombreCarpeta = Path.GetFileName(levelPath.TrimEnd(Path.DirectorySeparatorChar));
-            
-            if (DataLevelsLoader.MetadataExists(nombreCarpeta))
-            {
-                LevelInfo LevelInfo = new(nombreCarpeta, levelPath, DataLevelsLoader.LoadMetadata(nombreCarpeta));
-                
-                if (VerificarNiveles(nombreCarpeta, LevelInfo))
-                {
-                    levels.Add(LevelInfo);
-                    continue;
-                }
-
-                //en caso no se pudo verificar reporta error
-                NivelCorruptoAviso(nombreCarpeta);
-                continue;
-            }
-
-            // en caso que no exista la metadata reporta error
-            NivelCorruptoAviso(nombreCarpeta);
-        }
-    }
-
-    private bool VerificarNiveles(string nombreCarpeta,LevelInfo levelInfo)
-    {
-        int nivelesVerificar = levelInfo.levelData.levelsFiles.Count;
-
-        if (nivelesVerificar == 0)
-        {
-            NivelCorruptoAviso(nombreCarpeta);
-            return false;
-        }
-
-        foreach (LevelData levelData in levelInfo.levelData.levelsFiles)
-        {
-            if (!DataLevelsLoader.LevelExist(nombreCarpeta, levelData.levelFileName))
-            {
-                NivelCorruptoAviso(nombreCarpeta);
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private void NivelCorruptoAviso(string carpetaCorrupta)
-    {
-        Debug.LogWarning("NIVEL |" + carpetaCorrupta +"| CORRUPTO");
+        await CupiLevelsLoader.SaveAll(notaInstances, "nivelPrueba", testDataLevel, "C:/Users/Alumno/Documents/GitHub/Cupi-UnityVersion/Assets/Cupi/Resources/audiosPrueba/DJ Quads - The Improv (SPOTISAVER).mp3");
     }
 
     public void ChangeOptionSelected(int option)
@@ -142,6 +88,6 @@ public class LevelViewer : MonoBehaviour
         _dificultadesDropDown.ClearOptions();
         _dificultadesDropDown.AddOptions(dificultades);
 
-        MusicLoader.MusicChangeRequest(levels[option],_bpmController);
+        CupiMusicLoader.MusicChangeRequest(levels[option],_bpmController);
     }
 }

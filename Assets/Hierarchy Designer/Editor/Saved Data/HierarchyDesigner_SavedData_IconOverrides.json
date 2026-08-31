@@ -1,0 +1,19 @@
+{
+    "items": [
+        {
+            "globalId": "GlobalObjectId_V1-2-a2d547cd5c9ab284fade63eaaad8b525-1618665594-0",
+            "source": "builtin",
+            "value": "d_Button Icon"
+        },
+        {
+            "globalId": "GlobalObjectId_V1-2-a2d547cd5c9ab284fade63eaaad8b525-2100696723-0",
+            "source": "builtin",
+            "value": "d_Button Icon"
+        },
+        {
+            "globalId": "GlobalObjectId_V1-2-d99bb4a27da76274abf1de035cc0f064-1503764418-0",
+            "source": "builtin",
+            "value": "d_Image Icon"
+        }
+    ]
+}

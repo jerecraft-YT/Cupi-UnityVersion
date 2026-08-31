@@ -281,3 +281,161 @@ public class metaball : MonoBehaviour
     }
 
 }
+
+
+#if UNITY_EDITOR
+
+[CustomEditor(typeof(metaball))]
+public class MetaballDebug : Editor
+{
+    private metaball targetMetaball;
+
+    private SerializedProperty numberPoints;
+    private SerializedProperty amplitud;
+    private SerializedProperty tangentAmplitud;
+    private SerializedProperty metaballScale;
+
+    private void OnEnable()
+    {
+        targetMetaball = (metaball)target;
+
+        numberPoints =
+            serializedObject.FindProperty("numberPoints");
+
+        amplitud =
+            serializedObject.FindProperty("amplitud");
+
+        tangentAmplitud =
+            serializedObject.FindProperty("tangentAmplitud");
+
+        metaballScale =
+            serializedObject.FindProperty("metaballScale");
+    }
+
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+
+        // Inspector normal
+        DrawDefaultInspector();
+
+        EditorGUILayout.Space(10);
+
+        EditorGUILayout.LabelField(
+            "Metaball Preview",
+            EditorStyles.boldLabel
+        );
+
+        EditorGUILayout.HelpBox(
+            "Previsualización estática del círculo en Edit Mode.",
+            MessageType.Info
+        );
+
+        if (GUILayout.Button("Actualizar círculo"))
+        {
+            UpdateCircle();
+        }
+
+        serializedObject.ApplyModifiedProperties();
+    }
+
+    private void UpdateCircle()
+    {
+        if (targetMetaball == null)
+            return;
+
+        SpriteShapeController controller =
+            targetMetaball.GetComponent<SpriteShapeController>();
+
+        if (controller == null)
+        {
+            Debug.LogWarning(
+                "Metaball necesita un SpriteShapeController."
+            );
+
+            return;
+        }
+
+        int points =
+            Mathf.Clamp(
+                numberPoints.intValue,
+                3,
+                64
+            );
+
+        float radius =
+            amplitud.floatValue *
+            metaballScale.floatValue;
+
+        float tangent =
+            tangentAmplitud.floatValue *
+            metaballScale.floatValue;
+
+        Undo.RecordObject(
+            controller,
+            "Update Metaball Circle"
+        );
+
+        controller.spline.Clear();
+
+        float angleStep =
+            360f / points;
+
+        for (int i = 0; i < points; i++)
+        {
+            float angle =
+                angleStep * i;
+
+            float radians =
+                angle * Mathf.Deg2Rad;
+
+            Vector2 direction =
+                new Vector2(
+                    Mathf.Cos(radians),
+                    -Mathf.Sin(radians)
+                );
+
+            Vector2 tangentDirection =
+                new Vector2(
+                    Mathf.Cos((angle - 90f) * Mathf.Deg2Rad),
+                    -Mathf.Sin((angle - 90f) * Mathf.Deg2Rad)
+                );
+
+            Vector3 position =
+                direction * radius;
+
+            Vector2 tangentPosition =
+                tangentDirection * tangent;
+
+            controller.spline.InsertPointAt(
+                i,
+                position
+            );
+
+            controller.spline.SetTangentMode(
+                i,
+                ShapeTangentMode.Continuous
+            );
+
+            controller.spline.SetLeftTangent(
+                i,
+                tangentPosition
+            );
+
+            controller.spline.SetRightTangent(
+                i,
+                -tangentPosition
+            );
+        }
+
+        controller.spline.isOpenEnded = false;
+
+        controller.RefreshSpriteShape();
+
+        EditorUtility.SetDirty(controller);
+
+        SceneView.RepaintAll();
+    }
+}
+
+#endif

@@ -1,3 +1,4 @@
+using Cupi.ResourceLoader.Levels;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LoadLevelManager : MonoBehaviour
 {
     [SerializeField] private float _tiempoBaseNivel;
+    [SerializeField] private LevelDataSO levelData;
     private AsyncOperation _carga;
     [SerializeField] private SceneField _sceneToLoad;
     [SerializeField] private SceneField[] scenesToUnload;
@@ -32,11 +34,13 @@ public class LoadLevelManager : MonoBehaviour
         
         //yield return new WaitForSeconds(2.0f);
 
-        await Awaitable.EndOfFrameAsync();
+        await Awaitable.WaitForSecondsAsync(1f);
 
         Debug.Log("cargando nivel...");
 
-        LevelDataController.instance.LoadDataLevel();
+        //LevelDataController.instance.LoadDataLevel();
+
+        CupiLevelsLoader.SetLevelChart(levelData);
 
         //yield return new WaitForSeconds(2.0f);
 

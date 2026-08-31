@@ -205,7 +205,7 @@ public class LevelMetadata
 public class LevelInfo
 {
     [Tooltip("nombre de la carpeta del nivel")]
-    public string name;
+    public string folderName;
     [Tooltip("direcion del nivel")]
     public string directory;
     [Tooltip("metadata del nivel")]
@@ -214,7 +214,7 @@ public class LevelInfo
     //constructor para crearlo mas facil desde codigo :3
     public LevelInfo (string name, string directory, LevelMetadata levelData)
     {
-        this.name = name;
+        this.folderName = name;
         this.directory = directory;
         this.levelData = levelData;
     }

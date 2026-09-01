@@ -16,7 +16,7 @@ public class BpmController : MonoBehaviour
     private float bpmAnterior = 60.0f;
     private float timeForBeat;
     private int numberBeats;
-    public static Action GlobalBeat;
+    public static Action OnBeat;
     public bool puedeSincronizar = true;
 
     private void UpdateTimeForBeat()
@@ -41,11 +41,8 @@ public class BpmController : MonoBehaviour
         prevBeatTime = TimeController.instance.AdditiveTime - offset;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        // por lo visto dsp time es la mejor opcion porque no se puede trabar o bueno eso creo
-        //print(AudioSettings.dspTime + " | " + Time.time);
-
         if (bpmAnterior != bpm)
         {
             UpdateTimeForBeat();
@@ -73,9 +70,7 @@ public class BpmController : MonoBehaviour
 
         if (puedeSincronizar) MusicController.instance.SincronizarMusica();
 
-        GlobalBeat?.Invoke();
-
-        //print("beat: " + numberBeats);
+        OnBeat?.Invoke();
     }
 
     public void playSoundBeat(int numBeat , int tiempo)

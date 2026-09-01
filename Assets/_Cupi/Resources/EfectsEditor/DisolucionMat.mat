@@ -11,8 +11,7 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 5f0564ae682c33c43a0bac498017660d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _SCROLLX
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
@@ -42,16 +41,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BorderSize: 0.276
-    - _DisolutionAmount: 0.24
+    - _BorderSize: 0.332
+    - _DisolutionAmount: 0.438
     - _DisolutionScale: 0.5
-    - _SCROLLX: 1
+    - _SCROLLX: 0
     - _SCROLLY: 0
     - _VelocityX: 0.25
     - _VelocityY: 0.25
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
-    - _BorderColor: {r: 0.74901956, g: 0, b: 0, a: 1}
+    - _BorderColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2012042635182881901

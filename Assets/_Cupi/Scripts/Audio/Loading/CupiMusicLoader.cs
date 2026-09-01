@@ -61,9 +61,9 @@ namespace Cupi.ResourceLoader.Audio
             await MusicController.MusicFadeIn(timeTransitionMusic);
 
             Debug.Log("-----CARGANDO AUDIO-----");
-
+            
             await SelectMusic(levelInfo, levelMetadata);
-
+            
             Debug.Log("-----ACABO DE CARGAR AUDIO-----");
 
             //_canCancelLoading = false;

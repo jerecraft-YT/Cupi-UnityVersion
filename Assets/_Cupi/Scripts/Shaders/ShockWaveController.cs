@@ -1,24 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public struct ShockwaveSettings
-{
-    public float size;
-    public float strength;
-    public float speed;        // qué tan rápido crece el radio del anillo
-    public float maxDistance;  // cuándo se considera "terminado"
-
-    public static ShockwaveSettings Default => new ShockwaveSettings
-    {
-        size = 0.05f,
-        strength = -0.1f,
-        speed = 0.6f,
-        maxDistance = 0.6f
-    };
-}
-
-public class TestShockWave : MonoBehaviour
+public class ShockWaveController : MonoBehaviour
 {
     [SerializeField] ShockwaveSettings defaultSettings = ShockwaveSettings.Default;
 
@@ -85,4 +69,21 @@ public class TestShockWave : MonoBehaviour
     {
         TriggerShockwave(Vector2.one / 2f);
     }
+}
+
+[Serializable]
+public struct ShockwaveSettings
+{
+    public float size;
+    public float strength;
+    public float speed;        // qué tan rápido crece el radio del anillo
+    public float maxDistance;  // cuándo se considera "terminado"
+
+    public static ShockwaveSettings Default => new ShockwaveSettings
+    {
+        size = 0.05f,
+        strength = -0.1f,
+        speed = 0.6f,
+        maxDistance = 0.6f
+    };
 }

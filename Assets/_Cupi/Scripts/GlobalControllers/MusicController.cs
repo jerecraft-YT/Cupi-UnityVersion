@@ -77,12 +77,12 @@ public class MusicController : MonoBehaviour
 
     private void OnEnable()
     {
-        TimeController.UpdateTimeScale += UpdateMusic;
+        TimeController.OnUpdateTimeScale += UpdateMusic;
     }
 
     private void OnDisable()
     {
-        TimeController.UpdateTimeScale -= UpdateMusic;
+        TimeController.OnUpdateTimeScale -= UpdateMusic;
     }
 
     private void UpdateMusic()
@@ -130,7 +130,9 @@ public class MusicController : MonoBehaviour
 
         if (additiveTime < 0 || additiveTime > mainMusic.clip.length) return;
 
-        if (Mathf.Abs(additiveTime - mainMusic.time) >= Mathf.Abs(_toleranciaSincronizacion * TimeController.instance.TimeScale))
+        float timeScale = TimeController.instance.TimeScale;
+
+        if (Mathf.Abs(additiveTime - mainMusic.time) >= Mathf.Abs(_toleranciaSincronizacion * timeScale))
         {
             if (!mainMusic.isPlaying) mainMusic.Play();
 

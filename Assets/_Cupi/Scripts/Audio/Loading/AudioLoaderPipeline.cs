@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 using UnityEngine;
-using Cupi.ResourceLoader.Audio.Decoders;
+using CupiEngine.ResourceLoader.Audio.Decoders;
 
-namespace Cupi.ResourceLoader.Audio
+namespace CupiEngine.ResourceLoader.Audio
 {
     public static class AudioLoaderPipeline
     {

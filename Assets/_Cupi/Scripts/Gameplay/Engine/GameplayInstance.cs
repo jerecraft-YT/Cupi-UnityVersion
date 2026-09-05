@@ -43,7 +43,7 @@ public class GameplayInstance : MonoBehaviour
         gameplayRenderer.Initialize(level,timeProvider);
 
         gameplayEngine = new GameplayEngine(gameTime,input, level.chart, level.tileModePlayStyle);
-        gameplayEngine.NoteChange += gameplayRenderer.NoteChange;
+        gameplayEngine.OnNoteChange += gameplayRenderer.NoteChange;
 
         //el renderer va ANTES que el engine: asi la nota ya esta instanciada cuando el engine
         //la juzga en este mismo tick. al reves el engine juzgaba con la cola del tick anterior

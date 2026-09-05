@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using System.Threading.Tasks;
 
-namespace Cupi.ResourceLoader.Levels
+namespace CupiEngine.ResourceLoader.Levels
 {
     public static class CupiLevelsLoader
     {

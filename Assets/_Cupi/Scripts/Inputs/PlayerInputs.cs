@@ -1,46 +1,47 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
-using Cupi.Input;
 
-public class PlayerInputs : IInputDevice
+namespace CupiEngine.Input
 {
-
-    public event Action<CorrespondenciaTecla, double> OnButtonPressed;
-    public event Action<CorrespondenciaTecla, double> OnButtonReleased;
-
-    public bool ClickPressed(CorrespondenciaTecla tecla)
+    public class PlayerInputs : IInputDevice
     {
-        foreach (InputAction InputAction in actualActionMap.actions)
+
+        public event Action<CorrespondenciaTecla, double> OnButtonPressed;
+        public event Action<CorrespondenciaTecla, double> OnButtonReleased;
+
+        public bool ClickPressed(CorrespondenciaTecla tecla)
         {
-            if (inputKeys[InputAction] == tecla)
+            foreach (InputAction InputAction in actualActionMap.actions)
             {
-                //Debug.Log(InputAction.IsPressed() + "|" + inputKeys[InputAction] + "|" + tecla);
-                return InputAction.IsPressed();
+                if (inputKeys[InputAction] == tecla)
+                {
+                    //Debug.Log(InputAction.IsPressed() + "|" + inputKeys[InputAction] + "|" + tecla);
+                    return InputAction.IsPressed();
+                }
             }
+            return false;
         }
-        return false;
-    }
 
-    private GameInputs gameInputs;
+        private GameInputs gameInputs;
 
-    private InputActionMap actualActionMap;
+        private InputActionMap actualActionMap;
 
-    private Dictionary<TileModePlayStyle, InputActionMap> InputActionMaps;
+        private Dictionary<TileModePlayStyle, InputActionMap> InputActionMaps;
 
-    private Dictionary<InputAction, CorrespondenciaTecla> inputKeys = new();
+        private Dictionary<InputAction, CorrespondenciaTecla> inputKeys = new();
 
-    public PlayerInputs(TileModePlayStyle style)
-    {
-        gameInputs = InputController.instance.gameInputs;
-        SetActionMaps();
+        public PlayerInputs(TileModePlayStyle style)
+        {
+            gameInputs = InputController.instance.gameInputs;
+            SetActionMaps();
 
-        ChangeActionMap(style);
-    }
+            ChangeActionMap(style);
+        }
 
-    private void SetActionMaps()
-    {
-        InputActionMaps = new()
+        private void SetActionMaps()
+        {
+            InputActionMaps = new()
         {
             {TileModePlayStyle.OneKey       ,   gameInputs.TileModeOneKey },
             {TileModePlayStyle.TwoKeys      ,   gameInputs.TileModeTwoKeys },
@@ -53,68 +54,69 @@ public class PlayerInputs : IInputDevice
             {TileModePlayStyle.NineKeys     ,   gameInputs.TileModeNineKeys  },
             {TileModePlayStyle.TenKeys      ,   gameInputs.TileModeTenKeys },
         };
-    }
-
-    public void ChangeActionMap(TileModePlayStyle playStyle)
-    {
-        actualActionMap?.Disable();
-        UnsuscribePad();
-
-        actualActionMap = InputActionMaps[playStyle];
-
-        actualActionMap.Enable();
-        SuscribePad();
-
-        CreateKeys();
-    }
-
-    private void CreateKeys()
-    {
-        inputKeys.Clear();
-
-        foreach (InputAction InputAction in actualActionMap.actions)
-        {
-            inputKeys.Add(InputAction, Enum.Parse<CorrespondenciaTecla>(InputAction.name));
         }
-    }
 
-    private void OnPad(InputAction.CallbackContext ctx)
-    {
-        CorrespondenciaTecla tecla = inputKeys[ctx.action];
-
-        if (ctx.performed)
+        public void ChangeActionMap(TileModePlayStyle playStyle)
         {
-            OnButtonPressed?.Invoke(tecla,-1f);
+            actualActionMap?.Disable();
+            UnsuscribePad();
+
+            actualActionMap = InputActionMaps[playStyle];
+
+            actualActionMap.Enable();
+            SuscribePad();
+
+            CreateKeys();
         }
-        if (ctx.canceled)
+
+        private void CreateKeys()
         {
-            OnButtonReleased?.Invoke(tecla,-1f);
-        }
-    }
+            inputKeys.Clear();
 
-    private void SuscribePad()
-    {
-        foreach (InputAction InputAction in actualActionMap.actions)
+            foreach (InputAction InputAction in actualActionMap.actions)
+            {
+                inputKeys.Add(InputAction, Enum.Parse<CorrespondenciaTecla>(InputAction.name));
+            }
+        }
+
+        private void OnPad(InputAction.CallbackContext ctx)
         {
-            InputAction.performed += OnPad;
-            InputAction.canceled += OnPad;
+            CorrespondenciaTecla tecla = inputKeys[ctx.action];
+
+            if (ctx.performed)
+            {
+                OnButtonPressed?.Invoke(tecla, -1f);
+            }
+            if (ctx.canceled)
+            {
+                OnButtonReleased?.Invoke(tecla, -1f);
+            }
         }
-    }
 
-    private void UnsuscribePad()
-    {
-        if (actualActionMap == null) return;
-
-        foreach (InputAction InputAction in actualActionMap.actions)
+        private void SuscribePad()
         {
-            InputAction.performed -= OnPad;
-            InputAction.canceled -= OnPad;
+            foreach (InputAction InputAction in actualActionMap.actions)
+            {
+                InputAction.performed += OnPad;
+                InputAction.canceled += OnPad;
+            }
         }
-    }
 
-    public void Dispose()
-    {
-        UnsuscribePad();
-        actualActionMap?.Disable();
+        private void UnsuscribePad()
+        {
+            if (actualActionMap == null) return;
+
+            foreach (InputAction InputAction in actualActionMap.actions)
+            {
+                InputAction.performed -= OnPad;
+                InputAction.canceled -= OnPad;
+            }
+        }
+
+        public void Dispose()
+        {
+            UnsuscribePad();
+            actualActionMap?.Disable();
+        }
     }
 }

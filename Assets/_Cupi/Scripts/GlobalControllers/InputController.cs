@@ -1,5 +1,5 @@
 using UnityEngine;
-using Cupi.Input;
+using CupiEngine.Input;
 
 public class InputController : MonoBehaviour
 {

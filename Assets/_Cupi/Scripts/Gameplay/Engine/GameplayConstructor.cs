@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using CupiEngine;
+using CupiEngine.Input;
+
 public class GameplayConstructor
 {
     public static void CreateGameplay(string gameplayName, LevelComposition level,Transform parent)

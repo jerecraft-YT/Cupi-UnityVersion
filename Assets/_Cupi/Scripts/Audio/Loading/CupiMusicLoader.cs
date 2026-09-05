@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Cupi.ResourceLoader.Audio
+namespace CupiEngine.ResourceLoader.Audio
 {
 
     public static class CupiMusicLoader

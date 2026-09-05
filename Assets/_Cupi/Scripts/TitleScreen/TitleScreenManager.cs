@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Cupi.ResourceLoader.Audio;
-using Cupi.ResourceLoader.Levels;
+using CupiEngine.ResourceLoader.Audio;
+using CupiEngine.ResourceLoader.Levels;
 
 public class TitleScreenManager : MonoBehaviour
 {

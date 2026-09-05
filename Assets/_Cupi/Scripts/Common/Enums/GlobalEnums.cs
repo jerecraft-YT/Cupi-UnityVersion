@@ -1,6 +1,5 @@
 public enum DireccionesMovimientoNotas
 {
-
     None = 5,
     Up = 0,
     Down = 1,

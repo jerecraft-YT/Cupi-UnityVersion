@@ -6,17 +6,11 @@ using UnityEngine;
 public class GameplayEngine : IDisposable
 {
     public event Action OnLevelEnd;
-
-    public event Action<int,EstadoPuntuacion,EstadoNota> NoteChange;
-
+    public event Action<int,EstadoPuntuacion,EstadoNota> OnNoteChange;
     private RuntimeStateNote[] estadoNotas;
-
     private List<NotaInstance> chart;
-
     private List<BufferedInput> inputBuffer = new();
-
     private IInputDevice inputDevice;
-
     private ITimeProvider timeProvider;
 
     //el engine tiene que saber cuantos carriles hay para no juzgar notas que el renderer
@@ -229,7 +223,7 @@ public class GameplayEngine : IDisposable
         Debug.Log(puntuacion+ "|" + estado);
         estadoNotas[noteIndex].estadoNota = estado;
         estadoNotas[noteIndex].estadoPuntuacion = puntuacion;
-        NoteChange?.Invoke(noteIndex, puntuacion, estado);
+        OnNoteChange?.Invoke(noteIndex, puntuacion, estado);
     }
 
     private EstadoPuntuacion ObtenerPuntaje(double diferencia)

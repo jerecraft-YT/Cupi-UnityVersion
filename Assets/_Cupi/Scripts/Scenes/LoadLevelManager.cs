@@ -1,7 +1,9 @@
-using Cupi.ResourceLoader.Levels;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+using CupiEngine;
+using CupiEngine.ResourceLoader.Levels;
 
 public class LoadLevelManager : MonoBehaviour
 {

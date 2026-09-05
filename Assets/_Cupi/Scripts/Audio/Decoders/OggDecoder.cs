@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using NVorbis;
 
-namespace Cupi.ResourceLoader.Audio.Decoders
+namespace CupiEngine.ResourceLoader.Audio.Decoders
 {
     public static class OggDecoder
     {

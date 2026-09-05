@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+using CupiEngine.Input;
+
 public class ShockWaveController : MonoBehaviour
 {
     [SerializeField] ShockwaveSettings defaultSettings = ShockwaveSettings.Default;

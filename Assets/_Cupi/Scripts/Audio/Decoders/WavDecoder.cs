@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace Cupi.ResourceLoader.Audio.Decoders
+namespace CupiEngine.ResourceLoader.Audio.Decoders
 {
     public static class WavDecoder
     {

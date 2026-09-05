@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using Cupi.ResourceLoader.Levels;
-using Cupi.ResourceLoader.Audio;
+
+using CupiEngine.ResourceLoader.Levels;
+using CupiEngine.ResourceLoader.Audio;
 
 public class LevelViewer : MonoBehaviour
 {

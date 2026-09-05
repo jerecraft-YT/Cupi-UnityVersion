@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Cupi.DebugTools
+namespace CupiEngine.DebugTools
 {
     public class DebugController : MonoBehaviour
     {
@@ -78,8 +78,8 @@ namespace Cupi.DebugTools
 
             TimeController.instance.TimeScale = value;
 
-            if (_audioSource == null) return;
-            _audioSource.pitch = value;
+            //if (_audioSource == null) return;
+            //_audioSource.pitch = value;
         }
     }
 
